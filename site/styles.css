@@ -82,8 +82,9 @@ code, kbd, .mono { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monosp
   position: absolute; top: 12px; right: 12px;
   color: var(--ok); font-weight: 700;
 }
-.lab-card.planned { opacity: .55; pointer-events: none; border-style: dashed; }
-.lab-card.planned .num { background: #eceff5; color: var(--ink-soft); }
+.lab-card.planned { opacity: .85; pointer-events: none; border-style: dashed; background: #f6f7fa; }
+.lab-card.planned h3 { color: var(--ink-soft); }
+.lab-card.planned .num { background: #e6eaf2; color: var(--ink-soft); }
 
 /* ---------- tabs ---------- */
 .tabs { display: flex; gap: 6px; margin: 16px 0 0; flex-wrap: wrap; }
