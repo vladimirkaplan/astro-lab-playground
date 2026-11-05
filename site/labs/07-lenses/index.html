@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lab 7: Lenses and Telescopes - Astro Lab Playground</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+
+<header class="site-head">
+  <div class="wrap">
+    <p style="margin:0"><a class="back-link" href="../../index.html">&larr; all labs</a></p>
+    <h1>Lab 7 &middot; Lenses and Telescopes</h1>
+    <p>One lens makes images; two lenses make a telescope. Slide the parts, chase
+    the sharpest spot, and let the thin-lens equation predict what your eyes see.</p>
+  </div>
+</header>
+
+<main>
+  <div class="tabs" role="tablist">
+    <button class="tab-btn" data-tab="learn" role="tab">Learn</button>
+    <button class="tab-btn" data-tab="simulate" role="tab">Simulate</button>
+    <button class="tab-btn" data-tab="check" role="tab">Check</button>
+  </div>
+
+  <section id="learn" class="tab-panel learn">
+    <h2>What this lab is about</h2>
+    <p>On the bench you get a converging lens, a light source, and a white card.
+    You move the card until the image snaps sharp, measure two distances, and test
+    the only equation this lab needs: 1/f = 1/d_o + 1/d_i. Then you add a second
+    lens, pull it to the right spacing, and the pair becomes a telescope.</p>
+
+    <h2>The one equation</h2>
+    <p>d_o is object-to-lens, d_i is lens-to-image, both in centimeters on your
+    bench. A distant object (or the Sun) arrives with parallel light, so d_i = f
+    exactly: focus an image of the Sun on paper and you have just measured the
+    focal length of your lens. That is also why the sharp image of anything at
+    infinity sits one focal length behind the lens.</p>
+    <ul>
+      <li><strong>d_o &gt; f:</strong> real image - light actually converges, the
+      card catches it, and the image is inverted. Camera, projector, your retina.</li>
+      <li><strong>d_o &lt; f:</strong> light never converges - the image is virtual,
+      upright, and enlarged. That is a magnifying glass, and no card will ever
+      catch that image.</li>
+      <li>Magnification m = -d_i/d_o. The minus sign IS the inversion; the size of
+      m tells you how big. If m is a fraction, the image is smaller than the object.</li>
+    </ul>
+
+    <h2>The telescope</h2>
+    <p>Point a long-focal-length objective at something far: its real image sits at
+    f_objective, tiny and upside down. Now put a short-focal-length eyepiece so that
+    this tiny image lands exactly at the eyepiece focal point: the escaping light is
+    parallel again, relaxed-eye comfortable, and it arrives at your eye tilted
+    f_objective/f_eyepiece times steeper than the naked beam. That ratio is the
+    magnification, and the tube length is just f_objective + f_eyepiece.</p>
+    <p>Why buy binoculars instead of two spyglasses? The prisms inside flip the
+    Keplerian upside-down picture right side up, and the overlapped light paths
+    shorten the tube to something handheld. Astronomers happily keep the inverted
+    view - orientation does not matter on the sky.</p>
+
+    <div class="note">
+      <p><strong>Why this matters to astronomers:</strong> every facility telescope
+      is this two-lens idea scaled up, with mirrors instead of glass. The 19th
+      century ruled the sky with refractors measured exactly the way you measure
+      f here; and the sign of the game changed the day someone checked galaxies
+      through a 100-inch version of the same geometry. (Grounded in OpenStax
+      <em>Astronomy 2e</em>, Ch. 6, CC BY 4.0.)</p>
+    </div>
+
+    <div class="mistakes">
+      <strong>Common mistakes in this lab:</strong>
+      <ul>
+        <li>Flipping the reciprocals: f = d_o + d_i is never true; do the 1/x math.</li>
+        <li>Measuring distances from the lens mount edges, not lens to object/image.</li>
+        <li>Writing m as positive for a real image: that minus sign earns points.</li>
+        <li>Reporting magnification without "x" or a sign and letting the grader guess.</li>
+        <li>Declaring the virtual magnifier image "missing" because the card stays blurry forever.</li>
+        <li>Forgetting the inverted image when drawing the telescope's light path.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="simulate" class="tab-panel">
+    <div class="toolbar" id="toolbar1"></div>
+    <p>
+      <button class="action" id="modeSingle">Single lens bench</button>
+      <button class="action ghost" id="modeScope">Telescope</button>
+    </p>
+
+    <div id="singleView">
+      <div class="canvas-frame"><canvas id="stage" height="360"></canvas></div>
+      <p>
+        <label>Focal length f:
+          <select id="fPick">
+            <option value="10">10 cm</option>
+            <option value="20" selected>20 cm</option>
+            <option value="30">30 cm</option>
+          </select>
+        </label>
+        <label>Object distance d<sub>o</sub>:
+          <select id="doPick">
+            <option value="far">far away (parallel light)</option>
+            <option value="15">15 cm (inside f: magnifier)</option>
+            <option value="30" selected>30 cm</option>
+            <option value="40">40 cm</option>
+            <option value="60">60 cm</option>
+          </select>
+        </label>
+      </p>
+      <p><label>Card (screen) position: <b id="scrRead">60 cm</b>
+        <input type="range" id="scrRange" min="5" max="105" value="60" step="1" style="width:24ch"></label>
+        <button class="action secondary" id="autoFocus">Auto-focus card</button></p>
+      <div class="readout"><small>predicted image distance d_i</small><span id="diRead">-</span></div>
+      <div class="readout"><small>spot on card - keep hunting for the smallest</small><span id="blurRead">-</span></div>
+      <p>
+        <button class="action" id="logBtn">Log this setup</button>
+        <button class="action ghost" id="clearTable">Clear table</button>
+        <button class="action ghost" id="exportCsv">Export CSV</button>
+      </p>
+      <h2>Your data table</h2>
+      <div id="dataTable"></div>
+      <textarea class="csv-copy" id="csvCopy" readonly></textarea>
+    </div>
+
+    <div id="scopeView" hidden>
+      <div class="canvas-frame"><canvas id="stage2" height="360"></canvas></div>
+      <p>
+        <label>Objective f<sub>O</sub>:
+          <select id="objPick">
+            <option value="100">100 cm</option>
+            <option value="200" selected>200 cm</option>
+          </select>
+        </label>
+        <label>Eyepiece f<sub>E</sub>:
+          <select id="eyePick">
+            <option value="10">10 cm</option>
+            <option value="20" selected>20 cm</option>
+          </select>
+        </label>
+        <label>Eye:
+          <select id="eyeMode">
+            <option value="relaxed" selected>relaxed (lenses at f_O + f_E)</option>
+            <option value="tooClose">holding eyepiece too close</option>
+          </select>
+        </label>
+      </p>
+      <div class="readout"><small>angles of the light entering your eye</small><span id="angRead">-</span></div>
+      <p class="muted">The distant object spans 2 degrees either way you look. Through the tube the exit beam comes out tilted by a different angle, and the sim prints both. Exit beam spread wider than naked = bigger picture on your retina = magnification. A relaxed eye needs parallel exit light, which happens only when the lenses sit f_O + f_E apart.</p>
+    </div>
+  </section>
+
+  <section id="check" class="tab-panel">
+    <p class="muted">Bench numbers: object height 2 cm; use the card to confirm every
+    prediction before you commit it.</p>
+    <div id="check-progress"></div>
+
+    <div class="exercise" data-ex='{
+      "type":"numbers",
+      "q":"1. Single lens bench: f = 20 cm, d_o = 30 cm. Predict d_i and magnification m (sign matters - a real image of a real arrow is upside down). Confirm both with the sim readouts.",
+      "parts":[
+        {"label":"d_i","unit":"cm","value":60,"tolAbs":0.6},
+        {"label":"m","unit":"x","value":-2,"tolAbs":0.12}
+      ],
+      "hints":["1/f - 1/d_o = 1/d_i, all in one unit. Put numbers in before touching a calculator.",
+               "1/20 - 1/30 has a friendly common denominator.",
+               "m = -d_i/d_o and images made by single lenses from real objects come inverted."],
+      "working":"1/d_i = 1/20 - 1/30 = 3/60 - 2/60 = 1/60, so d_i = <strong>60 cm</strong>: the card snaps sharp at the 60 mark. m = -60/30 = <strong>-2x</strong>: twice the size, upside down, exactly what the sim draws.",
+      "answer":"60 cm and m = -2"
+    }'></div>
+
+    <div class="exercise" data-ex='{
+      "type":"choice",
+      "correct":2,
+      "q":"2. The card sits two centimeters past the sharp plane and you measure distances as usual. What happens to your computed f?",
+      "options":["Too large - a blurry card flatters the focal length.",
+                 "Exactly right - blur is cosmetic.",
+                 "Too small - spreading the d_i you record inflates 1/d_i and drags 1/f down.",
+                 "It becomes negative, which is the signature of blurring."],
+      "hints":["d_o is untouched; the error lives entirely in d_i, which reads bigger than truth.",
+               "d_i too big means 1/d_i too small, and f comes back from that sum. Start from there."],
+      "working":"1/f = 1/d_o + 1/d_i. Oversized d_i shrinks the second fraction, so the sum - and therefore 1/f - is smaller: f_measure < f_true. Reverse decision: if your computed f UNDER shots the shop spec, suspect an enrolled-card d_i; an oversized f out there requires an undersized d_i a real image can never supply.",
+      "answer":"blurry card biased you low"
+    }'></div>
+
+    <div class="exercise" data-ex='{
+      "type":"keywords",
+      "need":2,
+      "q":"3. In your own words: real image vs virtual image. Say what a card shows, and what your eye does instead.",
+      "words":["converge","point","meet","card","screen","catch","upright","inverted","eye","diverge","magnifier","behind"],
+      "placeholder":"two observations...",
+      "working":"A real image is where light rays genuinely converge - a card placed there goes sharp (and the image sits inverted). A virtual image is where diverging rays only appear to come from: the card never sharpens, and the eye-brain system extends the rays backward to see an upright, enlarged image behind the lens. Real projects, virtual enlarges.",
+      "answer":"converged vs apparent, card vs eye"
+    }'></div>
+
+    <div class="exercise" data-ex='{
+      "type":"numbers",
+      "q":"4. Log it bench-wise: set f = 10 cm, d_o = 40 cm. Enter the d_i your card finds (the sim marks 13.3 when sharp) and the magnification you compute - a smaller-than-object case this time.",
+      "parts":[
+        {"label":"d_i","unit":"cm","value":13.3,"tolAbs":0.4},
+        {"label":"m","unit":"x","value":-0.33,"tolAbs":0.06}
+      ],
+      "hints":["Same equation, smaller f. 1/10 - 1/40 first.",
+               "1/10 - 1/40 = 3/40... finish it.",
+               "m = -d_i/40. A third of the object, face down."],
+      "working":"1/d_i = 1/10 - 1/40 = 4/40 - 1/40 = 3/40, d_i = 40/3 = <strong>13.3 cm</strong>. m = -13.3/40 = <strong>-0.33x</strong>: real, inverted, and shrunk. Distance cameras exploit this exact trade: far objects, small sharp images.",
+      "answer":"13.3 cm, m about -0.33"
+    }'></div>
+
+    <div class="exercise" data-ex='{
+      "type":"numbers",
+      "q":"5. Telescope: objective 200 cm, eyepiece 20 cm. Give the magnification signed, using the sign convention that the sim angle display shows - the exit beam tilts opposite the naked view - just like a real spyglass drawing itself an upside-down picture.",
+      "parts":[
+        {"label":"magnification","unit":"x","value":-10,"tolAbs":0.5}
+      ],
+      "hints":["Magnitude is f_objective / f_eyepiece; then fix the sign by counting flips: the objective makes a real, inverted image and the eyepiece just enlarges that one - one flip total.",
+               "200 divided by 20, one orientation decision, and Keplerian tubes are famous for the view they hand you."],
+      "working":"M = f_O/f_E = 200/20 = 10, and the extra beam-angle measurement in the sim returns -10.0: the Keplerian tube delivers an inverted view. Written properly: M = <strong>-10x</strong>. The tube fits 200 + 20 = 220 cm between lenses - no magic, just geometry you can also read off the bench.",
+      "answer":"-10x over a 220 cm tube"
+    }'></div>
+
+    <div class="exercise" data-ex='{
+      "type":"keywords",
+      "need":2,
+      "q":"6. Report question: what exactly do the prism sets inside binoculars accomplish, and why do astronomers not need them?",
+      "words":["erect","upright","flip","image","shorten","compact","tube","prism","orientation","sky","compass","symmetry"],
+      "placeholder":"what flips and why bother...",
+      "working":"The prisms act as folded relay lenses: they erect the Keplerian inverted image (orientation matters when you are scanning terrain for a harbor and a UPSIDE-DOWN horizon hurts) and they fold the light path, shortening the device. Astronomy cares about resolution and light grasp, not which way is up; stars do not carry billboards; so observatories skip the extra glass (every surface loses a little light) and live with inverted views.",
+      "answer":"erect the image and fold the tube; the sky has no floorboards"
+    }'></div>
+
+    <div class="exercise" data-ex='{
+      "type":"sequence",
+      "terms":["Sunlight through the lens tightens to a dot on paper","Mark the lens-to-dot distance as f","Find 1/f - 1/d_o for your chosen object distance","Invert the result to get d_i","Slide the card there and photograph the arrow image","Report m = -d_i/d_o with its minus sign"],
+      "q":"7. Order the steps of the full procedure (f first, signs last).",
+      "working":"Focus the Sun first: paper-dot distance IS f, no object distance to fuss over. Then 1/f - 1/d_o gives 1/d_i for your chosen object; flip it over for d_i; park the card there; and only then state m = -d_i/d_o with the minus sign that admits the image is inverted.",
+      "answer":"dot dot measure formula invert slide sign"
+    }'></div>
+  </section>
+</main>
+
+<script src="../../shared/units.js"></script>
+<script src="../../shared/ui.js"></script>
+<script src="../../shared/store.js"></script>
+<script src="../../shared/check.js"></script>
+<script src="./lenses.js"></script>
+<script src="./sim.js"></script>
+</body>
+</html>
