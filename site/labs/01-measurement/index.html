@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lab 1: Measurement - Astro Lab Playground</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+
+<header class="site-head">
+  <div class="wrap">
+    <p style="margin:0"><a class="back-link" href="../../index.html">&larr; all labs</a></p>
+    <h1>Lab 1 &middot; Measurement</h1>
+    <p>Rulers, balances, two unit systems, and the honest question behind every
+    measurement: how far is your number from the accepted one?</p>
+  </div>
+</header>
+
+<main>
+  <div class="tabs" role="tablist">
+    <button class="tab-btn" data-tab="learn" role="tab">Learn</button>
+    <button class="tab-btn" data-tab="simulate" role="tab">Simulate</button>
+    <button class="tab-btn" data-tab="check" role="tab">Check</button>
+  </div>
+
+  <section id="learn" class="tab-panel learn">
+    <h2>What this lab is about</h2>
+    <p>The first lab of the course is not really about the table or the coins. It is
+    about how to measure anything and report it honestly. You measure one object twice,
+    once with a meter stick in centimeters and once with a yard stick in inches, then
+    divide the two answers to discover the centimeters-per-inch conversion factor from
+    your own hands instead of a formula sheet. Then you weigh coins, convert between
+    unit systems, and learn one reusable habit: compare every result to the accepted
+    value with percent error.</p>
+
+    <h2>The physics and the metrology</h2>
+    <p>A ruler can only be read to its finest tick plus one estimated digit. A meter
+    stick has millimeter ticks, so a careful reading goes to the nearest tenth of a
+    centimeter, not further. Two effects eat precision before any math starts:
+    <strong>parallax</strong>, where viewing the scale from an angle projects the object
+    edge onto the wrong scale mark (the error grows with the gap between object and
+    scale), and <strong>alignment</strong>, where you measure from an end of the ruler
+    instead of the zero mark, or forget to subtract the starting mark.</p>
+    <p>An instrument reading is never the last word either. Repeated readings scatter
+    (random error), and a badly zeroed instrument shifts every reading the same way
+    (systematic error). Percent error, |measured minus accepted| / accepted times 100,
+    summarizes accuracy as one number, and it stays unsigned so an early high reading
+    and a late low one score the same.</p>
+    <p>Mass and weight are different quantities. Mass counts the matter in an object
+    and is the same everywhere; weight is the gravitational force on that matter and
+    changes with location. A balance compares the weight of the object to the weight of
+    standard masses, so it reads mass correctly anywhere, even on the Moon.</p>
+
+    <div class="note">
+      <p><strong>Why this matters to astronomers:</strong> almost nothing in astronomy
+      can be measured directly. Every distance, mass, temperature, or abundance in the
+      field is an inference from small numbers that each carry their own percent error,
+      which then multiply through the calculation. Conversion discipline is not busywork:
+      a crashed Mars orbiter in 1999 is the famous price of mixing English and metric
+      quantities. (Grounded in OpenStax <em>Astronomy 2e</em>, Ch. 1-2, CC BY 4.0.)</p>
+    </div>
+
+    <div class="mistakes">
+      <strong>Common mistakes in this lab:</strong>
+      <ul>
+        <li>Measuring from the physical end of a ruler instead of the zero mark.</li>
+        <li>Reading the scale from the side instead of straight above (parallax).</li>
+        <li>Recording digits finer than the instrument resolves, or rounding before the final step.</li>
+        <li>Flipping the conversion factor upside down and getting 0.394 cm per inch.</li>
+        <li>Writing the accepted value into the data table as if it were your reading.</li>
+        <li>Reporting a signed percent error when the course convention is magnitude.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="simulate" class="tab-panel">
+    <div class="toolbar" id="toolbar1"></div>
+
+    <h2>Part A: the lab bench</h2>
+    <div class="split">
+      <div>
+        <div class="canvas-frame"><canvas id="rulerCanvas" height="300"></canvas></div>
+        <p><label>Eye position while reading (drag this to fake looking from the side):
+        <input type="range" id="eyePos" min="-140" max="140" value="0" step="1"></label></p>
+        <p class="muted" id="zeroNote"></p>
+      </div>
+      <div>
+        <p><button class="action" id="toggleUnit">Switch to inches ruler</button>
+        <button class="action secondary" id="resitZero">Slide ruler off zero</button></p>
+        <div class="readout"><small>scale mark under bench edge</small><span id="rulerRead">---</span></div>
+        <p>
+          <button class="action ghost" id="logRead">Log this reading</button>
+        </p>
+        <p class="muted">Drag the marker at the far end of the bench until it sits on the
+        edge. In Fun Mode the marker slips a little, like a real hand. The bench is truly
+        183.0 cm long; your job is to find that out (or trust it) and pair centimeter and
+        inch readings.</p>
+      </div>
+    </div>
+
+    <h2>Part B: the coins</h2>
+    <div class="split">
+      <div>
+        <p>Pick a coin to weigh:</p>
+        <div id="coinTray" style="display:flex;gap:18px;align-items:flex-end;padding:10px 4px;min-height:96px"></div>
+        <p><button class="action" id="weighBtn">Weigh on the balance</button></p>
+        <div class="readout"><small>triple-beam balance</small><span id="scaleRead">---</span></div>
+        <p class="muted">Ideal Mode shows the US Mint design weight. Fun Mode adds the
+        ±0.1 g jitter a worn classroom balance really has. Show Specs reveals the
+        manufacturer value for comparison.</p>
+        <p><button class="action ghost" id="specBtn">Show specs</button>
+        <span id="specLine" class="muted"></span></p>
+      </div>
+      <div>
+        <p>Percent-error trainer: drill the formula until it is boring.</p>
+        <div class="readout" style="min-width:20ch"><small>your value vs accepted</small><span id="peSetup">press start</span></div>
+        <p><button class="action" id="peNew">New pair</button>
+        <input class="num-input" id="peAnswer" type="text" inputmode="decimal" placeholder="% error">
+        <button class="action secondary" id="peCheck">Check</button>
+        <span id="peFeedback" class="feedback"></span></p>
+      </div>
+    </div>
+
+    <h2>Your data table</h2>
+    <p>
+      <button class="action ghost" id="exportCsv">Export CSV</button>
+      <button class="action ghost" id="clearTable">Clear table</button>
+      <span class="muted" id="tableNote">saved in this browser only</span>
+    </p>
+    <div id="dataTable"></div>
+    <textarea class="csv-copy" id="csvCopy" readonly></textarea>
+  </section>
+
+  <section id="check" class="tab-panel">
+    <p class="muted">Self-graded, with tolerances, because real instruments are
+    imprecise. Use the Simulate tab to produce the numbers.</p>
+    <div id="check-progress"></div>
+
+    <div class="exercise" data-ex='{
+      "type":"numbers",
+      "q":"1. In Ideal Mode the bench reads 183.0 cm on the meter stick and 72.0 in on the inch ruler. (a) Divide to get your cm-per-inch conversion factor. (b) Percent error against the accepted 2.54? (If you measured in Fun Mode, redo both with your own pair - the method is what counts.)",
+      "parts":[
+        {"label":"cm per in","unit":"cm/in","value":2.5417,"tolAbs":0.012},
+        {"label":"percent error","unit":"%","value":0.066,"tolAbs":0.05}
+      ],
+      "hints":["Conversion factor = centimeters divided by inches for the same table.",
+               "183.0 / 72.0 = ? Keep four decimals; the point of the lab is the third and fourth digits.",
+               "Percent error = |measured - 2.54| / 2.54 * 100 with measured = 2.5417."],
+      "working":"<p>183.0 cm / 72.0 in = 2.54167 cm/in, so about <strong>2.542</strong>.</p><p>% error = |2.54167 - 2.54| / 2.54 * 100 = 0.0656%, so about <strong>0.07%</strong>. A hand measurement landed two hundredths of a percent from the defined value - that is normal.</p>",
+      "answer":"2.542 cm/in; 0.07% error"
+    }'></div>
+
+    <div class="exercise" data-ex='{
+      "type":"numbers",
+      "q":"2. The course conversion card uses 1 oz = 28.57 g. With 16 oz in a pound, how many grams is a pound by that number? Then take the percent error against the true international pound, 453.59 g. Why is a kilogram more convenient than a gram in the lab?",
+      "parts":[
+        {"label":"grams / lb","unit":"g","value":457.12,"tolAbs":1.5},
+        {"label":"percent error","unit":"%","value":0.78,"tolAbs":0.3}
+      ],
+      "hints":["Take it step by step: grams in one ounce, times 16.",
+               "28.57 * 16 = ? Then |that - 453.59| / 453.59 * 100.",
+               "A typical shared key or small textbook weighs about a kilogram, not about a gram."],
+      "working":"28.57 g/oz * 16 oz/lb = <strong>457.1 g</strong> per pound by the card. True value: 453.59 g, so % error = 3.53/453.59 * 100 = <strong>0.78%</strong>. The card value is slightly off (real: 28.35 g/oz). A gram is tiny - you would count thousands of them in any sample - while the kilogram keeps typical masses in the 1-to-100 range. The gram remains handy for coins and chemicals.",
+      "answer":"457 g; 0.78%; kg keeps everyday numbers small"
+    }'></div>
+
+    <div class="exercise" data-ex='{
+      "type":"keywords",
+      "need":4,
+      "q":"3. Brainstorm like the report asks: pick astronomical objects we have discussed and list 4 measurements you could make of them. Plain words are fine.",
+      "words":["mass","distance","temperature","brightness","speed","velocity","size","diameter","age","position","composition","color","orbit","period","redshift","luminosity"],
+      "placeholder":"mass, distance, temperature, brightness...",
+      "hints":["Start with the Sun or a star, then a planet, then a galaxy.",
+               "You can ask: how big, how far, how hot, how bright, how fast, how old, made of what?",
+               "Any four properties a scientist could attach a number to."],
+      "working":"Any four of: mass, distance, diameter or size, temperature, brightness or luminosity, speed or velocity, rotation period, orbit, age, chemical composition, color, redshift. Example sentences: the mass of the Sun from planetary orbits, the distance to a star from parallax, the surface temperature of a star from its color, the size of a galaxy from its angular width.",
+      "answer":"4 measurable properties, e.g. mass, distance, temperature, brightness"
+    }'></div>
+
+    <div class="exercise" data-ex='{
+      "type":"feetinches",
+      "ft":44, "in":2,
+      "q":"4. A table is 4 ft 5 in long. You want one ten times longer. How long, expressed in feet and inches like the original?",
+      "hints":["You cannot multiply 4 ft 5 in as written. Put the whole length into inches first.",
+               "4 ft 5 in = 48 + 5 = 53 in. Ten of those is 530 in.",
+               "Go back to feet: 530 / 12 = 44 whole feet with 2 inches left."],
+      "working":"4 ft 5 in = 53 in. Times 10: 530 in. Divide by 12: 44 ft remainder 2 in. Answer: <strong>44 ft 2 in</strong>. Notice how much arithmetic the mixed base-12 system forced on one multiplication.",
+      "answer":"44 ft 2 in"
+    }'></div>
+
+    <div class="exercise" data-ex='{
+      "type":"numbers",
+      "q":"5. Same table in metric: 1.35 m. Ten of them?",
+      "parts":[{"unit":"m","value":13.5,"tolAbs":0.05}],
+      "hints":["This one is one line."],
+      "working":"1.35 m * 10 = <strong>13.5 m</strong>. One multiplication, no dividing by 12, no remainders.",
+      "answer":"13.5 m"
+    }'></div>
+
+    <div class="exercise" data-ex='{
+      "type":"choice",
+      "correct":0,
+      "q":"6. Comparing the last two exercises: which unit system made the calculation easier, and why does that even matter?",
+      "options":["Metric: it is decimal, so multiplying by 10 just moves the decimal point; no 12s or 16s hide inside the numbers.",
+                 "English: feet and inches are older, and older systems are more carefully standardized.",
+                 "Neither: units never change the difficulty of arithmetic.",
+                 "English: base 12 is divisible by more numbers, so scaling by 10 is where it shines."],
+      "hints":["Which answer required division with a remainder?",
+               "Base-12 arithmetic and base-10 scaling do not cooperate."],
+      "working":"The point of a decimal system shows up at scale changes: 1.35 m becomes 13.5 m for free. 4 ft 5 in became 44 ft 2 in only after multiplying, dividing, and thinking about remainders. Science standardized on metric for exactly this reason.",
+      "answer":"Metric - decimal scaling is one-step arithmetic"
+    }'></div>
+
+    <div class="exercise" data-ex='{
+      "type":"choice",
+      "correct":1,
+      "q":"7. Parallax check from the Simulate tab: your eye is to the LEFT of straight-above while the scale sits under the bench edge. What does the reading tend to do?",
+      "options":["Read too low - the angle always shortens readings.",
+                 "Read too high - projecting through the eye moves the near edge past the true mark.",
+                 "Stay identical - parallax changes blur, not value.",
+                 "Flip sign depending on which hand holds the stick."],
+      "hints":["Sketch a line from your eye (left, up high) through the near bench edge and see where it lands on the scale behind.",
+               "Your eye, the object edge, and the scale mark you read are on one straight sight line."],
+      "working":"With the eye left of the object and the scale behind it (farther from you), the sight line through the object edge strikes the scale at a mark to the right of the truth, so the reading is too high. Look from the right and you read too low. Only straight-above viewing is trustworthy - that is why good meters put the scale right against the object.",
+      "answer":"Too high when viewing from the left"
+    }'></div>
+
+    <div class="exercise" data-ex='{
+      "type":"numbers",
+      "q":"8. Your balance reads a nickel at 4.90 g. The accepted weight is 5.000 g. Percent error?",
+      "parts":[{"unit":"%","value":2.0,"tolAbs":0.25}],
+      "hints":["Same formula as always: difference over accepted, times 100.",
+               "(5.000 - 4.90) / 5.000 = 0.02 before the percent."],
+      "working":"|4.90 - 5.000| / 5.000 * 100 = 0.10/5.000 * 100 = <strong>2.0%</strong>. One tenth of a gram is nothing for a person and 2% for a coin - small objects punish small absolute errors.",
+      "answer":"2.0%"
+    }'></div>
+  </section>
+</main>
+
+<script src="../../shared/units.js"></script>
+<script src="../../shared/ui.js"></script>
+<script src="../../shared/store.js"></script>
+<script src="../../shared/check.js"></script>
+<script src="./sim.js"></script>
+</body>
+</html>

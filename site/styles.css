@@ -1,0 +1,206 @@
+/* Astro Lab Playground: one stylesheet for the whole site. No frameworks. */
+:root {
+  --ink: #1d2733;
+  --ink-soft: #5a6779;
+  --bg: #f5f7fb;
+  --card: #ffffff;
+  --line: #dfe5ef;
+  --accent: #2b5bd7;
+  --accent-ink: #1c3f9c;
+  --ok: #1c7d43;
+  --warn: #a15c00;
+  --bad: #b3261e;
+  --night: #101b30;
+  --radius: 12px;
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  font: 16px/1.55 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  color: var(--ink);
+  background: var(--bg);
+}
+main { max-width: 1060px; margin: 0 auto; padding: 16px clamp(12px, 3vw, 28px) 64px; }
+
+h1 { font-size: 1.55rem; line-height: 1.25; margin: .6em 0 .3em; }
+h2 { font-size: 1.2rem; margin: 1.4em 0 .4em; }
+h3 { font-size: 1.02rem; margin: 1.2em 0 .3em; }
+a { color: var(--accent-ink); }
+small, .muted { color: var(--ink-soft); }
+code, kbd, .mono { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-size: .92em; }
+
+/* ---------- header ---------- */
+.site-head {
+  background: linear-gradient(160deg, var(--night), #1d3461 70%);
+  color: #eef3ff;
+}
+.site-head .wrap {
+  max-width: 1060px; margin: 0 auto;
+  padding: 22px clamp(12px, 3vw, 28px);
+}
+.site-head h1 { margin: 0; font-size: clamp(1.35rem, 4vw, 1.9rem); color: #fff; }
+.site-head p { margin: .45em 0 0; color: #b9c7e6; max-width: 62ch; }
+.site-head a { color: #cfdcff; }
+.back-link { display: inline-block; margin-top: 10px; font-size: .9rem; color: #9fb4dd; }
+
+/* ---------- disclaimer banner ---------- */
+.banner {
+  margin: 14px 0;
+  padding: 10px 14px;
+  border: 1.5px solid var(--warn);
+  border-left-width: 6px;
+  border-radius: 8px;
+  background: #fff8ea;
+  color: #6b4a00;
+  font-size: .93rem;
+}
+
+/* ---------- landing cards ---------- */
+.card-grid {
+  display: grid; gap: 14px;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  margin-top: 18px;
+}
+.lab-card {
+  display: block; text-decoration: none; color: inherit;
+  background: var(--card); border: 1px solid var(--line);
+  border-radius: var(--radius); padding: 14px 16px;
+  transition: box-shadow .15s, transform .15s;
+  position: relative;
+}
+.lab-card:hover { box-shadow: 0 6px 18px rgba(20, 35, 70, .12); transform: translateY(-2px); }
+.lab-card .num {
+  display: inline-block; font: 600 12px/1 ui-monospace, Menlo, monospace;
+  color: var(--accent-ink); background: #e8eefc;
+  padding: 4px 8px; border-radius: 99px; margin-bottom: 8px;
+}
+.lab-card h3 { margin: 0 0 4px; font-size: 1.05rem; }
+.lab-card p { margin: 0; font-size: .88rem; color: var(--ink-soft); }
+.lab-card .tick {
+  position: absolute; top: 12px; right: 12px;
+  color: var(--ok); font-weight: 700;
+}
+.lab-card.planned { opacity: .55; pointer-events: none; border-style: dashed; }
+.lab-card.planned .num { background: #eceff5; color: var(--ink-soft); }
+
+/* ---------- tabs ---------- */
+.tabs { display: flex; gap: 6px; margin: 16px 0 0; flex-wrap: wrap; }
+.tab-btn {
+  font: 600 .95rem/1 inherit;
+  padding: 10px 18px;
+  border: 1px solid var(--line); border-bottom: none;
+  border-radius: 10px 10px 0 0;
+  background: #e9edf5; color: var(--ink-soft); cursor: pointer;
+}
+.tab-btn.active { background: var(--card); color: var(--accent-ink); }
+.tab-panel {
+  background: var(--card); border: 1px solid var(--line);
+  border-radius: 0 var(--radius) var(--radius) var(--radius);
+  padding: clamp(14px, 2.4vw, 26px);
+}
+
+/* ---------- learn prose ---------- */
+.learn { max-width: 72ch; }
+.learn .note {
+  border-left: 4px solid var(--accent);
+  background: #f0f4ff; padding: 10px 14px; border-radius: 0 8px 8px 0;
+  font-size: .93rem;
+}
+.learn .mistakes { background: #fbf2f1; border-left: 4px solid var(--bad);
+  padding: 10px 14px; border-radius: 0 8px 8px 0; }
+.learn .mistakes ul { margin: 6px 0 0; padding-left: 20px; }
+
+/* ---------- sim controls ---------- */
+.toolbar {
+  display: flex; flex-wrap: wrap; gap: 10px; align-items: center;
+  margin: 0 0 14px; padding: 10px 12px;
+  background: #eef1f7; border: 1px solid var(--line); border-radius: 10px;
+}
+.toolbar label { font-size: .9rem; font-weight: 600; }
+.mode-toggle { display: inline-flex; gap: 6px; align-items: center; margin-left: auto; }
+.mode-label { font-size: .85rem; color: var(--ink-soft); }
+.mode-btn {
+  border: 1px solid var(--line); background: #fff; color: var(--ink-soft);
+  border-radius: 99px; padding: 6px 12px; font-size: .82rem; cursor: pointer;
+}
+.mode-btn.active { background: var(--night); border-color: var(--night); color: #fff; }
+
+button.action, .btn-check {
+  font: 600 .92rem/1 inherit;
+  background: var(--accent); border: none; color: #fff;
+  padding: 10px 16px; border-radius: 8px; cursor: pointer;
+}
+button.action.secondary { background: #5b6b8c; }
+button.action.ghost { background: #fff; color: var(--accent-ink); border: 1px solid var(--accent); }
+button.action:disabled { opacity: .45; cursor: not-allowed; }
+
+.canvas-frame { border: 1px solid var(--line); border-radius: 10px; background: #fff; overflow: hidden; }
+.canvas-frame canvas { display: block; width: 100%; touch-action: none; }
+
+.readout {
+  font: 600 1.05rem/1.4 ui-monospace, Menlo, Consolas, monospace;
+  background: #10192b; color: #7ee787; border-radius: 8px;
+  padding: 10px 14px; display: inline-block; min-width: 14ch;
+}
+.readout small { display: block; color: #8fa0c2; font-weight: 400; }
+
+/* ---------- tables ---------- */
+.data-table { border-collapse: collapse; margin: 10px 0; font-size: .9rem; width: 100%; }
+.data-table th, .data-table td { border: 1px solid var(--line); padding: 5px 9px; text-align: left; }
+.data-table th { background: #eef1f7; }
+.data-table td { font-family: ui-monospace, Menlo, monospace; }
+
+textarea.csv-copy {
+  width: 100%; min-height: 90px; display: none; margin-top: 8px;
+  font: 12px/1.4 ui-monospace, Menlo, monospace;
+}
+
+/* ---------- exercises ---------- */
+.exercise {
+  border: 1px solid var(--line); border-radius: var(--radius);
+  padding: 14px 16px; margin: 14px 0; background: #fcfdff;
+}
+.exercise.passed { border-color: var(--ok); background: #f2faf5; }
+.exercise .q { margin: 0 0 10px; font-weight: 600; }
+.part-row { display: flex; gap: 8px; align-items: center; margin: 6px 0; flex-wrap: wrap; }
+.part-label { min-width: 9ch; font-size: .9rem; color: var(--ink-soft); }
+.num-input, .wide-input, textarea.wide-input {
+  font: 1rem/1.3 inherit; padding: 8px 10px;
+  border: 1.5px solid var(--line); border-radius: 8px; background: #fff;
+}
+.num-input { width: 12ch; }
+.wide-input { width: 100%; max-width: 42ch; }
+.unit { color: var(--ink-soft); font-size: .88rem; }
+.choice-row { display: block; padding: 7px 10px; border: 1px solid var(--line);
+  border-radius: 8px; margin: 5px 0; cursor: pointer; font-size: .95rem; }
+.choice-row:hover { background: #f0f4ff; }
+.ex-controls { margin: 10px 0 4px; }
+.feedback { min-height: 1.4em; margin: 6px 0; font-size: .92rem; font-weight: 600; }
+.feedback.ok { color: var(--ok); }
+.feedback.nope { color: var(--bad); }
+.kw-hits { font-size: .84rem; color: var(--ok); margin-top: 4px; }
+.shake { animation: shake .35s; }
+@keyframes shake {
+  25% { transform: translateX(-4px); } 75% { transform: translateX(4px); }
+}
+.hint-btn {
+  background: none; border: 1px dashed #9db1d8; color: var(--accent-ink);
+  border-radius: 99px; padding: 5px 12px; font-size: .82rem; cursor: pointer; margin: 6px 6px 0 0;
+}
+.hint-btn:hover { background: #eef3ff; }
+.hints .hint { margin: 6px 0 0; font-size: .92rem; background: #f2f6ff;
+  border-radius: 8px; padding: 7px 11px; }
+.working { margin-top: 10px; border-top: 1px dashed var(--line); padding-top: 8px; font-size: .94rem; }
+.answer-line { font-weight: 700; }
+#check-progress { margin: 12px 0; font-weight: 600; color: var(--ink-soft); }
+
+/* ---------- misc lab bits ---------- */
+.split { display: grid; gap: 16px; grid-template-columns: 1fr 1fr; }
+@media (max-width: 780px) { .split { grid-template-columns: 1fr; } }
+
+footer.site-foot {
+  border-top: 1px solid var(--line); margin-top: 40px; padding-top: 14px;
+  color: var(--ink-soft); font-size: .85rem;
+}

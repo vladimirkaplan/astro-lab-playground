@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Astro Lab Playground - practice sims for intro astronomy labs</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="./styles.css">
+</head>
+<body class="landing">
+
+<header class="site-head">
+  <div class="wrap">
+    <h1>Astro Lab Playground</h1>
+    <p>Every intro-astronomy lab as a short explanation, an imitation you can play
+    with, and self-graded exercises. Built for the BMCC AST110 lab sequence, useful
+    for any first-course student. Free, offline-friendly, no account, nothing leaves
+    your device.</p>
+    <p><small>Practice and understanding only. It is not a lab submission tool: do the
+    real lab, follow your instructor's rules.</small></p>
+  </div>
+</header>
+
+<main>
+  <div class="banner" role="note">
+    <strong>Practice sim, not your BMCC submission.</strong> This site explains the
+    physics and lets you rehearse the measurements. Written material is adapted from
+    OpenStax <em>Astronomy 2e</em> (CC BY 4.0); spectral line data cites NIST.
+  </div>
+
+  <h2>Labs</h2>
+  <p class="muted">Cards mark a green tick when you pass every exercise on a lab's
+  Check tab. Ticks are saved in this browser only.</p>
+
+  <div class="card-grid" id="cards">
+    <a class="lab-card" href="./labs/09-spectra/index.html" data-lab="09-spectra">
+      <span class="num">Lab 9</span><span class="tick" hidden>&#10004;</span>
+      <h3>Spectra</h3>
+      <p>Bench spectroscope with real gas lines. Read fingerprints, match unknowns.</p>
+    </a>
+    <a class="lab-card" href="./labs/15-hubbles-law/index.html" data-lab="15-hubbles-law">
+      <span class="num">Lab 15</span><span class="tick" hidden>&#10004;</span>
+      <h3>Hubble's Law</h3>
+      <p>Galaxies on an inflating balloon. Measure velocities, fit the slope, get an age.</p>
+    </a>
+    <a class="lab-card" href="./labs/01-measurement/index.html" data-lab="01-measurement">
+      <span class="num">Lab 1</span><span class="tick" hidden>&#10004;</span>
+      <h3>Measurement</h3>
+      <p>On-screen ruler and coin balance: parallax, conversions, percent error.</p>
+    </a>
+
+    <div class="lab-card planned"><span class="num">Lab 8</span>
+      <h3>Acceleration of gravity</h3><p>Pendulum playground. Planned (phase 1).</p></div>
+    <div class="lab-card planned"><span class="num">Lab 7</span>
+      <h3>Lenses and telescopes</h3><p>Live ray diagrams. Planned (phase 1).</p></div>
+    <div class="lab-card planned"><span class="num">Lab 5</span>
+      <h3>Phases of the Moon</h3><p>Drag the Sun-Moon-Earth geometry. Planned (phase 1).</p></div>
+    <div class="lab-card planned"><span class="num">Pos. 5 board</span>
+      <h3>Moonrise and eclipses</h3><p>Top-down eclipse board with node lines. Planned (phase 1).</p></div>
+    <div class="lab-card planned"><span class="num">Labs 16-17</span>
+      <h3>Time, latitude, longitude</h3><p>Graticule dropper and clock-face zones. Planned (phase 1).</p></div>
+    <div class="lab-card planned"><span class="num">Lab 3</span>
+      <h3>The celestial sphere</h3><p>Draggable RA/Dec star chart. Planned (phase 2).</p></div>
+    <div class="lab-card planned"><span class="num">Venus</span>
+      <h3>Phases of Venus</h3><p>Inner-planet orbit viewer. Planned (phase 2).</p></div>
+    <div class="lab-card planned"><span class="num">Lab 2</span>
+      <h3>Mathematics for astronomy</h3><p>Measure pi, small angles, notation drills. Planned (phase 2).</p></div>
+    <div class="lab-card planned"><span class="num">Labs 12-13</span>
+      <h3>HR diagram and variable stars</h3><p>Plot explorer and light-curve editor. Planned (phase 2).</p></div>
+    <div class="lab-card planned"><span class="num">Lab 11</span>
+      <h3>Heliocentric parallax</h3><p>Crawl to other orbits, watch parallax change. Planned (phase 2).</p></div>
+    <div class="lab-card planned"><span class="num">Lab 4</span>
+      <h3>Retrograde Mars</h3><p>Two orbits, date scrubber, sky-track builder. Planned (phase 3).</p></div>
+    <div class="lab-card planned"><span class="num">Lab 14</span>
+      <h3>Galaxy identification</h3><p>Quiz gallery of galaxy types. Planned (phase 3).</p></div>
+    <div class="lab-card planned"><span class="num">HW 1-2</span>
+      <h3>Homework worksheets</h3><p>Self-check worksheets for the homework sets. Planned (phase 3).</p></div>
+  </div>
+
+  <footer class="site-foot">
+    <p>Unofficial student project, not affiliated with any college. Code: MIT.
+    Explanations: CC BY 4.0. Data: NIST ASD (lines). Star names and public values only;
+    no student data of any kind lives here.</p>
+  </footer>
+</main>
+
+<script src="./shared/units.js"></script>
+<script src="./shared/ui.js"></script>
+<script>
+(function () {
+  var progress = LS.ui.progressAll();
+  document.querySelectorAll(".lab-card[data-lab]").forEach(function (card) {
+    var id = card.getAttribute("data-lab");
+    if (progress[id] && progress[id].checks) {
+      var tick = card.querySelector(".tick");
+      if (tick) tick.hidden = false;
+    }
+  });
+})();
+</script>
+</body>
+</html>
