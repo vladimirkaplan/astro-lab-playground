@@ -131,13 +131,10 @@ tracker.
 
 ## Deploy notes
 
-Canonical origin today is the self-hosted gitea mirror:
-`https://git.kaplannet.com/openwork-vladimir/astro-lab-playground.git`
-(private for now; visibility is one click or one API call away). Public GitHub repo is
-confirmed as the end goal but its creation is on hold until the owner hands over the
-account details and the public go-ahead; keep all private identifiers out of the tree so
-it can be pushed clean whenever that happens. Keep the gitea mirror current: push to
-origin (gitea) on every done step, and set the GitHub remote up then (`git remote add
-github ...` plus a tag push). Before the first GitHub push: rewrite the repo-local git
-identity to the owner's GitHub name and noreply email, and re-read README and LICENSE so
-nothing from this machine's setup remains in the tree.
+Canonical origin is the public GitHub repo:
+`https://github.com/vladimirkaplan/astro-lab-playground` (main branch).
+A private self-hosted mirror stays current as a backup remote; keep all
+private identifiers (tokens, internal hostnames, credentials) out of the
+tree so every push to GitHub is safe. Repo-local git identity uses the
+owner's GitHub name with the noreply email.
+
