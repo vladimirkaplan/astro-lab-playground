@@ -55,7 +55,18 @@ Project rules for lab-sims work (user directive 2026-11-07):
   BMC-1 card: a classic GitHub token is coming (propose as Paperclip secret,
   then push Venus + this), manual transcriptions will arrive later and set the
   authoritative lab order, PHY110 is the next course after AST110.
+- DONE 2026-11-07 (Paperclip "Chief", BMC-1, third run): The H-R diagram at
+  site/labs/hr-diagram/ (hr.js: 29-star catalog + Stefan-Boltzmann core + 10
+  tests -> 98 green; sim: clickable diagram with log-luminosity axes, reversed
+  temperature axis, true star colours, main-sequence guide, and a radius machine
+  that derives every radius from L and T; reading log + CSV; 7 exercises). Also
+  three hires on Vladimir's directive (Lab Builder on qwen3.8-flash, Repo Steward
+  for GitHub issues, License Counsel for the free-use frame). Still NOT PUSHED:
+  no GitHub token in this run either, so Venus + Lab 2 + this ship as three
+  `git am` patches attached to BMC-1. Variable stars and the Cepheid yardstick
+  are split out of this card into their own queued lab. Next lab goes to the Lab
+  Builder as a narrow brief, with the Chief verifying.
 - Then: Phase 2 charts still planned on the landing page:
-  HR diagram, parallax, galaxy gallery with Wikimedia images + ATTRIBUTION.md.
+  variable stars, parallax, galaxy gallery with Wikimedia images + ATTRIBUTION.md.
   Then Phase 3 data labs, worksheets, offline kit (service worker, zip, LXC
   recipe). See GOAL.md phases/issues.

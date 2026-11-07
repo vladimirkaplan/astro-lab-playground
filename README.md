@@ -11,7 +11,7 @@ your instructor's rules. Every lab page repeats this as a banner.
 
 ## Status
 
-Eleven lab pages are live; the rest of the brief in [GOAL.md](GOAL.md) is queued.
+Twelve lab pages are live; the rest of the brief in [GOAL.md](GOAL.md) is queued.
 
 Built (each one Learn + Simulate + Check, with a CSV export of your own data table):
 
@@ -29,8 +29,12 @@ Built (each one Learn + Simulate + Check, with a CSV export of your own data tab
 - Phases of Venus: orbit viewer where phase, elongation and apparent size move together,
   with the Ptolemaic prediction drawn beside the real thing. The course number for this
   one is not pinned down yet, so the page carries no number.
+- The H-R diagram: 29 real stars plotted by temperature and luminosity, click to read
+  one, then derive its radius from the Stefan-Boltzmann law and see why giants are huge
+  and white dwarfs are Earth-sized. Also unnumbered until the course list lands.
 
-Still planned: HR diagram and variable stars, heliocentric
+Still planned: variable stars and the Cepheid yardstick (split out of the
+old HR-diagram card), heliocentric
 parallax, retrograde Mars, galaxy identification, and the two homework worksheets. Their
 landing-page cards are placeholders.
 
