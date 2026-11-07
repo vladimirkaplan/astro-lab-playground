@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Phases of Venus - Astro Lab Playground</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+
+<header class="site-head">
+  <div class="wrap">
+    <p style="margin:0"><a class="back-link" href="../../index.html">&larr; all labs</a></p>
+    <h1>Phases of Venus</h1>
+    <p>One inner orbit, one angle. The shape in the telescope, the width of the disk,
+    and the hour you are allowed to look all follow from where Venus sits between you
+    and the Sun.</p>
+  </div>
+</header>
+
+<main>
+  <div class="tabs" role="tablist">
+    <button class="tab-btn" data-tab="learn" role="tab">Learn</button>
+    <button class="tab-btn" data-tab="simulate" role="tab">Simulate</button>
+    <button class="tab-btn" data-tab="check" role="tab">Check</button>
+  </div>
+
+  <section id="learn" class="tab-panel learn">
+    <h2>What this lab is about</h2>
+    <p>Venus orbits inside Earth orbit. That single fact controls everything a viewer
+    sees: Venus never strays more than about 47 degrees from the Sun, it is never up at
+    midnight, and it runs through a complete set of phases like the Moon. It does one
+    thing the Moon barely manages: it also changes size in the telescope, by a factor of
+    about 6 across the cycle.</p>
+
+    <h2>Where the phase comes from</h2>
+    <p>Half of Venus is lit at all times; it is a ball in sunlight. The phase is how much
+    of that lit half your seat on Earth can see, and one angle sets it: the Sun-Venus-Earth
+    angle, called the phase angle. Behind the Sun (superior conjunction) that angle is 0
+    and the whole dayside faces you, so Venus looks full. Between Earth and Sun (inferior
+    conjunction) it is 180 and you are looking at the nightside, so Venus looks new. At
+    greatest elongation it is exactly 90, and exactly half the disk is lit.</p>
+    <p>The lit limb always points toward the Sun. That is the diagnostic, not decoration:
+    a crescent Venus drawn with its bright side away from the Sun is wrong however neatly
+    it is inked.</p>
+
+    <h2>Phase and size move together</h2>
+    <ul>
+      <li><strong>Inferior conjunction:</strong> 0.28 AU away, new, about 60 arcseconds
+      across. The widest disk and the darkest one, buried in the Sun glare.</li>
+      <li><strong>Greatest elongation, about 46 degrees from the Sun:</strong> 0.69 AU,
+      half lit, about 24 arcseconds. The best night of the cycle to look.</li>
+      <li><strong>Superior conjunction:</strong> 1.72 AU, full, about 10 arcseconds. A full
+      Venus is the smallest Venus.</li>
+    </ul>
+    <p>Same ball, three distances. A crescent Venus is about 6 times wider than a full one
+    because it is about 6 times nearer, and the two facts arrive together every cycle. If a
+    drawing shows a fat crescent next to a fat full disk, the drawing has two different
+    planets in it.</p>
+
+    <h2>Why it broke the Ptolemaic arrangement</h2>
+    <p>In Ptolemy model, Venus rides an epicycle whose centre stays locked to the Earth-Sun
+    line. Venus is never carried around behind the Sun, so the model allows crescent and
+    half phases but forbids gibbous and full; the same epicycle also holds Venus at roughly
+    one distance, so the disk should hardly change size. Galileo turned a telescope on Venus
+    in late 1610 and found the whole cycle, gibbous and nearly full disks included, along
+    with a disk that swelled and shrank by roughly a factor of 6 in width. Turn the
+    Ptolemaic prediction on in the sim and watch the second inset: it never passes half lit
+    and never grows. One line of reasoning, one tube of lenses, one dead world system.
+    (Galileo did not invent the telescope; he was the first to aim it at the sky and publish
+    what he found.)</p>
+
+    <h2>What to take from this</h2>
+    <p>A single clean measurement settled a fight about the shape of the cosmos, and the
+    argument was geometric rather than technical: only a planet that orbits the Sun inside
+    Earth orbit can show a full set of phases with a matching change in apparent size. Learn
+    the angle and the phase, the width, and the hour to observe stop being three separate
+    things to memorize.</p>
+
+    <div class="note">
+      <p><strong>Why this matters to astronomers:</strong> this is the cleanest case in the
+      history of science where one observation rules out a rival model outright, and the
+      skill is still in use - Sun-Earth-planet angles decide when a telescope can spend time
+      on an inner planet at all, and the same geometry schedules elongation and transit
+      observing campaigns. (Grounded in OpenStax <em>Astronomy 2e</em>, Ch. 3, CC BY 4.0.)</p>
+    </div>
+
+    <div class="mistakes">
+      <strong>Common mistakes in this lab:</strong>
+      <ul>
+        <li>Blaming Earth shadow for the phases of Venus. Earth shadow makes lunar eclipses;
+        the phase terminator is always a diameter of the disk.</li>
+        <li>Planning to find Venus at midnight. At 47 degrees from the Sun it sets within a
+        few hours of sunset, or rose a few hours before sunrise.</li>
+        <li>Drawing the greatest-elongation disk fully lit. Greatest elongation means phase
+        angle 90, which means exactly half lit.</li>
+        <li>Assuming a bigger disk must be a fuller disk. The fattest disk in the eyepiece is
+        the crescent, because a crescent is the near one.</li>
+        <li>Saying Galileo invented the telescope. He improved one and was the first to use
+        it systematically on the sky.</li>
+        <li>Calling Venus new at superior conjunction. That one is full and tiny; the new one
+        is the near one, hidden in the glare.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="simulate" class="tab-panel">
+    <div class="toolbar" id="toolbar1"></div>
+
+    <div class="canvas-frame"><canvas id="stage" height="400"></canvas></div>
+
+    <p><label>Heliocentric angle, Venus minus Earth (counterclockwise, 0 = Venus between
+      Earth and Sun, 180 = behind the Sun):
+      <b id="thetaRead">43.7</b> deg
+      <input type="range" id="thetaRange" min="-180" max="180" value="43.7" step="0.5" style="width:26ch"></label></p>
+    <p>
+      <button class="action secondary preset" data-th="0">Inferior conjunction</button>
+      <button class="action secondary preset" data-th="43.7">Greatest elongation east</button>
+      <button class="action secondary preset" data-th="180">Superior conjunction</button>
+      <button class="action secondary preset" data-th="-43.7">Greatest elongation west</button>
+    </p>
+    <p>
+      <button class="action" id="runBtn">Run one cycle</button>
+      <button class="action ghost" id="ptoBtn">Ptolemaic prediction: OFF</button>
+    </p>
+
+    <div class="readout"><small>phase seen from Earth</small><span id="phaseRead">-</span></div>
+    <div class="readout"><small>elongation from the Sun</small><span id="elongRead">-</span></div>
+    <div class="readout"><small>apparent diameter in the telescope</small><span id="sizeRead">-</span></div>
+    <div class="readout"><small>Earth-Venus distance</small><span id="distRead">-</span></div>
+
+    <h3>Observing log</h3>
+    <p><button class="action secondary" id="logAdd">Log this position</button></p>
+    <div id="logTable"></div>
+    <p><button class="action secondary" id="logCsv">Download CSV</button>
+      <button class="action ghost" id="logClear">Clear log</button></p>
+    <textarea id="csvFallback" rows="6" class="wide-input" style="display:none"></textarea>
+
+    <p class="muted">Top view of the geometry, north up, Sun at the centre, Earth parked at
+    (1, 0) AU on the right. Both orbits are idealised as circular and flat, and Earth is held
+    still while Venus walks its orbit, so this is a geometry machine and not a clock: the
+    numbers are geometric, ephemeris-grade for this model, not a forecast for any real date.
+    The boxed disks are what a small telescope shows. Their radii are drawn to relative scale
+    at 0.62 pixels per arcsecond of true apparent diameter, so the disks are honest with each
+    other; the orbits are not, since a true-scale Venus orbit would be a dot on this screen.</p>
+  </section>
+
+  <section id="check" class="tab-panel">
+    <p class="muted">Read the values off the sim, then compute them yourself. Ideal Mode gives
+    exact geometry; Fun Mode wobbles the readouts like a real instrument, so use Ideal Mode for
+    these.</p>
+    <div id="check-progress"></div>
+<div class="exercise" data-ex='{"type": "numbers", "q": "1. Press the greatest elongation east preset (heliocentric angle 43.7 deg). At that position the Sun-Venus-Earth angle at Venus is a right angle, 90 deg. What percent of the disk does the Seen from Earth inset show lit? (Model: lit = (1 + cos i) / 2.)", "parts": [{"unit": "%", "value": 50, "tolAbs": 2}], "hints": ["cos 90 = 0, not 1 and not -1.", "Plug it straight in: (1 + 0) / 2.", "The inset and this formula come from the same code, so the drawing and your number must agree."], "working": "(1 + cos 90) / 2 = (1 + 0) / 2 = 0.50, so <strong>50%</strong> lit: dichotomy, the half-moon shape of Venus. Greatest elongation is also the night to observe, because the distance is only sqrt(1 - 0.723^2) = 0.69 AU.", "answer": "50 percent, exactly half lit"}'></div>
+<div class="exercise" data-ex='{"type": "numbers", "q": "2. Greatest elongation happens where your line of sight just grazes the orbit of Venus, so sin(elong) = 0.723 / 1.000. Find the elongation in degrees, and read the sim elongation at the same preset to confirm.", "parts": [{"unit": "deg", "value": 46.3, "tolAbs": 1}], "hints": ["You need the angle, so take the inverse sine of 0.723.", "asin 0.723 = 46.34 deg. Set your calculator to degrees.", "The sim elongation readout caps out at this number no matter where you park the slider."], "working": "asin(0.723 / 1.000) = <strong>46.3 deg</strong>. Any wider angle would aim the line of sight across the orbit, where there is no Venus to catch the light. This one number is why Venus is a dawn or dusk object: it can never climb far enough from the Sun to stay up through the night.", "answer": "about 46 degrees, the hard ceiling on elongation"}'></div>
+<div class="exercise" data-ex='{"type": "choice", "correct": 0, "q": "3. Slide to superior conjunction (180 deg) and read both the inset and the diameter readout. There Venus looks...", "options": ["full and smallest", "full and largest", "new and smallest", "crescent and largest"], "hints": ["Behind the Sun, the phase angle is 0, so the whole dayside faces you.", "Distance sets size. Superior conjunction is 1 + 0.723 = 1.723 AU away, the farthest Venus ever gets."], "working": "Phase angle 0 means the entire lit hemisphere faces Earth: <strong>full</strong>. Distance is 1 + 0.723 = 1.723 AU, the maximum, so the disk shrinks to about <strong>10 arcseconds</strong>: full and smallest at once. A planet that is full while on the far side of the Sun is precisely what the Ptolemaic epicycle forbids.", "answer": "full and smallest, about 10 arcseconds"}'></div>
+<div class="exercise" data-ex='{"type": "choice", "correct": 2, "q": "4. Turn the Ptolemaic prediction ON. Which pair of Galileo observations is the one that refuted the Ptolemaic arrangement of Venus?", "options": ["Venus is always found not far from the Sun in the sky", "Venus shows a thin crescent phase", "gibbous and full phases together with an apparent disk about 6 times wider at one end of the cycle than the other", "Venus is brighter than any star"], "hints": ["Ask what the epicycle forbids, not what it merely allows. Being near the Sun is common to both models.", "Watch the Ptolemy inset: the lit fraction stops at half and the radius never moves.", "The refuting evidence needs two halves: the shape and the size."], "working": "Ptolemy keeps Venus on an epicycle centred on the Earth-Sun line, so Venus is never carried behind the Sun: no gibbous, no full, and a nearly constant distance means a nearly constant disk. Galileo logged <strong>the complete cycle of phases, gibbous and nearly full included, with the disk swelling and shrinking by about a factor of 6</strong>. Only an orbit around the Sun, inside Earth orbit, supplies both halves of that record. Proximity to the Sun and crescent phases fit either model, so they settle nothing.", "answer": "the full range of phases plus the large change in apparent size"}'></div>
+<div class="exercise" data-ex='{"type": "sequence", "q": "5. Put these three positions in order of the apparent size of Venus in a telescope, from the WIDEST disk to the narrowest one. Log all three positions and read the arcseconds off your own table if you want to check.", "words": ["inferior conjunction", "greatest elongation", "superior conjunction"], "hints": ["Size follows distance, and distance runs 0.28, 0.69, 1.72 AU across these three.", "The new Venus is the closest Venus.", "Widest first: the crescent, then the half, then the full."], "working": "Distances: <strong>0.277 AU</strong> at inferior conjunction, about 60 arcseconds across; <strong>0.691 AU</strong> at greatest elongation, about 24 arcseconds; <strong>1.723 AU</strong> at superior conjunction, about 10 arcseconds. One ball at three distances, so the fattest disk in the eyepiece is the crescent and the sharpest little pellet is the full one.", "answer": "inferior conjunction, greatest elongation, superior conjunction"}'></div>
+<div class="exercise" data-ex='{"type": "keywords", "need": 2, "q": "6. In this geometry, why can Venus never be seen high in the sky at midnight? Two ideas are enough.", "words": ["between", "inside", "sun", "elongation", "47", "day", "below", "horizon", "inferior", "orbit"], "hints": ["Where is the orbit of Venus relative to ours, and what does that do to the biggest angle it can make with the Sun?", "Ask where the Sun is at midnight, then ask how far Venus is ever allowed to be from it."], "placeholder": "two plain ideas...", "working": "The orbit of Venus lies <strong>inside</strong> the orbit of Earth, so the line of sight to it always stays within about <strong>47 degrees</strong> of the <strong>Sun</strong>. Everything in that window shares the schedule of the Sun: it is up in the <strong>day</strong> sky, and it goes <strong>below</strong> the <strong>horizon</strong> soon after dusk or comes up shortly before dawn. Seeing Venus at midnight would take an <strong>elongation</strong> near 180 degrees, which an <strong>inferior</strong> orbit can never deliver.", "answer": "an orbit inside Earth orbit keeps Venus within about 47 degrees of the Sun"}'></div>
+  </section>
+</main>
+
+<script src="../../shared/units.js"></script>
+<script src="../../shared/ui.js"></script>
+<script src="../../shared/store.js"></script>
+<script src="../../shared/check.js"></script>
+<script src="./venus.js"></script>
+<script src="./sim.js"></script>
+</body>
+</html>

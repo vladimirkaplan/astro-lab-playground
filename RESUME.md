@@ -39,9 +39,16 @@ Project rules for lab-sims work (user directive 2026-11-07):
 ## Queue snapshot (mirrored in progress/, progress file wins on conflict)
 
 - DONE: labs 01, 05, 07, 08, 09, 12, 15, 16, 17, 03 (celestial sphere +
-  site/data/stars.js catalog) + shared modules + ephemeris. 72 tests. The old
-  small gaps (eclipse card live, inset label) shipped in ce40635.
-- Then: Phase 2 charts still planned on the landing page: Venus phases, Lab 2,
-  sky motions, HR diagram, parallax, galaxy gallery with Wikimedia images +
-  ATTRIBUTION.md. Then Phase 3 data labs, worksheets, offline kit
-  (service worker, zip, LXC recipe). See GOAL.md phases/issues.
+  site/data/stars.js catalog) + shared modules + ephemeris. The old small gaps
+  (eclipse card live, inset label) shipped in ce40635.
+- DONE 2026-11-07 (Paperclip "Chief", BMC-1): Phases of Venus at
+  site/labs/venus-phases/ (venus.js pure geometry + 9 tests, sim with the
+  Ptolemaic-prediction inset, observing log + CSV). 81 tests green. Built
+  unnumbered: GOAL.md lists both the pendulum and Venus as "Lab 8", so the
+  course number for Venus is unconfirmed and the page carries none. NOT YET
+  PUSHED - this run had no GitHub write path; the work left the company as a
+  `git am` patch attached to BMC-1. Apply it, then push to both remotes.
+- Then: Phase 2 charts still planned on the landing page: Lab 2, sky motions,
+  HR diagram, parallax, galaxy gallery with Wikimedia images + ATTRIBUTION.md.
+  Then Phase 3 data labs, worksheets, offline kit (service worker, zip, LXC
+  recipe). See GOAL.md phases/issues.

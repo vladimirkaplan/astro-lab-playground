@@ -11,13 +11,26 @@ your instructor's rules. Every lab page repeats this as a banner.
 
 ## Status
 
-Phase 0 of the brief in [GOAL.md](GOAL.md): site skeleton plus the three flagship labs.
+Ten lab pages are live; the rest of the brief in [GOAL.md](GOAL.md) is queued.
+
+Built (each one Learn + Simulate + Check, with a CSV export of your own data table):
 
 - Lab 1 Measurement: ruler with parallax, coin balance, percent-error trainer
+- Lab 3 Celestial sphere: pan-and-zoom RA/Dec chart, ecliptic, birthday-Sun finder
+- Lab 5 Phases of the Moon: geometry sandbox plus a real New York ephemeris
+- Lab 7 Lenses and telescopes: live ray bench, then a two-lens spyglass
+- Lab 8 Pendulum gravity: 15 timed swings, T^2 vs L fit, get 9.8 out of a stopwatch
 - Lab 9 Spectra: bench grating viewer on real NIST line data, unknowns to identify
+- Lab 12 Moonrise and eclipses: top-down eclipse board with the node rule
 - Lab 15 Hubble's Law: balloon/flat expansion runs, slope fits, a synthetic cosmic sample
+- Labs 16-17 Time, latitude, longitude: graticule dropper and clock-face zones
+- Phases of Venus: orbit viewer where phase, elongation and apparent size move together,
+  with the Ptolemaic prediction drawn beside the real thing. The course number for this
+  one is not pinned down yet, so the page carries no number.
 
-Labs 4 to 16 from the brief are planned; their landing-page cards are placeholders.
+Still planned: mathematics for astronomy, HR diagram and variable stars, heliocentric
+parallax, retrograde Mars, galaxy identification, and the two homework worksheets. Their
+landing-page cards are placeholders.
 
 ## Run it locally
 
@@ -53,7 +66,7 @@ site/
   styles.css          the site's single stylesheet
   shared/             units, fit math, tabs/hints/banner UI, data tables, plots
   data/               spectral line lists (cited) for the spectra lab
-  labs/01-measurement 09-spectra 15-hubbles-law
+  labs/<nn>-<slug>/   one folder per lab (venus-phases carries no number yet)
     index.html        Learn + Simulate + Check tabs
     sim.js            the interactive imitation
 tests/                node --test suites for the pure modules
