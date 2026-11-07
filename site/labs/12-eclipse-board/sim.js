@@ -194,7 +194,15 @@
     sctx.setLineDash([]);
     sctx.fillStyle = "#c8d4ef"; sctx.font = "9.5px system-ui, sans-serif"; sctx.textAlign = "center";
     var ly = beta >= 0 ? my - 10 : my + 15;
-    sctx.fillText("h = " + (beta >= 0 ? "+" : "") + noisy(beta, ms).toFixed(2) + " deg", sxx, ly);
+    var roadCollide = function (baseY) {
+      return sxx + 55 > bx + 13 && sxx - 55 < bx + 205 && baseY + 12 > egY + 4 && baseY - 12 < egY + 17;
+    };
+    var showH = true;
+    if (roadCollide(ly)) {
+      ly = my < egY ? my - 12 : my + 20;
+      if (roadCollide(ly)) showH = false;
+    }
+    if (showH) sctx.fillText("h = " + (beta >= 0 ? "+" : "") + noisy(beta, ms).toFixed(2) + " deg", sxx, ly);
     sctx.textAlign = "left";
     sctx.fillStyle = "#93a7cd";
     sctx.fillText("Earth", ex - 12, egY - 12);
