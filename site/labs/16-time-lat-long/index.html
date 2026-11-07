@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Labs 16-17: Time, Latitude, Longitude - Astro Lab Playground</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+
+<header class="site-head">
+  <div class="wrap">
+    <p style="margin:0"><a class="back-link" href="../../index.html">&larr; all labs</a></p>
+    <h1>Labs 16-17 &middot; Time, Latitude, Longitude</h1>
+    <p>Every place on Earth has an address in degrees, and every address has a
+    clock. Both come from the same grid, and one number, 15 degrees per hour,
+    links them.</p>
+  </div>
+</header>
+
+<main>
+  <div class="tabs" role="tablist">
+    <button class="tab-btn" data-tab="learn" role="tab">Learn</button>
+    <button class="tab-btn" data-tab="simulate" role="tab">Simulate</button>
+    <button class="tab-btn" data-tab="check" role="tab">Check</button>
+  </div>
+
+  <section id="learn" class="tab-panel learn">
+    <h2>What this lab is about</h2>
+    <p>Practice sim, not your BMCC submission. Do the real lab and follow your
+    instructor's rules.</p>
+    <p>The grid wrapped around the Earth is called the graticule. Two reference
+    lines define it. The equator is the big circle halfway between the poles,
+    latitude 0; latitude counts degrees north (N) or south (S) of it, up to 90
+    at the poles. The prime meridian runs through Greenwich, east of London,
+    longitude 0; longitude counts degrees east (E) or west (W) of it, up to 180.
+    A place is named by both, with the direction letter attached: New York sits
+    at about 41 deg N, 74 deg W. Drop the letter and the number is a different
+    place, so the letter is part of the answer, not decoration.</p>
+
+    <h2>Why angles are clocks</h2>
+    <p>Earth turns 360 deg in 24 hours, so it swings 15 deg every hour. That one
+    ratio is the whole of timekeeping geography: 1 hour of clock equals 15 deg
+    of longitude, and 1 deg of longitude equals 4 minutes of solar time. When
+    the Sun stands on your meridian it is noon for everyone on that meridian;
+    someone 30 deg east saw noon two hours ago.</p>
+    <p>In 1884 the world agreed to slice the sphere into 24 standard zones, each
+    15 deg wide, centered on a zone meridian. The zone holding Greenwich is the
+    zero point (UTC). Each zone's clock reads one hour per zone away from
+    Greenwich: east is ahead, west is behind. Real zone edges bend around
+    borders and clocks, and daylight saving shifts them again, but this sim
+    uses the ideal standard zones only. So hand-computing with degrees always
+    agrees with the sim.</p>
+
+    <h2>The date line</h2>
+    <p>Clocks can only say the hour, not the day, so somebody has to declare
+    where a new day starts. That line runs near the 180th meridian, in the
+    quietest place on the planet: the International Date Line. Crossing it
+    westward adds a day to your calendar; crossing it eastward subtracts one.
+    Travel west around the world and your shore-side diary is one day ahead of
+    your shipboard log unless you do this. Two things change a date: passing
+    midnight, and crossing the line. Keep both accountings separate and the
+    problems solve themselves.</p>
+
+    <div class="note">
+      <p><strong>Why this matters to astronomers:</strong> longitude is time.
+      An observability window promised in "9 PM" is meaningless until you know
+      the longitude, and telescopes in Chile, the Canary Islands and Hawaii
+      hand over the sky to each other on exactly this arithmetic. Latitude sets
+      what you can see: the altitude of the celestial pole above your horizon
+      equals your latitude, circumpolar stars depend on it, and the Sun's noon
+      height through the year is a latitude signature. The celestial sphere
+      simply copies the graticule into the sky as RA and Dec. (Grounded in
+      OpenStax <em>Astronomy 2e</em>, Ch. 1 and Ch. 2, CC BY 4.0.)</p>
+    </div>
+
+    <div class="mistakes">
+      <strong>Common mistakes in this lab:</strong>
+      <ul>
+        <li>Swapping the sign and the direction letter: writing "74 deg E" for
+        New York because the math produced -74. Check which way the place
+        actually lies.</li>
+        <li>Forgetting the day change at the date line. The clock can land on
+        2 AM while the day has already flipped.</li>
+        <li>Converting with the city's actual clock (DST, political zones) when
+        the question asks for the degree math. Use the ideal 15-deg zones here.</li>
+        <li>Dividing by 15 and dropping the remainder: 112.5 deg is 7.5 zones,
+        and 0.5 deg of time is 30 minutes, not 50.</li>
+        <li>Applying the day change twice: once for midnight, once for the
+        line, when the road you took only crossed one of them.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="simulate" class="tab-panel">
+    <h2>Flat graticule</h2>
+    <div class="canvas-frame"><canvas id="mapStage" height="360"></canvas></div>
+    <div class="readout"><small>your pin: click or tap anywhere on the map</small><span id="pinRead">no pin yet</span></div>
+    <p class="muted">A flat (equirectangular) drawing of the graticule: grid
+    lines every 18 deg across, 12 deg up and down; thick lines are the equator
+    and prime meridian; dotted lines are the ideal 15-deg zone meridians. The
+    six course cities are dots. Flat maps stretch the poles; degrees of
+    longitude are really shorter away from the equator.</p>
+
+    <h2>Clock-face zone board</h2>
+    <p>
+      <label>Home city:
+        <select id="homeSel"></select>
+      </label>
+      <label>Target city:
+        <select id="targetSel"></select>
+      </label>
+    </p>
+    <p><label>Home clock hour: <b id="hourRead">15</b> h
+      <input type="range" id="hourRange" min="0" max="23" value="15" step="1" style="width:26ch"></label></p>
+    <div class="canvas-frame"><canvas id="dialStage" height="340"></canvas></div>
+    <div class="readout"><small>same instant, two clocks</small><span id="clockRead">-</span></div>
+    <div class="readout"><small>date shift (date line + midnight)</small><span id="dayRead" class="day-badge">&deg;</span></div>
+    <div class="readout"><small>weekday strip (start Monday)</small><span id="weekRead">-</span></div>
+    <p class="muted">One 24-hour dial, noon at the top. The Earth turns 15 deg
+    per hour, so each zone next door is one hour tick apart. The target hand
+    shows the target city's clock at the same instant; the arrow on the rim
+    marks the short way between them. The strip flips weekday names when the
+    conversion crosses midnight or the 180-deg date line.</p>
+  </section>
+
+  <section id="check" class="tab-panel">
+    <p class="muted">Read coordinates off the graticule and run the clock board
+    before checking. The working opens after you try.</p>
+    <div id="check-progress"></div>
+    <div id="check-list"></div>
+  </section>
+</main>
+
+<script src="../../shared/units.js"></script>
+<script src="../../shared/ui.js"></script>
+<script src="../../shared/store.js"></script>
+<script src="../../shared/check.js"></script>
+<script src="./timelong.js"></script>
+<script src="./sim.js"></script>
+</body>
+</html>
