@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lab 3: The Celestial Sphere - Astro Lab Playground</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+
+<header class="site-head">
+  <div class="wrap">
+    <p style="margin:0"><a class="back-link" href="../../index.html">&larr; all labs</a></p>
+    <h1>Lab 3 &middot; The Celestial Sphere</h1>
+    <p>The sky wears the Earth's grid as a second skin: an hour-scale longitude
+    (RA) and a degree-scale latitude (Dec). The Sun walks one tilted line across
+    that grid in a year, and your birthday is a stop on it.</p>
+  </div>
+</header>
+
+<main>
+  <div class="tabs" role="tablist">
+    <button class="tab-btn" data-tab="learn" role="tab">Learn</button>
+    <button class="tab-btn" data-tab="simulate" role="tab">Simulate</button>
+    <button class="tab-btn" data-tab="check" role="tab">Check</button>
+  </div>
+
+  <section id="learn" class="tab-panel learn">
+    <h2>What this lab is about</h2>
+    <p>Practice sim, not your BMCC submission. Do the real lab and follow your
+    instructor's rules.</p>
+    <p>To find anything in the sky you need an address, and the sky borrows its
+    address system from the Earth. Extend the Earth's equator outward into space
+    and it becomes the celestial equator, declination (Dec) zero. Extend the
+    geographic poles and you get the north and south celestial poles, Dec +90
+    and -90. Dec then works exactly like latitude: degrees north of the
+    celestial equator are positive, degrees south are negative, and there they
+    stop, because a star is never "farther than the pole".</p>
+    <p>The sky's longitude is right ascension, RA, and it starts not at
+    Greenwich but at the vernal equinox: the point where the Sun crosses the
+    celestial equator heading north each late March. From there RA is counted
+    eastward all the way around, 0h to 24h. The one thing to burn in: the
+    course star chart is drawn as you would see it looking up with north
+    centered and east to your left, so on that map RA numbers grow toward the
+    left, and a chart that grows them the other way reads every star wrong.</p>
+
+    <h2>Why RA is measured in hours</h2>
+    <p>Because the sky is a clock. Earth turns through the whole 24 h of RA
+    every day, so one hour of RA is 360/24 = 15 degrees of arc, one minute of
+    RA is 15 arcminutes. Hours talk directly to time: two stars 3 h apart in RA
+    cross your meridian 3 hours apart, no arithmetic needed. And hours pin a
+    star to the stars, not to your clock: RA belongs to the sky, so it does not
+    change when your clock reads midnight or when November becomes May. Do not
+    confuse RA with hour angle, which measures westward from your own meridian
+    and climbs steadily in front of your eyes all night long.</p>
+
+    <h2>The ecliptic: the Sun's yearly road</h2>
+    <p>The Sun does not roam anywhere it likes. It stays on one great circle,
+    the ecliptic, which is Earth's own orbit plane seen from inside. Each
+    calendar date puts the Sun at one definite point along it, about 1 degree
+    per day: RA 0h and Dec 0 around March 21, RA 6h and Dec +23.5 around June
+    21, RA 12h and Dec 0 around September 23, RA 18h and Dec -23.5 around
+    December 21. This is the whole trick behind the birthday question in this
+    lab: turn your date into a spot on the ecliptic, read its RA and Dec off
+    the chart, done.</p>
+
+    <h2>Why the tilted road gives seasons</h2>
+    <p>The ecliptic is tilted about 23.4 deg to the celestial equator, because
+    Earth's axis is tilted that much to its orbit. That tilt is why the Sun's
+    Dec swings between +23.5 and -23.5 through the year instead of sitting at
+    zero forever. When the Sun rides high in the north, northern days are long
+    and strong: your summer. Half a year later it rides low in the south and
+    you get winter. The poles do not move with your clock or your calendar:
+    the north celestial pole is Dec +90 for every observer at every hour; only
+    your horizon tilts.</p>
+
+    <div class="note">
+      <p><strong>Why astronomers care:</strong> a coordinate pair is the only
+      object address a telescope obeys. Catalogs list every target as RA and
+      Dec, mounts dial in those two numbers and point themselves, and two
+      telescopes an ocean apart can watch the same object because the grid is
+      nailed to the sky, not to either of them. Read RA and Dec fluently and
+      every sky chart, catalog entry and pointing request on Earth becomes
+      readable. (Grounded in OpenStax <em>Astronomy 2e</em>, Ch. 2, CC BY 4.0.)</p>
+    </div>
+
+    <div class="mistakes">
+      <strong>Common mistakes in this lab:</strong>
+      <ul>
+        <li>Counting RA westward. On the course chart, north-up, RA grows
+        eastward, which is to the left; backwards reading puts every star in
+        the wrong hour.</li>
+        <li>Mixing up RA and hour angle. Hour angle counts west from your
+        meridian and changes minute to minute; RA is stitched to the stars.</li>
+        <li>Believing "the pole moves with your clock". The celestial poles
+        stay at Dec +90 and -90 always; your latitude only changes how high the
+        pole sits over your horizon.</li>
+        <li>Drawing the Sun off the ecliptic. By definition the Sun is on the
+        ecliptic on every date; any off-track Sun is a misplaced date.</li>
+        <li>Sign slips at the edges: in late December the Sun's RA already
+        races near 19-20h toward 24h, which is the same as 0h, and a southern
+        star's Dec is negative, a bare positive number is a different sky.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="simulate" class="tab-panel">
+    <h2>RA/Dec star chart</h2>
+    <div class="canvas-frame"><canvas id="chartStage" height="420"></canvas></div>
+    <div class="readout"><small>star lookup: drag to pan, scroll or pinch to zoom, tap a star to read it</small><span id="starRead">no star picked yet</span></div>
+    <p class="muted">An equirectangular map of the whole celestial sphere: RA
+    across (hours, growing eastward to the left like the course chart), Dec up
+    and down (degrees). The wavy line is the ecliptic; grid lines every 2 h and
+    20 deg; thick lines are the celestial equator and the RA 0h meridian. Dot
+    size follows brightness. Arrow keys pan, plus and minus zoom, inside the
+    chart.</p>
+
+    <h2>Sun on the date slider</h2>
+    <p><label>Day of year: <b id="dayNum">172</b>
+      <input type="range" id="dayRange" min="1" max="365" value="172" step="1" style="width:26ch"></label></p>
+    <div class="readout"><small>the Sun's spot on the ecliptic (ghost dots mark plus/minus 10 and 20 days)</small><span id="dayRead">-</span></div>
+    <p><label>Your birthday:
+      <input type="date" id="bdayInput" value="2026-03-01">
+    </label></p>
+    <div class="readout"><small>birthday-Sun drill, the Lab 3 Q1 setup</small><span id="bdayRead">-</span></div>
+    <p class="muted">Gold marker: the Sun on the slider date. Green ring: the
+    Sun on your birthday, the answer to the manual's "RA and Dec of the Sun on
+    your birthday" question. Read both off the chart with the same
+    count-the-grid-lines method you use for stars.</p>
+
+    <h2>Star quiz</h2>
+    <p>
+      <button type="button" id="quizBtn">Start quiz (7 stars)</button>
+      <input type="text" id="quizInput" placeholder="type the star name" autocomplete="off" disabled style="width:22ch">
+      <span class="unit">score <b id="quizScore">-</b></span>
+    </p>
+    <div class="readout"><small>the highlighted star blinks on the chart; name it (case does not matter, Enter to answer)</small><span id="quizMsg">press Start when ready</span></div>
+
+    <p><small>Star data: Yale Bright Star Catalog v5, J2000, public values,
+    rounded. Sun positions use a mean-anomaly ephemeris good to about 1 deg,
+    a practice-sim target, not an almanac value.</small></p>
+  </section>
+
+  <section id="check" class="tab-panel">
+    <p class="muted">Read the chart first, then check. The working opens after
+    you try.</p>
+    <div id="check-progress"></div>
+    <div id="check-list"></div>
+  </section>
+</main>
+
+<script src="../../shared/units.js"></script>
+<script src="../../shared/ui.js"></script>
+<script src="../../shared/store.js"></script>
+<script src="../../shared/check.js"></script>
+<script src="../../data/stars.js"></script>
+<script src="./sphere.js"></script>
+<script src="./sim.js"></script>
+</body>
+</html>
