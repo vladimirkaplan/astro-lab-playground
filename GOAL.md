@@ -6,12 +6,13 @@ plays with a simulation, and checks themselves with exercises. Any student shoul
 able to open it in a browser and learn the lab without the physical kit. This is
 practice and understanding only; it is not a lab submission tool (see guardrails).
 
-Start by reading `/home/openwork/workspaces/main/BMCC/AST110/extracted/AST110-overview.md`
-for what each lab actually asks for, and the per-lab `labN-how-to.md` files in the same
-folder for worked details. Use them to make sure the sims answer the real questions the
-course asks. Do not copy text from the lab manual into the site; rewrite everything (see
-guardrails). Keep the student's personal data (name, scans, answers) out of this project
-entirely.
+The AST110 lab manuals and lab reports live in a private corpus outside this repo
+(Vladimir's scans; transcriptions pending). They are reference only: use them to
+confirm what each lab actually asks for, but never copy, quote, image, or commit
+their text or figures. Until the transcriptions land, build from GOAL.md and
+OpenStax *Astronomy 2e* (CC BY 4.0). Do not copy text from the lab manual into the
+site; rewrite everything (see guardrails). Keep the student's personal data (name,
+scans, answers) out of this project entirely.
 
 ## What to build
 

@@ -57,6 +57,14 @@ code, kbd, .mono { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monosp
   font-size: .93rem;
 }
 
+.lab-licence {
+  border-top: 1px solid var(--line);
+  margin-top: 40px;
+  padding-top: 14px;
+  color: var(--ink-soft);
+  font-size: .8rem;
+}
+
 /* ---------- landing cards ---------- */
 .card-grid {
   display: grid; gap: 14px;

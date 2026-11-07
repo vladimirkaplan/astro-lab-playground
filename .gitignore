@@ -3,3 +3,17 @@ dist/
 .DS_Store
 *.log
 .env
+
+# no images/scans in this tree while manual scans sit nearby (License Counsel, BMC-3):
+# the site is pure canvas/SVG; re-add specific asset types deliberately when an
+# image lab actually ships with a cleared licence.
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.webp
+*.bmp
+*.tif
+*.tiff
+*.pdf
+*.heic

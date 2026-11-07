@@ -11,32 +11,30 @@ Project rules for lab-sims work (user directive 2026-11-07):
    second item onto a session that already shipped something.
 2. Delegate the actual building to sub-agents (fresh small contexts). Verify
    their output mechanically in the main session: `node --check`, `npm test`,
-   a quick Camoufox load, then commit + push to origin AND github.
+   a quick headless page load, then commit + push to GitHub.
    Brief size limit: a 6-file brief came back EMPTY with zero files written
    twice on 2026-11-07. Split multi-file items into narrow delegations
    (e.g. data + pure logic + tests first, then the page/sim + landing card).
 3. If ANY visible garbling appears (in the main session or a sub-agent
-   report): stop immediately, commit the verified state, update the newest
-   file in ../progress/, and continue in a new session with the prompt below.
+   report): stop immediately, commit the verified state, update the BMC-1
+   plan document, and continue in a new session with the prompt below.
 4. Sub-agents write files and run tests but NEVER run git commit/push.
 
 ## New-session prompt (paste this)
 
-    Continue the lab-sims project at /home/openwork/workspaces/main/lab-sims.
-    Read, in order: lab-sims/RESUME.md (rules), the NEWEST file in
-    workspaces/main/progress/, and lab-sims/GOAL.md. Check the repo first:
-    cd /home/openwork/workspaces/main/lab-sims && npm test && git status
-    (must be clean, 49+ tests green; remotes 'origin' = gitea, 'github' =
-    GitHub Pages - both take one commit each step).
+    Continue the astro-lab-playground work in Paperclip task BMC-1.
+    Clone https://github.com/vladimirkaplan/astro-lab-playground, then read
+    in order: RESUME.md (rules), GOAL.md, and the BMC-1 plan document for
+    the live queue and state. Check the repo first:
+    npm test && git status (must be clean, 98+ tests green).
     Per RESUME.md: one work item only, in a short session. Pick the next item
-    from the progress file's queue. Prefer delegating the build to a fresh
+    from the plan document's queue. Prefer delegating the build to a fresh
     sub-agent with a narrow scope; then you verify (node --check on changed
-    JS, npm test, quick page load) and commit + push to BOTH remotes.
-    Update the progress file before ending. If any output garbles: stop,
-    commit what is green, write a fresh progress note, and tell me to start a
-    new session.
+    JS, npm test, quick page load) and commit + push.
+    Update the plan document before ending. If any output garbles: stop,
+    commit what is green, and tell me to start a new session.
 
-## Queue snapshot (mirrored in progress/, progress file wins on conflict)
+## Queue snapshot
 
 - DONE: labs 01, 05, 07, 08, 09, 12, 15, 16, 17, 03 (celestial sphere +
   site/data/stars.js catalog) + shared modules + ephemeris. The old small gaps

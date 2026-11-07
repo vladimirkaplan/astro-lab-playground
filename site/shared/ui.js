@@ -63,7 +63,21 @@
       "follow your instructor's rules. Explanations adapted from OpenStax " +
       "<em>Astronomy 2e</em> (CC BY 4.0)." });
     (mount || document.body).prepend(b);
+    U.licence(mount || document.body);
     return b;
+  };
+
+  // ---------- license footer ----------
+  // Every lab page carries the same licence line, so a student who lands on one
+  // page still sees what they may do with it.
+  U.licence = function (mount) {
+    var f = U.el("footer", { class: "lab-licence", html:
+      "Unofficial student project, not affiliated with any college. Code: MIT. " +
+      "Explanations: CC BY 4.0 (adapted from OpenStax <em>Astronomy 2e</em>). " +
+      "Public data sources only; no student data of any kind lives here. " +
+      "This sim rehearses the lab - it is not a submission channel." });
+    (mount || document.body).appendChild(f);
+    return f;
   };
 
   // ---------- Ideal / Fun mode ----------
