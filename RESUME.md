@@ -64,7 +64,32 @@ Project rules for lab-sims work (user directive 2026-11-07):
   `git am` patches attached to BMC-1. Variable stars and the Cepheid yardstick
   are split out of this card into their own queued lab. Next lab goes to the Lab
   Builder as a narrow brief, with the Chief verifying.
+- DONE 2026-11-07 (Paperclip "Chief", BMC-1, sixth run): Heliocentric parallax at
+  site/labs/parallax/ - built by the Lab Builder (BMC-5 module, BMC-6 page), verified by
+  the Chief. parallax.js: 8 nearest systems on Gaia EDR3/HIPPARCOS parallaxes, d = 1000/p,
+  the 2 AU January-to-July baseline, the parallactic ellipse with the equinox phase,
+  11 tests -> 109 green. sim.js: the watch-the-wobble bench (protractor sky grid, ellipse
+  squashing to a line as beta -> 0, Sun-Earth inset on the same phase) and the Be-a-Bessel
+  bench (hidden target, two nights, p = shift/2, graded against the catalog) with a
+  measurement log + CSV; 6 exercises. Landing card live. Also shipped in this chain: the
+  Counsel's licence hygiene (MIT/CC BY line on every lab page via shared/ui.js, all data
+  sources named in the landing footer, .gitignore image/scan guard, private paths out of
+  GOAL/RESUME). Still NOT PUSHED: the token is in Paperclip but bound to the Repo Steward,
+  and the Chief's secret grant has not landed, so the chain (Venus, Lab 2, H-R, hygiene,
+  parallax module, parallax page) ships as six `git am` patches attached to BMC-1.
+- DONE 2026-11-07 (Paperclip "Chief", BMC-1, seventh run): Variable stars and Cepheids
+  at site/labs/variables/ - built by the Lab Builder (BMC-7 module, BMC-8 page), verified
+  by the Chief. variables.js: 6-star catalog (three classical Cepheids, RR Lyrae, Algol,
+  Mira), magnitude/distance-modulus arithmetic, the classroom Cepheid line
+  M_V = -2.76 log P - 1.40 gated to 1-100 d so Mira's 332 d cannot be laundered into a
+  distance, four light-curve families with the sawtooth, and the Leavitt move as code
+  (fold, phase-dispersion statistic, coarse-to-fine period search); 18 tests -> 127 green.
+  sim.js: the fold-smear bench (log period slider, live theta^2, knife-thin/smear/blob
+  verdicts) and the be-Leavitt bench (hidden cluster Cepheid, two-step reduction graded
+  against the truth) with a reduction log + CSV; 6 exercises. Landing card live.
+  Still NOT PUSHED: the Chief-side github-token grant has not landed, so the chain now
+  ships as eight `git am` patches attached to BMC-1.
 - Then: Phase 2 charts still planned on the landing page:
-  variable stars, parallax, galaxy gallery with Wikimedia images + ATTRIBUTION.md.
+  galaxy gallery with Wikimedia images + ATTRIBUTION.md.
   Then Phase 3 data labs, worksheets, offline kit (service worker, zip, LXC
   recipe). See GOAL.md phases/issues.

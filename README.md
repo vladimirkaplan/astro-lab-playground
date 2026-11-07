@@ -11,7 +11,7 @@ your instructor's rules. Every lab page repeats this as a banner.
 
 ## Status
 
-Twelve lab pages are live; the rest of the brief in [GOAL.md](GOAL.md) is queued.
+Thirteen lab pages are live; the rest of the brief in [GOAL.md](GOAL.md) is queued.
 
 Built (each one Learn + Simulate + Check, with a CSV export of your own data table):
 
@@ -32,10 +32,15 @@ Built (each one Learn + Simulate + Check, with a CSV export of your own data tab
 - The H-R diagram: 29 real stars plotted by temperature and luminosity, click to read
   one, then derive its radius from the Stefan-Boltzmann law and see why giants are huge
   and white dwarfs are Earth-sized. Also unnumbered until the course list lands.
+- Heliocentric parallax: watch a nearby star trace its yearly ellipse, squash it flat with
+  the ecliptic-latitude slider, then be Bessel - measure a hidden star on the January and
+  July nights and reduce its distance from the 2 AU baseline. Also unnumbered for now.
+- Variable stars and Cepheids: six real variable stars as light curves, fold the points
+  on a trial period until the blob snaps into a knife-thin sawtooth, then be Leavitt -
+  reduce a hidden cluster Cepheid from period to period-luminosity line to distance.
+  Also unnumbered for now.
 
-Still planned: variable stars and the Cepheid yardstick (split out of the
-old HR-diagram card), heliocentric
-parallax, retrograde Mars, galaxy identification, and the two homework worksheets. Their
+Still planned: retrograde Mars, galaxy identification, and the two homework worksheets. Their
 landing-page cards are placeholders.
 
 ## Run it locally
