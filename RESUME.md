@@ -12,6 +12,9 @@ Project rules for lab-sims work (user directive 2026-11-07):
 2. Delegate the actual building to sub-agents (fresh small contexts). Verify
    their output mechanically in the main session: `node --check`, `npm test`,
    a quick Camoufox load, then commit + push to origin AND github.
+   Brief size limit: a 6-file brief came back EMPTY with zero files written
+   twice on 2026-11-07. Split multi-file items into narrow delegations
+   (e.g. data + pure logic + tests first, then the page/sim + landing card).
 3. If ANY visible garbling appears (in the main session or a sub-agent
    report): stop immediately, commit the verified state, update the newest
    file in ../progress/, and continue in a new session with the prompt below.
@@ -35,10 +38,10 @@ Project rules for lab-sims work (user directive 2026-11-07):
 
 ## Queue snapshot (mirrored in progress/, progress file wins on conflict)
 
-- DONE: labs 01, 05, 07, 08, 09, 12, 15 + shared modules + ephemeris. 49 tests.
-- Small gaps: flip landing card "Pos. 5 board" to live for 12-eclipse-board;
-  eclipse inset h-label can overlap the road label at some beta values.
-- Then: Labs 16-17 (time/lat/long), Phase 2 charts (inline star catalog,
-  celestial sphere, Venus, sky motions, HR diagram, parallax, galaxy gallery
-  with Wikimedia images + ATTRIBUTION.md), Phase 3 data labs, worksheets,
-  offline kit (service worker, zip, LXC recipe). See GOAL.md phases/issues.
+- DONE: labs 01, 05, 07, 08, 09, 12, 15, 16, 17, 03 (celestial sphere +
+  site/data/stars.js catalog) + shared modules + ephemeris. 72 tests. The old
+  small gaps (eclipse card live, inset label) shipped in ce40635.
+- Then: Phase 2 charts still planned on the landing page: Venus phases, Lab 2,
+  sky motions, HR diagram, parallax, galaxy gallery with Wikimedia images +
+  ATTRIBUTION.md. Then Phase 3 data labs, worksheets, offline kit
+  (service worker, zip, LXC recipe). See GOAL.md phases/issues.
