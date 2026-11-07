@@ -11,7 +11,7 @@ your instructor's rules. Every lab page repeats this as a banner.
 
 ## Status
 
-Ten lab pages are live; the rest of the brief in [GOAL.md](GOAL.md) is queued.
+Eleven lab pages are live; the rest of the brief in [GOAL.md](GOAL.md) is queued.
 
 Built (each one Learn + Simulate + Check, with a CSV export of your own data table):
 
@@ -24,11 +24,13 @@ Built (each one Learn + Simulate + Check, with a CSV export of your own data tab
 - Lab 12 Moonrise and eclipses: top-down eclipse board with the node rule
 - Lab 15 Hubble's Law: balloon/flat expansion runs, slope fits, a synthetic cosmic sample
 - Labs 16-17 Time, latitude, longitude: graticule dropper and clock-face zones
+- Lab 2 Mathematics for astronomy: wrap-a-tape pi bench, small-angle playground
+  from a pocket coin to the Sun, with the eclipse coincidence built in
 - Phases of Venus: orbit viewer where phase, elongation and apparent size move together,
   with the Ptolemaic prediction drawn beside the real thing. The course number for this
   one is not pinned down yet, so the page carries no number.
 
-Still planned: mathematics for astronomy, HR diagram and variable stars, heliocentric
+Still planned: HR diagram and variable stars, heliocentric
 parallax, retrograde Mars, galaxy identification, and the two homework worksheets. Their
 landing-page cards are placeholders.
 

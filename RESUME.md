@@ -48,7 +48,14 @@ Project rules for lab-sims work (user directive 2026-11-07):
   course number for Venus is unconfirmed and the page carries none. NOT YET
   PUSHED - this run had no GitHub write path; the work left the company as a
   `git am` patch attached to BMC-1. Apply it, then push to both remotes.
-- Then: Phase 2 charts still planned on the landing page: Lab 2, sky motions,
+- DONE 2026-11-07 (Paperclip "Chief", BMC-1, second run): Lab 2 mathematics at
+  site/labs/02-math/ (mathlab.js pure module + 7 tests -> 88 green, circle-bench
+  pi measurement, small-angle bench with coin/Moon/Sun/Jupiter and telescope
+  inset, eclipse coincidence, two CSV logs, 6 exercises). Vladimir answered the
+  BMC-1 card: a classic GitHub token is coming (propose as Paperclip secret,
+  then push Venus + this), manual transcriptions will arrive later and set the
+  authoritative lab order, PHY110 is the next course after AST110.
+- Then: Phase 2 charts still planned on the landing page:
   HR diagram, parallax, galaxy gallery with Wikimedia images + ATTRIBUTION.md.
   Then Phase 3 data labs, worksheets, offline kit (service worker, zip, LXC
   recipe). See GOAL.md phases/issues.
