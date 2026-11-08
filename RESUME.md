@@ -288,5 +288,37 @@ Project rules for lab-sims work (user directive 2026-11-07):
   the file is constellation-grouped, as it has always been. All 15 spectral
   anchors, every course-drilled star and both earlier drops (Mahasim, Menkib)
   stand as delivered; 199/199 tests green on the corrected file.
-- Then (queue, in order): LAST, the offline kit (#16: service worker,
-  downloadable zip, LXC recipe). See GOAL.md phases/issues.
+- DONE 2026-11-08 (Lab Builder, BMC-19): Offline kit, the LAST AST110 item, GitHub
+  issue #16 ("Offline kit"), DONE-PENDING-PUSH - the Chief closes #16 at push. New
+  stdlib generator `scripts/offline-kit.js` walks `site/` (skipping the zip itself),
+  deterministically emits `site/sw.js` and `site/offline/kit.zip`, and exports its
+  walk/hash/zip helpers so the tests reuse the exact same code. sw.js is a classic
+  worker (no workbox/imports): cache-first with network fallback, navigations fall back
+  to the cached page then cached index.html, `/` maps to index.html, install never aborts
+  on one 404, activate deletes every cache whose name != current version, and a failed
+  fetch returns `Response.error()` instead of crashing the worker. Cache name scheme:
+  `astro-lab-playground-` + KIT_VERSION, where KIT_VERSION = sha256 over the sorted
+  "path + newline + file sha256" list for every walked file EXCLUDING the generated
+  sw.js (whose bytes embed this very hash - excluding it is what makes rebuilds a
+  fixed point). kit.zip is STORE-only, fixed 1980-01-01 DOS timestamp, site-root-relative
+  paths (unzip into any web root serves `index.html`/`labs/...`/`homework/...` at the
+  root); two rebuilds are byte-identical. ui.js gains ONE additive guarded block: it
+  registers only when `location.protocol === "https:"` or the host is localhost/127.0.0.1,
+  derives the site root by going up one from its own `.../shared/ui.js` URL (so the same
+  ui.js works unzipped at any depth on any origin) and registers `sw.js` with that
+  matching scope, swallowing every failure (one console.info on success only) - plain-http
+  LAN mirrors and file:// never register, which is correct because nothing on the site
+  ever calls the network. Landing page gains a "Work without internet" section (link to
+  the zip + honest live-cache / LAN note). Docs: ops/lxc-classroom-kit.md (build -> LXC
+  ubuntu -> python3 http.server / optional nginx -> `curl -w "%{http_code}"` checklist,
+  and the by-design no-SW-over-http note), ops/serve-kit.sh (bash, set -euo pipefail),
+  a README "Run offline" line, README deploy wording, and README "Still planned" now says
+  AST110 is complete pending the Chief's push. .gitignore: added a `*.zip` refusal with
+  the single `!site/offline/kit.zip` exception (git check-ignore still refuses every other
+  .zip/.jpg/.png; site/img/*.jpg exception untouched). Kit = 85 files, ~3.31 MB
+  (3,470,191 bytes). tests/offline-kit.test.js: 8 new tests (a-f) -> 199 -> 207 green;
+  `node --check` clean on every generated/edited JS; the offline pages served and curled
+  200 end-to-end. NO lab behavior changed (ui.js additive; tabs.test.js green). NOT
+  COMMITTED by the Lab Builder (RESUME rule 4 / AGENTS.md): the Chief verifies and lands.
+- AST110 queue is now EMPTY: all sixteen lab pages, both homework pages, and the offline
+  kit are delivered. Next up (not started): anything beyond AST110 lives in GOAL.md.

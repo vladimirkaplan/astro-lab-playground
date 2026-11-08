@@ -21,5 +21,12 @@ dist/
 *.tiff
 *.pdf
 *.heic
+
+# Archives: refuse every zip by default; the one committed binary is the generated
+# offline-kit bundle (site/offline/kit.zip) and nothing else (BMC-19 / GitHub #16).
+*.zip
+!site/offline/
+!site/offline/kit.zip
+
 !site/img/
 !site/img/*.jpg

@@ -177,5 +177,39 @@
 
   U.plural = function (n, word) { return n + " " + word + (n === 1 ? "" : "s"); };
 
+  // ---------- offline kit: service worker registration ----------
+  // Additive, guarded, error-swallowing: the offline kit must never break a page.
+  // Register only on the live https site or a localhost dev server; a plain-http
+  // classroom mirror never registers (browsers refuse service workers on http BY
+  // DESIGN, and the mirror needs no cache because nothing on the site ever calls
+  // the network). Every failure path returns quietly instead of throwing.
+  U.registerServiceWorker = function () {
+    try {
+      if (typeof navigator === "undefined" || !navigator.serviceWorker) return false;
+      if (typeof location === "undefined") return false;
+      var host = location.hostname || "";
+      var secure = location.protocol === "https:" ||
+        host === "localhost" || host === "127.0.0.1";
+      if (!secure) return false;
+      // Site root, derived from THIS script's own .../shared/ui.js URL, so the same
+      // ui.js stays loadable from an unzipped mirror sitting at an unknown path on
+      // any origin. With no current-script URL we bail rather than risk a scope that
+      // does not match a real sw.js.
+      var here = typeof document !== "undefined" && document.currentScript &&
+        document.currentScript.src;
+      if (!here) return false;
+      var rootUrl = new URL("../", here).href;   // up from .../shared/ui.js to the site root
+      var swUrl = new URL("sw.js", rootUrl).href;
+      navigator.serviceWorker.register(swUrl, { scope: rootUrl }).then(
+        function () { console.info("[offline-kit] service worker active for " + rootUrl); },
+        function () {}
+      );
+      return true;
+    } catch (e) {
+      return false;
+    }
+  };
+  U.registerServiceWorker();
+
   root.LS.ui = U;
 })(typeof globalThis !== "undefined" ? globalThis : window);

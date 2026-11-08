@@ -64,8 +64,9 @@ attempt, CSV log of your own attempts - practice only, never a submission channe
 
 Both worksheets run on the shared `site/homework/hw-core.js` engine for all math.
 
-Still planned: the offline kit (service worker + downloadable zip); see GOAL.md
-and RESUME.md for the queue.
+The offline kit (service worker + one-zip download + classroom recipe) was the last
+AST110 item: the full AST110 lab set is now **complete, pending the Chief's push**. See
+RESUME.md for the queue and GOAL.md for any follow-on courses.
 
 ## Run it locally
 
@@ -80,6 +81,13 @@ There is no build step. Any of:
   python3 -m http.server -d site 8080
   ```
 
+- Run offline: the whole site ships as one zip, `site/offline/kit.zip` (rebuild it with
+  `node scripts/offline-kit.js`). Unzip it into any folder and open `index.html`, or serve
+  that folder with any static server - every path is local and relative, so it needs no
+  internet. The pages also self-cache on the live https site via a service worker.
+  Plain-LAN classroom recipe: [ops/lxc-classroom-kit.md](ops/lxc-classroom-kit.md)
+  (helper: `ops/serve-kit.sh`).
+
 - Tests only need Node 22+: `npm test` (or `node --test tests/*.test.js`).
 
 A note on modules: browsers refuse to `import` ES modules over `file://` (CORS), so the
@@ -89,9 +97,11 @@ are Node-loadable, which is how the tests exercise the pure math and data module
 ## Deploy to GitHub Pages
 
 Push the repo, then in Settings, Pages: Source "Deploy from a branch", branch `main`,
-folder `/site`. Everything uses relative paths, so any base URL works.
-A service worker for offline reuse after the first visit is on the phase roadmap; over
-`file://` the files are local either way.
+folder `/site`. Everything uses relative paths, so any base URL works. The generated
+`site/sw.js` (from `node scripts/offline-kit.js`) caches the site after the first visit so
+it reloads offline over https; on a plain-http mirror there is no service worker (browsers
+refuse one over http) but nothing on the site ever calls the network, so it still works -
+see [ops/lxc-classroom-kit.md](ops/lxc-classroom-kit.md).
 
 ## Layout
 
