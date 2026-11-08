@@ -11,7 +11,7 @@ your instructor's rules. Every lab page repeats this as a banner.
 
 ## Status
 
-Thirteen lab pages plus two homework practice pages are live; the rest of the brief
+Fourteen lab pages plus two homework practice pages are live; the rest of the brief
 in [GOAL.md](GOAL.md) is queued.
 
 Built (each one Learn + Simulate + Check, with a CSV export of your own data table):
@@ -38,6 +38,11 @@ Built (each one Learn + Simulate + Check, with a CSV export of your own data tab
 - Lab 13 Variable stars and Cepheids: six real variable stars as light curves, fold the points
   on a trial period until the blob snaps into a knife-thin sawtooth, then be Leavitt -
   reduce a hidden cluster Cepheid from period to period-luminosity line to distance.
+- Lab 6 Retrograde motion of Mars: a two-lane overtake bench where the fast inner Earth passes
+  Mars and the star-ring mark carves the retrograde loop, plus a geocentric sky view that redraws
+  the same dates as the backward hook against fixed stars; then a 28-night observing table graded
+  row-by-row against the model, revealing the two stations, the opposition and the westward arc
+  only after you check.
 
 Homework practice (each Learn + Practice + Check, auto-graded, fresh numbers every
 attempt, CSV log of your own attempts - practice only, never a submission channel):
@@ -51,8 +56,7 @@ attempt, CSV log of your own attempts - practice only, never a submission channe
 
 Both worksheets run on the shared `site/homework/hw-core.js` engine for all math.
 
-Still planned: retrograde Mars (no manual number pinned down yet, so its card says TBD)
-and galaxy identification (Lab 14); their landing-page cards are placeholders.
+Still planned: galaxy identification (Lab 14); its landing-page card is a placeholder.
 
 ## Run it locally
 

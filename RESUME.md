@@ -118,6 +118,31 @@ Project rules for lab-sims work (user directive 2026-11-07):
   remember: saved progress ticks, data tables and Ideal/Fun mode are keyed by the lab id,
   so the eight moved labs start clean on every device; and the old numbers in the log
   entries above are history, not current paths.
+- DONE 2026-11-08 (Lab Builder, BMC-13): Retrograde motion of Mars, page + sim at
+  site/labs/06-retrograde-mars/ - builds on the BMC-12 module (mars.js + tests/mars.test.js,
+  171 green with them), which are UNTRACKED in this same checkout and MUST land with (or before)
+  the page, since index.html and sim.js require mars.js. sim.js draws everything from LS.mars
+  and reimplements no physics: Bench 1 is a two-lane Sun-centred overtake (Earth inner/fast,
+  Mars outer/slow, circular-orbit guide rings with dots at true model positions) whose sightline
+  mark on a fixed star-ring carves the loop, with a sky-view toggle that redraws the SAME dates as
+  the backward hook of apparent longitude against a fixed-star grid; both stations and the
+  opposition are marked and opposition highlighted. A date scrubber + play button animate the
+  apparatus; three apparition presets (2024-25 / 2022-23 / 2020-21) each recompute their window
+  from the model, so nothing is hardcoded to one year. Bench 2 is the 28-night observing table:
+  the student logs E / W / station per night (optional longitude), Check grades row-by-row against
+  mars.js, and only after checking does the worked window reveal the two station dates, the
+  opposition and the westward arc. Log + CSV export the student's own table; Ideal/Fun modes (Fun
+  adds seeded scatter to the longitude/elongation readouts, never to the geometry). Landing card
+  live (chip 6, data-lab 06-retrograde-mars); README status + "still planned" updated (retrograde
+  Mars is no longer TBD). 6 graded exercises through check.js (one reads the window off the
+  student's own table). The page adds NO module tests per the brief. Verification done here:
+  node --check clean on the new JS; npm test 171/171 green; a throwaway DOM stub booted sim.js
+  and confirmed every getElementById id it uses exists in index.html, that a blank table grades
+  0/28, and that the reveal is empty until Check; all six data-ex payloads JSON.parse (a raw
+  apostrophe that broke one attribute was found and fixed). Original prose only, canvas drawing
+  only, banner + licence intact. NOT COMMITTED by the Lab Builder (RESUME rule 4 / AGENTS.md):
+  the Chief verifies and lands - and must stage site/labs/06-retrograde-mars/mars.js +
+  tests/mars.test.js alongside the page.
 - Then: Phase 2 charts still planned on the landing page:
   galaxy gallery with Wikimedia images + ATTRIBUTION.md.
   Then Phase 3 data labs, worksheets, offline kit (service worker, zip, LXC
