@@ -89,6 +89,23 @@ Project rules for lab-sims work (user directive 2026-11-07):
   against the truth) with a reduction log + CSV; 6 exercises. Landing card live.
   Still NOT PUSHED: the Chief-side github-token grant has not landed, so the chain now
   ships as eight `git am` patches attached to BMC-1.
+- DONE 2026-11-08 (Lab Builder, BMC-10): Homework worksheets at
+  site/homework/homework-1/ and site/homework/homework-2/, built on the verified
+  hw-core engine (BMC-9). Each page is Learn / Practice / Check with the shared
+  ui banner + licence, a per-page attempt log + CSV, Ideal-free (all generative,
+  seeded fresh every attempt) and a 6-question exam-style quiz graded by check.js.
+  HW1: concept-check pool (12 topics) + unit-factor-chain, light-travel (course
+  c = 300000 km/s with the precise 299792.458 caveat), and scientific-notation
+  benches (mantissa + exponent graded, micro-vs-milli trap). HW2: forward/reverse
+  inverse-square and constant-force ratio tables, a live-ratio slider bench, and
+  the honest k = G m1 m2 ratio-invariance intro. Landing page gains a "Homework
+  practice" section with two live cards. New tests/hw-content.test.js re-derives
+  every authored quiz answer from hw-core (light-week, prefix sci-notation, and a
+  reverse-table row worked by hand): +9 tests -> 158 green. All new JS node --check
+  clean; pages also driven through a throwaway DOM shim to catch wiring errors.
+  NOT COMMITTED by the Lab Builder (per RESUME rule 4 and AGENTS.md): the Chief
+  verifies and lands. Note hw-core.js + hw-core.test.js from BMC-9 are present in
+  the same checkout and must land with (or before) these pages, which require them.
 - Then: Phase 2 charts still planned on the landing page:
   galaxy gallery with Wikimedia images + ATTRIBUTION.md.
   Then Phase 3 data labs, worksheets, offline kit (service worker, zip, LXC

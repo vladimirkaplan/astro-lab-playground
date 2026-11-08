@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Homework 2 practice: Newton ratios - Astro Lab Playground</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+
+<header class="site-head">
+  <div class="wrap">
+    <p style="margin:0"><a class="back-link" href="../../index.html">&larr; all labs</a></p>
+    <h1>Homework 2 practice</h1>
+    <p><strong>Newton's gravitation and second-law ratios.</strong> A ratio-table
+    trainer. It hands you two-column tables in the worksheet's shape &mdash; a
+    relation on the left, a blank on the right &mdash; and the rows, forward and
+    reversed, come from a fresh generator every attempt. Work the reverse rows
+    hardest: they are the actual skill the handout tests. This is a rehearsal with
+    made-up numbers, not a submission channel.</p>
+  </div>
+</header>
+
+<main>
+  <div class="tabs" role="tablist">
+    <button class="tab-btn" data-tab="learn" role="tab">Learn</button>
+    <button class="tab-btn" data-tab="simulate" role="tab">Practice</button>
+    <button class="tab-btn" data-tab="check" role="tab">Check</button>
+  </div>
+
+  <section id="learn" class="tab-panel learn">
+    <h2>The one thing you need before you touch a ratio table</h2>
+    <p class="intro-line">For a fixed pair of masses the product
+      <strong>k = G m1 m2</strong> is just a constant, so
+      <strong>F = k / d<sup>2</sup></strong> and
+      <strong>F = G m1 m2 / d<sup>2</sup></strong> give the <em>same</em>
+      ratios: <strong>F1/F2 = (d2/d1)<sup>2</sup></strong> either way. The
+      worksheet's notation question never changes a ratio answer.</p>
+
+    <h2>Table A &mdash; the inverse-square law</h2>
+    <p>Newton's law of gravitation says the force between two fixed masses goes as
+    one over the square of the distance. Put two situations side by side and the
+    masses cancel, leaving <strong>F1/F2 = (d2/d1)<sup>2</sup></strong>. Forward
+    rows give you the distance relation and ask for the force ratio; reverse rows
+    give you the force relation (say 9 F1 = 25 F2) and ask for the distance
+    relation &mdash; you square-root and remember which object is closer. The
+    reverse rows are the point of the handout, so they are half of every table here.</p>
+
+    <h2>Table B &mdash; the second law at constant force</h2>
+    <p>Newton's second law is a = F/m. Hold the <em>force</em> fixed and let the
+    mass vary, and acceleration runs backwards with mass:
+    <strong>a1/a2 = m2/m1</strong>. Four times the mass gets a quarter of the
+    acceleration. Same forward/reverse structure as Table A, just inverted ratios
+    instead of squared ones.</p>
+
+    <h2>Why the worked law only appears after you check</h2>
+    <p>Each table shows its worked law line (F1/F2 = (d2/d1)<sup>2</sup>, or
+    a1/a2 = m2/m1) only <em>after</em> you press Check. If you can write the law
+    and reach for the right inverse (square it, or flip it) before the page tells
+    you, you have the skill; the page exists to grade it and then explain the ones
+    you missed.</p>
+
+    <h2>How this page runs</h2>
+    <p>Bench A and Bench B each render a fresh ratio table and grade the whole
+    thing at once, within 2%. The live-ratio bench underneath has two mass sliders
+    and one distance slider feeding a small readout: watch the F-ratio and a-ratio
+    move as you drag, and watch them collapse to exactly 1 when you equalise the
+    inputs. Every check appends a row to your attempt log, which you can export as
+    CSV. All numbers are freshly generated, so this can never hand you your graded
+    assignment's answers.</p>
+
+    <div class="mistakes">
+      <strong>Common slips this trainer catches:</strong>
+      <ul>
+        <li>Forgetting the square: writing F1/F2 = d2/d1 instead of (d2/d1)<sup>2</sup>.</li>
+        <li>Not flipping on the inverse a = F/m rows: a1/a2 is m2/m1, not m1/m2.</li>
+        <li>In the reverse rows, reporting d2/d1 when the question asks for d1/d2.</li>
+        <li>Believing the k-versus-G m1 m2 notation changes the ratio. It cancels; it does not.</li>
+        <li>Letting the closer mass/object have the weaker value: an inverse relationship means
+        the bigger side of one ratio is the smaller side of the other.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="simulate" class="tab-panel">
+    <h3>Bench A &mdash; inverse-square table (F = G m1 m2 / d<sup>2</sup>)</h3>
+    <p class="muted">Fill each blank with a number (a decimal or a simple fraction
+    like <code>3/5</code> is fine). Hit "Check table" to grade every row; the worked
+    law line appears once you do. Reverse rows like "9F1 = 25F2" ask for the
+    distance relation &mdash; square-root it and put the closer one on top.</p>
+    <p><button class="action" id="gravNew">New Table A</button>
+      <button class="action secondary" id="gravCheck">Check table</button></p>
+    <div id="grav-mount"></div>
+
+    <h3>Bench B &mdash; second-law table (a = F / m, constant force)</h3>
+    <p class="muted">Same mechanic, with a1/a2 = m2/m1. Forward rows give the mass
+    relation and ask for the acceleration ratio; reverse rows give the acceleration
+    relation and ask for the mass relation.</p>
+    <p><button class="action" id="accelNew">New Table B</button>
+      <button class="action secondary" id="accelCheck">Check table</button></p>
+    <div id="accel-mount"></div>
+
+    <h3>Live-ratio bench</h3>
+    <p class="muted">Two mass sliders and one distance slider feed the readout. Move
+    them and watch the F-ratio (inverse-square) and a-ratio (inverse mass) respond.
+    Equalise the two inputs and every ratio should snap to exactly 1.</p>
+    <div class="ratio-readout">
+      <div class="ro"><small>m1 / m2 (mass ratio)</small><span id="roMRatio">1.00</span></div>
+      <div class="ro"><small>a1 / a2 = m2 / m1</small><span id="roAratio">1.00</span></div>
+      <div class="ro"><small>d1 / d2 (distance ratio)</small><span id="roDratio">1.00</span></div>
+      <div class="ro"><small>F1 / F2 = (d2/d1)<sup>2</sup></small><span id="roFratio">1.00</span></div>
+    </div>
+    <p><label>m1 / m2: <b id="mRead">1.0</b>
+      <input type="range" id="mRange" min="0.2" max="5" value="1" step="0.1" style="width:26ch"></label></p>
+    <p><label>d1 / d2: <b id="dRead">1.0</b>
+      <input type="range" id="dRange" min="0.2" max="5" value="1" step="0.1" style="width:26ch"></label></p>
+    <p><label>log the current sliders to your attempt table:
+      <button class="action secondary" id="liveLog">Log this snapshot</button></label></p>
+    <p class="muted" id="liveNote">Set both sliders to 1.0: both ratios read exactly 1 &mdash;
+      that is the equal-inputs sanity row the readout is checking you can see.</p>
+
+    <h3>Attempt log</h3>
+    <p class="muted">Every "Check table" appends each row you attempted &mdash; the
+    given relation, what you typed, and the right answer &mdash; plus live-snapshot
+    rows when you log one. The table survives a reload and CSV export gives you a
+    printed practice record. Nothing leaves this browser.</p>
+    <div id="logTable"></div>
+    <p><button class="action secondary" id="logCsv">Download CSV</button>
+      <button class="action ghost" id="logClear">Clear log</button></p>
+    <textarea id="csvFallback" rows="6" class="wide-input" style="display:none"></textarea>
+  </section>
+
+  <section id="check" class="tab-panel">
+    <p class="muted">Six exam-style questions: a forward and a reverse row from each
+    table, the notation-invariance idea, and a live-ratio sanity check. Graded on the
+    spot, with the working citing the law you used.</p>
+    <div id="check-progress"></div>
+    <div id="quiz-mount"></div>
+  </section>
+</main>
+
+<script src="../../shared/units.js"></script>
+<script src="../../shared/ui.js"></script>
+<script src="../../shared/store.js"></script>
+<script src="../../shared/check.js"></script>
+<script src="../hw-core.js"></script>
+<script src="./hw2-content.js"></script>
+<script src="./sim.js"></script>
+</body>
+</html>

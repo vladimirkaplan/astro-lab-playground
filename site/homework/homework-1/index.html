@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Homework 1 practice: stars, units, notation - Astro Lab Playground</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+
+<header class="site-head">
+  <div class="wrap">
+    <p style="margin:0"><a class="back-link" href="../../index.html">&larr; all labs</a></p>
+    <h1>Homework 1 practice</h1>
+    <p><strong>Stars, galaxies, units, and scientific notation.</strong> This is a
+    practice rehearsal, <strong>not a submission channel</strong> and not your graded
+    assignment. It throws the same <em>kinds</em> of
+    questions the first homework set asks &mdash; what stars and galaxies are,
+    chaining unit factors, light-travel distances, and reading scientific
+    notation &mdash; but it <strong>generates fresh numbers every attempt</strong>, so
+    working through it can never fill in your graded sheet's blanks. Do your real
+    homework by hand; use this to make the method automatic.</p>
+  </div>
+</header>
+
+<main>
+  <div class="tabs" role="tablist">
+    <button class="tab-btn" data-tab="learn" role="tab">Learn</button>
+    <button class="tab-btn" data-tab="simulate" role="tab">Practice</button>
+    <button class="tab-btn" data-tab="check" role="tab">Check</button>
+  </div>
+
+  <section id="learn" class="tab-panel learn">
+    <h2>What the first homework set is really testing</h2>
+    <p>Underneath the topic list, Homework 1 checks four habits: knowing what the
+    big objects <em>are</em>, moving between units along a chain of exact factors,
+    turning a travel time into a distance with a fixed speed, and reading a number
+    written in scientific notation with an SI prefix on it. None of it is hard
+    arithmetic. The marks get lost on careless chains, on mixing up prefixes, and
+    on sign errors in exponents &mdash; all of which you can drill here without
+    touching a graded number.</p>
+
+    <h2>Stars, galaxies, and the rest</h2>
+    <p>A <strong>star</strong> is a self-gravitating ball of hot gas whose core is
+    dense and hot enough to fuse light nuclei into heavier ones; that fusion is why
+    it shines. Our Solar System has exactly one &mdash; the Sun. <strong>Stars
+    matter</strong> for three reasons worth memorising as a trio: they are the
+    <strong>energy source</strong> (sunlight drives weather and photosynthesis),
+    the <strong>element factories</strong> (fusion builds heavier nuclei and dying
+    stars scatter them into space), and the <strong>gravity anchors</strong> (their
+    mass sets what orbits them). A <strong>galaxy</strong> is a gravitationally
+    bound system of anything from a few million to a few trillion stars plus gas
+    and dust &mdash; the Milky Way and Andromeda are examples. A <strong>nebula</strong>
+    is a cloud of gas and dust inside a galaxy (a nursery or a graveyard of stars),
+    and a <strong>supernova</strong> is the explosion that ends a massive star,
+    briefly outshining its whole galaxy. Hubble sorted galaxies by shape into
+    <strong>elliptical, spiral, and irregular</strong>. All of that is public
+    astronomy, restated here in plain words.</p>
+
+    <h2>The unit-factor chain</h2>
+    <p>Every conversion in this course is one or more links of a short chain of
+    <em>exact</em> equalities you are given: 1 km = 1000 m, 1 m = 100 cm, 1 cm =
+    10 mm, 1 mi = 5280 ft, 1 ft = 12 in, 1 in = 2.54 cm exactly. To convert you
+    multiply along the chain and cancel units as you go, so the answer carries the
+    units you asked for. The Practice tab grades your number within 2% and then
+    shows the exact chain your conversion implies &mdash; the ladder you are
+    expected to write on paper. Whole-number links like mi&rarr;ft = 5280 should
+    come out to the unit, not to two significant figures.</p>
+
+    <h2>Light-travel distances, the course way</h2>
+    <p>Distance = speed &times; time. The course hands out the rounded value
+    <strong>c = 300,000 km/s</strong> and uses classroom time multipliers (60 s per
+    minute, 60 min per hour, 24 h per day, 7 d per week, 365 d per year), so a
+    light-week is 604,800 s &times; 300,000 km/s = 1.8144&times;10<sup>11</sup> km.
+    The honest caveat, printed on the bench: the precise vacuum value is
+    <strong>299,792.458 km/s</strong>, which changes these answers by only about
+    0.002%. Watch your significant figures &mdash; the inputs are 2-to-3-figure, so
+    2-to-3-figure answers are the honest ones.</p>
+
+    <h2>Scientific notation and the prefix trap</h2>
+    <p>Scientific notation writes a number as <em>mantissa</em> &times;
+    10<sup>exponent</sup> with the mantissa between 1 and 10. Prefixes are just
+    hidden powers of ten: milli (m) = 10<sup>-3</sup>, micro (u or &micro;) =
+    10<sup>-6</sup>, nano (n) = 10<sup>-9</sup>, kilo (k) = 10<sup>3</sup>, mega (M)
+    = 10<sup>6</sup>. So 500&micro;m = 500 &times; 10<sup>-6</sup> m =
+    5&times;10<sup>-4</sup> m &mdash; mantissa 5, exponent &minus;4. The trap the
+    worksheet sets, and that this bench will catch you on: <strong>micro is a
+    thousand times smaller than milli</strong>. Read a &micro; as an m and your
+    exponent is wrong by exactly 3. Both mantissa and exponent are graded here.</p>
+
+    <div class="note">
+      <p><strong>Why this matters beyond the grade:</strong> chaining factors and
+      normalising prefixes is the entire skill behind every later calculation in
+      the course. A parallax, a light-year, a redshift, a telescope's light grasp
+      &mdash; they are all "write the number properly, multiply along a chain, and
+      cancel the units." Drill it here where the numbers reset every click.</p>
+    </div>
+
+    <div class="mistakes">
+      <strong>Common slips this bench catches:</strong>
+      <ul>
+        <li>Reading &micro; (micro, 10<sup>-6</sup>) as m (milli, 10<sup>-3</sup>)
+        &mdash; the exponent is then off by a factor of 1000.</li>
+        <li>Writing a mantissa outside [1, 10), e.g. 50 &times; 10<sup>-5</sup>
+        instead of 5 &times; 10<sup>-4</sup>.</li>
+        <li>Losing whole-number factors to rounding: 3 mi = 15,840 ft exactly, not
+        16,000.</li>
+        <li>Using the precise c when the question asks for the course's 300,000 km/s
+        (or vice-versa) without checking which one the question wants.</li>
+        <li>Flipping geo/helio: <em>geo</em> = Earth-centred, <em>helio</em> =
+        Sun-centred.</li>
+        <li>Calling a galaxy's star count the Solar System's star count. The Solar
+        System has one star.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="simulate" class="tab-panel">
+    <h3>Bench A &mdash; concept checks</h3>
+    <p class="muted">Ten questions drawn fresh from the star / galaxy / Solar-System
+    pool every attempt, with the choices reshuffled. Hit "Check concepts" to grade
+    them and read a one-line reason under every option.</p>
+    <p><button class="action" id="conceptsNew">New concept set</button>
+      <button class="action secondary" id="conceptsCheck">Check concepts</button></p>
+    <div id="concepts-mount"></div>
+
+    <h3>Bench B &mdash; unit-factor chains</h3>
+    <p class="muted">Use this exact factor table. Fill each blank; you get 2% of
+    slack, then the chain your answer implies appears.</p>
+    <div id="factorTable"></div>
+    <p><button class="action" id="convNew">New set</button>
+      <button class="action secondary" id="convCheck">Check conversions</button></p>
+    <div id="conv-mount"></div>
+
+    <h3>Bench C &mdash; light-travel distances</h3>
+    <p class="muted">Course value <strong>c = 300,000 km/s</strong> with classroom
+    time multipliers. (The precise vacuum value is 299,792.458 km/s; it moves these
+    answers by about 0.002%.) Keep 2&ndash;3 significant figures.</p>
+    <p><button class="action" id="lightNew">New set</button>
+      <button class="action secondary" id="lightCheck">Check light travel</button></p>
+    <div id="light-mount"></div>
+
+    <h3>Bench D &mdash; scientific notation</h3>
+    <p class="muted">Enter the mantissa and the exponent separately for each value.
+    Normalise the prefix first (micro = 10<sup>-6</sup>, milli = 10<sup>-3</sup>
+    &hellip;) and watch for the micro-versus-milli trap; it shows up in the feedback.</p>
+    <p><button class="action" id="sciNew">New set</button>
+      <button class="action secondary" id="sciCheck">Check notation</button></p>
+    <div id="sci-mount"></div>
+
+    <h3>Attempt log</h3>
+    <p class="muted">Every "Check" appends one row &mdash; what you typed, the right
+    answer, and whether it passed. The table survives a reload and CSV export gives
+    you a printed record of your own practice. Nothing leaves this browser.</p>
+    <div id="logTable"></div>
+    <p><button class="action secondary" id="logCsv">Download CSV</button>
+      <button class="action ghost" id="logClear">Clear log</button></p>
+    <textarea id="csvFallback" rows="6" class="wide-input" style="display:none"></textarea>
+  </section>
+
+  <section id="check" class="tab-panel">
+    <p class="muted">Six exam-style questions, one pulled from each bench family:
+    two concepts, one unit chain, one light-travel, two scientific notation. They
+    are graded on the spot, and the working cites the rule or the constant you used.</p>
+    <div id="check-progress"></div>
+    <div id="quiz-mount"></div>
+  </section>
+</main>
+
+<script src="../../shared/units.js"></script>
+<script src="../../shared/ui.js"></script>
+<script src="../../shared/store.js"></script>
+<script src="../../shared/check.js"></script>
+<script src="../hw-core.js"></script>
+<script src="./hw1-content.js"></script>
+<script src="./sim.js"></script>
+</body>
+</html>

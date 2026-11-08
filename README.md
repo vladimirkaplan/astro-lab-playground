@@ -11,7 +11,8 @@ your instructor's rules. Every lab page repeats this as a banner.
 
 ## Status
 
-Thirteen lab pages are live; the rest of the brief in [GOAL.md](GOAL.md) is queued.
+Thirteen lab pages plus two homework practice pages are live; the rest of the brief
+in [GOAL.md](GOAL.md) is queued.
 
 Built (each one Learn + Simulate + Check, with a CSV export of your own data table):
 
@@ -40,8 +41,20 @@ Built (each one Learn + Simulate + Check, with a CSV export of your own data tab
   reduce a hidden cluster Cepheid from period to period-luminosity line to distance.
   Also unnumbered for now.
 
-Still planned: retrograde Mars, galaxy identification, and the two homework worksheets. Their
-landing-page cards are placeholders.
+Homework practice (each Learn + Practice + Check, auto-graded, fresh numbers every
+attempt, CSV log of your own attempts - practice only, never a submission channel):
+
+- Homework 1 practice: stars/galaxies/Solar-System concept checks plus a unit-factor-chain
+  bench, a light-travel bench at the course's rounded c, and a scientific-notation bench that
+  grades mantissa and exponent and catches the micro-vs-milli trap.
+- Homework 2 practice: Newton's law of gravitation and second-law ratio tables (forward and
+  reverse rows), a live-ratio bench whose sliders drive the same solvers, and the honest point
+  that the k versus G m1 m2 notation never changes a ratio.
+
+Both worksheets run on the shared `site/homework/hw-core.js` engine for all math.
+
+Still planned: retrograde Mars and galaxy identification; their landing-page cards are
+placeholders.
 
 ## Run it locally
 
