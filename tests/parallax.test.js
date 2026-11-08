@@ -2,7 +2,7 @@
 const test = require("node:test");
 const assert = require("node:assert/strict");
 
-require("../site/labs/parallax/parallax.js");
+require("../site/labs/11-parallax/parallax.js");
 const P = globalThis.LS.parallax;
 
 const close = (a, b) => assert.ok(Math.abs(a - b) < 1e-9, a + " vs " + b);

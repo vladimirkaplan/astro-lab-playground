@@ -9,7 +9,7 @@
 (function () {
   "use strict";
   var LS = window.LS, U = LS.units, P = LS.parallax;
-  var LAB = "parallax";
+  var LAB = "11-parallax";
   var $ = function (id) { return document.getElementById(id); };
 
   var mode = LS.ui.getMode(LAB);

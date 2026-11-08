@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lab 10: Spectra - Astro Lab Playground</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+
+<header class="site-head">
+  <div class="wrap">
+    <p style="margin:0"><a class="back-link" href="../../index.html">&larr; all labs</a></p>
+    <h1>Lab 10 &middot; Spectra</h1>
+    <p>A bench spectroscope, five gas tubes, two kinds of lamp, and the reason every
+    astronomer loves diffraction gratings: light carries the fingerprint of whatever
+    made it.</p>
+  </div>
+</header>
+
+<main>
+  <div class="tabs" role="tablist">
+    <button class="tab-btn" data-tab="learn" role="tab">Learn</button>
+    <button class="tab-btn" data-tab="simulate" role="tab">Simulate</button>
+    <button class="tab-btn" data-tab="check" role="tab">Check</button>
+  </div>
+
+  <section id="learn" class="tab-panel learn">
+    <h2>What this lab is about</h2>
+    <p>You hold a diffraction-grating spectroscope up to a row of light sources: an
+    incandescent bulb, tubes of glowing hydrogen, helium, neon, mercury, krypton, and a
+    fluorescent lamp. Each one paints a different picture across the viewport. Your job
+    is to describe the pictures, record where the bright lines sit, and then use those
+    line patterns as fingerprints: match unknown spectra to elements and say what lines
+    in a star spectrum would tell an astronomer.</p>
+
+    <h2>The physics: three kinds of spectra</h2>
+    <p><strong>Continuous.</strong> A hot, dense object - a bulb filament, a star's
+    visible surface - glows at every visible wavelength at once. The rainbow runs
+    unbroken from red to violet, and its balance of colors tracks temperature: hotter
+    looks bluer.</p>
+    <p><strong>Emission lines.</strong> A hot, thin gas is different. Its atoms can only
+    hold certain electron energies, so the light they emit comes only at certain
+    wavelengths - a few colored hairlines on a black field. The set of wavelengths is
+    fixed by the element's electron structure, so every element gets a unique pattern,
+    as individual as a fingerprint.</p>
+    <p><strong>Absorption lines.</strong> Run a continuous glow through a cooler gas and
+    the gas removes exactly the wavelengths it would itself emit, punching dark lines
+    into the rainbow. Same fingerprint, flipped to negative. (This lab views continuous
+    and emission spectra; the star question previews absorption.)</p>
+    <p><strong>How the viewer works.</strong> The grating is a slide ruled with thousands
+    of fine grooves. Light waves leaving neighboring grooves interfere, and the direction
+    where they reinforce depends on wavelength, so different colors leave at different
+    angles. One consequence people get tripped by: a grating bends <em>red</em> the most.
+    A glass prism does the opposite and bends violet the most. If a write-up claims
+    violet was "bent most" while using a grating viewer, the author was thinking of a
+    prism.</p>
+
+    <h2>What you will actually see</h2>
+    <p>Hydrogen shows just four visible lines: one red, one blue-green, two violet
+    (the Balmer series). Helium adds more lines with a prominent yellow one. Neon
+    blankets the orange-red - that is neon-sign color. Mercury has a fierce
+    blue-green line and a yellow pair. Krypton pairs a strong violet-blue duo with an
+    orange cluster. The fluorescent lamp is the mixed case: a coat of white phosphor
+    glows in broad bands while mercury vapor inside contributes sharp lines - continuous
+    and emission at once.</p>
+
+    <div class="note">
+      <p><strong>Why this matters to astronomers:</strong> spectra are the one place
+      astronomy can touch matter it will never visit. Line patterns say which elements
+      are in a star or cloud; the exact pattern says it is hydrogen and not something
+      that merely looks reddish; and their wholesale shift toward red measures how fast
+      the source recedes, which is exactly how the expansion of the universe (Lab 15)
+      was discovered. (Grounded in OpenStax <em>Astronomy 2e</em>, Ch. 5-6, CC BY 4.0.)</p>
+    </div>
+
+    <div class="mistakes">
+      <strong>Common mistakes in this lab:</strong>
+      <ul>
+        <li>Sketching a blend of all the colors for a gas tube. Gases show separated lines, not paint.</li>
+        <li>Recording the color but not a wavelength position; the grating has a scale - use it.</li>
+        <li>Confusing the grating's bend order (red most) with the prism's (violet most).</li>
+        <li>Calling the fluorescent lamp "continuous" and missing mercury's green line sitting on top.</li>
+        <li>Matching an unknown by overall tint instead of the exact set of line positions.</li>
+        <li>Assuming unseen lines are absent: ultraviolet and infrared lines are real and measurable.</li>
+      </ul>
+    </div>
+    <p class="muted">Line wavelengths in the sim: NIST Atomic Spectra Database
+    (strongest visible lines). Lamp continua are modeled (blackbody filament,
+    triphosphor + mercury tube), not measured.</p>
+  </section>
+
+  <section id="simulate" class="tab-panel">
+    <div class="toolbar" id="toolbar1"></div>
+
+    <div id="srcBtns" style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px"></div>
+
+    <div class="canvas-frame"><canvas id="scopeCanvas" height="240"></canvas></div>
+    <p class="muted" id="srcBlurb"></p>
+
+    <div class="split">
+      <div>
+        <h3>Line recorder</h3>
+        <p>Click (or drag) anywhere on the spectrum to aim the probe, then mark each
+        line you see. In Fun Mode the reading jitters by a few nanometers, like
+        eyeballing a real scale.</p>
+        <div class="readout"><small>probe wavelength</small><span id="probeRead">--- nm</span></div>
+        <p>
+          <button class="action" id="markBtn">Mark line at probe</button>
+          <button class="action ghost" id="undoMark">Undo last</button>
+        </p>
+        <div id="recorderNote" class="muted"></div>
+      </div>
+      <div>
+        <h3>Your data page</h3>
+        <p class="muted">Outer lines and their difference are computed from your own
+        marked lines - this is the subtraction the paper data page makes you do.</p>
+        <div id="chartWrap"></div>
+        <p>
+          <button class="action ghost" id="exportCsv">Export CSV</button>
+          <button class="action ghost" id="clearAll">Clear all records</button>
+        </p>
+        <textarea class="csv-copy" id="csvCopy" readonly></textarea>
+      </div>
+    </div>
+
+    <h2>Unknown specimen drill</h2>
+    <div class="split">
+      <div>
+        <p>An unlabeled tube is sitting on the bench. Record its lines and identify it.
+        You can measure first, guess second - the deal button changes the source, and your
+        marks stay where they are.</p>
+        <p>
+          <button class="action" id="dealUnknown">Deal an unknown</button>
+          <label>Identify as:
+            <select id="guessPick">
+              <option value="h">Hydrogen</option>
+              <option value="he">Helium</option>
+              <option value="ne">Neon</option>
+              <option value="hg">Mercury</option>
+              <option value="kr">Krypton</option>
+            </select>
+          </label>
+          <button class="action secondary" id="guessBtn">Submit</button>
+        </p>
+        <div id="guessFeedback" class="feedback"></div>
+        <p class="muted" id="streakLine"></p>
+      </div>
+      <div>
+        <p class="muted">Reading check against the reference values: your marked lines
+        are compared a few nanometers at a time (instrument tolerance), because a real
+        grating scale is never read closer than that.</p>
+        <p id="matchDetail" class="muted"></p>
+      </div>
+    </div>
+  </section>
+
+  <section id="check" class="tab-panel">
+    <p class="muted">Self-graded exercises mirroring the report questions. The sim holds
+    real line data; use it.</p>
+    <div id="check-progress"></div>
+
+    <div class="exercise" data-ex='{
+      "type":"sequence",
+      "q":"1. Watching the incandescent bulb through the viewer: list the colors in the order they appear across the spectrum, one end to the other.",
+      "words":["violet","blue","green","yellow","orange","red"],
+      "hints":["It is the same order as a rainbow, just said from one end to the other.",
+               "Shortest wavelengths first, longest last."],
+      "working":"Either direction is fine as long as the order holds: violet, blue, green, yellow, orange, red (or backwards). A grating puts red at the most-bent end; a prism puts it at the least - but the color sequence along the spectrum is the same sequence either way.",
+      "answer":"violet, blue, green, yellow, orange, red (or reversed)"
+    }'></div>
+
+    <div class="exercise" data-ex='{
+      "type":"choice",
+      "correct":2,
+      "q":"2. What kind of spectrum does the incandescent bulb produce?",
+      "options":["Emission line spectrum: the filament glows at certain wavelengths only.",
+                 "Absorption line spectrum: the glass removes colors from the light.",
+                 "Continuous spectrum: the hot dense filament radiates at all visible wavelengths.",
+                 "No usable spectrum - ordinary bulbs are too dim for a grating."],
+      "hints":["Think about what the filament is: dense solid metal, glowing hot.",
+               "Hot dense things emit at every wavelength; hot thin gases emit lines."],
+      "working":"A bulb filament is hot, dense matter, and the rule from the theory section is that hot dense objects emit continuous spectra. That is exactly how astronomers read a surface temperature from a bare color, with no thermometer and no visit.",
+      "answer":"continuous"
+    }'></div>
+
+    <div class="exercise" data-ex='{
+      "type":"choice",
+      "correct":1,
+      "q":"3. The viewer bends (diffracts) the light. Are all colors bent by the same amount?",
+      "options":["Yes - the grating treats every wavelength identically; the colors separate for another reason.",
+                 "No - a grating bends red the most and violet the least. (A prism does the opposite, bending violet most.)",
+                 "No - violet is bent furthest by every optical device, grating included.",
+                 "Only during spectral tubes; a grating never separates colors from a solid."],
+      "hints":["Watch where deep red lands compared with violet when you switch light sources.",
+               "Grating physics: longer wavelength, bigger diffraction angle."],
+      "working":"Diffraction obeys d * sin(theta) = m * wavelength, so at a grating red (long wavelength) bends farthest and violet least. A prism reverses that because its refraction index grows toward blue. Knowing which device you are holding is part of reading a spectrum honestly.",
+      "answer":"red bent most by a grating"
+    }'></div>
+
+    <div class="exercise" data-ex='{
+      "type":"keywords",
+      "need":2,
+      "q":"4. Hydrogen has lines in the ultraviolet and infrared that no eye can see in this lab. How do we know they exist anyway?",
+      "words":["photograph","photographic","plate","detector","camera","film","sensor","spectrograph","instrument","measure","record","infrared","ultraviolet"],
+      "placeholder":"instruments that are not the human eye...",
+      "working":"Detectors do not need to be eyes. Photographic plates (historically) and modern sensors or spectrographs record intensities far outside what the eye sees, and the ultraviolet Balmer/visible-to-UV and infrared Paschen lines show up on them exactly where the same energy-level bookkeeping predicts.",
+      "answer":"detectors and cameras (photographic plates historically) record UV/IR lines"
+    }'></div>
+
+    <div class="exercise" data-ex='{
+      "type":"keywords",
+      "need":3,
+      "q":"5. A line pattern is a fingerprint of one element. Suppose an astronomer finds a star spectrum carrying that exact fingerprint. What does it indicate?",
+      "words":["element","same","pattern","present","atmosphere","composition","star","identify","hydrogen","matching","matches"],
+      "placeholder":"what the fingerprint is evidence of...",
+      "working":"Line positions are quantum-mechanical constants, so matched positions cannot be coincidence: the matched element is present in the star, in its outer atmosphere where the received light was last filtered. Helium got its name this way before anyone isolated it on Earth - the Sun fingerprinted it first.",
+      "answer":"that element exists in the star (its atmosphere)"
+    }'></div>
+
+    <div class="exercise" data-ex='{
+      "type":"numbers",
+      "q":"6. Data-page arithmetic: for hydrogen the red line sits at 656.3 nm and the blue-green line at 486.1 nm. Subtract them, the way you did with the outer lines. (Give the difference in nm.)",
+      "parts":[{"unit":"nm","value":170.2,"tolAbs":4}],
+      "hints":["Subtraction is the whole calculation.",
+               "656.3 - 486.1 = ?"],
+      "working":"656.3 - 486.1 = <strong>170.2 nm</strong>. On the paper data page you did this with the two outer lines you marked, and the size of the span helped separate hydrogen (narrow rainbow of 4 lines) from the denser patterns. Small differences between your number and this one just mean your readings carried instrument tolerance - say so in the report.",
+      "answer":"170.2 nm"
+    }'></div>
+
+    <div class="exercise" data-ex='{
+      "type":"choice",
+      "correct":3,
+      "q":"7. The fluorescent lamp shows you which of the three kinds of spectra?",
+      "options":["Pure continuous, like the bulb.",
+                 "Pure emission lines, like the gas tubes.",
+                 "Absorption lines over a continuum.",
+                 "Both continuous bands and emission lines at once: glowing phosphor plus mercury vapor."],
+      "hints":["There are two separate makers of light inside that tube.",
+               "What makes the white glow? What makes the sharp green line?"],
+      "working":"Electricity excites mercury vapor, which flashes mostly ultraviolet; the coating fluoresces in broad bands (quasi-continuous) - and some mercury light escapes the coating, drawing sharp emission lines on top of the bands. Two kinds of spectra from one tube.",
+      "answer":"mixed: bands + mercury lines"
+    }'></div>
+
+    <div class="exercise" data-ex='{
+      "type":"choice",
+      "correct":2,
+      "q":"8. Comparing the fluorescent lamp against the gas tubes you recorded: which element is present inside it?",
+      "options":["Neon, because the tube is brightly lit.",
+                 "Hydrogen, because white light contains all colors anyway.",
+                 "Mercury: the sharp lines of the lamp sit exactly at the line wavelengths of the mercury tube (436, 546 nm, and so on).",
+                 "Helium - the strongest line in fluorescent tubes is the yellow one of helium."],
+      "hints":["Compare the line positions in your records against each gases fingerprint.",
+               "The lamps green line lands exactly on the tubes green line - which tube?"],
+      "working":"The emission lines of the lamp coincide, within reading error, with the lines you recorded for the mercury tube (436, 546 nm and friends). Line positions are element-locked, so the lamp contains mercury vapor. That is also why broken fluorescents need careful disposal.",
+      "answer":"mercury"
+    }'></div>
+
+    <div class="exercise" data-ex='{
+      "type":"choice",
+      "correct":0,
+      "q":"9. Why does every element get its own fingerprint instead of everyone sharing a few rainbow lines?",
+      "options":["Each element has its own electron energy levels, so only its own jump energies - its own wavelengths - can be emitted.",
+                 "Manufacturers tune each tube to make a different color.",
+                 "Heavier gases just glow redder, and that is the whole story.",
+                 "The glass of each tube filters a common white light into its own pattern."],
+      "hints":["The lines are the same no matter which lab you walk into or what the tube is made of.",
+               "Emission is electrons dropping between allowed energies; those energies are set by the nuclei charge and the electron count - one per element."],
+      "working":"Emission lines are electron transitions between the quantized energy levels of an atom. Each element has a unique level structure, so its set of possible jumps - and therefore of emitted wavelengths - is unique and identical everywhere. A fingerprint is a physical constant, not a manufacturing choice.",
+      "answer":"unique quantized energy levels per element"
+    }'></div>
+  </section>
+</main>
+
+<script src="../../shared/units.js"></script>
+<script src="../../shared/ui.js"></script>
+<script src="../../shared/store.js"></script>
+<script src="../../shared/check.js"></script>
+<script src="../../data/lines.js"></script>
+<script src="./sim.js"></script>
+</body>
+</html>

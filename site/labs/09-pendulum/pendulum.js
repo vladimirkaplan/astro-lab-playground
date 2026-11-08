@@ -1,4 +1,4 @@
-// Lab 8 pendulum: pure physics, shared by the sim and the tests.
+// Lab 9 pendulum: pure physics, shared by the sim and the tests.
 // The sim integrates theta'' = -(g/L) sin(theta) for animation, but keeps
 // honest scores using the analytic large-amplitude period correction.
 (function (root) {

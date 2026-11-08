@@ -7,7 +7,7 @@ const vm = require("vm");
 
 const root = path.join(__dirname, "..");
 require("../site/shared/units.js");
-require("../site/labs/05-moon-phases/moon.js");
+require("../site/labs/04-moon-phases/moon.js");
 const M = globalThis.LS.moonPhase;
 
 test("illumination formula at the anchors", () => {

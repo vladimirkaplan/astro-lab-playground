@@ -5,7 +5,7 @@ const fs = require("fs");
 const path = require("path");
 const vm = require("vm");
 
-require("../site/labs/12-eclipse-board/eclipse.js");
+require("../site/labs/05-moonrise-eclipses/eclipse.js");
 const E = globalThis.LS.eclipse;
 const DAY = 86400000;
 

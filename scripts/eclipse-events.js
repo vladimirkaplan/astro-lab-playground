@@ -1,4 +1,4 @@
-// Regenerates the frozen BETA_CURVE block in site/labs/12-eclipse-board/eclipse.js
+// Regenerates the frozen BETA_CURVE block in site/labs/05-moonrise-eclipses/eclipse.js
 // from the vendored astronomy-engine: Moon geocentric ecliptic latitude, one
 // sample per day at 12:00 UT, 2026-11-01 through 2027-09-30 inclusive.
 // Run: node scripts/eclipse-events.js

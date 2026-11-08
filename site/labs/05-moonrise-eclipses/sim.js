@@ -1,4 +1,4 @@
-// Lab 12 sim: the eclipse board. Geocentric top view in the Sun-locked frame:
+// Lab 5 sim: the eclipse board. Geocentric top view in the Sun-locked frame:
 // the Sun sits fixed at the right, its light rays arrive as parallel arrows.
 // The calendar rim carries every new moon and the five NASA eclipse dates.
 // The Moon orbit is tilted 5.1 deg, so its crossing line with the sky road
@@ -13,7 +13,7 @@
 (function () {
   "use strict";
   var LS = window.LS, E = LS.eclipse;
-  var LAB = "12-eclipse-board";
+  var LAB = "05-moonrise-eclipses";
   var $ = function (id) { return document.getElementById(id); };
   var RAD = Math.PI / 180;
   var DAY = 86400000;

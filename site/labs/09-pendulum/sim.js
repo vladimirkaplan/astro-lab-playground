@@ -1,4 +1,4 @@
-// Lab 8 sim: pendulum stopwatch runs, data table, T^2-vs-L plot with a
+// Lab 9 sim: pendulum stopwatch runs, data table, T^2-vs-L plot with a
 // draggable slope handle, and the g readout.
 //
 // Timing model: the period used for gates and runs is the exact large-angle
@@ -8,7 +8,7 @@
 (function () {
   "use strict";
   var LS = window.LS, U = LS.units, P = LS.pendulum;
-  var LAB = "08-pendulum";
+  var LAB = "09-pendulum";
   var mode = LS.ui.getMode(LAB);
   var G = P.G_SIM;
   var $ = function (id) { return document.getElementById(id); };
@@ -213,7 +213,7 @@
     $("measured").textContent = "-";
   });
   $("exportCsv").addEventListener("click", function () {
-    LS.store.exportCSV("lab08-pendulum-runs.csv", HEADER, rows, $("csvCopy"));
+    LS.store.exportCSV("lab09-pendulum-runs.csv", HEADER, rows, $("csvCopy"));
   });
 
   function readoutPredict() {

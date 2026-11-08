@@ -18,28 +18,26 @@ Built (each one Learn + Simulate + Check, with a CSV export of your own data tab
 
 - Lab 1 Measurement: ruler with parallax, coin balance, percent-error trainer
 - Lab 3 Celestial sphere: pan-and-zoom RA/Dec chart, ecliptic, birthday-Sun finder
-- Lab 5 Phases of the Moon: geometry sandbox plus a real New York ephemeris
+- Lab 4 Phases of the Moon: geometry sandbox plus a real New York ephemeris
 - Lab 7 Lenses and telescopes: live ray bench, then a two-lens spyglass
-- Lab 8 Pendulum gravity: 15 timed swings, T^2 vs L fit, get 9.8 out of a stopwatch
-- Lab 9 Spectra: bench grating viewer on real NIST line data, unknowns to identify
-- Lab 12 Moonrise and eclipses: top-down eclipse board with the node rule
+- Lab 9 Pendulum gravity: 15 timed swings, T^2 vs L fit, get 9.8 out of a stopwatch
+- Lab 10 Spectra: bench grating viewer on real NIST line data, unknowns to identify
+- Lab 5 Moonrise and eclipses: top-down eclipse board with the node rule
 - Lab 15 Hubble's Law: balloon/flat expansion runs, slope fits, a synthetic cosmic sample
 - Labs 16-17 Time, latitude, longitude: graticule dropper and clock-face zones
 - Lab 2 Mathematics for astronomy: wrap-a-tape pi bench, small-angle playground
   from a pocket coin to the Sun, with the eclipse coincidence built in
-- Phases of Venus: orbit viewer where phase, elongation and apparent size move together,
-  with the Ptolemaic prediction drawn beside the real thing. The course number for this
-  one is not pinned down yet, so the page carries no number.
-- The H-R diagram: 29 real stars plotted by temperature and luminosity, click to read
+- Lab 8 Phases of Venus: orbit viewer where phase, elongation and apparent size move together,
+  with the Ptolemaic prediction drawn beside the real thing.
+- Lab 12 The H-R diagram: 29 real stars plotted by temperature and luminosity, click to read
   one, then derive its radius from the Stefan-Boltzmann law and see why giants are huge
-  and white dwarfs are Earth-sized. Also unnumbered until the course list lands.
-- Heliocentric parallax: watch a nearby star trace its yearly ellipse, squash it flat with
+  and white dwarfs are Earth-sized.
+- Lab 11 Heliocentric parallax: watch a nearby star trace its yearly ellipse, squash it flat with
   the ecliptic-latitude slider, then be Bessel - measure a hidden star on the January and
-  July nights and reduce its distance from the 2 AU baseline. Also unnumbered for now.
-- Variable stars and Cepheids: six real variable stars as light curves, fold the points
+  July nights and reduce its distance from the 2 AU baseline.
+- Lab 13 Variable stars and Cepheids: six real variable stars as light curves, fold the points
   on a trial period until the blob snaps into a knife-thin sawtooth, then be Leavitt -
   reduce a hidden cluster Cepheid from period to period-luminosity line to distance.
-  Also unnumbered for now.
 
 Homework practice (each Learn + Practice + Check, auto-graded, fresh numbers every
 attempt, CSV log of your own attempts - practice only, never a submission channel):
@@ -53,8 +51,8 @@ attempt, CSV log of your own attempts - practice only, never a submission channe
 
 Both worksheets run on the shared `site/homework/hw-core.js` engine for all math.
 
-Still planned: retrograde Mars and galaxy identification; their landing-page cards are
-placeholders.
+Still planned: retrograde Mars (no manual number pinned down yet, so its card says TBD)
+and galaxy identification (Lab 14); their landing-page cards are placeholders.
 
 ## Run it locally
 
@@ -90,9 +88,11 @@ site/
   styles.css          the site's single stylesheet
   shared/             units, fit math, tabs/hints/banner UI, data tables, plots
   data/               spectral line lists (cited) for the spectra lab
-  labs/<nn>-<slug>/   one folder per lab (venus-phases carries no number yet)
+  labs/<nn>-<slug>/   one folder per lab, numbered by the lab manual's numbers
     index.html        Learn + Simulate + Check tabs
     sim.js            the interactive imitation
+  labs/<old-name>/    a stub index.html at each pre-renumbering URL, redirecting to
+                      the lab's numbered folder
 tests/                node --test suites for the pure modules
 ```
 

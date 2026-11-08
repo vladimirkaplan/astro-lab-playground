@@ -3,7 +3,7 @@ const test = require("node:test");
 const assert = require("node:assert/strict");
 
 require("../site/shared/units.js");
-require("../site/labs/hr-diagram/hr.js");
+require("../site/labs/12-hr-diagram/hr.js");
 const H = globalThis.LS.hr;
 
 const near = (x, target, tol) => Math.abs(x - target) < tol;

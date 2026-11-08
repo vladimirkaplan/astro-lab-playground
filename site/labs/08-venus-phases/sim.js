@@ -7,7 +7,7 @@
 (function () {
   "use strict";
   var LS = window.LS, U = LS.units, V = LS.venus;
-  var LAB = "venus-phases";
+  var LAB = "08-venus-phases";
   var $ = function (id) { return document.getElementById(id); };
 
   var mode = LS.ui.getMode(LAB);

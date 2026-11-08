@@ -1,4 +1,4 @@
-// Lab 5 sim. Geometry sandbox: sunlit top view (north up, sun at the right,
+// Lab 4 sim. Geometry sandbox: sunlit top view (north up, sun at the right,
 // elongation grows counterclockwise = eastward) plus an Earth's-eye view whose
 // perspective is computed honestly: look at the Moon, drop a perpendicular to
 // the Earth-Sun line, put the Sun propped on that side of the disk.
@@ -6,7 +6,7 @@
 (function () {
   "use strict";
   var LS = window.LS, P = LS.moonPhase;
-  var LAB = "05-moon-phases";
+  var LAB = "04-moon-phases";
   var $ = function (id) { return document.getElementById(id); };
 
   var view = "geo";

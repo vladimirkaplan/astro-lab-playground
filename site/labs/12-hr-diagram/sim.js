@@ -7,7 +7,7 @@
 (function () {
   "use strict";
   var LS = window.LS, U = LS.units, H = LS.hr;
-  var LAB = "hr-diagram";
+  var LAB = "12-hr-diagram";
   var $ = function (id) { return document.getElementById(id); };
 
   var mode = LS.ui.getMode(LAB);

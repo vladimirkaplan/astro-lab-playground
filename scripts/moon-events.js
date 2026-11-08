@@ -1,4 +1,4 @@
-// Regenerates the frozen EVENTS block in site/labs/05-moon-phases/moon.js
+// Regenerates the frozen EVENTS block in site/labs/04-moon-phases/moon.js
 // from the vendored astronomy-engine. Run: node scripts/moon-events.js [n]
 // then run npm test (tests/moon.test.js pins the values) and commit both.
 "use strict";

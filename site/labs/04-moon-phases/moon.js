@@ -1,4 +1,4 @@
-// Lab 5 pure moon math + baked ephemeris highlights.
+// Lab 4 pure moon math + baked ephemeris highlights.
 // Geometry convention (matches the sim): elongation = angle Sun->Earth->Moon,
 // 0 = new, increasing eastward (counterclockwise in the top-view sim):
 // 90 = first quarter, 180 = full, 270 = last quarter.

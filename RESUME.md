@@ -40,7 +40,7 @@ Project rules for lab-sims work (user directive 2026-11-07):
   site/data/stars.js catalog) + shared modules + ephemeris. The old small gaps
   (eclipse card live, inset label) shipped in ce40635.
 - DONE 2026-11-07 (Paperclip "Chief", BMC-1): Phases of Venus at
-  site/labs/venus-phases/ (venus.js pure geometry + 9 tests, sim with the
+  site/labs/08-venus-phases/ (venus.js pure geometry + 9 tests, sim with the
   Ptolemaic-prediction inset, observing log + CSV). 81 tests green. Built
   unnumbered: GOAL.md lists both the pendulum and Venus as "Lab 8", so the
   course number for Venus is unconfirmed and the page carries none. NOT YET
@@ -54,7 +54,7 @@ Project rules for lab-sims work (user directive 2026-11-07):
   then push Venus + this), manual transcriptions will arrive later and set the
   authoritative lab order, PHY110 is the next course after AST110.
 - DONE 2026-11-07 (Paperclip "Chief", BMC-1, third run): The H-R diagram at
-  site/labs/hr-diagram/ (hr.js: 29-star catalog + Stefan-Boltzmann core + 10
+  site/labs/12-hr-diagram/ (hr.js: 29-star catalog + Stefan-Boltzmann core + 10
   tests -> 98 green; sim: clickable diagram with log-luminosity axes, reversed
   temperature axis, true star colours, main-sequence guide, and a radius machine
   that derives every radius from L and T; reading log + CSV; 7 exercises). Also
@@ -65,7 +65,7 @@ Project rules for lab-sims work (user directive 2026-11-07):
   are split out of this card into their own queued lab. Next lab goes to the Lab
   Builder as a narrow brief, with the Chief verifying.
 - DONE 2026-11-07 (Paperclip "Chief", BMC-1, sixth run): Heliocentric parallax at
-  site/labs/parallax/ - built by the Lab Builder (BMC-5 module, BMC-6 page), verified by
+  site/labs/11-parallax/ - built by the Lab Builder (BMC-5 module, BMC-6 page), verified by
   the Chief. parallax.js: 8 nearest systems on Gaia EDR3/HIPPARCOS parallaxes, d = 1000/p,
   the 2 AU January-to-July baseline, the parallactic ellipse with the equinox phase,
   11 tests -> 109 green. sim.js: the watch-the-wobble bench (protractor sky grid, ellipse
@@ -78,7 +78,7 @@ Project rules for lab-sims work (user directive 2026-11-07):
   and the Chief's secret grant has not landed, so the chain (Venus, Lab 2, H-R, hygiene,
   parallax module, parallax page) ships as six `git am` patches attached to BMC-1.
 - DONE 2026-11-07 (Paperclip "Chief", BMC-1, seventh run): Variable stars and Cepheids
-  at site/labs/variables/ - built by the Lab Builder (BMC-7 module, BMC-8 page), verified
+  at site/labs/13-variables/ - built by the Lab Builder (BMC-7 module, BMC-8 page), verified
   by the Chief. variables.js: 6-star catalog (three classical Cepheids, RR Lyrae, Algol,
   Mira), magnitude/distance-modulus arithmetic, the classroom Cepheid line
   M_V = -2.76 log P - 1.40 gated to 1-100 d so Mira's 332 d cannot be laundered into a
@@ -106,6 +106,18 @@ Project rules for lab-sims work (user directive 2026-11-07):
   NOT COMMITTED by the Lab Builder (per RESUME rule 4 and AGENTS.md): the Chief
   verifies and lands. Note hw-core.js + hw-core.test.js from BMC-9 are present in
   the same checkout and must land with (or before) these pages, which require them.
+- DONE 2026-11-08 (Lab Builder, BMC-11): Renumbering pass. Eight lab folders moved to the
+  manual's numbers: 05-moon-phases -> 04-moon-phases, 12-eclipse-board ->
+  05-moonrise-eclipses, venus-phases -> 08-venus-phases, 08-pendulum -> 09-pendulum,
+  09-spectra -> 10-spectra, parallax -> 11-parallax, hr-diagram -> 12-hr-diagram,
+  variables -> 13-variables. Titles/h1s, landing cards (href, data-lab, number chips),
+  test require paths, script header comments, the per-page lab ids and README/RESUME paths
+  follow the new slugs; every old URL keeps a no-script redirect stub
+  (`site/labs/<old>/index.html`, meta refresh + canonical) because GitHub Pages has no
+  `_redirects`. No content or physics changes: 158 tests still green. Two consequences to
+  remember: saved progress ticks, data tables and Ideal/Fun mode are keyed by the lab id,
+  so the eight moved labs start clean on every device; and the old numbers in the log
+  entries above are history, not current paths.
 - Then: Phase 2 charts still planned on the landing page:
   galaxy gallery with Wikimedia images + ATTRIBUTION.md.
   Then Phase 3 data labs, worksheets, offline kit (service worker, zip, LXC

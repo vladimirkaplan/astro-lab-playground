@@ -11,7 +11,7 @@
 (function () {
   "use strict";
   var LS = window.LS, U = LS.units, V = LS.variables;
-  var LAB = "variables";
+  var LAB = "13-variables";
   var $ = function (id) { return document.getElementById(id); };
 
   var mode = LS.ui.getMode(LAB);

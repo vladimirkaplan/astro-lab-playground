@@ -1,10 +1,10 @@
-// Lab 9 sim: diffraction-grating bench viewer over real line data. Pick a
+// Lab 10 sim: diffraction-grating bench viewer over real line data. Pick a
 // source, aim the probe, mark lines, watch the data page fill, identify
 // unknowns. Fun Mode jitters the marked wavelength like a real grating scale.
 (function () {
   "use strict";
   var LS = window.LS, U = LS.units, SP = LS.spectra;
-  var LAB = "09-spectra";
+  var LAB = "10-spectra";
   var WL_LO = 380, WL_HI = 720;
 
   var mode = LS.ui.getMode(LAB);
@@ -224,7 +224,7 @@
     Object.keys(records).forEach(function (k) {
       records[k].forEach(function (m) { rows.push([k, m.nm, m.word]); });
     });
-    LS.store.exportCSV("lab9-spectral-lines.csv",
+    LS.store.exportCSV("lab10-spectral-lines.csv",
       ["source", "marked_nm", "color_word"], rows,
       document.getElementById("csvCopy"));
   });

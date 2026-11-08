@@ -1,4 +1,4 @@
-// Lab 12 eclipse board: pure helpers, shared by the sim and the tests.
+// Lab 5 eclipse board: pure helpers, shared by the sim and the tests.
 // Everything the board shows about the real sky comes from two baked sources:
 //   EVENTS      - five verified eclipses from the NASA five-millennium canon
 //                 (types and moments are NASA facts; this sim never predicts
