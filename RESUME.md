@@ -143,7 +143,34 @@ Project rules for lab-sims work (user directive 2026-11-07):
   only, banner + licence intact. NOT COMMITTED by the Lab Builder (RESUME rule 4 / AGENTS.md):
   the Chief verifies and lands - and must stage site/labs/06-retrograde-mars/mars.js +
   tests/mars.test.js alongside the page.
-- Then: Phase 2 charts still planned on the landing page:
-  galaxy gallery with Wikimedia images + ATTRIBUTION.md.
-  Then Phase 3 data labs, worksheets, offline kit (service worker, zip, LXC
-  recipe). See GOAL.md phases/issues.
+- DONE 2026-11-08 (Lab Builder, BMC-14): Moonrise drift, completing manual Lab 5, by
+  EXTENDING site/labs/05-moonrise-eclipses/ (the eclipse board is untouched - the moonrise
+  half is added beside it). GitHub issue #12 ("Moonrise delay & lunar orbit: 50-minutes-a-day
+  chase, perigee/apogee size, eclipse tie-in") rides with this build and is
+  DONE-PENDING-PUSH; the Chief closes it at push. New moonrise.js: a pure, frozen,
+  Date.now-free module on LS.moonrise in days-since-J2000 (same time base as moon.js/mars.js) -
+  elongation from the cited 2000-01-06 18:14 UT new moon anchored at the synodic rate,
+  phaseName + illumFraction, moonriseOffsetHours (24.84h lunar day: 0/6.2/12.4/18.6 h at the
+  four phases), dailyLagMin (48.8 mean +/- 7 on the anomalistic month), moonDiameterArcmin
+  from d = a(1 - e cos M_anom), and a moonriseSeries fixture; every constant cited (NASA lunar
+  fact sheet). New tests/moonrise.test.js: 10 cases -> 181 green. sim.js gains Bench 3 "the
+  50-minute chase" (24-hour moonrise clock, phase/size cycle on a labelled pixel-per-degree
+  bar, lag-vs-48.8 bar on the 40-70 track, a day slider + play sweep); Fun Mode adds a seeded
+  +/-4 min stopwatch jitter to the LAG readout only, never geometry. index.html gains a
+  moonrise Learn subsection, Bench 3 markup, one numbers + one keywords exercise, and the
+  script order units/ui/store/check/moonrise/eclipse/sim; no new landing card (same page).
+  Two honest brief/physics notes the code carries: (1) the brief pins both "48.8 + 7*cos" and a
+  strict dailyLagMin band "[42,56]", but that formula's exact extremes are 41.8 and 55.8, so the
+  test pins the model's true range [41.8,55.8] and keeps it inside the honest [40,70] band
+  instead of the literal [42,56]; (2) with the cited a=384400, e=0.0549 the model's perigee
+  diameter is ~32.9 arcmin, not the 33.5-34.1 real near-side extreme (solar perturbation swings
+  e itself), so that 33.5-34.1 is named as unmodeled - both extremes still sit inside the
+  [29.2,34.2] test bound. node --check clean on every JS; a throwaway DOM stub booted Bench 3
+  (E=180 -> rise offset 12.4 h, E=90 -> 6.2 h, blank Check reveals nothing, the play sweep
+  drives setDay with no errors). Original prose, banner + licence auto-mounted by sim.js.
+  NOT COMMITTED by the Lab Builder (RESUME rule 4 / AGENTS.md): the Chief verifies and lands,
+  staging site/labs/05-moonrise-eclipses/moonrise.js + tests/moonrise.test.js with the page.
+- Then (queue, in order): Lab 14 galaxy ID gallery - the NEXT brief - with the Wikimedia
+  image licence decision (PD / CC BY-SA) and assets/img/ATTRIBUTION.md entries settled first.
+  Then the ~250-star catalog expansion (GitHub #17). Then, LAST, the offline kit (#16:
+  service worker, downloadable zip, LXC recipe). See GOAL.md phases/issues.

@@ -12,7 +12,7 @@
 // the drawing.
 (function () {
   "use strict";
-  var LS = window.LS, E = LS.eclipse;
+  var LS = window.LS, E = LS.eclipse, MR = LS.moonrise, U = LS.units;
   var LAB = "05-moonrise-eclipses";
   var $ = function (id) { return document.getElementById(id); };
   var RAD = Math.PI / 180;
@@ -273,17 +273,211 @@
     });
   });
 
+  // ---------- Bench 3: the 50-minute chase (moonrise drift) ----------
+  // The other half of Lab 5. Everything numeric here comes from LS.moonrise;
+  // this block only draws and reads out - no moon physics is reimplemented.
+  // A day slider steps one mean synodic month counted from a reference new
+  // moon, so the phase walks new -> crescent -> quarter -> gibbous -> full ->
+  // ... and the moonrise clock walks with it.
+  var B3 = {
+    stage: $("b3Stage"),
+    ctx: null,
+    day: 0,                    // 0 .. SYNODIC_D days from a mean new moon
+    running: false,
+    rafId: null,
+    H: 300,
+    SUNRISE_H: 6               // flat-sky equinox sunrise, for the clock face only
+  };
+  B3.ctx = B3.stage.getContext("2d");
+  // Anchor the bench on the mean new moon nearest the eclipse board's 2026-11
+  // start (a whole number of synodic months from the cited 2000 reference, so
+  // elongation still equals 360*day/synodic and the landmarks stay put).
+  var B3_T0 = MR.T_NEW_MOON + Math.round(
+    (((Date.UTC(2026, 10, 5, 12) - MR.J2000_MS) / DAY) - MR.T_NEW_MOON) / MR.SYNODIC_D
+  ) * MR.SYNODIC_D;
+
+  function b3State() {
+    var t = B3_T0 + B3.day;
+    var elong = MR.elongationDeg(t);
+    return {
+      t: t, iso: MR.isoOf(t), elong: elong,
+      phase: MR.phaseName(elong), illum: MR.illumFraction(elong),
+      offsetH: MR.moonriseOffsetHours(elong), lag: MR.dailyLagMin(t),
+      diam: MR.moonDiameterArcmin(t)
+    };
+  }
+  // Fun Mode: a seeded stopwatch jitter on the LAG readout ONLY (never phase,
+  // rise clock, or size) - the same convention as the Mars lab's instrument
+  // scatter, so geometry on the board is always exact.
+  function b3LagShown(lag, t) {
+    if (mode !== "fun") return lag;
+    return Math.round((lag + (U.mulberry32(Math.round(t * 10) ^ 0x5A11)() - 0.5) * 8) * 10) / 10;
+  }
+  function b3Clock(h) {
+    var hh = ((h % 24) + 24) % 24;
+    var H = Math.floor(hh), mm = Math.round((hh - H) * 60);
+    if (mm === 60) { H = (H + 1) % 24; mm = 0; }
+    return (H < 10 ? "0" : "") + H + ":" + (mm < 10 ? "0" : "") + mm;
+  }
+  // A small phase disk: night base, sunward lit limb + terminator ellipse.
+  function b3disk(c, x, y, r, illum, elong) {
+    r = Math.max(2, r);
+    var waxing = (((elong % 360) + 360) % 360) < 180;
+    c.save();
+    c.beginPath(); c.arc(x, y, r, 0, 6.2832); c.clip();
+    c.fillStyle = "#20283a"; c.fillRect(x - r, y - r, 2 * r, 2 * r);
+    c.fillStyle = "#f2e3b3";
+    c.beginPath();
+    c.arc(x, y, r, -Math.PI / 2, Math.PI / 2, !waxing);
+    var rx = r * (1 - 2 * illum);
+    c.ellipse(x, y, Math.abs(rx), r, 0, Math.PI / 2, -Math.PI / 2, rx > 0 !== waxing);
+    c.closePath(); c.fill();
+    c.restore();
+    c.strokeStyle = "#66799e"; c.lineWidth = 1;
+    c.beginPath(); c.arc(x, y, r, 0, 6.2832); c.stroke();
+  }
+
+  function b3draw() {
+    var dpr = window.devicePixelRatio || 1;
+    var w = B3.stage.width / dpr, h = B3.H, c = B3.ctx;
+    c.setTransform(dpr, 0, 0, dpr, 0, 0);
+    c.clearRect(0, 0, w, h);
+    c.fillStyle = "#0d1526"; c.fillRect(0, 0, w, h);
+    var s = b3State();
+
+    // ---- 24-hour sky clock: the moonrise hand walks the face over one month ----
+    var ccx = 130, ccy = h * 0.44, cr = 100;
+    c.strokeStyle = "#3c4f73"; c.lineWidth = 1.4;
+    c.beginPath(); c.arc(ccx, ccy, cr, 0, 6.29); c.stroke();
+    c.fillStyle = "#8fa4c9"; c.font = "9.5px system-ui, sans-serif";
+    c.textAlign = "center"; c.textBaseline = "middle";
+    [[0, "midnight"], [6, "sunrise"], [12, "noon"], [18, "sunset"]].forEach(function (m) {
+      var a = m[0] / 24 * 2 * Math.PI - Math.PI / 2;
+      c.strokeStyle = "#5d6f92"; c.lineWidth = 1;
+      c.beginPath();
+      c.moveTo(ccx + (cr - 8) * Math.cos(a), ccy + (cr - 8) * Math.sin(a));
+      c.lineTo(ccx + cr * Math.cos(a), ccy + cr * Math.sin(a)); c.stroke();
+      c.fillStyle = "#8fa4c9";
+      c.fillText(m[1], ccx + (cr + 15) * Math.cos(a), ccy + (cr + 15) * Math.sin(a));
+    });
+    var riseH = B3.SUNRISE_H + s.offsetH;
+    var ha = riseH / 24 * 2 * Math.PI - Math.PI / 2;
+    c.strokeStyle = "#ffd76e"; c.lineWidth = 2;
+    c.beginPath(); c.moveTo(ccx, ccy); c.lineTo(ccx + cr * Math.cos(ha), ccy + cr * Math.sin(ha)); c.stroke();
+    b3disk(c, ccx + cr * Math.cos(ha), ccy + cr * Math.sin(ha), 15, s.illum, s.elong);
+
+    // ---- measured lag bar against the 48.8 mean, on the honest 40-70 band ----
+    var bx = ccx + cr + 58, by = ccy - 40, bw = w - bx - 26, bh = 16;
+    if (bw > 150) {
+      c.textAlign = "left"; c.textBaseline = "alphabetic";
+      c.fillStyle = "#93a7cd"; c.font = "10px system-ui, sans-serif";
+      c.fillText("measured moonrise lag today", bx, by - 8);
+      var lo = MR.LAG_RANGE_MIN[0], hi = MR.LAG_RANGE_MIN[1];
+      var X = function (v) { return bx + (v - lo) / (hi - lo) * bw; };
+      c.fillStyle = "#22314f"; c.fillRect(bx, by, bw, bh);
+      c.strokeStyle = "#ffd76e"; c.lineWidth = 1.5;
+      c.beginPath(); c.moveTo(X(MR.MEAN_LAG_MIN), by - 5); c.lineTo(X(MR.MEAN_LAG_MIN), by + bh + 5); c.stroke();
+      c.fillStyle = "#6d7fa3"; c.font = "9px system-ui, sans-serif";
+      c.textAlign = "center"; c.fillText("48.8 mean", X(MR.MEAN_LAG_MIN), by + bh + 15);
+      c.textAlign = "left"; c.fillText(lo + " min", bx, by + bh + 15);
+      c.textAlign = "right"; c.fillText(hi + " min", bx + bw, by + bh + 15);
+      var lm = b3LagShown(s.lag, s.t);
+      c.fillStyle = "#7fd0ff";
+      c.beginPath(); c.arc(X(U.clamp(lm, lo, hi)), by + bh / 2, 6, 0, 6.29); c.fill();
+      c.textAlign = "left"; c.textBaseline = "middle";
+      c.fillStyle = "#cfe0ff"; c.font = "11px system-ui, sans-serif";
+      c.fillText(lm.toFixed(1) + " min", X(U.clamp(lm, lo, hi)) + 9, by + bh / 2);
+    }
+
+    // ---- apparent-diameter inset on a labelled pixel-per-degree scale ----
+    var ix = w - 96, iy = h - 70, PXDEG = 92;         // 0.5 deg -> 46 px bar
+    c.fillStyle = "#93a7cd"; c.font = "9.5px system-ui, sans-serif";
+    c.textAlign = "center"; c.textBaseline = "alphabetic";
+    c.fillText("apparent size", ix, iy - 42);
+    c.strokeStyle = "#5d6f92"; c.lineWidth = 1;
+    c.beginPath(); c.moveTo(ix - 46, iy + 22); c.lineTo(ix + 46, iy + 22); c.stroke();
+    c.beginPath(); c.moveTo(ix - 46, iy + 18); c.lineTo(ix - 46, iy + 26); c.stroke();
+    c.beginPath(); c.moveTo(ix + 46, iy + 18); c.lineTo(ix + 46, iy + 26); c.stroke();
+    c.fillStyle = "#6d7fa3"; c.font = "9px system-ui, sans-serif";
+    c.fillText("0.5 deg across", ix, iy + 34);
+    b3disk(c, ix, iy - 6, (s.diam / 60) * PXDEG / 2, s.illum, s.elong);
+
+    c.textAlign = "left"; c.textBaseline = "top";
+    c.fillStyle = mode === "fun" ? "#ff9c9c" : "#6d7fa3";
+    c.font = "10.5px system-ui, sans-serif";
+    c.fillText(mode === "fun"
+      ? "Fun Mode: +/- 4 min stopwatch jitter on the LAG readout only - clock, phase, size stay exact"
+      : "Ideal Mode: exact model values  |  rise clock = hours after a 06:00 flat-sky sunrise", 12, h - 16);
+
+    b3readouts(s);
+  }
+
+  function b3readouts(s) {
+    var lm = b3LagShown(s.lag, s.t);
+    $("b3DateRead").textContent = s.iso + "  |  lunar day " + B3.day.toFixed(1) + "  |  elongation " + s.elong.toFixed(1) + " deg";
+    $("b3RiseRead").textContent = "rises " + b3Clock(B3.SUNRISE_H + s.offsetH) +
+      ", about " + lm.toFixed(0) + " min after yesterday";
+    $("b3PhaseRead").textContent = s.phase + ", about " + Math.round(s.illum * 100) + "% lit";
+    $("b3DiamRead").textContent = s.diam.toFixed(1) + " arcmin across (mean 31.1)";
+    $("b3LagRead").textContent = lm.toFixed(1) + " min today  (this model spans about 42-56; the real band is 40-70)";
+    $("b3OffsetRead").textContent = s.offsetH.toFixed(1) + " h after sunrise  (" + b3Clock(B3.SUNRISE_H + s.offsetH) + " on the clock)";
+  }
+
+  function b3setDay(v) {
+    B3.day = U.clamp(v, 0, MR.SYNODIC_D);
+    $("b3DayRange").value = String(B3.day);
+    $("b3DayRead").textContent = B3.day.toFixed(1);
+    b3draw();
+  }
+  function b3stop() {
+    if (B3.rafId !== null) { cancelAnimationFrame(B3.rafId); B3.rafId = null; }
+    B3.running = false;
+    var b = $("b3PlayBtn");
+    if (b) { b.disabled = false; b.innerHTML = "&#9654; Play the month"; }
+  }
+  function b3play() {
+    var btn = $("b3PlayBtn");
+    if (B3.running) { b3stop(); return; }
+    B3.running = true;
+    btn.disabled = false;
+    btn.innerHTML = "&#9632; Stop";
+    var t0 = performance.now(), DUR = 12000, from = B3.day >= MR.SYNODIC_D ? 0 : B3.day;
+    function step(now) {
+      if (!B3.running) return;
+      var f = (now - t0) / DUR;
+      b3setDay(from + f * (MR.SYNODIC_D - from));
+      if (f < 1) B3.rafId = requestAnimationFrame(step);
+      else b3stop();
+    }
+    B3.rafId = requestAnimationFrame(step);
+  }
+  $("b3DayRange").addEventListener("input", function (e) { b3stop(); b3setDay(parseFloat(e.target.value)); });
+  $("b3PlayBtn").addEventListener("click", b3play);
+  Array.prototype.forEach.call(document.querySelectorAll(".b3Preset"), function (b) {
+    b.addEventListener("click", function () {
+      b3stop();
+      b3setDay(parseFloat(b.getAttribute("data-day")));
+    });
+  });
+
   // ---------- boot ----------
   function resizeStage() {
     stage.width = Math.round(Math.max(300, stage.clientWidth || 480) * dpr);
     stage.height = Math.round(STAGE_H * dpr);
     draw();
   }
-  window.addEventListener("resize", resizeStage);
+  function resizeB3() {
+    B3.stage.width = Math.round(Math.max(320, B3.stage.clientWidth || 520) * dpr);
+    B3.stage.height = Math.round(B3.H * dpr);
+    b3draw();
+  }
+  window.addEventListener("resize", function () { resizeStage(); resizeB3(); });
   LS.ui.banner(document.querySelector("main"));
   LS.ui.initTabs();
   LS.check.init(LAB);
-  LS.ui.modeToggle(LAB, $("toolbar1"), function (m) { mode = m; draw(); });
+  LS.ui.modeToggle(LAB, $("toolbar1"), function (m) { mode = m; draw(); b3draw(); });
   eventsTable();
   resizeStage();
+  b3setDay(0);
+  resizeB3();
 })();

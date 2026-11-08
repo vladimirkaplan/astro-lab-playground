@@ -22,7 +22,10 @@ Built (each one Learn + Simulate + Check, with a CSV export of your own data tab
 - Lab 7 Lenses and telescopes: live ray bench, then a two-lens spyglass
 - Lab 9 Pendulum gravity: 15 timed swings, T^2 vs L fit, get 9.8 out of a stopwatch
 - Lab 10 Spectra: bench grating viewer on real NIST line data, unknowns to identify
-- Lab 5 Moonrise and eclipses: top-down eclipse board with the node rule
+- Lab 5 Moonrise drift and eclipses: the "50-minute chase" moonrise bench (a 24-hour
+  rise-clock, a phase-and-size cycle on a labelled pixel-per-degree scale, and a daily
+  moonrise-lag bar against the 48.8-minute mean drawn on the honest 40-70 band), plus the
+  top-down eclipse board with the node rule
 - Lab 15 Hubble's Law: balloon/flat expansion runs, slope fits, a synthetic cosmic sample
 - Labs 16-17 Time, latitude, longitude: graticule dropper and clock-face zones
 - Lab 2 Mathematics for astronomy: wrap-a-tape pi bench, small-angle playground

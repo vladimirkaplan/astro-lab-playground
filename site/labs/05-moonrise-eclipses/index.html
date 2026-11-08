@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Lab 5: The Eclipse Board - Astro Lab Playground</title>
+<title>Lab 5: Moonrise Drift and the Eclipse Board - Astro Lab Playground</title>
 <link rel="icon" href="data:,">
 <link rel="stylesheet" href="../../styles.css">
 </head>
@@ -12,11 +12,13 @@
 <header class="site-head">
   <div class="wrap">
     <p style="margin:0"><a class="back-link" href="../../index.html">&larr; all labs</a></p>
-    <h1>Lab 5 &middot; The Eclipse Board</h1>
+    <h1>Lab 5 &middot; Moonrise drift and the Eclipse Board</h1>
     <p>New moon every 29.5 days, full moon every 29.5 days - and yet no eclipse
     last month and probably none next month. This board shows the one detail the
     flat diagrams hide: the Moon travels a tilted road, and eclipses only happen
-    where that road crosses the Sun's road.</p>
+    where that road crosses the Sun's road. The lab's other half is a question you
+    can ask with no eclipse at all: the Moon is late to rise a little more every
+    night, and this page chases that delay too.</p>
   </div>
 </header>
 
@@ -91,6 +93,73 @@
         year pin the node line to the Sun's longitude on those dates.</li>
       </ul>
     </div>
+
+    <h2>The other half: why moonrise is late (and getting later)</h2>
+    <p>Forget eclipses for a moment and just watch the Moon rise. On any clear
+    stretch you notice the same thing: the Moon comes up a little later every
+    night, and the delay is close to <strong>50 minutes</strong>. That number is
+    not a fact about the Moon's brightness or distance - it is a race between two
+    spins. Earth turns once under the stars in about 24 hours, but the Moon is
+    crawling <em>eastward</em> along its orbit the whole time, about 12 degrees a
+    day. To catch the Moon on the eastern horizon again, Earth has to swing that
+    extra 12 degrees around, and 12 degrees takes about <strong>50 minutes</strong>.
+    So a Moonrise-to-Moonrise interval is really a <em>lunar day</em> of roughly
+    24 hours 50 minutes, and each night's moonrise slips later by that gap.</p>
+
+    <p>Why does the almanac disagree with a tidy 50, sometimes printing 40 one
+    week and 70 the next? Two honest reasons, and this lab models only the second:
+    <ul>
+      <li><strong>Season and tilt (named, not modeled here).</strong> The Moon's
+      daily path meets the horizon at a shallow or steep angle depending on the
+      season and on the ecliptic's tilt at our latitude. When the path is shallow,
+      that same 12 degrees of eastward progress takes a long time to clear the
+      horizon - this is the <strong>harvest moon</strong>, the run of small
+      moonrise delays around the autumn full moon. Real day-to-day delays at New
+      York latitude range roughly <strong>40 to 70 minutes</strong> for this
+      reason, and a mean-element model like this page's deliberately does not
+      reproduce it.</li>
+      <li><strong>The near/far swing (modeled here).</strong> The Moon's orbit is
+      an ellipse, so its speed changes over the <em>anomalistic month</em>: near
+      <strong>perigee</strong> it sweeps the sky faster, gains more than 12 degrees
+      a day, and rises <em>later</em> than the 48.8-minute mean; near
+      <strong>apogee</strong> it lags and rises a little earlier. This bench spans
+      about <strong>42 to 56 minutes</strong> and never claims to reach the ends of
+      the 40-70 band.</li>
+    </ul>
+
+    <p>The same ellipse that speeds the Moon up also changes how <strong>big</strong>
+    it looks: closer means a wider disk. The mean apparent diameter is about
+    <strong>31 arcminutes</strong> - the width of a little fingernail at arm's
+    length. This model swings between roughly <strong>29.4</strong> arcmin at
+    apogee and <strong>32.9</strong> at its perigee; the loudest "supermoons"
+    reach about 34 arcmin only because the real orbit's eccentricity itself
+    breathes in and out, an effect the fixed-shape model names but does not chase.</p>
+
+    <div class="note">
+      <p><strong>How this ties to the eclipse board above:</strong> the Moon is
+      late for exactly the reason it is usually <em>not</em> on the node line - it
+      keeps moving east along a tilted orbit. An eclipse needs that moving road
+      aimed so the node line points at the Sun (an eclipse season); moonrise lateness
+      is the same eastward creep measured against the horizon instead of the Sun.
+      One motion, two clocks. (Grounded in OpenStax <em>Astronomy 2e</em>, Ch. 4,
+      CC BY 4.0; the season-drift figure on the board above is untouched.)</p>
+    </div>
+
+    <div class="mistakes">
+      <strong>Common mistakes with moonrise lateness:</strong>
+      <ul>
+        <li>Saying the Moon "rises late because it rises late." The 50 minutes is
+        Earth turning through the Moon's daily eastward progress.</li>
+        <li>Blaming the 40-70 spread on the Moon's distance alone. Most of that
+        spread is season and horizon tilt (the harvest moon), which this model
+        leaves out on purpose.</li>
+        <li>Expecting 50.0 minutes on the bar. The mean is 48.8, and the near/far
+        swing moves it a few minutes either way.</li>
+        <li>Calling a 34-arcmin moon "bigger than the model allows." Real
+        eccentricity swings the near side a touch past this model's 32.9 - a
+        named, unmodeled effect, not a bug.</li>
+      </ul>
+    </div>
   </section>
 
   <section id="simulate" class="tab-panel">
@@ -128,10 +197,56 @@
     <h3>The 2027 season calendar (verified facts)</h3>
     <div id="eventsTable"></div>
     <p class="muted">Tap a row to jump the date slider to that eclipse.</p>
+
+    <h3>Bench 3 - The 50-minute chase (moonrise drift)</h3>
+    <p>This bench is the lab's other half and does not need an eclipse. Step the
+    <strong>day</strong> through one mean lunar month (counted from a new moon by
+    the moonrise model) and watch the moonrise hand walk around the 24-hour
+    sky-clock while the disk cycles crescent &rarr; quarter &rarr; gibbous &rarr;
+    full and back. The bar reports the modeled daily moonrise lag against the
+    48.8-minute mean, drawn on the honest 40-70 minute band so you can see how much
+    of the real spread this simple model deliberately does <em>not</em> capture.
+    The Instrument toggle above (Ideal / Fun) applies here too.</p>
+    <p>
+      Phase presets:
+      <button class="action secondary b3Preset" data-day="0">New moon</button>
+      <button class="action secondary b3Preset" data-day="7.383">First quarter</button>
+      <button class="action secondary b3Preset" data-day="14.765">Full moon</button>
+      <button class="action secondary b3Preset" data-day="22.148">Last quarter</button>
+    </p>
+    <p><label>Day of the lunar month: <b id="b3DayRead">0.0</b>
+      <input type="range" id="b3DayRange" min="0" max="29.531" value="0" step="0.05" style="width:28ch"></label></p>
+    <p><button class="action" id="b3PlayBtn">&#9654; Play the month</button></p>
+
+    <div class="canvas-frame"><canvas id="b3Stage" height="300"></canvas></div>
+    <p class="muted">The hand is when the Moon rises on a local clock that starts its
+    day at a 06:00 flat-sky sunrise; the small disk at its tip is that night's phase
+    and true angular size against the labelled 0.5-degree bar. The blue dot slides
+    the day's moonrise lag along the 40-70 minute track; the gold line is the
+    48.8-minute mean the near/far orbit swings around.</p>
+
+    <div class="readout"><small>model date and phase angle</small><span id="b3DateRead">-</span></div>
+    <div class="readout"><small>moonrise clock (after a 06:00 flat-sky sunrise)</small><span id="b3RiseRead">-</span></div>
+    <div class="readout"><small>hours the Moon rises after sunrise</small><span id="b3OffsetRead">-</span></div>
+    <div class="readout"><small>phase and lit fraction</small><span id="b3PhaseRead">-</span></div>
+    <div class="readout"><small>measured moonrise lag today</small><span id="b3LagRead">-</span></div>
+    <div class="readout"><small>apparent diameter</small><span id="b3DiamRead">-</span></div>
+
+    <p class="muted">Every number comes from <code>moonrise.js</code>: phase from the
+    mean synodic month anchored to a cited new moon (2000-01-06 18:14 UT), the daily
+    lag as a 48.8-minute mean modulated by the anomalistic month, and the diameter
+    from the anomalistic distance (constants from the NASA lunar fact sheet: a =
+    384,400 km, e = 0.0549, synodic month 29.53059 d, anomalistic month 27.55455 d,
+    Moon diameter 3474 km, mean apparent diameter 31.1 arcmin). A teaching mean
+    model, not an almanac: the clock reads against an assumed 06:00 sunrise, the
+    horizon/season 40-70-minute spread (the harvest moon) is left out on purpose, and
+    a fixed eccentricity caps the model's near-side size near 32.9 arcmin. Fun Mode
+    adds a seeded stopwatch jitter to the lag readout only, never to the geometry.</p>
   </section>
 
   <section id="check" class="tab-panel">
-    <p class="muted">Open the sandbox first. The first three questions start from a preset button.</p>
+    <p class="muted">Open the sandbox first. The first three questions start from a
+    preset button; questions 7 and 8 drive Bench 3, the moonrise bench.</p>
     <div id="check-progress"></div>
 <div class="exercise" data-ex='{"type": "numbers", "q": "1. Click the Feb 20 preset (the full-moon eclipse night, though it looks ordinary). The side view box prints the Moon height h at the slider time. What is that number, in degrees, with its sign?", "parts": [{"unit": "deg", "value": -0.42, "tolAbs": 0.15}], "hints": ["Read the label attached to the white dot in the side view panel.", "The slider always samples 12:00 UT, so you get the noon value, not the value at greatest eclipse."], "working": "The board prints <strong>-0.42 deg</strong> at noon on Feb 20, and the Moon drifts toward about -1 deg during the night while the eclipse peaks at 23:13 UT (NASA). At that depth the Moon stayed just outside the dark umbral core (umbral magnitude -0.057 means no umbral contact at all), so the whole event happened inside the pale outer shadow only: a penumbral eclipse, dim enough that photos beat eyes.", "answer": "-0.42 degrees at 12:00 UT; penumbral only"}'></div>
 <div class="exercise" data-ex='{"type": "numbers", "q": "2. This model opens a season while the Sun is within 16 degrees of a node line, on either side. The Sun walks 360 degrees in 365.25 days. By hand, how many days long is one season window, from entry to exit?", "parts": [{"unit": "days", "value": 32.5, "tolPct": 8}], "hints": ["Full window in degrees: 16 plus 16.", "Days per degree is 365.25 / 360, about 1.015.", "32 times 1.015."], "working": "32 degrees at roughly 0.986 deg/day: 32 / 0.9856 = <strong>32.5 days</strong>. A season is longer than a synodic month, so almost every season catches at least one new moon and the full moon near its middle - which is exactly the Feb 6 / Feb 20, Jul 18 / Aug 2 / Aug 17 family pattern in the events table.", "answer": "about 32 to 33 days"}'></div>
@@ -139,6 +254,8 @@
 <div class="exercise" data-ex='{"type": "choice", "correct": 1, "q": "4. Any ordinary full moon, the side view reads about 5 degrees for h. At the distance of the Moon the shadow of Earth is much less than one degree across. Put those two facts together: most full moons cannot produce a lunar eclipse because...", "options": ["full moons on the far side of the sky face away from the shadow by design", "five degrees is many shadow-widths of miss: the Moon sails over or under both cones", "sunlight bending through the air around Earth widens and washes out middle-of-orbit eclipses", "the Moon orbit flips tilt every month, so the crossing rarely repeats"], "hints": ["Compare the numbers on the same board, same night.", "5 divided by 1 is not small."], "working": "Shadow-width is roughly a degree; 5 degrees of height is <strong>several shadow-widths of miss</strong>. That is the entire reason the flat diagram failed: it drops the vertical numbers. Node geometry (h near zero) is the gatekeeper; phase is only the shift schedule.", "answer": "a 5-degree height is far bigger than the shadow"}'></div>
 <div class="exercise" data-ex='{"type": "numbers", "q": "5. Click the Aug 17 preset. The season readout (node geometry line) reports how far the Sun sits from the node of this season, degrees from the far edge. Enter that number.", "parts": [{"unit": "deg", "value": 14.5, "tolAbs": 0.6}], "hints": ["It is the line below the beta readout, the one mentioning the node.", "The model spans +-16 deg; you want the printed degrees."], "working": "The line reads <strong>14.5 deg</strong>: fifteen days after the Aug 2 total solar eclipse, the Sun has slid nearly 15 degrees past the August node and is running out of the 16-degree window by about Aug 18. The Aug 17 full moon caught the closing door of that season - a penumbral eclipse, the mildest kind, fitting for the last day of the show.", "answer": "about 14 to 15 degrees, late in the season"}'></div>
 <div class="exercise" data-ex='{"type": "keywords", "need": 2, "q": "6. Set the board near the new moon of Mar 8, 2027 (verdict says no eclipse). In your own words, name the two conditions that a new moon still fails here, using the board and side view.", "words": ["node", "tilt", "tilted", "latitude", "above", "below", "high", "low", "miss", "5", "ecliptic", "road", "season", "offset", "away"], "placeholder": "two plain ideas...", "working": "First: the season is closed - the node line no longer points anywhere near the Sun (that +-16 degree window shut weeks ago), so the board says off-season. Second: the side view still carries the near-new Moon several degrees off the ecliptic thanks to the 5-degree tilt, so its shadow strip would miss Earth even inside an open season. Two tickets are required and Mar 8 holds neither: new moon AND near a node.", "answer": "no season window, and the tilted road puts the Moon off-line"}'></div>
+<div class="exercise" data-ex='{"type": "numbers", "q": "7. Bench 3, the 50-minute chase. Click the <strong>Full moon</strong> preset (lunar day about 14.8). The model reports how many hours AFTER a 06:00 flat-sky sunrise the full Moon rises, and how lit it is. A real almanac says a full Moon rises near sunset, roughly 12 hours after a 6 a.m. sunrise - the model should land close. Enter the rise offset (hours after sunrise) and the percent lit.", "parts": [{"label": "rise offset after sunrise", "unit": "h", "value": 12.4, "tolAbs": 0.4}, {"label": "lit fraction", "unit": "%", "value": 100, "tolAbs": 3}], "hints": ["The Full preset sets the phase angle to 180 degrees; the readout under the canvas prints the hours-after-sunrise.", "A full Moon is fully lit by construction, so the percent readout is 100.", "12.4 h after a 06:00 sunrise is about 18:24 - roughly why a full Moon climbs out of the east as the Sun sets."], "working": "At the Full preset the elongation is 180 degrees, so the rise offset is <strong>24.84 x 180/360 = 12.4 h</strong> after the assumed 06:00 sunrise (the clock hand sits near 18:24, i.e. dusk) - which is why every full Moon rises as the Sun goes down. The lit fraction there is <strong>100%</strong>, the whole near side turned to the Sun.", "answer": "about 12.4 hours after sunrise, 100% lit"}'></div>
+<div class="exercise" data-ex='{"type": "keywords", "need": 4, "q": "8. In your own words, why is the Moon late to rise, and why a little later every night? Any four correct ideas will do - think about what Earth is doing, what the Moon is doing, and what that means for the horizon.", "words": ["earth", "rotat", "eastward", "extra", "orbit", "later", "catch", "horizon", "12", "50", "lunar day"], "placeholder": "four plain ideas...", "working": "Earth <strong>rotat</strong>es once a day, but the Moon keeps sliding <strong>eastward</strong> along its <strong>orbit</strong>, about <strong>12</strong> degrees a day. To bring the Moon back to the eastern <strong>horizon</strong>, Earth has to make an <strong>extra</strong> turn through those 12 degrees, and that takes about <strong>50</strong> minutes - so each moonrise comes a little <strong>later</strong>. The gap is Earth <strong>catch</strong>ing up with the Moon, one <strong>lunar day</strong> a touch over 24 hours.", "answer": "Earth rotates but the Moon advances eastward ~12 deg/day, so Earth needs an extra ~50 min to reach the horizon; moonrise gets later each night"}'></div>
   </section>
 </main>
 
@@ -146,6 +263,7 @@
 <script src="../../shared/ui.js"></script>
 <script src="../../shared/store.js"></script>
 <script src="../../shared/check.js"></script>
+<script src="./moonrise.js"></script>
 <script src="./eclipse.js"></script>
 <script src="./sim.js"></script>
 </body>
