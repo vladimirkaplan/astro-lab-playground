@@ -243,3 +243,20 @@ footer.site-foot {
 .ratio-readout .ro small { display: block; color: var(--ink-soft); font-size: .78rem; }
 .ratio-readout .ro b { font-size: 1.25rem; }
 
+
+/* Lab 14 galaxy identification: photo frame, per-image licence credit, option grids */
+.gal-frame { position: relative; border: 1px solid var(--line); border-radius: var(--radius);
+  background: #0d1526; overflow: hidden; margin: 10px 0; }
+.gal-frame img { display: block; width: 100%; transition: filter .5s ease; }
+.gal-frame img.out-of-focus { filter: blur(14px) brightness(.9); }
+.gal-frame .gal-credit { position: absolute; left: 0; right: 0; bottom: 0; margin: 0;
+  padding: 4px 10px; font-size: .72rem; color: #cfdcff;
+  background: rgba(10, 17, 33, .72); }
+.gal-frame .action.secondary { position: absolute; top: 10px; left: 50%;
+  transform: translateX(-50%); }
+.opt-grid { display: inline-flex; gap: 8px; flex-wrap: wrap; }
+.opt-grid button { font: 600 .92rem/1 inherit; padding: 9px 14px; border-radius: 8px;
+  border: 1.5px solid var(--accent, #3b6fd4); background: #fff; color: #244a9e; cursor: pointer; }
+.opt-grid button.on { background: var(--accent, #3b6fd4); border-color: var(--accent, #3b6fd4); color: #fff; }
+.opt-grid button:disabled { opacity: .5; cursor: not-allowed; }
+.opt-grid.wide button { display: block; width: 100%; max-width: 34ch; text-align: left; }

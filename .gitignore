@@ -7,6 +7,10 @@ dist/
 # no images/scans in this tree while manual scans sit nearby (License Counsel, BMC-3):
 # the site is pure canvas/SVG; re-add specific asset types deliberately when an
 # image lab actually ships with a cleared licence.
+#
+# Narrow exception, board-approved 2026-11-08 (BMC-15): Lab 14's ten Commons
+# galaxy photos in site/img/ ONLY (licences per file in ATTRIBUTION.md).
+# Everywhere else the refusal below stays total - do not widen this.
 *.png
 *.jpg
 *.jpeg
@@ -17,3 +21,5 @@ dist/
 *.tiff
 *.pdf
 *.heic
+!site/img/
+!site/img/*.jpg

@@ -187,7 +187,39 @@ Project rules for lab-sims work (user directive 2026-11-07):
   pages + ui.js/fit.js serve 200; static scan confirms every clientWidth canvas registers
   a window resize listener and no resize handler accumulates width, so no sibling
   instance of the bug class survives the shared fix.
-- Then (queue, in order): Lab 14 galaxy ID gallery - the NEXT brief - with the Wikimedia
   image licence decision (PD / CC BY-SA) and assets/img/ATTRIBUTION.md entries settled first.
   Then the ~250-star catalog expansion (GitHub #17). Then, LAST, the offline kit (#16:
   service worker, downloadable zip, LXC recipe). See GOAL.md phases/issues.
+- DONE 2026-11-08 (Lab Builder, BMC-15): Lab 14 galaxy identification at
+  site/labs/14-galaxy-id/ - the first lab to ship images. Ten Wikimedia Commons
+  photos (M87, M110, M31, M33, M51, M101, NGC 1300, M104, NGC 253, M82) fetched as
+  1280px renditions after a hard licence gate: every LicenseShortName must match
+  public domain / CC0 / CC BY(-SA); NC/ND/unknown rejected at fetch time and gated
+  again in tests. Images live in site/img/ (the settled single-folder exception -
+  .gitignore now refuses images everywhere else but !site/img/*.jpg; verified with
+  git check-ignore and git ls-files). ATTRIBUTION.md (repo root) records per file:
+  object, source Commons page, direct URL, exact LicenseShortName, credit as
+  displayed. galaxies.js: frozen 10-entry catalog (family, Hubble stage, rounded
+  published distance/size/magnitude named as approximate, licence/credit/sourceUrl
+  per entry), seeded shuffle, forgiving stage grading (one step of a/b/c slack,
+  bc centred), identifyPass with four options spanning four families (never two
+  same-shape M-numbers as a trick); 12 tests -> 193 green, including the licence
+  gate as a test, on-disk JPEG checks (FFD8, >20KB, exactly ten files), and every
+  Check-tab graded answer re-derived from the module. sim.js: Bench 1 classify
+  (family + stage, honest reason + weak-bar notes for M31/M101/NGC 253), Bench 2
+  ten-round identification with field notes; both benches log to the store with
+  CSV export; Ideal/Fun (Fun blurs the photo until you press Focus - eye training,
+  never grading); per-image credit + licence line under every photo, name never
+  revealed before the answer (img alt included). Landing card live. GitHub issue
+  #14 rides this build and is DONE-PENDING-PUSH; the Chief closes it at push.
+  Honest notes for the Chief: (1) the brief's answer key keeps M31 as SA(s)b
+  unbarred while some modern catalogues give a weak bar (SAB) - the module grades
+  the brief's key and carries the debate as an explicit note; M101 and NGC 253 are
+  catalogued SAB but briefed as family S, same treatment. (2) The M87 photo
+  (NASA HST optical image) is 807px wide - the original itself, already under the
+  1280 cap. NOT COMMITTED by the Lab Builder (RESUME rule 4 / AGENTS.md): the
+  Chief verifies and lands - stage must include site/img/*.jpg (10 files),
+  ATTRIBUTION.md and the .gitignore swap together with the lab folder and tests.
+- Then (queue, in order): the ~250-star catalog expansion (GitHub #17). Then,
+  LAST, the offline kit (#16: service worker, downloadable zip, LXC recipe).
+  See GOAL.md phases/issues.

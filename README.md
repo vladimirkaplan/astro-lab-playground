@@ -11,7 +11,7 @@ your instructor's rules. Every lab page repeats this as a banner.
 
 ## Status
 
-Fourteen lab pages plus two homework practice pages are live; the rest of the brief
+Sixteen lab pages plus two homework practice pages are live; the rest of the brief
 in [GOAL.md](GOAL.md) is queued.
 
 Built (each one Learn + Simulate + Check, with a CSV export of your own data table):
@@ -45,7 +45,11 @@ Built (each one Learn + Simulate + Check, with a CSV export of your own data tab
   Mars and the star-ring mark carves the retrograde loop, plus a geocentric sky view that redraws
   the same dates as the backward hook against fixed stars; then a 28-night observing table graded
   row-by-row against the model, revealing the two stations, the opposition and the westward arc
-  only after you check.
+   only after you check.
+- Lab 14 Galaxy identification: ten real galaxy photos (M87, M110, M31, M33, M51,
+  M101, NGC 1300, M104, NGC 253, M82) - classify each by Hubble family and stage,
+  then a ten-round identification lineup; graded against the frozen catalog module.
+  Images from Wikimedia Commons, credit under each image + ATTRIBUTION.md.
 
 Homework practice (each Learn + Practice + Check, auto-graded, fresh numbers every
 attempt, CSV log of your own attempts - practice only, never a submission channel):
@@ -59,7 +63,8 @@ attempt, CSV log of your own attempts - practice only, never a submission channe
 
 Both worksheets run on the shared `site/homework/hw-core.js` engine for all math.
 
-Still planned: galaxy identification (Lab 14); its landing-page card is a placeholder.
+Still planned: the ~250-star catalog expansion and the offline kit (service
+worker + downloadable zip); see GOAL.md and RESUME.md for the queue.
 
 ## Run it locally
 
@@ -131,8 +136,12 @@ tests/                node --test suites for the pure modules
 - The cosmic sample in Lab 15 is clearly labeled synthetic (a model sky plus labeled
   peculiar-velocity noise), not catalog data.
 
-No public-domain image assets are used yet; when they arrive they go under
-`assets/img/` with entries in `assets/img/ATTRIBUTION.md`.
+The lab's ten galaxy photographs (Lab 14) live under `site/img/`, each from
+Wikimedia Commons under a per-file licence (public domain / CC0 / CC BY /
+CC BY-SA - per-file gate recorded at fetch time), credited under every image in
+the UI and inventoried with source pages in [ATTRIBUTION.md](ATTRIBUTION.md).
+No other images are in the tree, and `.gitignore` refuses them everywhere
+outside `site/img/`.
 
 ## Data privacy
 

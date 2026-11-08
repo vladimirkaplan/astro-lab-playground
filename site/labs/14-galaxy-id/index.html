@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lab 14: Galaxy identification - Astro Lab Playground</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+
+<header class="site-head">
+  <div class="wrap">
+    <p style="margin:0"><a class="back-link" href="../../index.html">&larr; all labs</a></p>
+    <h1>Lab 14 &middot; Galaxy identification</h1>
+    <p>Ten real galaxies from Wikimedia Commons. Learn the tuning fork, then sort
+    each image by family and stage, and finally name galaxies you have met - the
+    way the real lab asks you to work, from pictures instead of notes.</p>
+  </div>
+</header>
+
+<main>
+  <div class="tabs" role="tablist">
+    <button class="tab-btn" data-tab="learn" role="tab">Learn</button>
+    <button class="tab-btn" data-tab="simulate" role="tab">Simulate</button>
+    <button class="tab-btn" data-tab="check" role="tab">Check</button>
+  </div>
+
+  <section id="learn" class="tab-panel learn">
+    <h2>What this lab is about</h2>
+    <p>Hubble sorted galaxies by picture, and the sort still carries his shape of
+    thought: a tuning fork. The handle is the <strong>ellipticals</strong>, E0 to
+    E7 - smooth, round-to-oval glows of old stars with no arms and barely any gas.
+    The two prongs are the <strong>spirals</strong>: ordinary ones (S) on one prong,
+    <strong>barred</strong> ones (SB) on the other. Each prong runs a, b, c: an
+    <em>a</em> spiral has a big bright bulge and arms wound so tight they can
+    barely be counted; a <em>c</em> spiral is mostly arms - loose, patchy, rich in
+    gas and newborn stars - around a small bulge; <em>b</em> is in between. S0 (or
+    SA0/SB0) sits at the fork point: a disc with a bulge but no arms at all. Off
+    to the side are the <strong>irregulars and peculiars</strong>: galaxies with no
+    orderly shape to grade, many of them because a companion recently shook them.</p>
+
+    <h2>Reading an edge-on disc</h2>
+    <p>A spiral seen face-on is obvious. Seen edge-on it becomes a lens: a bright
+    elongated middle (the bulge, viewed from its side) tapering to thin points,
+    and very often a dark straight <strong>dust lane</strong> slicing across the
+    light - the whole disc&rsquo;s dust concentrated into one line along the middle
+    of the disc. Lens shape plus dust lane means &ldquo;disc, seen sideways&rdquo;,
+    not &ldquo;blob&rdquo;. The two edge-on galaxies in this set, M104 and NGC 253,
+    are ordinary spirals; their strangeness is only orientation. If you can flip
+    the same galaxy in your mind to face-on, you would count arms in both of them.</p>
+
+    <h2>Why M87 is not &ldquo;just blurry&rdquo;</h2>
+    <p>The first time students see a giant elliptical they reach for &ldquo;out of
+    focus&rdquo;. But blur is an instrumental excuse, and ellipticals survive
+    focus: even in the sharpest images M87 has no cold gas, no dust lane, no
+    spiral arms, no star-forming knots - nothing but a smooth, twice-brightening
+    glow and its old red stars. That emptiness <em>is</em> the type. A blurry
+    spiral still shows dust and hints of arms once you stretch the image; an
+    elliptical never does. (M87 does have one famous non-smooth feature - a jet
+    from its central black hole - but a jet is an active nucleus, not a spiral
+    arm.) Classification lives in the pattern of structure, or of honest
+    structurelessness, not in color or sharpness alone: two galaxies can share a
+    color and sit on opposite ends of the fork.</p>
+
+    <h2>How astronomers actually classify</h2>
+    <p>Morphology first: shape, symmetry, bulge-to-light ratio, bars, lanes,
+    arms - what you are doing on the Simulate tab. Stage letters are judgement
+    calls with fuzzy borders (a b/c object is graded honestly by picking b or c
+    and defending it), and peculiars get tick marks and footnotes instead of
+    gentle lies. Color and spectra come after, as cross-checks: blue means gas
+    and young stars, so usually late-type or irregular; red-and-dead usually
+    means early-type.</p>
+
+    <div class="note">
+      <p><strong>Why this matters to astronomers:</strong> the tuning fork is not a
+      family tree - ellipticals did not grow into spirals - but every distance
+      ladder, every survey and every galaxy-evolution story files its objects by
+      this shape language first. Reading a galaxy&rsquo;s type off an image is the
+      oldest quantitative skill in extragalactic astronomy, and it starts exactly
+      where this lab starts: decide disc-or-not, decide bar-or-not, decide
+      tight-or-loose. (Framing adapted from OpenStax <em>Astronomy 2e</em>, Ch. 19,
+      CC BY 4.0 - a free textbook; read it for the full story.)</p>
+    </div>
+
+    <h2>The images on this page</h2>
+    <p>All ten photographs come from <strong>Wikimedia Commons</strong>, each used
+    under its own licence (public domain, CC0, CC BY or CC BY-SA - a per-file
+    licence check gates every image). The credit line you see under each image on
+    the Simulate tab is the attribution required by that licence; the full list,
+    with source pages and exact licences, lives in <strong>ATTRIBUTION.md</strong>
+    in the repository.</p>
+
+    <div class="mistakes">
+      <strong>Common mistakes in this lab:</strong>
+      <ul>
+        <li>Calling an edge-on spiral &ldquo;peculiar&rdquo; because it looks odd - odd is just orientation; find the dust lane first.</li>
+        <li>Deciding elliptical-vs-spiral from colour alone; a smooth red blob and a smooth red elliptical are not the same call - look for disc, dust and arms.</li>
+        <li>Missing the bar because you looked for arms first; the bar is a straight lane of light through the core, and arms spring off its ends.</li>
+        <li>Reading a/b/c backwards: a = tight arms, big bulge; c = loose arms, small bulge.</li>
+        <li>Sorting M82 with &ldquo;S, because it is elongated&rdquo; - elongation alone is not a disc; ragged gas lanes with no pattern mean peculiar.</li>
+        <li>Forgetting that S0 exists, then forcing an armless disc into &ldquo;a&rdquo;.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="simulate" class="tab-panel">
+    <div class="toolbar" id="toolbar1"></div>
+    <p class="intro-line">Two benches on the same ten pictures. Ideal Mode shows
+    each image straight away; Fun Mode first hands you an unfocused telescope and
+    makes you press <em>Focus</em> - the eye-training half of a real image lab.
+    Focus never changes the pixels you grade, only when they come sharp.</p>
+
+    <h2>Bench 1 &middot; Classify it</h2>
+    <p>One image at a time, in a fixed seeded order, name hidden until you answer.
+    Pick the <strong>family</strong>; for spirals also pick the <strong>stage</strong>
+    (a / b / c - one step of slack is forgiven, because the borders are fuzzy).
+    You get an honest verdict and a one-line reason.</p>
+    <div class="readout"><small>round</small><span id="b1Progress">-</span></div>
+    <div class="readout"><small>score this pass</small><span id="b1Score">0 / 0</span></div>
+
+    <div class="gal-frame">
+      <img id="b1Img" alt="unidentified galaxy">
+      <button class="action secondary" id="b1Focus" hidden>&#9678; Focus the telescope</button>
+      <p class="gal-credit" id="b1Credit"></p>
+    </div>
+
+    <p>
+      <strong>Family:</strong>
+      <span id="b1Fams" class="opt-grid"></span>
+    </p>
+    <p id="b1SubRow">
+      <strong>Stage (spirals):</strong>
+      <span id="b1Subs" class="opt-grid"></span>
+      <small class="muted">ignored for E and Irr/pec</small>
+    </p>
+    <p>
+      <button class="action" id="b1Check" disabled>Check answer</button>
+      <button class="action" id="b1Next" hidden>Next galaxy &rarr;</button>
+      <button class="action ghost" id="b1Reset">Redo pass (same order)</button>
+      <button class="action ghost" id="b1Shuffle">New set (new order)</button>
+    </p>
+    <div class="feedback" id="b1Feedback" role="status"></div>
+    <div id="b1Reveal"></div>
+    <p><button class="action ghost" id="b1Export">Export my calls CSV</button>
+    <textarea class="csv-copy" id="csvB1" readonly></textarea></p>
+
+    <h2>Bench 2 &middot; Identify it</h2>
+    <p>Ten rounds, seeded. One image - and four names, chosen so that no two of
+    them share a shape family (no two look-alike M-numbers as a trick). Click the
+    name you think it is; the verdict is instant and your field notes fill in.</p>
+    <div class="readout"><small>round</small><span id="b2Progress">-</span></div>
+    <div class="readout"><small>score this pass</small><span id="b2Score">0 / 0</span></div>
+
+    <div class="gal-frame">
+      <img id="b2Img" alt="unidentified galaxy, choose its name">
+      <button class="action secondary" id="b2Focus" hidden>&#9678; Focus the telescope</button>
+      <p class="gal-credit" id="b2Credit"></p>
+    </div>
+
+    <p><span id="b2Options" class="opt-grid wide"></span></p>
+    <div class="feedback" id="b2Feedback" role="status"></div>
+    <p>
+      <button class="action" id="b2Next" hidden>Next galaxy &rarr;</button>
+      <button class="action ghost" id="b2Reset">Redo pass (same order)</button>
+      <button class="action ghost" id="b2Shuffle">New set (new order)</button>
+      <button class="action ghost" id="b2Export">Export field notes CSV</button>
+    </p>
+    <textarea class="csv-copy" id="csvB2" readonly></textarea>
+    <h3>Your field notes</h3>
+    <div id="b2Notes"></div>
+
+    <h2>Your log</h2>
+    <p class="muted">Every graded call from both benches lands in this device&rsquo;s
+    storage (nothing is sent anywhere) and survives a reload. The two export
+    buttons above give you the CSVs of your own tables.</p>
+    <div id="logTable"></div>
+    <p><button class="action ghost" id="logClear">Clear stored log</button></p>
+  </section>
+
+  <section id="check" class="tab-panel">
+    <p class="muted">Six quick checks on the Lab 14 ideas. Every number here is the
+    same number the catalog module uses - round, published, and honest about it.</p>
+    <div id="check-progress"></div>
+
+    <div class="exercise" data-ex='{
+      "type":"choice",
+      "correct":2,
+      "q":"1. On the tuning fork, what separates an Sa spiral from an Sc spiral?",
+      "options":["Sa is edge-on and Sc is face-on - the letter records orientation.",
+                 "Sa is red and Sc is blue - the letter is just colour.",
+                 "Sa has a big bright bulge and tightly wound arms; Sc has a small bulge and loose, open, star-forming arms.",
+                 "Sa is barred and Sc is unbarred - the second letter tells the bar."],
+      "hints":["The letters run along a prong of the fork - same kind of object, graded by how the light is spread.",
+               "a: mostly bulge, arms elusive. c: mostly arms, bulge apologetic. The (R) and the bar prefix carry the bar."],
+      "working":"Stage letters grade bulge size and arm tightness: a = dominant bulge, arms wound so tight they are hard to trace; b = intermediate; c = small bulge, open patchy arms, lots of gas and young stars. Orientation is not in the letter (that is why edge-on M104 can still be an SA(s)a), and colour only correlates - it never defines the class.",
+      "answer":"stage letters = bulge size + arm tightness, a tight and c loose"
+    }'></div>
+
+    <div class="exercise" data-ex='{
+      "type":"choice",
+      "correct":3,
+      "q":"2. Which object in this lab is the textbook barred spiral - the one you would show a freshman when you say SB?",
+      "options":["M104 (Sombrero)",
+                 "M33 (Triangulum)",
+                 "M87 (Virgo A)",
+                 "NGC 1300"],
+      "hints":["Look for the straight lane of light across the core with arms springing off its two ends.",
+               "Of the ten, exactly one is graded family SB."],
+      "working":"NGC 1300 is the textbook SB(s)b: a bright straight bar crosses the nucleus and the grand arms break off its ends. M104 is an unbarred (early) spiral seen edge-on, M33 is an unbarred late spiral, and M87 is an elliptical with nothing to bar.",
+      "answer":"NGC 1300"
+    }'></div>
+
+    <div class="exercise" data-ex='{
+      "type":"keywords",
+      "need":2,
+      "q":"3. Why does an edge-on spiral like M104 look like a lens with a dark stripe instead of a pinwheel? Explain in your own words.",
+      "words":["disk","edge","dust","orientation","same","lane","bulge","side"],
+      "placeholder":"what is really there, and where is the stripe coming from...",
+      "hints":["Nothing about the galaxy changes between the two pictures - what changes is where you are standing.",
+               "Where does all the dust appear when you look along the plane of the disk instead of down on it?"],
+      "working":"It is the same object - a flat rotating disk with arms - viewed along the plane of the disk instead of down on it. Geometry squashes the round disk to a thin lens shape, the central bulge stays a bright middle, and the dust that is sprinkled through the disk piles up along the line of sight into one dark lane across the middle. Nothing about the galaxy changes; only our orientation does.",
+      "answer":"same disk galaxy, viewed along its plane; disk dust piles into a lane, round shape squashes to a lens"
+    }'></div>
+
+    <div class="exercise" data-ex='{
+      "type":"numbers",
+      "q":"4. Ballpark distance to M31, our neighbour great spiral, in millions of light-years (the catalog value, published and rounded - a generous band is accepted).",
+      "parts":[{"unit":"Mly","value":2.5,"tolPct":25}],
+      "hints":["It is the nearest MAJOR galaxy - a few million, not a few hundred million.",
+               "The Local Group neighbours all sit within a few Mly; M33 is on the far side of M31 from us."],
+      "working":"The published rounded distance is about 2.5 million light-years (765 kpc). M33 sits a little farther at about 2.9 Mly, on the other side of us - the whole business is Local Group furniture. Tolerance here reflects honest published-value spread, not sloppiness.",
+      "answer":"about 2.5 million light-years"
+    }'></div>
+
+    <div class="exercise" data-ex='{
+      "type":"choice",
+      "correct":0,
+      "q":"5. You see a star-rich ellipse of smooth light on the plate: no arms, no dust lane, no knots, just a smooth glow tapering outward. Which Hubble family?",
+      "options":["E (elliptical)",
+                 "S (spiral, unbarred)",
+                 "SB (barred spiral)",
+                 "Irr/pec (irregular or peculiar)"],
+      "hints":["What is missing? Arms, gas, lanes, knots - all of it.",
+               "Smooth plus featureless plus star-rich: that is the handle of the fork."],
+      "working":"Smooth light, no arms, no dust, no star-forming knots - an elliptical, family E. This is M87 and M110 territory: E-family objects are defined by that honest structurelessness, not by bad focus. Elongation would only set the E0-E7 digit. An Irr/pec would show ragged structure, not smoothness.",
+      "answer":"E - elliptical"
+    }'></div>
+
+    <div class="exercise" data-ex='{
+      "type":"keywords",
+      "need":2,
+      "q":"6. M82 (the Cigar) is filed as peculiar/irregular rather than a spiral. Name 2 things that put a galaxy in that bin, using this starburst as your example.",
+      "words":["no arms","no pattern","lanes","starburst","distorted","interaction","m81","gas"],
+      "placeholder":"what do you see that an S-family galaxy would not show...",
+      "hints":["Compare its structure with NGC 1300: what orderly pattern is missing?",
+               "Who stirred M82 up recently, and what did the fireworks leave behind?"],
+      "working":"M82 shows no orderly disk-and-arm pattern: instead it is racked by ragged lanes of glowing gas and dust, a furious starburst stirred up by its recent gravitational interaction with M81. Peculiar/irregular is where galaxies go when an interaction (or something else) has shredded or scrambled the orderly tuning-fork pattern - distorted structure, starburst knots, tails and filaments - even when a fragment of disk still survives inside.",
+      "answer":"no orderly arm/disk pattern; ragged gas lanes and starburst from interaction with M81"
+    }'></div>
+  </section>
+</main>
+
+<script src="../../shared/units.js"></script>
+<script src="../../shared/ui.js"></script>
+<script src="../../shared/store.js"></script>
+<script src="../../shared/check.js"></script>
+<script src="./galaxies.js"></script>
+<script src="./sim.js"></script>
+</body>
+</html>
