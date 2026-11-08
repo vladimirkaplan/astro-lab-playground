@@ -170,6 +170,23 @@ Project rules for lab-sims work (user directive 2026-11-07):
   drives setDay with no errors). Original prose, banner + licence auto-mounted by sim.js.
   NOT COMMITTED by the Lab Builder (RESUME rule 4 / AGENTS.md): the Chief verifies and lands,
   staging site/labs/05-moonrise-eclipses/moonrise.js + tests/moonrise.test.js with the page.
+- DONE 2026-11-08 (Paperclip "Chief", BMC-17): Systemic canvas-scale-drift fix at
+  shared/ui.js. Reported on BMC-1 (Vladimir, comment ac7f8d63): the Spectra lab's
+  spectrum range drifts in-browser until a reload. Root cause: initTabs boots with
+  only #learn visible, so every sim canvas in the hidden #simulate panel sized its
+  bitmap from clientWidth === 0 and took the 480/520 fallback; a tab click fired no
+  resize event, so opening Simulate stretched the stale bitmap while the click-to-nm
+  mapping used the real layout width (drawn scale and reported wavelengths disagreed).
+  Fix: initTabs().select() now dispatches a synthetic window "resize" AFTER unhidden
+  the chosen panel; all 15 lab sims already re-fit idempotently from clientWidth on
+  window resize, so one shared change heals every lab page (and is a harmless no-op on
+  the two homework pages, which have no clientWidth canvas). initTabs also returns
+  { select } so the behavior is drivable/testable. New tests/tabs.test.js pins both
+  halves: exactly one resize per tab switch, dispatched only after the panel is shown
+  (184 tests). Audit sweep: all 15 live lab pages + 8 "Moved" redirect stubs + 2 homework
+  pages + ui.js/fit.js serve 200; static scan confirms every clientWidth canvas registers
+  a window resize listener and no resize handler accumulates width, so no sibling
+  instance of the bug class survives the shared fix.
 - Then (queue, in order): Lab 14 galaxy ID gallery - the NEXT brief - with the Wikimedia
   image licence decision (PD / CC BY-SA) and assets/img/ATTRIBUTION.md entries settled first.
   Then the ~250-star catalog expansion (GitHub #17). Then, LAST, the offline kit (#16:

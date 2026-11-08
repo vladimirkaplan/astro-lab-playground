@@ -26,6 +26,20 @@
   U.initTabs = function (rootEl) {
     var scope = rootEl || document;
     var btns = scope.querySelectorAll(".tab-btn");
+    // Refit flag: canvases sized themselves from clientWidth, which is 0 while
+    // their panel is display:none at boot, so the first visible tab needs a
+    // resize kick before any canvas in a hidden panel is trustworthy.
+    var refitCanvases = function () {
+      // Sim canvases listen on window "resize" and re-fit idempotently from the
+      // now-real clientWidth, so one synthetic event heals every lab at once.
+      try {
+        if (typeof window !== "undefined" &&
+            typeof window.dispatchEvent === "function" &&
+            typeof Event === "function") {
+          window.dispatchEvent(new Event("resize"));
+        }
+      } catch (e) {}
+    };
     var select = function (id) {
       scope.querySelectorAll(".tab-panel").forEach(function (p) {
         p.hidden = p.id !== id;
@@ -36,6 +50,9 @@
         b.setAttribute("aria-selected", on ? "true" : "false");
       });
       try { location.replace(location.href.split("#")[0] + "#" + id); } catch (e) {}
+      // Order matters: the panel is visible now, so a canvas reading clientWidth
+      // inside the resize handler sees its real layout width, not the boot 0.
+      refitCanvases();
     };
     btns.forEach(function (b, idx) {
       b.addEventListener("click", function () { select(b.getAttribute("data-tab")); });
@@ -54,6 +71,7 @@
     var target = hash && document.getElementById(hash) ? hash :
       (btns[0] && btns[0].getAttribute("data-tab"));
     if (target) select(target);
+    return { select: select };
   };
 
   // ---------- disclaimer banner ----------
