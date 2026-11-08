@@ -17,7 +17,8 @@ in [GOAL.md](GOAL.md) is queued.
 Built (each one Learn + Simulate + Check, with a CSV export of your own data table):
 
 - Lab 1 Measurement: ruler with parallax, coin balance, percent-error trainer
-- Lab 3 Celestial sphere: pan-and-zoom RA/Dec chart, ecliptic, birthday-Sun finder
+- Lab 3 Celestial sphere: pan-and-zoom RA/Dec chart, ecliptic, birthday-Sun finder,
+  260-star Yale catalog with spectral types
 - Lab 4 Phases of the Moon: geometry sandbox plus a real New York ephemeris
 - Lab 7 Lenses and telescopes: live ray bench, then a two-lens spyglass
 - Lab 9 Pendulum gravity: 15 timed swings, T^2 vs L fit, get 9.8 out of a stopwatch
@@ -63,8 +64,8 @@ attempt, CSV log of your own attempts - practice only, never a submission channe
 
 Both worksheets run on the shared `site/homework/hw-core.js` engine for all math.
 
-Still planned: the ~250-star catalog expansion and the offline kit (service
-worker + downloadable zip); see GOAL.md and RESUME.md for the queue.
+Still planned: the offline kit (service worker + downloadable zip); see GOAL.md
+and RESUME.md for the queue.
 
 ## Run it locally
 

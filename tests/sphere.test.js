@@ -7,12 +7,22 @@ require("../site/labs/03-celestial-sphere/sphere.js");
 const S = globalThis.LS.stars;
 const P = globalThis.LS.sphere;
 
+// Curated magnitude cap of the catalog (see the stars.js header): the added
+// tier stops at V = 3.4 and two older proper-name entries sit at 4.1 and 4.2,
+// so nothing may be fainter than 4.2 (+0.2 rounding slack in the test below).
+const MAG_CAP = 4.2;
+
 test("catalog is populated and complete enough", () => {
   assert.ok(Array.isArray(S.list));
   assert.ok(S.list.length >= 150, "expected at least 150 stars, got " + S.list.length);
 });
 
-test("every entry has the five fields with sane types and ranges", () => {
+test("catalog sits in the 250-285 band GitHub #17 asked for", () => {
+  assert.ok(S.list.length >= 250, "expected at least 250 stars, got " + S.list.length);
+  assert.ok(S.list.length <= 285, "expected at most 285 stars, got " + S.list.length);
+});
+
+test("every entry has the six fields with sane types and ranges", () => {
   for (const s of S.list) {
     assert.equal(typeof s.name, "string");
     assert.ok(s.name.length > 0);
@@ -23,7 +33,36 @@ test("every entry has the five fields with sane types and ranges", () => {
     assert.equal(typeof s.mag, "number");
     assert.ok(s.ra >= 0 && s.ra < 24, s.name + " ra out of range");
     assert.ok(s.dec >= -90 && s.dec <= 90, s.name + " dec out of range");
-    assert.ok(s.mag <= 3.75 && s.mag >= -2.0, s.name + " mag out of range");
+    assert.ok(s.mag <= MAG_CAP + 0.2 && s.mag >= -2.0, s.name + " mag out of range");
+  }
+});
+
+test("every entry carries a format-valid spectral type", () => {
+  // Temperature class, optional subclass (and the catalogue's M1-2 ranges), an
+  // optional single lower-case peculiar marker kept when the catalogue prints no
+  // luminosity class (Am, Ap, A0p, O5f), then an optional luminosity class.
+  // Permissive on the class on purpose: the catalogue prints ranges (III-IV) and
+  // sub-classes (Iab, IIIb). WC is the one entry outside the OBAFGKM families -
+  // gamma-squared Velorum (Regor) is a Wolf-Rayet.
+  const SP_RE = /^(?:WC\d|[OBAFGKM]\d?(?:\.\d)?(?:-\d)?[a-z]?(?: ?[IVX]{1,3}[abc]{0,2}(?:-[IVX]{1,3}[abc]{0,2})?)?)$/;
+  for (const s of S.list) {
+    assert.equal(typeof s.sp, "string", s.name + " has no sp field");
+    assert.ok(s.sp.length > 0, s.name + " has an empty sp");
+    assert.ok(SP_RE.test(s.sp), s.name + " has an unparseable sp: " + s.sp);
+  }
+});
+
+test("spectral types of the stars every textbook names", () => {
+  const want = {
+    Betelgeuse: /^M[12]/, "Rigel": /^B8/, "Vega": /^A0 V/, "Sirius": /^A1 V/,
+    Arcturus: /^K1\.5 III/, "Antares": /^M1/, "Canopus": /^F0/, "Procyon": /^F5/,
+    "Altair": /^A7/, "Deneb": /^A2/, "Pollux": /^K0 III/, "Regulus": /^B[78]/,
+    "Spica": /^B1/, "Alnitak": /^O9/, "Capella": /^G/
+  };
+  for (const name of Object.keys(want)) {
+    const s = S.findByName(name);
+    assert.ok(s, "missing anchor star: " + name);
+    assert.ok(want[name].test(s.sp), name + " sp is " + s.sp + ", expected " + want[name]);
   }
 });
 
