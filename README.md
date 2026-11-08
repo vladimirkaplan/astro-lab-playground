@@ -14,7 +14,8 @@ your instructor's rules. Every lab page repeats this as a banner.
 Sixteen lab pages plus two homework practice pages are live; the rest of the brief
 in [GOAL.md](GOAL.md) is queued.
 
-Built (each one Learn + Simulate + Check, with a CSV export of your own data table):
+Built (each one Learn + Simulate + Check, with a CSV export of your own data table and
+a printable pre-lab/post-lab worksheet):
 
 - Lab 1 Measurement: ruler with parallax, coin balance, percent-error trainer
 - Lab 3 Celestial sphere: pan-and-zoom RA/Dec chart, ecliptic, birthday-Sun finder,
@@ -64,6 +65,13 @@ attempt, CSV log of your own attempts - practice only, never a submission channe
 
 Both worksheets run on the shared `site/homework/hw-core.js` engine for all math.
 
+Every one of the 16 lab pages also carries a **printable worksheet** (GitHub #15): a
+compact "Worksheet" control in the page header with `Print`, `.csv` and `.xlsx`. The sheet
+is one blank data table plus pre-lab and post-lab question lists, written by that lab's own
+`worksheet.js` content file and rendered in the browser by `site/shared/worksheet.js` - no
+network, no account, nothing to hand in here. It is a paper hand-in for the real lab, not a
+submission channel.
+
 The offline kit (service worker + one-zip download + classroom recipe) was the last
 AST110 item: the full AST110 lab set is now **complete, pending the Chief's push**. See
 RESUME.md for the queue and GOAL.md for any follow-on courses.
@@ -109,11 +117,13 @@ see [ops/lxc-classroom-kit.md](ops/lxc-classroom-kit.md).
 site/
   index.html          landing: one card per lab + saved progress ticks
   styles.css          the site's single stylesheet
-  shared/             units, fit math, tabs/hints/banner UI, data tables, plots
+  shared/             units, fit math, tabs/hints/banner UI, data tables, plots,
+                      printable-worksheet engine
   data/               spectral line lists (cited) for the spectra lab
   labs/<nn>-<slug>/   one folder per lab, numbered by the lab manual's numbers
     index.html        Learn + Simulate + Check tabs
     sim.js            the interactive imitation
+    worksheet.js      that lab's printable worksheet content (one register() call)
   labs/<old-name>/    a stub index.html at each pre-renumbering URL, redirecting to
                       the lab's numbered folder
 tests/                node --test suites for the pure modules
@@ -123,7 +133,9 @@ tests/                node --test suites for the pure modules
 
 1. Create `site/labs/<course-num>-<slug>/index.html`: header, three tab panels, scripts
    `shared/units.js`, `ui.js`, `store.js`, `check.js`, then lab modules, then `sim.js`
-   which ends with the standard boot (banner, tabs, mode toggle, check init).
+   which ends with the standard boot (banner, tabs, mode toggle, check init). Add
+   `worksheet.js` beside it (one `LS.worksheet.register({...})` call) and load it after
+   `shared/worksheet.js`; `ui.js` mounts the Print/.csv/.xlsx control from the folder name.
 2. Use `LS.ui.hintBox` (built into every exercise) and `LS.check` exercise types:
    `numbers`, `choice`, `sequence`, `keywords`, `feetinches`. Tolerances are part of the
    exercise config: instruments are imprecise, the answers give credit for a band, not a

@@ -320,5 +320,38 @@ Project rules for lab-sims work (user directive 2026-11-07):
   `node --check` clean on every generated/edited JS; the offline pages served and curled
   200 end-to-end. NO lab behavior changed (ui.js additive; tabs.test.js green). NOT
   COMMITTED by the Lab Builder (RESUME rule 4 / AGENTS.md): the Chief verifies and lands.
-- AST110 queue is now EMPTY: all sixteen lab pages, both homework pages, and the offline
-  kit are delivered. Next up (not started): anything beyond AST110 lives in GOAL.md.
+- DONE 2026-11-08 (Lab Builder, BMC-21): Printable worksheets mounted on ALL 16 lab
+  pages - GitHub issue #15 ("Printable pre-lab/post-lab tables per lab"), DONE-PENDING-PUSH,
+  the Chief closes #15 at push. Part 1 (BMC-20) had shipped the engine
+  `site/shared/worksheet.js` (registry + one shared row matrix -> RFC 4180 CSV via
+  `LS.store.csvText`, or a real STORE-zip .xlsx built from five OOXML parts, no clock and
+  no RNG so a spec always rebuilds to the same bytes) plus 16 pure descriptor files. Part 2
+  (this one): every lab `index.html` loads `../../shared/worksheet.js` immediately after
+  `shared/check.js` and its own `./worksheet.js` immediately before `./sim.js` (16 pages,
+  32 lines, tags only - the 8 redirect stubs, both homework pages and the landing page get
+  no worksheet scripts). `shared/ui.js` gains a second additive guarded block, the licence-
+  footer pattern again: on DOMContentLoaded it derives the slug from the page's own path
+  segment (the lab folder name - no new per-page markup, so homework/landing/stubs find no
+  spec and stay byte-identical), and for a registered spec injects (a) a compact header bar
+  with `Print` / `.csv` / `.xlsx` wired to `LS.worksheet.download(slug, kind)` and
+  `window.print()`, (b) a print-only sheet rendered from the same descriptor, and (c) a
+  style block whose `@media print` rules show ONLY that sheet by toggling `body.ws-printing`
+  around the synchronous `print()` call and restoring it in a `finally`. Still zero network,
+  no popups, no new windows, no dependencies. tests/worksheet-mount.test.js: 11 new tests -
+  a stub DOM that boots a page in the real script order (ui.js first, descriptors next,
+  DOMContentLoaded last) and checks the three controls, silence on homework/landing/stub
+  paths, both URL shapes for the slug, the click-through to a real blob + engine filename,
+  the body-class toggle (including a throwing `print()`), sheet content == csvText, mount
+  idempotency, and a loop mounting all 16 lab folders from their own folder name - plus a
+  static pin that the 16 pages carry both tags in the right
+  slots and the 10 non-lab pages carry none. 227 -> 238 green; `node --check` clean on every
+  touched JS. Offline kit regenerated (twice, byte-identical): KIT_VERSION
+  223dc5ab805585ff79d7fa28f5dd1b0fc653152e45038b06b1d3e663144a1a9e ->
+  4da8f5b6554f830dd96ecb3c8ddffd6b1c3643a3b298fc99e4e0f6d952a775fa, kit = 102 files,
+  3,524,729 bytes. Docs: README status line + worksheet
+  paragraph + layout/add-a-lab notes, RESUME line, one landing-page sentence (no new cards -
+  the feature lives inside each lab). NOT COMMITTED by the Lab Builder (RESUME rule 4 /
+  AGENTS.md): the Chief verifies and lands this pair with BMC-20.
+- AST110 queue is now EMPTY: all sixteen lab pages (each with its printable worksheet),
+  both homework pages, and the offline kit are delivered. Next up (not started): anything
+  beyond AST110 lives in GOAL.md.
