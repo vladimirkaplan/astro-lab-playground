@@ -14,10 +14,10 @@
     <p style="margin:0"><a class="back-link" href="../../index.html">&larr; all labs</a></p>
     <h1>Lab 11 &middot; Heliocentric parallax</h1>
     <p>Earth travels 300 million kilometres between January and July. That is the
-    longest yardstick in astronomy, and nearby stars cannot hide from it: they rock
-    back and forth against the deep background once a year. Measure the rock, and
-    you have the star's distance by pure geometry - no physics, no calibration, no
-    assumptions about what the star is made of.</p>
+    longest yardstick in astronomy. Nearby stars cannot hide from it: they rock back
+    and forth against the deep background once a year. Measure the rock, and you have
+    the star's distance by pure geometry - no physics, no calibration, no assumptions
+    about what the star is made of.</p>
   </div>
 </header>
 
@@ -29,115 +29,129 @@
   </div>
 
   <section id="learn" class="tab-panel learn">
+    <div class="words-box">
+      <p class="words-title">Words in this lab</p>
+      <ul>
+        <li><strong>parallax</strong> &mdash; a near thing seems to shift against far things when you move.</li>
+        <li><strong>baseline</strong> &mdash; the known length you measure an angle against.</li>
+        <li><strong>arcsecond</strong> &mdash; 1/3600 of a degree. A very small angle.</li>
+        <li><strong>milliarcsecond (mas)</strong> &mdash; 1/1000 of an arcsecond.</li>
+        <li><strong>ecliptic</strong> &mdash; the line of the Sun's yearly path across the stars. Earth's orbit lies in this plane.</li>
+        <li><strong>light-year</strong> &mdash; the distance light travels in one year.</li>
+        <li><strong>parsec</strong> &mdash; a distance unit: about 3.26 light-years.</li>
+      </ul>
+    </div>
+
     <h2>What this lab is about</h2>
-    <p>Hold a thumb at arm's length and close one eye, then the other: the thumb
-    jumps against the wall. The eyes are 6 cm apart; Earth's orbit is 300 million
-    km across, and a star seen from opposite ends of that diameter shifts by the
-    same trick. The shift of a nearby star against far-off background stars over
-    six months is <strong>annual parallax</strong>, and it is the only distance
-    measurement in astronomy that is pure trigonometry. Half of the full January
-    to July swing is defined as the parallax <strong>p</strong>, measured in
-    arcseconds or, more usefully, milliarcseconds (mas).</p>
+    <p>Hold your thumb at arm's length and close one eye, then the other. The thumb
+    jumps against the wall. Your eyes are 6 cm apart. Earth's orbit is 300 million km
+    across. A star seen from opposite ends of that diameter shifts by the same
+    trick. The shift of a nearby star against far-off background stars over six
+    months is <strong>annual parallax</strong>. It is the only distance measurement in
+    astronomy that is pure trigonometry. Half of the full January-to-July swing is
+    called the parallax <strong>p</strong>. We measure it in arcseconds, or more
+    usefully in milliarcseconds (mas).</p>
 
     <h2>The parsec, and why half the swing</h2>
-    <p>Astronomers built the unit backwards from the measurement, so the formula
-    is a division: with p in arcseconds, distance d = 1/p parsecs; with p in
-    milliarcseconds, <strong>d = 1000 / p</strong>. One parsec (3.26156 light
-    years, a NIST-rounded conversion) is exactly the distance at which a star
-    parallaxes by 1 arcsec across a 1 AU radius of orbit. Half the swing is the
-    answer because the triangle uses the Earth-Sun distance (1 AU), not the
-    full January-to-July baseline (2 AU): a star's full annual E-W sweep is
-    2p, and the parallax is p. Confusing the two multiplies or divides every
-    distance you publish by 2, and history contains no shortage of people who
-    did.</p>
+    <p>Astronomers built the unit backwards from the measurement, so the formula is a
+    division. With p in arcseconds, the distance is d = 1/p parsecs. With p in
+    milliarcseconds, <strong>d = 1000 / p</strong>. One parsec is 3.26156 light years,
+    a NIST-rounded conversion. At that distance, the radius of Earth's orbit (1 AU)
+    shows a shift of 1 arcsec. One AU is the Earth-Sun
+    distance, about 150 million km. Why is half the swing the answer? The
+    triangle uses the Earth-Sun distance (1 AU), not the full January-to-July baseline
+    (2 AU). The full annual E-W sweep of a star is twice the parallax. The parallax
+    is half that sweep. Confusing the two multiplies or divides every distance you
+    publish by 2. History has no
+    shortage of people who did just that.</p>
 
     <h2>The shape of the wobble: an ellipse, usually squashed</h2>
-    <p>A star does not rock along a line - it walks a small ellipse in a year.
-    The semi-major axis is always p, along ecliptic longitude. The semi-minor
-    axis is <strong>p&thinsp;&times;&thinsp;sin(&beta;)</strong>, where &beta; is
-    the star's ecliptic latitude - its angle above or below the plane of Earth's
-    orbit. This is the trap in this lab, so say it out loud before touching the
-    sim:</p>
+    <p>A star does not rock along a line. It walks a small ellipse in a year. The
+    long half-axis is always p, along ecliptic longitude. The short half-axis is
+    <strong>p&thinsp;&times;&thinsp;sin(&beta;)</strong>. The angle &beta; is the
+    star's ecliptic latitude. That is its angle above or below the plane of Earth's
+    orbit. This is
+    the trap in this lab, so say it out loud before touching the sim:</p>
     <ul>
       <li><strong>&beta; = 90&deg;</strong> (star at the ecliptic pole):
-      sin(&beta;) = 1, the ellipse is a <strong>circle</strong> of radius p.</li>
-      <li><strong>&beta; = 0&deg;</strong> (star on the ecliptic): sin(&beta;) = 0,
-      the semi-minor axis is zero and the "ellipse" collapses to a
-      <strong>line segment</strong> of half-length p. The star just rocks back and
+      sin(&beta;) = 1, so the ellipse is a <strong>circle</strong> of radius p.</li>
+      <li><strong>&beta; = 0&deg;</strong> (star on the ecliptic): sin(&beta;) = 0.
+      The short half-axis is zero. The "ellipse" collapses to a line whose half-length
+      is p. The star just rocks back and
       forth.</li>
-      <li>In between: an ellipse squashed by exactly sin(&beta;). Barnard's Star
-      at &beta; = +47&deg; keeps 73% of its circle; Wolf 359 at &beta; = -8&deg;
-      keeps 14% and traces a razor-thin sliver.</li>
+      <li>In between: an ellipse squashed by exactly sin(&beta;). Barnard's Star at
+      &beta; = +47&deg; keeps 73% of its circle. Wolf 359 at &beta; = -8&deg; keeps
+      14% and traces a razor-thin sliver.</li>
     </ul>
-    <p>The direction of travel also flips with the sign of &beta;: stars north of
-    the ecliptic and stars south of it go around their ellipses in opposite
-    senses. Drag the latitude slider in Bench 1 until the ellipse degenerates, and
-    you will never mix up sin(&beta;) and cos(&beta;) in this context again.</p>
+    <p>The direction of travel also flips with the sign of &beta;. Stars north of the
+    ecliptic and stars south of it go around their ellipses in opposite senses. Drag
+    the latitude slider in Bench 1 until the ellipse degenerates. After that you will
+    never mix up sin(&beta;) and cos(&beta;) in this context again.</p>
 
     <h2>Why the Greeks found nothing</h2>
-    <p>The failure of stellar parallax was the strongest objection to a moving
-    Earth for two thousand years, and it was a reasonable objection: if Earth
-    races around the Sun, the stars must visibly shift, and they do not. The
-    numbers now show why they could not see it. The parallax of the nearest star
-    systems is at most about 768 mas - Proxima Centauri's 768 milliarcseconds is
-    0.77 arcsec, roughly <strong>one two-hundredth</strong> of the ~1 arcminute
-    angular resolution a trained naked eye can judge position against, and the
-    next-nearest stars are smaller still. With no instrument finer than the eye,
-    the only honest conclusions were "no shift detected" - and the choices on the
-    table were that Earth stands still, or that the stars are unimaginably far
-    away. Aristarchus had already argued the second; nobody could prove it until
-    the telescope and the micrometer existed. Friedrich Bessel finally measured
-    the 310 mas parallax of 61 Cygni in 1838 and the two-millennium argument
-    ended in one publication.</p>
+    <p>The failure of stellar parallax was the strongest objection to a moving Earth
+    for two thousand years. And it was a reasonable objection. If Earth races around
+    the Sun, the stars must visibly shift. They do not. The numbers now show why
+    nobody could see it. The parallax of the nearest star systems is at most about
+    768 mas. Proxima Centauri's 768 milliarcseconds is 0.77 arcsec. A trained naked
+    eye can judge a position to about 1 arcminute. This shift is roughly
+    <strong>one two-hundredth</strong> of that, and the next-nearest stars are
+    smaller still. With no
+    instrument finer than the eye, the only honest conclusion was "no shift
+    detected". And the choices on the table were these: Earth stands still, or the
+    stars are unimaginably far away. Aristarchus had already argued the second.
+    Nobody could prove it until the telescope and the micrometer existed. Friedrich
+    Bessel finally measured the 310 mas parallax of 61 Cygni in 1838. The
+    two-millennium argument ended in one publication.</p>
 
     <h2>The first rung of the distance ladder</h2>
-    <p>Parallax is called the first rung of the cosmic distance ladder because it
-    stands on nothing else: a baseline of 2 AU, an angle, and trigonometry. Every
-    brighter tool - Cepheid variables, the tip of the red giant branch, Type Ia
-    supernovae - is an indirect method that must be <em>calibrated</em> against
-    something, and that something is parallaxes of stars inside our own galaxy.
-    Get parallax wrong and every distance in the universe moves with it, which is
-    why space missions like Hipparcos and Gaia exist purely to measure angles
-    smaller than a mas across the whole sky.</p>
+    <p>Parallax is the first rung of the cosmic distance ladder. It stands on nothing
+    else: a baseline of 2 AU, an angle, and trigonometry. Every brighter tool is an
+    indirect method. Cepheid variables, the tip of the red giant branch, and Type Ia
+    supernovae all must be <em>calibrated</em> against
+    something. That something is parallaxes of stars inside our own galaxy. Get parallax wrong
+    and every distance in the universe moves with it. That is why space missions like
+    Hipparcos and Gaia exist. Their job is to measure angles smaller than a mas
+    across the whole sky.</p>
 
     <h2>How this lab runs</h2>
-    <p>Bench 1 animates a year of wobble for any of the eight nearest star
-    systems, with sliders for parallax and ecliptic latitude so you can watch the
-    ellipse squash flat. Bench 2 hands you a hidden target star and a reticle:
-    take the January and July positions, halve the shift, divide 1000 by the
-    result, and you have done what Bessel did - the page grades your distance
-    against the catalog value for the star you drew. Ideal Mode is exact; Fun
-    Mode adds a few mas of instrument jitter to every reading, which is roughly
-    what makes real parallax work hard. (Course framing follows OpenStax
+    <p>Bench 1 animates a year of wobble for any of the eight nearest star systems.
+    Sliders for parallax and ecliptic latitude let you watch the ellipse squash flat.
+    Bench 2 hands you a hidden target star and a reticle: a fine crosshair for
+    measuring positions. Take the January and July positions and halve the shift.
+    Then divide 1000 by the result. You have done what Bessel did. The page grades
+    your distance against the catalog value for the star you drew. Ideal Mode is
+    exact. Fun Mode adds a few mas of instrument jitter to every reading. That jitter
+    is roughly what makes real parallax work hard. (Course framing follows OpenStax
     <em>Astronomy 2e</em>, Ch. 2, CC BY 4.0.)</p>
 
     <div class="note">
       <p><strong>Why this matters to astronomers:</strong> parallax anchors the
       entire distance scale of the universe. Gaia's parallaxes rewired galactic
-      structure, and any tension in the expansion rate of the universe (the
-      Hubble tension) is ultimately a story about whether the first rungs of the
-      ladder are calibrated correctly. Every number in this lab is the number a
-      professional actually measures - just in bigger units.</p>
+      structure. The Hubble tension is a live dispute about the universe's expansion
+      rate. At its heart it asks whether the first rungs of the ladder are calibrated
+      correctly. Every number in this lab is the number a professional
+      actually measures - just in bigger units.</p>
     </div>
 
     <div class="mistakes">
       <strong>Common mistakes in this lab:</strong>
       <ul>
-        <li>Using the full January-to-July shift as p. The shift across a 2 AU
-        baseline is 2p; the parallax is half of it.</li>
+        <li>Using the full January-to-July shift as the parallax. That shift spans
+        a 2 AU baseline, so it is 2p; the parallax is half of it.</li>
         <li>Flipping the ellipse rule. sin(0&deg;) = 0, so a star ON the ecliptic
-        traces a line, and a star at the ecliptic POLE traces a circle. If your
+        traces a line. A star at the ecliptic POLE traces a circle. If your
         sketch says the opposite, you used cos.</li>
         <li>Mixing milliarcseconds and arcseconds in d = 1/p. With mas the formula
         is d = 1000/p; a forgotten 1000 turns Proxima into 1300 pc.</li>
         <li>Saying the Greeks "missed" parallax by bad luck. 768 mas is tens to
-        hundreds of times below naked-eye positional resolution; detection was
-        physically impossible before precision instruments.</li>
+        hundreds of times below what a naked eye can use for positions. Detection
+        was physically impossible before precision instruments.</li>
         <li>Thinking parallax measures brightness or size. It measures an angle
         against a known baseline; the star's nature is irrelevant to the
         distance.</li>
-        <li>Assuming a bigger parallax means a farther star. p and d are
-        inverses: the biggest wobble belongs to the closest star.</li>
+        <li>Assuming a bigger parallax means a farther star. The values p and d
+        are inverses: the biggest wobble belongs to the closest star.</li>
       </ul>
     </div>
   </section>
@@ -146,6 +160,16 @@
     <div class="toolbar" id="toolbar1"></div>
 
     <h3>Bench 1 - Watch the wobble</h3>
+    <ol class="steps">
+      <li>Press the "Proxima" preset.</li>
+      <li>Press "Run one year" and watch the star trace its yearly ellipse.</li>
+      <li>Read the east and north offsets on day 80.</li>
+      <li>Slide "Day of year" to 263 and read both offsets again.</li>
+      <li>Halve the shift between the two nights and compare with the parallax slider.</li>
+      <li>Slide beta to 0 degrees and see the path flatten into a line.</li>
+      <li>Slide beta to 90 degrees and see the path become a circle.</li>
+      <li>Try Barnard and Sirius, and match each circle's size to its parallax.</li>
+    </ol>
     <p>
       <button class="action secondary preset" data-star="Proxima Centauri">Proxima</button>
       <button class="action secondary preset" data-star="Barnard's Star">Barnard</button>
@@ -169,6 +193,15 @@
     <div class="readout"><small>shape of this star's yearly path</small><span id="rShape">-</span></div>
 
     <h3>Bench 2 - Be Bessel</h3>
+    <ol class="steps">
+      <li>Press "Draw a hidden target".</li>
+      <li>Press "January night", then click the target to take the reading.</li>
+      <li>Press "July night" and click the target again.</li>
+      <li>Read the measured shift (= 2p) and your parallax p.</li>
+      <li>Read your distance = 1000 / p.</li>
+      <li>Press "Check my distance against the catalog".</li>
+      <li>Draw a new target and repeat until you land within 10%.</li>
+    </ol>
     <p>Draw a hidden target star, then measure it the way Bessel measured 61
     Cygni: record the star's east-west position against the reference stars on
     the January night, again on the July night, halve the shift to get p, and

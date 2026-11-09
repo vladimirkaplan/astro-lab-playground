@@ -13,9 +13,9 @@
   <div class="wrap">
     <p style="margin:0"><a class="back-link" href="../../index.html">&larr; all labs</a></p>
     <h1>Lab 3 &middot; The Celestial Sphere</h1>
-    <p>The sky wears the Earth's grid as a second skin: an hour-scale longitude
+    <p>The sky wears the Earth's grid like a second skin: an hour-scale longitude
     (RA) and a degree-scale latitude (Dec). The Sun walks one tilted line across
-    that grid in a year, and your birthday is a stop on it.</p>
+    that grid in a year. Your birthday is a stop on it.</p>
   </div>
 </header>
 
@@ -27,87 +27,110 @@
   </div>
 
   <section id="learn" class="tab-panel learn">
+    <div class="words-box">
+      <p class="words-title">Words in this lab</p>
+      <ul>
+        <li><strong>celestial equator</strong> &mdash; Earth's equator extended outward onto the sky.</li>
+        <li><strong>celestial pole</strong> &mdash; the point where Earth's axis line reaches the sky.</li>
+        <li><strong>declination (Dec)</strong> &mdash; sky-latitude: degrees north or south of the celestial equator.</li>
+        <li><strong>right ascension (RA)</strong> &mdash; sky-longitude, counted eastward in hours from a set point.</li>
+        <li><strong>vernal equinox</strong> &mdash; the spot where the Sun crosses the celestial equator heading north in late March. RA starts there.</li>
+        <li><strong>ecliptic</strong> &mdash; the Sun's yearly path across the stars. The planets stay near it.</li>
+        <li><strong>meridian</strong> &mdash; the north-south line that runs over your head.</li>
+        <li><strong>hour angle</strong> &mdash; how far something has moved west of your meridian since it crossed.</li>
+      </ul>
+    </div>
+
     <h2>What this lab is about</h2>
     <p>Practice sim, not your BMCC submission. Do the real lab and follow your
     instructor's rules.</p>
-    <p>To find anything in the sky you need an address, and the sky borrows its
-    address system from the Earth. Extend the Earth's equator outward into space
-    and it becomes the celestial equator, declination (Dec) zero. Extend the
-    geographic poles and you get the north and south celestial poles, Dec +90
-    and -90. Dec then works exactly like latitude: degrees north of the
-    celestial equator are positive, degrees south are negative, and there they
-    stop, because a star is never "farther than the pole".</p>
-    <p>The sky's longitude is right ascension, RA, and it starts not at
-    Greenwich but at the vernal equinox: the point where the Sun crosses the
-    celestial equator heading north each late March. From there RA is counted
-    eastward all the way around, 0h to 24h. The one thing to burn in: the
-    course star chart is drawn as you would see it looking up with north
-    centered and east to your left, so on that map RA numbers grow toward the
-    left, and a chart that grows them the other way reads every star wrong.</p>
+    <p>To find anything in the sky you need an address. The sky borrows its address
+    system from the Earth. Extend the Earth's equator outward into space. It becomes
+    the celestial equator, the zero line of declination (Dec). Extend the geographic
+    poles the same way. You get the north and south celestial poles, Dec +90 and -90.
+    Dec then works exactly like latitude. Degrees north of the celestial equator are
+    positive. Degrees south are negative. And there they stop, because a star is never
+    "farther than the pole".</p>
+    <p>The sky's version of longitude is right ascension, RA. It starts not at
+    Greenwich but at the vernal equinox. That is the point where the Sun crosses the
+    celestial equator heading north each late March. From there RA is counted eastward
+    all the way around, 0h to 24h. One rule matters more than the rest. The course
+    star chart is drawn as you would see it looking up. North is centered, and east is
+    to your left. So on that map RA numbers grow toward the left. A chart that grows
+    them the other way reads every star wrong.</p>
 
     <h2>Why RA is measured in hours</h2>
-    <p>Because the sky is a clock. Earth turns through the whole 24 h of RA
-    every day, so one hour of RA is 360/24 = 15 degrees of arc, one minute of
-    RA is 15 arcminutes. Hours talk directly to time: two stars 3 h apart in RA
-    cross your meridian 3 hours apart, no arithmetic needed. And hours pin a
-    star to the stars, not to your clock: RA belongs to the sky, so it does not
-    change when your clock reads midnight or when November becomes May. Do not
-    confuse RA with hour angle, which measures westward from your own meridian
-    and climbs steadily in front of your eyes all night long.</p>
+    <p>Because the sky is a clock. Earth turns through the whole 24 h of RA every day.
+    So one hour of RA is 360/24 = 15 degrees of arc, and one minute of RA is 15
+    arcminutes. Hours talk directly to time. Two stars 3 h apart in RA cross your
+    meridian 3 hours apart, with no arithmetic needed. The meridian is the north-south
+    line that runs over your head. And hours pin a star to the stars, not to your
+    clock. RA belongs to the sky. It does not change when your clock reads midnight or
+    when November becomes May. Do not confuse RA with hour angle. Hour angle measures
+    westward from your own meridian, and it climbs steadily in front of your eyes all
+    night long.</p>
 
     <h2>The ecliptic: the Sun's yearly road</h2>
-    <p>The Sun does not roam anywhere it likes. It stays on one great circle,
-    the ecliptic, which is Earth's own orbit plane seen from inside. Each
-    calendar date puts the Sun at one definite point along it, about 1 degree
-    per day: RA 0h and Dec 0 around March 21, RA 6h and Dec +23.5 around June
-    21, RA 12h and Dec 0 around September 23, RA 18h and Dec -23.5 around
-    December 21. This is the whole trick behind the birthday question in this
-    lab: turn your date into a spot on the ecliptic, read its RA and Dec off
-    the chart, done.</p>
+    <p>The Sun does not roam anywhere it likes. It stays on one great circle, the
+    ecliptic. The ecliptic is Earth's own orbit plane seen from inside. Each calendar
+    date puts the Sun at one definite point along that line, moving about 1 degree per
+    day. Around March 21 it sits at RA 0h and Dec 0. Around June 21 it is at RA 6h and
+    Dec +23.5. Around September 23 it is at RA 12h and Dec 0. Around December 21 it is
+    at RA 18h and Dec -23.5. This is the whole trick behind the birthday question in
+    this lab. Turn your date into a spot on the ecliptic. Read its RA and Dec off the
+    chart. Done.</p>
 
     <h2>Why the tilted road gives seasons</h2>
-    <p>The ecliptic is tilted about 23.4 deg to the celestial equator, because
-    Earth's axis is tilted that much to its orbit. That tilt is why the Sun's
-    Dec swings between +23.5 and -23.5 through the year instead of sitting at
-    zero forever. When the Sun rides high in the north, northern days are long
-    and strong: your summer. Half a year later it rides low in the south and
-    you get winter. The poles do not move with your clock or your calendar:
-    the north celestial pole is Dec +90 for every observer at every hour; only
-    your horizon tilts.</p>
+    <p>The ecliptic is tilted about 23.4 deg to the celestial equator. That is because
+    Earth's axis is tilted that much to its orbit. The tilt is why the Sun's Dec swings
+    between +23.5 and -23.5 through the year. It does not sit at zero forever. When
+    the Sun rides high in the north, northern days are long and strong. That is your
+    summer. Half a year later it rides low in the south and you get winter. The poles
+    do not move with your clock or your calendar. The north celestial pole is Dec +90
+    for every observer at every hour. Only your horizon tilts.</p>
 
     <div class="note">
       <p><strong>Why astronomers care:</strong> a coordinate pair is the only
-      object address a telescope obeys. Catalogs list every target as RA and
-      Dec, mounts dial in those two numbers and point themselves, and two
-      telescopes an ocean apart can watch the same object because the grid is
-      nailed to the sky, not to either of them. Read RA and Dec fluently and
-      every sky chart, catalog entry and pointing request on Earth becomes
-      readable. (Grounded in OpenStax <em>Astronomy 2e</em>, Ch. 2, CC BY 4.0.)</p>
+      object address a telescope obeys. Catalogs list every target as RA and Dec.
+      Mounts dial in those two numbers and point themselves. Two telescopes an ocean
+      apart can watch the same object. The grid is nailed to the sky, not to
+      either of them. Read RA and Dec fluently and every sky chart, catalog entry,
+      and pointing request on Earth becomes readable. (Grounded in OpenStax
+      <em>Astronomy 2e</em>, Ch. 2, CC BY 4.0.)</p>
     </div>
 
     <div class="mistakes">
       <strong>Common mistakes in this lab:</strong>
       <ul>
-        <li>Counting RA westward. On the course chart, north-up, RA grows
-        eastward, which is to the left; backwards reading puts every star in
+        <li>Counting RA westward. On the course chart, with north up, RA grows
+        eastward, which is to the left. A backwards reading puts every star in
         the wrong hour.</li>
         <li>Mixing up RA and hour angle. Hour angle counts west from your
         meridian and changes minute to minute; RA is stitched to the stars.</li>
         <li>Believing "the pole moves with your clock". The celestial poles
-        stay at Dec +90 and -90 always; your latitude only changes how high the
+        stay at Dec +90 and -90 always. Your latitude only changes how high the
         pole sits over your horizon.</li>
         <li>Drawing the Sun off the ecliptic. By definition the Sun is on the
         ecliptic on every date; any off-track Sun is a misplaced date.</li>
-        <li>Sign slips at the edges: in late December the Sun's RA already
-        races near 19-20h toward 24h, which is the same as 0h, and a southern
-        star's Dec is negative, a bare positive number is a different sky.</li>
+        <li>Sign slips at the edges. In late December the Sun's RA already
+        races near 19-20h toward 24h, which is the same as 0h. And a southern
+        star's Dec is negative: a bare positive number is a different sky.</li>
       </ul>
     </div>
   </section>
 
   <section id="simulate" class="tab-panel">
     <h2>RA/Dec star chart</h2>
+    <ol class="steps">
+      <li>Drag the chart to pan until the thick celestial equator line sits in the middle.</li>
+      <li>Scroll or pinch to zoom until the grid lines are easy to count.</li>
+      <li>Tap a bright star to read its name, RA, and Dec.</li>
+      <li>Pick a second star and work out its RA and Dec by counting grid lines.</li>
+      <li>Tap that star to check your answer.</li>
+      <li>Trace the wavy ecliptic line across the whole chart.</li>
+    </ol>
     <div class="canvas-frame"><canvas id="chartStage" height="420"></canvas></div>
+    <p><span class="drag-chip">Drag this</span></p>
     <div class="readout"><small>star lookup: drag to pan, scroll or pinch to zoom, tap a star to read it</small><span id="starRead">no star picked yet</span></div>
     <p class="muted">An equirectangular map of the whole celestial sphere: RA
     across (hours, growing eastward to the left like the course chart), Dec up
@@ -117,6 +140,14 @@
     chart.</p>
 
     <h2>Sun on the date slider</h2>
+    <ol class="steps">
+      <li>Slide "Day of year" to 172 and read the Sun's RA and Dec.</li>
+      <li>Look where the ghost dots (plus/minus 10 and 20 days) sit on the ecliptic.</li>
+      <li>Slide to day 1, then day 182, and read the Dec at each end.</li>
+      <li>Type your birthday into the birthday box.</li>
+      <li>Read the birthday-Sun answer from the readout.</li>
+      <li>Find the green ring on the chart and re-read the RA and Dec by counting grid lines.</li>
+    </ol>
     <p><label>Day of year: <b id="dayNum">172</b>
       <input type="range" id="dayRange" min="1" max="365" value="172" step="1" style="width:26ch"></label></p>
     <div class="readout"><small>the Sun's spot on the ecliptic (ghost dots mark plus/minus 10 and 20 days)</small><span id="dayRead">-</span></div>
@@ -130,6 +161,14 @@
     count-the-grid-lines method you use for stars.</p>
 
     <h2>Star quiz</h2>
+    <ol class="steps">
+      <li>Press "Start quiz (7 stars)".</li>
+      <li>Find the star that blinks on the chart.</li>
+      <li>Count grid lines to get its RA and Dec.</li>
+      <li>Type the star's name and press Enter.</li>
+      <li>Repeat until all seven stars are answered.</li>
+      <li>Press Start again and play until you score 7/7.</li>
+    </ol>
     <p>
       <button type="button" id="quizBtn">Start quiz (7 stars)</button>
       <input type="text" id="quizInput" placeholder="type the star name" autocomplete="off" disabled style="width:22ch">

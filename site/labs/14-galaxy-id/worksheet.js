@@ -19,7 +19,7 @@
     ],
     postlab: [
       "Which family fooled you the most? Quote one round from your log and say what you would check first next time.",
-      "Cite one object where the bar decided your call: what exactly did you look for, and was the verdict on your side?",
+      "Name one object where the bar decided your call: what exactly did you look for, and was the verdict on your side?",
       "You called an object E and the answer was S0. What feature, visible in the photo, would have caught the difference?",
       "Tally your rounds: how many did you get right, and which two families did you most often confuse with each other?"
     ]

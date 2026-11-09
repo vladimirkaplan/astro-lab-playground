@@ -15,12 +15,12 @@
       "In your own words: where does declination start counting, where does right ascension start counting, and which way does each grow?",
       "Why can Dec be negative while RA is only ever between 0h and 24h?",
       "Name the Earth system that Dec copies, and the Earth system that RA loosely copies. Where does the copy break?",
-      "Look at how the course chart is oriented before lab. Predict which direction RA numbers grow across the page, and why looking up flips the usual left-right."
+      "Look at how the course chart is set up before lab. Predict which way RA numbers grow across the page, and why looking up flips the usual left-right."
     ],
     postlab: [
       "Pick one object you plotted: write its RA/Dec and show it really lands in the constellation you recorded, on the chart, not from memory.",
       "The Sun moved along the ecliptic as you dragged the date. Describe in two sentences what its Dec did and what that has to do with seasons.",
-      "Two students read the same chart and get opposite RA orders for the same pair of stars. What orientation mistake explains the disagreement?",
+      "Two students read the same chart and get opposite RA orders for the same pair of stars. What mistake about which way the chart faces explains their different answers?",
       "An astronomer can point any telescope at RA 13h 25m, Dec +47 09 from any country. Give two reasons RA/Dec make that work when 'over the barn' never could."
     ]
   });

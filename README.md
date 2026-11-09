@@ -97,6 +97,10 @@ There is no build step. Any of:
   (helper: `ops/serve-kit.sh`).
 
 - Tests only need Node 22+: `npm test` (or `node --test tests/*.test.js`).
+- Landing and Learn prose are checked, not eyeballed: `node scripts/fk-check.js` grades
+  the landing copy block by block (exit 1 over the Flesch-Kincaid 8 bar), and
+  `tests/readability.test.js` grades every Learn tab. Write the prose first, run the
+  script, then edit.
 
 A note on modules: browsers refuse to `import` ES modules over `file://` (CORS), so the
 shared code loads as plain ordered scripts that attach to one `LS` namespace. Same files
@@ -115,7 +119,8 @@ see [ops/lxc-classroom-kit.md](ops/lxc-classroom-kit.md).
 
 ```
 site/
-  index.html          landing: one card per lab + saved progress ticks
+  index.html          landing: one card per lab, in course order, one plain verb-first
+                      line per card, Lab 1 tagged "Start here", saved progress ticks
   styles.css          the site's single stylesheet
   shared/             units, fit math, tabs/hints/banner UI, data tables, plots,
                       printable-worksheet engine
@@ -145,7 +150,12 @@ tests/                node --test suites for the pure modules
 4. Fun Mode: route every measurement through the mode flag and jitter it there.
 5. Cite rendered data (line lists, catalogs, models) next to what draws it.
 6. Put pure math in Node-loadable files and pin it with a small test in `tests/`.
-7. Hard rules: never copy BMCC manual text or figures; never place student names, data,
+7. Add the landing card in course order: one plain sentence, at most 18 words, opening on
+   a verb (`tests/landing.test.js` pins all three, plus the intro's FK grade).
+8. Worksheet prompts ask in plain words - no "derive", "bias", "reading uncertainty",
+   "systematic", or "justify" (`tests/worksheet-plain-words.test.js` holds the list).
+   Course terms the lab teaches (elongation, parallax) are fine; the Learn tab defines them.
+9. Hard rules: never copy BMCC manual text or figures; never place student names, data,
    or answer files anywhere in the tree; keep the disclaimer banner and license headers
    intact on every page.
 

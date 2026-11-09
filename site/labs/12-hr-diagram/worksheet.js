@@ -20,7 +20,7 @@
     postlab: [
       "Name the regions your stars actually landed in, and for one star in each region quote its temperature and luminosity as the evidence.",
       "Two of your stars share a temperature, but one is far more luminous. What must differ about them, and which row pair shows it?",
-      "Which star on your chart is the biggest, and which is the smallest? Justify from temperature and luminosity, not from looking at dot sizes.",
+      "Which star on your chart is the biggest, and which is the smallest? Say why from temperature and luminosity, not from looking at dot sizes.",
       "In one or two sentences: why did arranging stars this way organize the whole subject before anyone knew what makes stars shine?"
     ]
   });

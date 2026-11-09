@@ -19,9 +19,9 @@
     ],
     postlab: [
       "From your circle measurements, what ratio did circumference divided by diameter give you, and what was its percent error against the accepted value?",
-      "Choose one small-angle row and show the full substitution, cancelling units as you go.",
+      "Put one small-angle row's numbers into the formula, one step per line, cancelling units as you go.",
       "Recompute one answer after changing the distance unit. Did the answer survive? What does that check prove about your units?",
-      "In one sentence each, name the three pieces of mathematics this lab rehearsed and where each one showed up in your data."
+      "In one sentence each, name the three pieces of mathematics this lab practiced and where each one showed up in your data."
     ]
   });
 })(typeof globalThis !== "undefined" ? globalThis : window);

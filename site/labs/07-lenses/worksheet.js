@@ -13,7 +13,7 @@
     },
     prelab: [
       "Write the thin-lens equation and the magnification relation, and name what every symbol means and what units it carries.",
-      "When can a converging lens throw a real image onto a card, and when can it only make a virtual one? Answer in terms of where the object sits relative to the focal length.",
+      "When can a converging lens throw a real image onto a card, and when can it only make a virtual one? Answer by saying where the object sits next to the focal length.",
       "Predict before you bench it: as the object creeps closer to the lens (staying outside the focal point), does the sharp-image distance creep toward the lens or away from it?",
       "Two lenses spaced right make a telescope. Which one faces the far object, which one faces your eye, and how do their focal lengths compare?"
     ],

@@ -13,7 +13,7 @@
   <div class="wrap">
     <p style="margin:0"><a class="back-link" href="../../index.html">&larr; all labs</a></p>
     <h1>Lab 4 &middot; Phases of the Moon</h1>
-    <p>The Moon keeps a schedule: shape, rise time, and daylight appearances all
+    <p>The Moon keeps a schedule. Shape, rise time, and daylight appearances all
     follow from one angle between it, you, and the Sun.</p>
   </div>
 </header>
@@ -26,37 +26,51 @@
   </div>
 
   <section id="learn" class="tab-panel learn">
+    <div class="words-box">
+      <p class="words-title">Words in this lab</p>
+      <ul>
+        <li><strong>phase</strong> &mdash; the lit shape of the Moon you see on a given night.</li>
+        <li><strong>elongation</strong> &mdash; how far the Moon sits from the Sun in your sky, in degrees.</li>
+        <li><strong>waxing</strong> &mdash; growing brighter, heading for full.</li>
+        <li><strong>waning</strong> &mdash; shrinking back toward new.</li>
+        <li><strong>orbit</strong> &mdash; the path one object follows as it goes around another.</li>
+        <li><strong>meridian</strong> &mdash; the north-south line that runs over your head.</li>
+        <li><strong>transit</strong> &mdash; the moment something crosses your meridian.</li>
+      </ul>
+    </div>
+
     <h2>What this lab is about</h2>
-    <p>Half of the Moon is always lit; it is a ball in sunlight. The phase is how
-    much of that lit half your seat on Earth can see, controlled by one number:
-    the elongation, the Sun-to-Moon angle measured at Earth. That single angle
-    decides the shape, the rise time, the set time, and whether you can catch the
-    Moon in the daytime.</p>
+    <p>Half of the Moon is always lit. It is a ball in sunlight. The phase is how
+    much of that lit half your seat on Earth can see. One number controls it: the
+    elongation, the Sun-to-Moon angle measured at Earth. That single angle decides
+    the shape, the rise time, and the set time. It also decides whether you can
+    catch the Moon in the daytime.</p>
 
     <h2>The schedule that falls out</h2>
     <ul>
-      <li><strong>New Moon, elongation 0:</strong> lit side faces away from you.
-      Rises around 7 AM, sets around 7 PM, lost in the day sky.</li>
-      <li><strong>First quarter, 90:</strong> right half lit. Rises around noon,
-      owns the early evening sky, sets around midnight.</li>
-      <li><strong>Full, 180:</strong> opposite the Sun. Rises at sunset, highest at
-      midnight, sets at sunrise. Up all night.</li>
-      <li><strong>Last quarter, 270:</strong> left half lit. Rises around midnight,
-      sets around noon - on duty for dawn people.</li>
+      <li><strong>New Moon, elongation 0:</strong> the lit side faces away from you.
+      It rises around 7 AM and sets around 7 PM, lost in the day sky.</li>
+      <li><strong>First quarter, 90:</strong> the right half is lit. It rises around
+      noon, owns the early evening sky, and sets around midnight.</li>
+      <li><strong>Full, 180:</strong> opposite the Sun. It rises at sunset, is highest
+      at midnight, and sets at sunrise. It is up all night.</li>
+      <li><strong>Last quarter, 270:</strong> the left half is lit. It rises around
+      midnight and sets around noon - on duty for dawn people.</li>
     </ul>
-    <p>Everything in between interpolates: transit happens about elongation/15
-    hours after noon, and rise and set sit six hours either side of the transit.
-    Moonrise drifts about 50 minutes later each day because while Earth spins, the
-    Moon slides ~12 degrees eastward along its orbit; the Moon has to "catch up"
-    that distance before it returns to your meridian.</p>
-    <p>Two rules prevent most failed observations: the lit side always points
-    toward the Sun, and the phase tells you the hour. A thin crescent low in the
-    west an hour after sunset is a young waxing crescent leaving for the day; the
+    <p>Everything in between fills in smoothly. The transit happens about
+    elongation/15 hours after noon. The transit is the crossing of your meridian, the
+    line overhead. Rise and set sit six hours on either side of it. Moonrise also
+    drifts about 50 minutes later each day. Earth spins, but the Moon slides ~12
+    degrees eastward along its orbit at the same time. The Moon must "catch up" that
+    distance before it returns to your meridian.</p>
+    <p>Two rules prevent most failed observations. First, the lit side always points
+    toward the Sun. Second, the phase tells you the hour. A thin crescent low in the
+    west an hour after sunset is a young waxing crescent leaving for the day. The
     same shape low in the east before dawn is the waning crescent clocking in.</p>
 
     <div class="note">
       <p><strong>Why this matters to astronomers:</strong> the lunar cycle is the
-      original calendar, and the same "who is where relative to whom" geometry
+      original calendar. The same "who is where relative to whom" geometry also
       predicts eclipses - the reasoning that turned sky-watching into science.
       Tides also run on this clock. (Grounded in OpenStax <em>Astronomy 2e</em>,
       Ch. 1 and Ch. 4, CC BY 4.0.)</p>
@@ -69,9 +83,11 @@
         shadow-line is always a diameter of the disk.</li>
         <li>Saying the Moon makes its own light.</li>
         <li>Drawing the full Moon on the daytime side of a top-view diagram.</li>
-        <li>Giving a rise time your phase cannot support (last quarter rising at 9 AM).</li>
+        <li>Giving a rise time your phase cannot support, like last quarter rising
+        at 9 AM.</li>
         <li>Forgetting the ~50-minute daily delay on moonrise.</li>
-        <li>"I looked at 9 PM and saw nothing" with a waxing crescent - it set hours earlier.</li>
+        <li>Saying "I looked at 9 PM and saw nothing" with a waxing crescent. It
+        set hours earlier.</li>
       </ul>
     </div>
   </section>
@@ -81,6 +97,17 @@
       <button class="action" id="modeGeo">Geometry sandbox</button>
       <button class="action ghost" id="modeReal">Real New York sky</button>
     </p>
+
+    <h3>Bench 1 - Geometry sandbox</h3>
+    <ol class="steps">
+      <li>Press "Geometry sandbox" to show the Sun-Earth-Moon top view.</li>
+      <li>Slide Elongation to 0 and read the phase: New.</li>
+      <li>Press the eight phase presets in order, New through Waning crescent.</li>
+      <li>Watch the lit half always face the Sun as the Moon circles Earth.</li>
+      <li>Stop at First quarter and read the phase and lit fraction.</li>
+      <li>Read the textbook schedule: when this phase rises, crosses, and sets.</li>
+      <li>Do the same two readings at Full and at Last quarter.</li>
+    </ol>
 
     <div id="geoView">
       <div class="canvas-frame"><canvas id="stage" height="400"></canvas></div>
@@ -107,6 +134,15 @@
     </div>
 
     <div id="realView" hidden>
+      <h3>Bench 2 - Real New York sky</h3>
+      <ol class="steps">
+        <li>Press "Real New York sky".</li>
+        <li>Pick tonight's date in the Date box.</li>
+        <li>Read the Moon's phase at 9 PM New York time.</li>
+        <li>Press "day &rarr;" five times and watch the phase age.</li>
+        <li>Tap a row in the upcoming events table to jump to that night.</li>
+        <li>Write down the next Full moon date and time for your worksheet.</li>
+      </ol>
       <p><label>Date: <input type="date" id="dateIn" value="2026-11-24"></label>
         <button class="action ghost" id="dPrev">&larr; day</button>
         <button class="action ghost" id="dNext">day &rarr;</button></p>

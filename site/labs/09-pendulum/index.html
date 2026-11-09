@@ -13,8 +13,8 @@
   <div class="wrap">
     <p style="margin:0"><a class="back-link" href="../../index.html">&larr; all labs</a></p>
     <h1>Lab 9 &middot; Acceleration Due to Gravity</h1>
-    <p>A string, a bob, a stopwatch, and the most famous number in the introductory lab:
-    9.8 m/s&sup2;, measured with your own thumb on a timer.</p>
+    <p>A string, a bob, a stopwatch, and the most famous number in the introductory
+    lab: 9.8 m/s&sup2;. You will measure it with your own thumb on a timer.</p>
   </div>
 </header>
 
@@ -26,51 +26,75 @@
   </div>
 
   <section id="learn" class="tab-panel learn">
+    <div class="words-box">
+      <p class="words-title">Words in this lab</p>
+      <ul>
+        <li><strong>pendulum</strong> &mdash; a weight on a string that swings back and forth.</li>
+        <li><strong>bob</strong> &mdash; the weight at the end of the pendulum string.</li>
+        <li><strong>period (T)</strong> &mdash; the time for one full swing back and forth.</li>
+        <li><strong>amplitude</strong> &mdash; how far the bob swings from its resting spot.</li>
+        <li><strong>acceleration</strong> &mdash; how fast speed grows each second.</li>
+        <li><strong>gravity</strong> &mdash; the pull between masses. On Earth it gives g = 9.8 m/s&sup2;.</li>
+        <li><strong>inertia</strong> &mdash; an object's resistance to changes in its motion.</li>
+      </ul>
+    </div>
+
     <h2>What this lab is about</h2>
     <p>You hang a bob on a string, pull it aside a little, let it swing, and time it.
-    The course runs fixed string lengths - 30, 55, 75, and 100 cm - and times fifteen
-    complete swings each time, then plots period-squared against length. The points fall
-    on a straight line, and the steepness of that line contains g, the acceleration due
-    to gravity. One stopwatch, one string, and you can weigh the Earth.</p>
+    The bob is the weight at the end of the string. The period is the time for one
+    full swing back and forth. The course runs fixed string lengths - 30, 55, 75, and
+    100 cm - and times fifteen complete swings each time. Then it plots
+    period-squared against length. The points fall on a straight line, and the
+    steepness of that line contains g: the acceleration due to gravity. One stopwatch,
+    one string, and you can weigh the Earth.</p>
 
     <h2>The physics</h2>
-    <p>Gravity pulls the bob toward its resting spot with a force proportional to
-    sin(angle). For small swings, sin(angle) and angle are almost the same thing, and
-    the equation of motion becomes the classic one whose solution is a pure sine wave -
-    simple harmonic motion. Its period is T = 2*pi*sqrt(L/g). Three things fall out of
-    that formula, and all three show up in the lab questions:</p>
+    <p>Gravity pulls the bob toward its resting spot, with a force proportional to
+    sin(angle). For small swings, sin(angle) and angle are almost the same thing. So
+    the equation of motion becomes the classic one, and its solution is a pure sine
+    wave: simple harmonic motion. The period is T = 2*pi*sqrt(L/g). Three things fall
+    out of that formula, and all three show up in the lab questions:</p>
     <ul>
       <li><strong>Length matters, as a square root.</strong> Four times the string only
       doubles the period. Plot T-squared against L and the square root disappears:
       T&sup2; = (4*pi&sup2;/g) L, a line through the origin with slope 4*pi&sup2;/g.</li>
-      <li><strong>Mass does not matter.</strong> Heavier means more force but also more
-      inertia; the two cancel exactly, the same cancellation that makes feathers and
+      <li><strong>Mass does not matter.</strong> A heavier bob feels more force but also
+      has more inertia. Inertia is an object's resistance to changing its motion. The
+      two effects cancel exactly - the same cancellation that makes feathers and
       hammers fall together on the Moon.</li>
-      <li><strong>Amplitude barely matters</strong> - for small angles. The exact period
-      grows by about 0.3% at 12 degrees and 1.7% at 30. That tiny correction is the real
-      subject of the phrase "small-angle approximation."</li>
+      <li><strong>Amplitude barely matters</strong> - for small angles. Amplitude is how
+      far the bob swings from its resting spot. The exact period grows by about 0.3% at
+      12 degrees and 1.7% at 30. That tiny correction is the real subject of the phrase
+      "small-angle approximation."</li>
     </ul>
-    <p>Why fifteen swings instead of one? Your reaction time (call it a quarter of a
-    second) divides by fifteen. Timing fifteen swings spreads human error the way
-    averaging does, which is the general lesson the Check tab quizzes.</p>
+    <p>Why fifteen swings instead of one? Your reaction time is about a quarter of a
+    second. That error divides by fifteen. Timing fifteen swings spreads human error
+    the way averaging does. That is the general lesson the Check tab quizzes.</p>
 
     <div class="note">
       <p><strong>Why this matters to astronomers:</strong> g is the first value any
-      planet gets, and every gravity measurement in astronomy - weighing stars in binary
-      systems, black holes at galaxy cores, the density of the universe itself - is the
-      same trick scaled up: orbital period and distance in, mass out. Galileo's pendulum
-      thinking leads straight to Kepler's third law, which leads to weighing everything.
-      (Grounded in OpenStax <em>Astronomy 2e</em>, Ch. 2 and Ch. 5, CC BY 4.0.)</p>
+      planet gets. Every gravity measurement in astronomy uses the same trick, scaled
+      up. Weighing stars in binary systems uses it. So does weighing black holes at
+      galaxy cores. It even works on the density of the universe: period and distance
+      in, mass
+      out.
+      Galileo's pendulum thinking leads straight to Kepler's third law, and that law
+      leads to weighing everything. (Grounded in OpenStax <em>Astronomy 2e</em>,
+      Ch. 2 and Ch. 5, CC BY 4.0.)</p>
     </div>
 
     <div class="mistakes">
       <strong>Common mistakes in this lab:</strong>
       <ul>
-        <li>Using pi = 3 during the math when the course says 3.14; the third digit matters at this precision.</li>
-        <li>Plotting T against L and then wondering why the "line" curves; the lab wants T&sup2;.</li>
+        <li>Using pi = 3 during the math when the course says 3.14. The third digit
+        matters at this precision.</li>
+        <li>Plotting T against L and then wondering why the "line" curves. The lab
+        wants T&sup2;.</li>
         <li>Timing one swing and trusting a thumb that moves in tenths of a second.</li>
-        <li>Counting "one" at the start - you want to count crossings, and let the pendulum settle before gate one.</li>
-        <li>Measuring L from the pivot to where the string is tied instead of to the bob's center.</li>
+        <li>Counting "one" at the start. Count crossings instead, and let the pendulum
+        settle before crossing one.</li>
+        <li>Measuring L from the pivot to where the string is tied, not to the bob's
+        center.</li>
         <li>Forgetting the percent error against 9.8 in the write-up.</li>
       </ul>
     </div>
@@ -78,6 +102,18 @@
 
   <section id="simulate" class="tab-panel">
     <div class="toolbar" id="toolbar1"></div>
+
+    <h2>Bench A - Run the pendulum</h2>
+    <ol class="steps">
+      <li>Pick Length 55 cm and Swings N = 15.</li>
+      <li>Set the release angle to 12 degrees.</li>
+      <li>Press "Start run" and let the gate stop the clock at N.</li>
+      <li>Read your measured T and the model prediction T.</li>
+      <li>Press "Start run" two more times at the same length.</li>
+      <li>Run three trials each at 100 cm, 30 cm, and 75 cm.</li>
+      <li>Switch to Fun Mode once and feel the reflex delay it adds.</li>
+      <li>Press "Export CSV" when every length has three runs.</li>
+    </ol>
 
     <div class="split">
       <div>
@@ -123,7 +159,16 @@
     <textarea class="csv-copy" id="csvCopy" readonly></textarea>
 
     <h2>T&sup2; vs length</h2>
+    <ol class="steps">
+      <li>Run Bench A until your data table holds at least three lengths.</li>
+      <li>Press "Computer fit (through origin)" to see the honest fit line.</li>
+      <li>Drag the red handle until your line hugs your points.</li>
+      <li>Or type your slope, in s&sup2; per meter, into the box.</li>
+      <li>Read g from your slope and compare it with the model g.</li>
+      <li>Note your final slope for the worksheet.</li>
+    </ol>
     <div class="canvas-frame"><canvas id="plot" height="340"></canvas></div>
+    <p><span class="drag-chip">Drag this</span> (the red handle)</p>
     <p>
       <label>Your slope, s&sup2; per meter (drag the red handle or type):
       <input class="num-input" id="slopeIn" placeholder="e.g. 4.05"></label>

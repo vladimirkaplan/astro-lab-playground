@@ -21,7 +21,7 @@
     postlab: [
       "Compute the speed-to-distance ratio for two of your galaxies. Within your measurement noise, are they equal?",
       "Does your speed-versus-distance line pass through the origin? Say what a yes means physically for a dot that is barely away from home.",
-      "Suppose every before distance was one centimeter too big, a systematic slip. Argue what that does to your slope, or redo one row to show it.",
+      "Suppose every before distance was one centimeter too big, the same slip in every row. Say what that does to your slope, or redo one row to show it.",
       "The balloon surface has no center, and neither does the expansion. In two sentences: what is actually expanding, and what is a recession speed not?"
     ]
   });

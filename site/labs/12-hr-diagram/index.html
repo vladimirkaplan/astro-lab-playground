@@ -14,9 +14,9 @@
     <p style="margin:0"><a class="back-link" href="../../index.html">&larr; all labs</a></p>
     <h1>Lab 12 &middot; The H-R diagram</h1>
     <p>Two numbers per star: how hot, how bright. Plot those two against each other
-    and stars refuse to scatter randomly - they line up, clump, and leave two empty
-    corners. That arrangement is the most useful picture in astronomy, and every
-    size you will read off it you will calculate yourself.</p>
+    and stars refuse to scatter randomly. They line up, clump, and leave two empty
+    corners. That arrangement is the most useful picture in astronomy. Every
+    size you will read off it, you will calculate yourself.</p>
   </div>
 </header>
 
@@ -28,88 +28,104 @@
   </div>
 
   <section id="learn" class="tab-panel learn">
+    <div class="words-box">
+      <p class="words-title">Words in this lab</p>
+      <ul>
+        <li><strong>luminosity</strong> &mdash; the total power a star gives off as light.</li>
+        <li><strong>radius</strong> &mdash; the distance from a star's center to its surface.</li>
+        <li><strong>main sequence</strong> &mdash; the diagonal band where stars fuse hydrogen.</li>
+        <li><strong>giant</strong> &mdash; a star that ran out of hydrogen in its core and swelled huge.</li>
+        <li><strong>supergiant</strong> &mdash; an even bigger and brighter swollen star.</li>
+        <li><strong>white dwarf</strong> &mdash; the exposed, cooling core of a dead star: Earth-size, Sun-mass.</li>
+        <li><strong>decade</strong> &mdash; a factor of ten on a stretched (logarithmic) axis.</li>
+        <li><strong>turnoff</strong> &mdash; the point where a cluster's heavy stars start leaving the main sequence.</li>
+      </ul>
+    </div>
+
     <h2>What this lab is about</h2>
     <p>A temperature is easy to get from a spectrum. A luminosity takes one more
     ingredient, usually a distance. Those two numbers look like very little
-    information about a star. Plot them against each other for a few dozen stars,
-    though, and the picture is not a cloud of dots: most stars fall on a single
-    diagonal band, with a pocket of bright cool stars above it and a handful of
-    faint hot stars stuck in the bottom left. Ejnar Hertzsprung and Henry Norris
-    Russell found that arrangement independently around 1911-1913, before anyone
-    knew stars shine by fusing hydrogen, and it organized the whole subject.</p>
+    information about a star. But plot them against each other for a few dozen
+    stars. The picture is not a cloud of dots. Most stars fall on a single diagonal
+    band. A pocket of bright cool stars sits above it. A handful of faint hot stars
+    stick in the bottom left. Ejnar Hertzsprung and Henry Norris Russell found that
+    arrangement independently around 1911-1913. This was before anyone knew stars
+    shine by fusing hydrogen, and it organized the whole subject.</p>
 
     <h2>How to read the axes</h2>
     <ul>
       <li><strong>Temperature runs backwards.</strong> Hot stars are on the left.
-      The axis is also compressed: 40,000 K to 2,500 K share one row of pixels, so
-      the spacing between tick labels gets wider as you go right. Astronomers are
-      stuck with this convention and so is this sim.</li>
+      The axis is also compressed. 40,000 K to 2,500 K share one row of pixels. The
+      spacing between tick labels therefore gets wider as you go right. Astronomers are
+      stuck with this convention, and so is this sim.</li>
       <li><strong>Luminosity is logarithmic.</strong> Each horizontal grid line is a
-      factor of ten. The axes here span ten decades of power and the stars in this lab
-      cover five of them, from Wolf 359 at 0.0014 times the Sun to Deneb at about
-      200,000. Read a vertical gap in decades, never in centimetres.</li>
+      factor of ten: one decade. The axes here span ten decades of power, and the
+      stars in this lab cover five of them. That reaches from Wolf 359 at 0.0014
+      times the Sun to Deneb at about 200,000. Read a vertical gap in decades, never
+      in centimetres.</li>
       <li><strong>Luminosity is the star, not the view.</strong> It is the power the
       star actually emits, in solar units. The brightness of a star as it reaches a
-      telescope depends on distance too, which is why the lab needs distances before
+      telescope depends on distance too. That is why the lab needs distances before
       it can build a diagram.</li>
     </ul>
 
     <h2>The machine behind the picture</h2>
-    <p>A star is a hot sphere, so the power leaving it is set by its surface area
-    and by the fourth power of its surface temperature. In solar units that is
-    L = R&#178; (T / 5772)&#8308;. Two of those three quantities are what you measure,
-    so the third comes out for free:</p>
+    <p>A star is a hot sphere. So the power leaving it is set by its surface area and
+    by the fourth power of its surface temperature. In solar units that is
+    L = R&#178; (T / 5772)&#8308;. Two of those three quantities are what you
+    measure. So the third comes out for free:</p>
     <p style="text-align:center"><strong>R = sqrt(L) / (T / 5772)&#178;</strong></p>
-    <p>This is the whole trick of the diagram. It is why a cool star far above the
-    main sequence is not a mystery but an enormous object, and why a hot star in the
+    <p>This is the whole trick of the diagram. A cool star far above the main
+    sequence is not a mystery. It is an enormous object. And a hot star in the
     bottom left has to be tiny. Temperature and luminosity are the measurement;
     radius is the verdict.</p>
 
     <h2>Main sequence: where stars spend their lives</h2>
     <p>The diagonal band is the main sequence, and it is where stars fuse hydrogen.
-    Position on it is set by mass, which is why the band is a sequence at all: more
-    mass means a hotter core, a hotter surface, and a luminosity that climbs roughly
-    as the 3.5 power of the mass. A 10 solar mass B star is a few thousand times more
-    luminous than the Sun and burns its fuel in a few tens of millions of years; a
-    0.1 solar mass M dwarf like Proxima Centauri puts out 0.0017 times the Sun and will
-    outlast the present age of the universe. The band has a thickness because stars of the same colour are not
-    all exactly alike, and because real measurements carry error - switch to Fun Mode
-    in the sim and watch the band fatten.</p>
+    Mass sets a star's position on it. That is why the band is a sequence at all.
+    More mass means a hotter core and a hotter surface. Luminosity then climbs
+    roughly as the 3.5 power of the mass. A 10 solar mass B star is a few thousand
+    times more luminous than the Sun. It burns its fuel in a few tens of millions of
+    years. A 0.1 solar mass M dwarf like Proxima Centauri puts out 0.0017 times the
+    Sun. It will outlast the present age of the universe. The band has a
+    thickness. Stars of the same colour are not all exactly alike, and real
+    measurements carry error. Switch to Fun Mode in the sim and watch the band
+    fatten.</p>
 
     <h2>Giants and supergiants: same colour, far more of it</h2>
     <p>Take Arcturus and the Sun. Arcturus is cooler, yet it shines about a hundred
-    times brighter. Cooler means less power per square metre of surface, so the only
-    way to win that argument is to have far more surface: the sim puts Arcturus near
+    times brighter. Cooler means less power per square metre of surface. So the only
+    way to win that argument is to have far more surface. The sim puts Arcturus near
     19 solar radii. Giants are stars that have run out of hydrogen in their cores and
-    swollen. Supergiants go further - Betelgeuse comes out near 930 solar radii, about
-    4.3 AU, which is past the orbit of Mars. Rigel is the opposite combination and
-    just as instructive: hot and 120,000 times the Sun, so roughly 79 solar radii, a
-    blue supergiant.</p>
+    swollen. Supergiants go further. Betelgeuse comes out near 930 solar radii,
+    about 4.3 AU. That is past the orbit of Mars. Rigel is the opposite combination,
+    and just as instructive. It is hot and 120,000 times the Sun. That works out near
+    79 solar radii: a blue supergiant.</p>
 
     <h2>White dwarfs: the bottom-left corner</h2>
     <p>Sirius B is 25,200 K, as hot as a B star, and puts out 0.026 times the Sun.
-    Feed those into the radius formula and you get 0.0085 solar radii, about 5,900 km:
-    the size of Earth, carrying the mass of a Sun. Nothing fuses down there; it is an
-    exposed core cooling slowly. The reason the bottom-left corner of the diagram is
-    nearly empty is that matter has no business being both very hot and very dim
-    unless it is either tiny or heavily veiled.</p>
+    Feed those into the radius formula. You get 0.0085 solar radii, about 5,900 km:
+    the size of Earth, carrying the mass of a Sun. Nothing fuses down there. It is an
+    exposed core cooling slowly. The bottom-left corner of the diagram is nearly
+    empty. Matter has no business being both very hot and very dim. The exceptions:
+    it is tiny, or it is heavily veiled.</p>
 
     <h2>What the diagram is not</h2>
     <p>It is not a map. Two stars drawn next to each other can be ten parsecs and ten
-    thousand parsecs apart; the diagram plots properties, not positions, and a star
-    drifting right on the screen means its surface cooled, not that it moved. Nor is
-    the diagram a portrait of any single star forever: as a star ages it travels
-    across it, which is why astronomers read cluster ages off the diagram by looking
-    for the turnoff, the point where the most massive members have started leaving the
-    main sequence.</p>
+    thousand parsecs apart. The diagram plots properties, not positions. A star
+    drifting right on the screen means its surface cooled, not that it moved. The
+    diagram is also not a fixed portrait of any one star. As a star ages, it travels
+    across the diagram. That is why astronomers read cluster ages off it. They look
+    for the turnoff: the point where the most massive members have started leaving
+    the main sequence.</p>
 
     <div class="note">
       <p><strong>Why this matters to astronomers:</strong> the H-R diagram turns a
       list of numbers into physics. It gives distances to star clusters and to other
-      galaxies, it dates them, and it is the scoreboard that stellar evolution theory
-      has to match. The lab drills the habit that makes it work: measure two things,
-      derive the third, and know which is which. (Grounded in OpenStax <em>Astronomy
-      2e</em>, Ch. 21, CC BY 4.0.)</p>
+      galaxies, and it dates them. It is also the scoreboard that the theory of
+      stellar evolution has to match. The lab drills the habit that makes it work:
+      measure two things, derive the third, and know which is which. (Grounded in
+      OpenStax <em>Astronomy 2e</em>, Ch. 21, CC BY 4.0.)</p>
     </div>
 
     <div class="mistakes">
@@ -126,18 +142,29 @@
         <li>Forgetting the fourth power. Double the temperature at fixed size and you
         get 16 times the luminosity, not twice.</li>
         <li>Quoting the sim radius as if it were measured. Interferometers do measure a
-        few dozen stellar diameters directly; everything here is derived from
-        temperature and luminosity, which is what makes the number sensitive to bad
+        few dozen stellar diameters directly. Everything here is derived from
+        temperature and luminosity. That is what makes the number sensitive to bad
         data.</li>
-        <li>Treating the published luminosity class as gospel. Polaris is labelled class
-        Ib, a supergiant, and still plots in the giant region of this diagram: labels
-        are conventions, positions are measurements.</li>
+        <li>Treating the published luminosity class as gospel. Polaris is labelled
+        class Ib, a supergiant, and still plots in the giant region of this diagram.
+        Labels are conventions; positions are measurements.</li>
       </ul>
     </div>
   </section>
 
   <section id="simulate" class="tab-panel">
     <div class="toolbar" id="toolbar1"></div>
+
+    <h2>Bench - read the HR diagram</h2>
+    <ol class="steps">
+      <li>Click any dot on the diagram and read its name.</li>
+      <li>Read where it sits, in decades of luminosity.</li>
+      <li>Press "Zones and main sequence guide" to show the guide lines.</li>
+      <li>Trace the main sequence from hot bright stars down to cool faint ones.</li>
+      <li>Click the reddest bright star and name its region.</li>
+      <li>Click the faintest hot star and name its region.</li>
+      <li>Log three clicked stars in the Reading log below.</li>
+    </ol>
 
     <div class="canvas-frame"><canvas id="stage" height="460"></canvas></div>
     <p><button class="action" id="zonesBtn">Zones and main sequence guide: ON</button></p>
@@ -146,6 +173,15 @@
     <div class="readout"><small>where it sits, in decades of luminosity</small><span id="posRead">Click a star to read its position.</span></div>
 
     <h3>Radius machine: same two numbers, solved for size</h3>
+    <ol class="steps">
+      <li>Press the "Sun" preset and read the radius the two numbers imply.</li>
+      <li>Press "Plot my star on the diagram" and find your dot on the chart.</li>
+      <li>Press "Rigel" and watch how the two sliders move.</li>
+      <li>Press "Betelgeuse" and read "would it swallow a planet?".</li>
+      <li>Set the sliders by hand to build a small red dwarf, then plot it.</li>
+      <li>Press "Sirius B" and say why its radius is so small.</li>
+      <li>Log your star in the Reading log below.</li>
+    </ol>
     <p><label>Surface temperature: <b id="tRead">5772</b> K
       <input type="range" id="tRange" min="3.398" max="4.531" value="3.7615" step="0.002" style="width:26ch"></label></p>
     <p><label>Luminosity (Sun = 1): <b id="lRead">1</b>

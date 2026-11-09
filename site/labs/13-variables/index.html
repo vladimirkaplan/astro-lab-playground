@@ -13,13 +13,13 @@
   <div class="wrap">
     <p style="margin:0"><a class="back-link" href="../../index.html">&larr; all labs</a></p>
     <h1>Lab 13 &middot; Variable stars and Cepheids</h1>
-    <p>Some stars breathe. Their brightness rises and falls on a clockwork schedule,
-    and that schedule is not decoration - it is a measurement of the star&#39;s
-    luminosity. Henrietta Leavitt found the rule in 1912 by studying hundreds of
-    variable stars photographic plate by photographic plate, and it became the rung
-    of the distance ladder that let Hubble leave the Milky Way. This lab makes you
-    do the actual move, twice: fold a light curve until it snaps into a period, then
-    run the period through the period-luminosity line to get a distance.</p>
+    <p>Some stars breathe. Their brightness rises and falls on a clockwork schedule.
+    That schedule is not decoration: it tells you the star&#39;s luminosity. Henrietta
+    Leavitt found the rule in 1912, studying plate after plate of variable stars. Her
+    rule became the rung of the distance ladder that let Hubble leave the Milky Way.
+    In this lab you do the real move, twice. First you fold a light curve until it
+    snaps into a period. Then you run that period through the period-luminosity line
+    to get a distance.</p>
   </div>
 </header>
 
@@ -31,138 +31,149 @@
   </div>
 
   <section id="learn" class="tab-panel learn">
+    <div class="words-box">
+      <p class="words-title">Words in this lab</p>
+      <ul>
+        <li><strong>variable star</strong> &mdash; a star whose brightness changes with time.</li>
+        <li><strong>Cepheid</strong> &mdash; a pulsing star whose brightening has a fixed period.</li>
+        <li><strong>period</strong> &mdash; the time for one full cycle: one pulse, or one orbit.</li>
+        <li><strong>luminosity</strong> &mdash; the total power a star gives off as light.</li>
+        <li><strong>magnitude</strong> &mdash; a number for brightness. A smaller number means brighter.</li>
+        <li><strong>light curve</strong> &mdash; a plot of brightness against time.</li>
+        <li><strong>absolute magnitude</strong> &mdash; how bright a star would look from one set, far distance.</li>
+        <li><strong>distance modulus</strong> &mdash; m minus M. A shortcut from magnitudes to distance.</li>
+      </ul>
+    </div>
+
     <h2>What this lab is about</h2>
-    <p>There is a slogan that wrecks this lab: "Cepheids are standard candles."
-    It is wrong in a way that matters. There is no single brightness a Cepheid
-    has. A Cepheid&#39;s luminosity depends on its period, so the work is a
-    <strong>two-step reduction</strong>: first you extract the period from a pile
-    of scattered brightness measurements, then you convert that period into an
-    absolute magnitude with the period-luminosity relation, and only then do you
-    compare with the star&#39;s apparent brightness to get a distance. Skip step
-    one and you have not measured anything - you have recited. Neither bench in
-    this sim will hand you the period of the star you are supposed to reduce;
-    you pull it out of the light curve yourself.</p>
+    <p>One slogan wrecks this lab: "Cepheids are standard candles." The slogan is
+    wrong, and the wrongness matters. No single brightness fits all Cepheids. A
+    Cepheid&#39;s luminosity depends on its period. Luminosity means the total power
+    the star gives off as light. So the work is a <strong>two-step reduction</strong>.
+    First you find the period. You pull it from a pile of scattered brightness
+    readings. Then the period-luminosity relation turns that period into an absolute
+    magnitude. Only then do you bring in the star&#39;s apparent brightness, which is
+    how bright the star looks from Earth. That comparison gives you a distance. Skip
+    step one
+    and you have not measured anything. You have recited. Neither bench in this sim
+    hands you the period of your star. You take it from the light curve yourself.</p>
 
     <h2>Reading a light curve (and its upside-down axis)</h2>
-    <p>A light curve is brightness against time, drawn the way astronomers
-    draw it: <strong>the magnitude axis is inverted</strong>, so smaller numbers
-    (brighter) sit at the top and a light curve <em>maximum</em> is a valley in
-    the plot. Learn that reflex before you read anything else here. The shapes
-    you will fold say what kind of variable you have:</p>
+    <p>A light curve plots brightness against time. Astronomers draw it with the
+    magnitude axis upside down. Smaller numbers, which mean brighter, sit at the top.
+    So a light curve <em>maximum</em> is a valley in the plot. Learn that reflex
+    before you read anything else here. The shapes you will fold say what kind of
+    variable you have:</p>
     <ul>
-      <li><strong>The sawtooth (Cepheids, RR Lyrae stars).</strong> Brightness
-      rises fast, then declines slowly - for the Cepheids in this lab the rise
-      takes about a third of the period, and for RR Lyrae stars well under a
-      tenth of it, which is why the RR Lyrae fold looks like a hatchet. The
-      asymmetry is real physics: the star&#39;s outer layers slam outward and
-      brighten quickly, then relax back more slowly.</li>
-      <li><strong>Flat with two dips (Algol).</strong> A square-bottomed,
-      narrow eclipse on a flat baseline means <strong>something passes in
-      front</strong>: Algol is two stars orbiting, and its "period" is an orbit,
-      not a pulse. The dip depth depends on the viewing geometry, not on how
-      luminous anything is - which is exactly why an eclipsing binary does not
-      sit on the period-luminosity line. The same flat-plus-dip shape at any
-      depth, in any pair of stars: eclipses.</li>
-      <li><strong>The slow, oversized roll (Mira).</strong> A five-magnitude
-      swing over nearly a year, with dust and convection reshaping every
-      apparition. Huge, beautiful, and useless as a yardstick.</li>
+      <li><strong>The sawtooth (Cepheids, RR Lyrae stars).</strong> Brightness rises
+      fast, then falls slowly. In this lab&#39;s Cepheids the rise takes about a third
+      of the period. For RR Lyrae stars it takes well under a tenth, so their fold
+      looks like a hatchet. The asymmetry is real physics. The star&#39;s outer layers
+      slam outward and brighten quickly. Then they relax back more slowly.</li>
+      <li><strong>Flat with two dips (Algol).</strong> A square-bottomed, narrow
+      eclipse on a flat baseline means <strong>something passes in front</strong>.
+      Algol is two stars orbiting each other. Its "period" is an orbit, not a pulse.
+      The dip depth depends on the viewing geometry, not on how luminous anything is.
+      That is exactly why an eclipsing binary does not sit on the period-luminosity
+      line. The same flat-plus-dip shape, at any depth, in any pair of stars:
+      eclipses.</li>
+      <li><strong>The slow, oversized roll (Mira).</strong> Mira swings five
+      magnitudes over nearly a year. Dust and boiling gas reshape every apparition.
+      Huge, beautiful, and useless as a yardstick.</li>
     </ul>
 
     <h2>Folding: the crank that finds the period</h2>
-    <p>You cannot read the period off a raw light curve that samples the star
-    irregularly and noisy - the points don&#39;t connect. So you <em>fold</em>:
-    pick a trial period, wrap every observation onto a phase from 0 to 1
-    (phase = fraction of the trial cycle), and plot brightness against phase.
-    If the trial period is wrong, one phase receives the star at several
-    different brightnesses and the fold smears into a blob. If it is right, the
-    points snap onto one knife-thin curve. The sim scores how thin the fold is
-    with the <strong>phase dispersion statistic</strong> (PDM, Stellingwerf&#39;s
-    theta-squared): it measures the scatter of points inside phase bins against
-    the total scatter, and low means a sharp fold. The button in Bench 2 runs a
-    proper period search on the same statistic, so you can check your hand-fold
-    honestly.</p>
+    <p>You cannot read the period from a raw light curve. The star is sampled at
+    uneven times, and every reading carries noise. The points do not connect. So you
+    <em>fold</em>. Pick a trial period. Wrap every observation onto a phase from 0 to
+    1. The phase is the fraction of the trial cycle. Now plot brightness against
+    phase. A wrong trial period smears the fold into a blob. One phase then receives
+    the star at several different brightnesses. If the period is right, the
+    points snap onto one knife-thin curve. The sim scores how thin the fold is with
+    the <strong>phase dispersion statistic</strong> (PDM, Stellingwerf&#39;s
+    theta-squared). It compares the scatter inside the phase bins with the total
+    scatter. Low means a sharp fold. The button in Bench 2 runs a proper period
+    search on the same statistic. So you can check your hand-fold honestly.</p>
 
     <h2>Leavitt&#39;s move: why a period knows a luminosity</h2>
-    <p>Leavitt&#39;s trick was to study variables in the Small Magellanic
-    Cloud, where - the stars being so far away - every one of them is at
-    essentially the same distance. Same distance means apparent magnitude order
-    equals luminosity order, no distances required. She found the brightest
-    variables also had the longest periods: a tight relation between
-    <strong>period and intrinsic brightness</strong>.</p>
-    <p>And the relation is not a coincidence to memorise; it has a mechanism.
-    A pulsation period is the whole star ringing like a bell, and a bell&#39;s
-    tone is set by size and density - the <strong>period tracks the
-    star&#39;s mean density</strong>. Meanwhile the variables that pulsate at
-    all live in a narrow vertical band of the H-R diagram, the
-    <strong>instability strip</strong>, and along that strip <strong>luminosity
-    tracks mass</strong>: more massive strip stars are more luminous and less
-    dense, hence slower-ringing. Period and luminosity are two readings of the
-    same underlying quantity, which is why one calibrates the other. (Course
-    framing follows OpenStax <em>Astronomy 2e</em>, "Cepheid Variables" and
+    <p>Leavitt&#39;s trick was to study variables in the Small Magellanic Cloud. Its
+    stars are so far away that every one of them sits at essentially the same
+    distance. Same distance means apparent magnitude order equals luminosity order,
+    with no distances required. She found the brightest variables also had the
+    longest periods: a tight relation between <strong>period and intrinsic
+    brightness</strong>.</p>
+    <p>The relation is not a coincidence to memorise; it has a mechanism. A
+    pulsation period is the whole star ringing like a bell. A bell&#39;s tone is set
+    by its size and density, so the <strong>period tracks the star&#39;s mean
+    density</strong>. Also, stars that pulsate at all live in a narrow vertical band
+    of the H-R diagram. That band is the <strong>instability strip</strong>. Along
+    that strip, <strong>luminosity tracks mass</strong>. A heavier strip star is more
+    luminous and less dense. So it rings more slowly. Period and luminosity are two
+    readings of the same hidden quantity. That is why one can calibrate the other.
+    (Course framing follows OpenStax <em>Astronomy 2e</em>, "Cepheid Variables" and
     "Period-Luminosity Relation", CC BY 4.0; this page is original prose.)</p>
-    <p>The line the sim uses, M = -2.76 log(P) - 1.40 (V band, P in days), is
-    the standard classroom calibration for <em>classical</em> Cepheids over
-    1-100 days. Try it outside that window and the physics module refuses with
-    an error - deliberately. A 0.45-day RR Lyrae star and a 332-day Mira are
-    different families of pulsator and belong off this line entirely.</p>
+    <p>The line the sim uses is M = -2.76 log(P) - 1.40 (V band, P in days). It is
+    the standard classroom calibration for <em>classical</em> Cepheids from 1 to 100
+    days. Try it outside that window and the physics module refuses with an error.
+    That is deliberate. A 0.45-day RR Lyrae star and a 332-day Mira are different
+    families of pulsator. They belong off this line entirely.</p>
 
     <h2>Two yardsticks, and one star that is neither</h2>
-    <p><strong>RR Lyrae stars</strong> - old, low-mass, half-a-day pulsators -
-    all sit at nearly the same absolute magnitude (around +0.65): a single faint
-    candle. Dim, but there are millions of them in globular clusters and the
-    galactic halo, and Shapley used them to size the Milky Way.
-    <strong>Classical Cepheids</strong> are ten to fifty times more luminous
-    and bring their own ruler: each period has its own place on the line. That
-    brighter reach is what let Hubble find Cepheids in Andromeda and leave the
-    Galaxy behind. <strong>Mira</strong> is neither candle: a dusty,
-    convection-boiling red giant whose period drifts and whose light curve
-    depends on dust clouds, not on a clean clock - the sim refuses to use it in
-    the distance bench, and Bench 1 lets you see why in one fold.</p>
+    <p><strong>RR Lyrae stars</strong> are old, low-mass pulsators with half-day
+    periods. They all sit at nearly the same absolute magnitude, around +0.65: a
+    single faint candle. They are dim, but there are millions of them in globular
+    clusters and in the halo of our galaxy. Shapley used them to size the Milky Way.
+    <strong>Classical Cepheids</strong> are ten to fifty times more luminous. They
+    also bring their own ruler: each period has its own place on the line. That
+    brighter reach is what let Hubble find Cepheids in Andromeda and leave the Galaxy
+    behind. <strong>Mira</strong> is neither candle. It is a dusty,
+    convection-boiling red giant. Its period drifts, and its light curve follows dust
+    clouds, not a clean clock. The sim refuses to use Mira in the distance bench.
+    Bench 1 lets you see why in one fold.</p>
 
     <h2>How this lab runs</h2>
-    <p>Bench 1 is the light-curve bench: pick a catalog star, watch its raw
-    scattered brightness in time, and drag the fold-period slider until the
-    phase plot snaps into a knife-thin sawtooth; the live dispersion readout
-    tells you how close you are. Bench 2 is "be Leavitt": a hidden Cepheid in
-    an unseen star cluster, ~112 measurements over a few cycles, no period
-    given. You fold to find the period, read the mean magnitude off the plot,
-    run the two-step reduction, and press Check - the page grades your
-    absolute magnitude, your distance modulus, and your cluster distance against
-    the truth, and logs the whole reduction. Ideal Mode is exact; Fun Mode adds
-    a reproducible +-0.05 mag of seeded photometric scatter, so the fold never
-    comes out infinitely thin, which is what real data looks like. (Course
-    framing follows OpenStax <em>Astronomy 2e</em>, Ch. 26, CC BY 4.0.)</p>
+    <p>Bench 1 is the light-curve bench. Pick a catalog star and watch its raw
+    brightness scatter across time. Then drag the fold-period slider until the phase
+    plot snaps into a knife-thin sawtooth. The live dispersion readout tells you how
+    close you are. Bench 2 asks you to "be Leavitt." A hidden Cepheid sits in an
+    unseen star cluster. You get about 112 measurements over a few cycles, with no
+    period given. You fold to find the period. You read the mean magnitude off the
+    plot.     Then you run the two-step reduction and press Check. The page grades your
+    absolute magnitude, your distance modulus, and your cluster distance against the
+    truth. It also logs the whole reduction. Ideal Mode is exact. Fun Mode adds a
+    reproducible +-0.05 mag of seeded scatter, so the fold never comes out infinitely
+    thin. That is what real data looks like. (Course framing follows OpenStax
+    <em>Astronomy 2e</em>, Ch. 26, CC BY 4.0.)</p>
 
     <div class="note">
       <p><strong>Why this matters to astronomers:</strong> the Cepheid
-      period-luminosity relation is the step of the distance ladder every
-      modern value of the expansion rate of the universe leans on. The whole
-      distance scale of the nearby universe is literally calibrated by timing
-      pulses and consulting one straight line - which is why measuring periods
-      precisely (the thing you are practicing here) survived a century of
-      telescopes and still pays the bills.</p>
+      period-luminosity relation is a step of the distance ladder. Every modern value
+      of the expansion rate of the universe leans on that step. The whole distance
+      scale of the nearby universe is built by timing pulses and consulting one
+      straight line. That is why measuring periods precisely, the thing you practice
+      here, survived a century of telescopes. It still pays the bills.</p>
     </div>
 
     <div class="mistakes">
       <strong>Common mistakes in this lab:</strong>
       <ul>
         <li>Saying "Cepheids are standard candles" as if they all share one
-        brightness. A Cepheid&#39;s absolute magnitude depends on its period -
-        extract the period first or the candle has no calibration.</li>
+        brightness. They do not. A Cepheid&#39;s absolute magnitude depends on its
+        period. Extract the period first, or the candle has no calibration.</li>
         <li>Running the period-luminosity line on anything with a light curve.
-        It is the <em>classical Cepheid</em> line, valid 1-100 d: an RR Lyrae
-        star (0.45 d) or Mira (332 d) makes it throw an error, and that error
-        is the lesson.</li>
+        It is the <em>classical Cepheid</em> line, valid from 1 to 100 days. An RR
+        Lyrae star (0.45 d) or Mira (332 d) makes it throw an error. That error is
+        the lesson.</li>
         <li>Forgetting the inverted axis: maximum light is the <em>smallest</em>
         magnitude and sits at the TOP of the plot.</li>
         <li>Reading the <em>maximum</em> magnitude where the mean belongs. The
-        distance modulus needs the mean magnitude over the whole cycle, not the
-        brightest or darkest point.</li>
+        distance modulus needs the mean magnitude over the whole cycle. It does not
+        want the brightest or the darkest point.</li>
         <li>Modulus arithmetic: mu = m - M. With M negative, mu = 8.85 - (-4.16)
-        = 13.01, not 4.69. Then d = 10^((mu+5)/5); dropping the +5 shrinks every
+        = 13.01, not 4.69. Then d = 10^((mu+5)/5). Dropping the +5 shrinks every
         distance by a factor of 10.</li>
         <li>Treating Algol&#39;s "period" as a pulse. The dips are eclipses -
-        geometry, not luminosity - and eclipsing binaries do not sit on the
+        geometry, not luminosity. Eclipsing binaries do not sit on the
         period-luminosity line.</li>
       </ul>
     </div>
@@ -172,6 +183,15 @@
     <div class="toolbar" id="toolbar1"></div>
 
     <h3>Bench 1 - the light-curve bench: fold it until it snaps</h3>
+    <ol class="steps">
+      <li>Press the "delta Cep" preset.</li>
+      <li>Read the raw light curve: dots are observations, the dotted line is the model.</li>
+      <li>Slide "Try folding at period" and watch the strip below redraw.</li>
+      <li>Drag the slider until the blob snaps into a knife-thin curve.</li>
+      <li>Read your trial fold period and the phase dispersion.</li>
+      <li>Press the "RR Lyrae" preset and snap that fold too.</li>
+      <li>Try "Algol" and name what family the readout says it is.</li>
+    </ol>
     <p>These are public catalog stars, so their periods are on record - this
     bench is the training bench for the fold itself. The top panel is the
     star&#39;s raw light curve: the dotted line is the true model, the points
@@ -199,6 +219,15 @@
     <div class="toolbar" id="toolbar2"></div>
 
     <h3>Bench 2 - be Leavitt: the hidden cluster Cepheid</h3>
+    <ol class="steps">
+      <li>Press "Draw a hidden cluster Cepheid".</li>
+      <li>Fold with the slider until the sawtooth snaps: that is your period.</li>
+      <li>Press "Best period (verify my fold)" and compare it with your fold.</li>
+      <li>Read the star's mean magnitude off the middle of the time plot's band.</li>
+      <li>Type that mean magnitude into the box.</li>
+      <li>Press "Check my reduction" and read the distance and its verdict.</li>
+      <li>Draw a second Cepheid and repeat without the best-period button.</li>
+    </ol>
     <p>A variable star in an unseen star cluster, ~112 magnitude measurements
     over three and a half cycles. You get no period, no name, and no distance -
     just the plates. Do the reduction in order: (1) fold with the slider until

@@ -16,13 +16,13 @@
       "Define the period of a pendulum in one sentence, and explain why timing many swings and dividing beats timing one swing with the same stopwatch.",
       "Predict before benching: what happens to the period when you double the string length? What happens when you release from a noticeably bigger angle?",
       "If period-squared turns out to be proportional to length, what shape do the points make on a T^2-versus-length graph, and what might the steepness of that shape be good for?",
-      "Give one random source of timing error and one systematic one, and say which kind a late button press is."
+      "Name one timing mistake that comes out different each run, and one that pushes the same way every run. Say which kind a late button press is."
     ],
     postlab: [
       "Report the period for your longest string, showing the division from total time and swing count with units attached.",
       "Do your T^2-versus-length points look like a straight line? Quote two points, near opposite ends, as your evidence.",
-      "What did your runs say about release angle: within your timing uncertainty, did the bigger angle change the period?",
-      "Name the single biggest source of uncertainty in your timing and one change to the procedure that would shrink it."
+      "What did your runs say about release angle: within the usual spread of your times, did the bigger angle change the period?",
+      "Name the single biggest reason your times could be off, and one change to the steps that would shrink it."
     ]
   });
 })(typeof globalThis !== "undefined" ? globalThis : window);

@@ -13,8 +13,8 @@
   <div class="wrap">
     <p style="margin:0"><a class="back-link" href="../../index.html">&larr; all labs</a></p>
     <h1>Lab 15 &middot; Hubble's Law</h1>
-    <p>Dots on a balloon become galaxies in an expanding universe. Measure, plot, fit a
-    slope, and read the age of the balloon cosmos off that slope.</p>
+    <p>Dots on a balloon become galaxies in an expanding universe. Measure, plot, and
+    fit a slope. Then read the age of the balloon cosmos off that slope.</p>
   </div>
 </header>
 
@@ -26,52 +26,71 @@
   </div>
 
   <section id="learn" class="tab-panel learn">
-    <h2>What this lab is about</h2>
-    <p>You draw ten spots on a balloon: one is home (the Milky Way), the rest are
-    galaxies. You measure the string distance from home to every galaxy, inflate the
-    balloon, measure again, and divide the change by the seconds inflation took. Now
-    every galaxy has a distance and a recession speed. Plot them and the points line up:
-    farther galaxies recede faster, in proportion. That proportionality is Hubble's law,
-    and its slope is the Hubble constant.</p>
+    <div class="words-box">
+      <p class="words-title">Words in this lab</p>
+      <ul>
+        <li><strong>expansion</strong> &mdash; space itself stretching and carrying galaxies apart.</li>
+        <li><strong>recession speed</strong> &mdash; how fast a galaxy's distance from us grows.</li>
+        <li><strong>redshift</strong> &mdash; light stretched to longer, redder waves by expansion. It reports speed away from us.</li>
+        <li><strong>megaparsec</strong> &mdash; a distance unit: one million parsecs, about 3.26 million light-years.</li>
+        <li><strong>Hubble constant (H)</strong> &mdash; the slope that links galaxy speed and distance.</li>
+        <li><strong>slope</strong> &mdash; rise over run: how much one value grows per step of the other.</li>
+        <li><strong>spectrum</strong> &mdash; light spread out by color, showing dark lines.</li>
+      </ul>
+    </div>
 
-    <h2>The physics: Velocity = H times Distance</h2>
-    <p>When space itself stretches, everything unbound inside it drifts apart at a rate
-    set by how much new space appears in between. Double the distance and you double the
-    intervening stretching, so speed scales with distance: <em>V = H &middot; D</em>. One
-    consequence students miss: no place is special. An observer on <em>any</em> balloon
-    dot sees the same law, because uniform expansion looks the same from every point.
-    There is no center of the surface, and the balloon surface has no edge.</p>
-    <p>Inflate from radius factor 1 to factor <em>a</em> over time <em>t</em> and the
-    arithmetic works out to H = (a - 1) / (a &middot; t) when velocities are measured
-    against the <em>final</em> distances. The lab then treats 1/H as the age of the
-    balloon universe: how long back you must unwind the expansion before all
-    distances shrink to zero.</p>
-    <p>For the real sky, Hubble's constant sits near 70 km/s per megaparsec. The
-    conversion to years is one neat line: 1/H &asymp; 977.8 / H<sub>0</sub> gigayears, so
-    H = 70 gives roughly 14 billion years, within a rounding error of the measured 13.8.
-    Modern teams disagree at the 5-to-10-percent level between early-universe and
-    late-universe methods (the Hubble tension), which is exactly the kind of live
-    disagreement that makes a constant famous.</p>
+    <h2>What this lab is about</h2>
+    <p>Draw ten spots on a balloon. One is home: the Milky Way. The rest are galaxies.
+    Measure the string distance from home to every galaxy. Inflate the balloon and
+    measure again. Divide the change in distance by the seconds inflation took. Now
+    every galaxy has a distance and a recession speed. Recession speed means how fast
+    its distance from home grows. Plot the pairs and the points line up. Farther
+    galaxies recede faster, in proportion. That proportionality is Hubble's law. Its
+    slope is the Hubble constant.</p>
+
+    <h2>The physics: velocity = H times distance</h2>
+    <p>Space itself stretches. Everything inside it that is not bound together drifts
+    apart. The rate depends on how much new space appears in between. Double the
+    distance and you double the stretching in between. So speed scales with distance:
+    <em>V = H &middot; D</em>. One consequence students miss: no place is special. An
+    observer on <em>any</em> balloon dot sees the same law. Uniform expansion looks the
+    same from every point. There is no center of the surface. The surface has no edge
+    either.</p>
+    <p>Inflate from radius factor 1 to factor <em>a</em> over time <em>t</em>. Measure
+    the velocities against the <em>final</em> distances. Then the arithmetic works out
+    to H = (a - 1) / (a &middot; t). The lab then treats 1/H as the age of the balloon
+    universe. Ask how far back you must unwind the expansion before all distances
+    shrink to zero. That many years is the age.</p>
+    <p>On the real sky, Hubble's constant sits near 70 km/s per megaparsec. The
+    conversion to years is one neat line: 1/H &asymp; 977.8 / H<sub>0</sub>
+    gigayears. So H = 70 gives roughly 14 billion years. That is within a rounding
+    error of the measured 13.8. Modern teams disagree at the 5-to-10-percent level.
+    Early-universe and late-universe methods give different numbers. This is the
+    Hubble tension. It is exactly the kind of live disagreement that makes a constant
+    famous.</p>
 
     <div class="note">
-      <p><strong>Why this matters to astronomers:</strong> v = H&middot;D turns velocity
-      into a distance ladder rung you can reach for any faint galaxy with a spectrum:
-      measure the redshift (Lab 9 gave you the lines to measure it on), divide by H, done.
-      And 1/H gives the age of the universe with one assumption - that expansion ran at
-      a steady pace - which is close enough to be meaningful and wrong enough to have
-      launched a Nobel Prize when they found the expansion accelerating. (Grounded in
+      <p><strong>Why this matters to astronomers:</strong> velocity can act as a
+      distance tool. Use v = H&middot;D and you can reach out to any faint galaxy
+      with a
+      spectrum. Measure the redshift first. Expansion stretches a galaxy's light into
+      longer, redder waves, and the stretch reports the speed. Lab 9 gave you the
+      lines to measure it on. Then divide by H, done. And 1/H gives the age of the
+      universe with one assumption: that expansion ran at a steady pace. That is
+      close enough to be meaningful, and wrong enough to have launched a Nobel Prize.
+      The teams that found the expansion accelerating won it. (Grounded in
       OpenStax <em>Astronomy 2e</em>, Ch. 22, CC BY 4.0.)</p>
     </div>
 
     <div class="mistakes">
       <strong>Common mistakes in this lab:</strong>
       <ul>
-        <li>Letting the best-fit line find its own intercept - expansion says zero distance means zero speed, so pin the line through the origin.</li>
-        <li>Measuring chord through the balloon instead of string along the skin; the analogy lives on the surface.</li>
-        <li>Plotting velocity against the first distances; the law pairs v with the distances measured <em>with</em> that velocity.</li>
-        <li>Reporting the slope as an age without flipping it: age is 1 over the slope, not the slope.</li>
+        <li>Letting the best-fit line find its own intercept. Expansion says zero distance means zero speed, so pin the line through the origin.</li>
+        <li>Measuring the chord through the balloon instead of the string along the skin. The analogy lives on the surface.</li>
+        <li>Plotting velocity against the first distances. The law pairs v with the distances measured <em>with</em> that velocity.</li>
+        <li>Reporting the slope as an age without flipping it. Age is 1 over the slope, not the slope.</li>
         <li>Carrying balloon units (cm/s) into cosmic units (km/s/Mpc) without converting anything.</li>
-        <li>Thinking the dots slide across the surface. On the real sky, the unbound galaxies are carried apart by growth in space itself.</li>
+        <li>Thinking the dots slide across the surface. On the real sky, unbound galaxies are carried apart by growth in space itself.</li>
       </ul>
     </div>
   </section>
@@ -82,6 +101,16 @@
     <div id="viewBtns" style="display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap"></div>
 
     <div id="balloonView">
+      <h2>Bench A - The balloon universe</h2>
+      <ol class="steps">
+        <li>Pick "2 x (classic)" to inflate over "10 s".</li>
+        <li>Press "Measure before inflation (string)" and read the galaxy distances.</li>
+        <li>Press "Blow up!" and watch the dots ride the stretching surface.</li>
+        <li>Press "Measure after inflation".</li>
+        <li>Press "Compute velocities" to turn distance change into speed.</li>
+        <li>Read your measurement table: every galaxy now has a distance and a velocity.</li>
+        <li>Press "Redo run" for practice, then keep one clean run.</li>
+      </ol>
       <div class="split">
         <div>
           <div class="canvas-frame"><canvas id="stage" height="340"></canvas></div>
@@ -118,7 +147,17 @@
       </div>
 
       <h2>The Hubble diagram for your balloon</h2>
+      <ol class="steps">
+        <li>Read your plotted points: velocity against distance.</li>
+        <li>Press "Computer fit (through origin)" to see the honest line.</li>
+        <li>Drag the red handle until your line hugs the points.</li>
+        <li>Or type your slope, in cm/s per cm, into the box.</li>
+        <li>Read "my slope vs model slope".</li>
+        <li>Read 1/slope: the age of your balloon universe.</li>
+        <li>Press "Export run CSV".</li>
+      </ol>
       <div class="canvas-frame"><canvas id="plot" height="340"></canvas></div>
+      <p><span class="drag-chip">Drag this</span> (the red handle)</p>
       <p>
         <label>Your slope (cm/s per cm - drag the red handle or type):
         <input class="num-input" id="slopeIn" type="text" inputmode="decimal" placeholder="e.g. 0.05"></label>
@@ -138,6 +177,16 @@
     </div>
 
     <div id="cosmicView" hidden>
+      <h3>Bench B - The cosmic sample</h3>
+      <ol class="steps">
+        <li>Press the "Cosmic sample" button at the top of the tab.</li>
+        <li>Press "New sky sample" to deal a fresh set of galaxies.</li>
+        <li>Leave the comparison at H0 = 70.</li>
+        <li>Drag the red handle, or type a slope, until the line hugs the points.</li>
+        <li>Press "Computer fit" and compare your slope with the honest fit.</li>
+        <li>Read your H0 estimate and the implied age 1/H.</li>
+        <li>Deal a new sample and watch your H0 estimate move.</li>
+      </ol>
       <p class="muted" id="cosmicNote"></p>
       <p>
         <button class="action" id="dealCosmic">New sky sample</button>
@@ -152,6 +201,7 @@
       </p>
       <div class="split">
         <div class="canvas-frame"><canvas id="plot2" height="340"></canvas></div>
+        <p><span class="drag-chip">Drag this</span> (the red handle)</p>
         <div>
           <p>
             <label>Your slope (km/s per Mpc):

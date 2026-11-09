@@ -98,6 +98,51 @@
     return f;
   };
 
+  // ---------- usage box ----------
+  // BMC-23: every Simulate tab opens with the same three-line orientation, so a
+  // student who lands straight on Simulate still sees the Learn -> Simulate ->
+  // Check route. Pages carry no markup for it (same no-per-page-contract idea as
+  // the worksheet control): mountUsage finds #simulate by id, and a page without
+  // a Simulate tab (landing, homework, redirect stubs) gets nothing.
+  U.USAGE_ID = "usage-box";
+  U.usageBox = function (mount) {
+    var box = U.el("div", { class: "usage-box", id: U.USAGE_ID, role: "note" }, [
+      U.el("p", { class: "usage-title", text: "How to use this page:" }),
+      U.el("p", { class: "usage-line", text: "1. Learn: read the short explanation first." }),
+      U.el("p", { class: "usage-line", text: "2. Simulate: follow the numbered steps in each Part, and log what you measure." }),
+      U.el("p", { class: "usage-line", text: "3. Check: answer the self-graded questions with numbers from Simulate." })
+    ]);
+    if (mount && typeof mount.prepend === "function") mount.prepend(box);
+    else (mount || document.body).appendChild(box);
+    return box;
+  };
+  U.mountUsage = function () {
+    try {
+      var d = root.document;
+      if (!d || typeof d.getElementById !== "function") return null;
+      if (d.getElementById(U.USAGE_ID)) return d.getElementById(U.USAGE_ID);
+      var sim = d.getElementById("simulate");
+      if (!sim) return null;
+      return U.usageBox(sim);
+    } catch (e) {
+      return null;
+    }
+  };
+  U.autoMountUsage = function () {
+    try {
+      var d = root.document;
+      if (!d) return null;
+      if (d.readyState === "loading" && typeof d.addEventListener === "function") {
+        d.addEventListener("DOMContentLoaded", function () { U.mountUsage(); });
+        return "queued";
+      }
+      return U.mountUsage();
+    } catch (e) {
+      return null;
+    }
+  };
+  U.autoMountUsage();
+
   // ---------- Ideal / Fun mode ----------
   // Fun Mode adds realistic instrument noise to measurements; Ideal is exact.
   U.MODE_KEY = function (labId) { return "labSimsMode." + labId; };
