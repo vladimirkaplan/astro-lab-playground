@@ -4,6 +4,12 @@ dist/
 *.log
 .env
 
+# Only lab-related files ship in this repo (board directive 2026-11-09): internal
+# build briefs and queue notes (GOAL.md, RESUME.md) live in the Paperclip BMC-1
+# plan document, never here.
+GOAL.md
+RESUME.md
+
 # no images/scans in this tree while manual scans sit nearby (License Counsel, BMC-3):
 # the site is pure canvas/SVG; re-add specific asset types deliberately when an
 # image lab actually ships with a cleared licence.

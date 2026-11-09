@@ -11,8 +11,9 @@ your instructor's rules. Every lab page repeats this as a banner.
 
 ## Status
 
-Sixteen lab pages plus two homework practice pages are live; the rest of the brief
-in [GOAL.md](GOAL.md) is queued.
+The full AST110 set is live: sixteen lab pages, two homework practice pages, the
+offline kit, and a printable worksheet on every lab -
+https://vladimirkaplan.github.io/astro-lab-playground/ .
 
 Built (each one Learn + Simulate + Check, with a CSV export of your own data table and
 a printable pre-lab/post-lab worksheet):
@@ -73,8 +74,7 @@ network, no account, nothing to hand in here. It is a paper hand-in for the real
 submission channel.
 
 The offline kit (service worker + one-zip download + classroom recipe) was the last
-AST110 item: the full AST110 lab set is now **complete, pending the Chief's push**. See
-RESUME.md for the queue and GOAL.md for any follow-on courses.
+AST110 item: the full AST110 lab set is **complete and live**.
 
 ## Run it locally
 
@@ -147,7 +147,7 @@ tests/                node --test suites for the pure modules
 6. Put pure math in Node-loadable files and pin it with a small test in `tests/`.
 7. Hard rules: never copy BMCC manual text or figures; never place student names, data,
    or answer files anywhere in the tree; keep the disclaimer banner and license headers
-   intact on every page (see the guardrails section of GOAL.md).
+   intact on every page.
 
 ## Licenses and attribution
 
