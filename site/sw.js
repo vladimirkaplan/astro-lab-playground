@@ -7,7 +7,7 @@
 // KIT_VERSION is the sha256 of the sorted "path + file sha256" list for the whole
 // site (excluding this generated file). Rebuilding unchanged content reproduces it,
 // so the cache name is stable across builds and rotates only when content changes.
-var KIT_VERSION = "5d925d4cd8655633fd8388a1effef043023d0c3a0f39ecf0405177aa27c20f6e";
+var KIT_VERSION = "0de535b5ed4c7ebb4155ca0d83c33b1e11f8ed4642c51de7712d869443cd3f5e";
 var CACHE = "astro-lab-playground-" + KIT_VERSION;
 var INDEX = "/index.html";
 

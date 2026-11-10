@@ -35,12 +35,10 @@ const VERB_FIRST = new Set(["build", "change", "check", "chase", "compare", "cou
   "read", "see", "set", "sort", "spin", "take", "tell", "time", "tilt", "trace", "try",
   "turn", "use", "watch", "work"]);
 
-// The exact citation strings each landing must print. Derived check for any
-// course not listed: its registry attribution must appear on the page.
-const SOURCE_RE = {
-  ast110: /OpenStax\s*<em>Astronomy 2e<\/em>\s*\(CC BY 4\.0\)/,
-  phy110: /OpenStax College Physics 2e CE \(CC BY 4\.0\)/,
-};
+// The banner test below requires the landing to print its registry
+// attribution VERBATIM (escapedRe(course.attribution)), so a registry edit
+// cannot drift away from the page without red tests (License Counsel BMC-33:
+// the old per-course hard-coded copies of the source line were the drift).
 
 function grid(html, id) {
   const start = html.indexOf('id="' + id + '"');
@@ -77,7 +75,7 @@ function gridOpt(html, id) {
 }
 
 function escapedRe(s) {
-  return new RegExp(s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&").replace(/\\\s/g, "\\s*"));
+  return new RegExp(s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&").replace(/ /g, "\\s*"));
 }
 
 // ---------- the hub (site/index.html) ----------
@@ -213,8 +211,8 @@ for (const course of M.COURSES) {
   test(code + ": the practice-only banner and its source citations stay on the landing page", () => {
     assert.match(html, /<div class="banner" role="note">/, "the disclaimer banner is present");
     assert.match(html, /Practice sim, not your BMCC submission\./, "the banner names itself");
-    assert.match(html, SOURCE_RE[code] || escapedRe(course.attribution),
-      code + ": the source citation is kept");
+    assert.match(html, escapedRe(course.attribution),
+      code + ": the source citation is the registry attribution, verbatim");
     if (code === "ast110") assert.match(html, /NIST/, "the NIST line-data citation is kept");
   });
 }

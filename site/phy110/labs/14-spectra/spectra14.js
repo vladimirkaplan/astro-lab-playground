@@ -32,7 +32,9 @@
   O.GAS_TOL_NM = 30;             // uncalibrated-scope grading tolerance
   O.FUN_JITTER_NM = 30;          // Fun Mode stable line-position wobble
 
-  // the line reference set: standard tabulated values (NIST), the sim's own
+  // the line reference set: standard tabulated values (NIST Atomic Spectra
+  // Database, SRD 78, version 5 - the same release as site/data/lines.js;
+  // argon included, nothing sourced from a lab-manual chart), the sim's own
   // answer key. Order per source: strongest/first-seen lines first.
   O.LINES = Object.freeze({
     H:  Object.freeze([656.3, 486.1, 434.0]),

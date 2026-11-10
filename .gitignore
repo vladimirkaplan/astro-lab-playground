@@ -36,3 +36,9 @@ RESUME.md
 
 !site/img/
 !site/img/*.jpg
+
+# Text files: refuse every .txt. The BMCC manual transcript and any extracted
+# corpus copy live OUTSIDE this repo and must never be committed (License
+# Counsel, BMC-33); tests/originality.test.js reads the corpus from
+# $MANUAL_CORPUS_DIR, which points outside the tree.
+*.txt

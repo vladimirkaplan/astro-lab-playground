@@ -96,18 +96,18 @@ const HW_PAGE = "/homework/homework-1/index.html";
 
 // ---------- banner + licence render from the registry ----------
 
-test("AST110 pages print the banner and licence byte-identical to before the move", () => {
+test("AST110 pages print the banner and licence from the registry", () => {
   boot(AST_LAB, {}, ({ U, mount }) => {
     U.banner(mount);
     const banner = mount.childNodes[0];
     assert.equal(banner.innerHTML,
       "<strong>Practice sim, not your BMCC submission.</strong> Do the real lab and " +
-      "follow your instructor's rules. Explanations adapted from OpenStax " +
-      "<em>Astronomy 2e</em> (CC BY 4.0).");
+      "follow your instructor's rules. Explanations are written for this site. " +
+      "Topic order follows OpenStax <em>Astronomy 2e</em> for further reading.");
     const licence = mount.childNodes[mount.childNodes.length - 1];
     assert.equal(licence.innerHTML,
       "Unofficial student project, not affiliated with any college. Code: MIT. " +
-      "Explanations: CC BY 4.0 (adapted from OpenStax <em>Astronomy 2e</em>). " +
+      "Explanations: CC BY 4.0 (topic order follows OpenStax <em>Astronomy 2e</em>). " +
       "Public data sources only; no student data of any kind lives here. " +
       "This sim rehearses the lab - it is not a submission channel.");
   });
@@ -119,12 +119,13 @@ test("PHY110 pages print the College Physics source line, not the Astronomy one"
     const banner = mount.childNodes[0];
     assert.match(banner.innerHTML, /Practice sim, not your BMCC submission\./);
     assert.ok(banner.innerHTML.includes(
-      "Explanations adapted from OpenStax College Physics 2e CE (CC BY 4.0)."),
+      "Explanations are written for this site. Topic order follows OpenStax " +
+      "<em>College Physics 2e</em> for further reading."),
     "the PHY110 attribution line prints as registered");
     assert.doesNotMatch(banner.innerHTML, /Astronomy/);
     const licence = mount.childNodes[mount.childNodes.length - 1];
     assert.ok(licence.innerHTML.includes(
-      "Explanations: CC BY 4.0 (adapted from OpenStax College Physics 2e CE)."));
+      "Explanations: CC BY 4.0 (topic order follows OpenStax <em>College Physics 2e</em>)."));
   });
 });
 

@@ -13,8 +13,9 @@
 //                        href; tests and tooling compare against it.
 //   worksheetFilePrefix  prefix for worksheet downloads: <code>-lab-
 //   attribution          the one-sentence source line LS.ui.banner prints
-//   licenceSource        the same source as the licence footer prints it
-//                        (byte-identical to the pre-BMC-27 footer wording)
+   //   licenceSource        the same source as the licence footer prints it
+   //                        inside the footer's parentheses (footer shape:
+   //                        "Explanations: CC BY 4.0 (<licenceSource>).")
 //   labDirs              ordered lab folder names, course order
 //
 // path-derived course wins (LS.courseForPath); pages outside a course folder
@@ -44,8 +45,8 @@
       title: "Intro astronomy lab practice",
       landing: "/ast110/index.html",
       worksheetFilePrefix: "ast110-lab-",
-      attribution: "Explanations adapted from OpenStax <em>Astronomy 2e</em> (CC BY 4.0).",
-      licenceSource: "adapted from OpenStax <em>Astronomy 2e</em>",
+      attribution: "Explanations are written for this site. Topic order follows OpenStax <em>Astronomy 2e</em> for further reading.",
+      licenceSource: "topic order follows OpenStax <em>Astronomy 2e</em>",
       labDirs: ["01-measurement", "02-math", "03-celestial-sphere", "04-moon-phases",
         "05-moonrise-eclipses", "06-retrograde-mars", "07-lenses", "08-venus-phases",
         "09-pendulum", "10-spectra", "11-parallax", "12-hr-diagram", "13-variables",
@@ -57,10 +58,11 @@
       title: "Intro physics lab practice",
       landing: "/phy110/index.html",
       worksheetFilePrefix: "phy110-lab-",
-      // PENDING COUNSEL: licence line not yet confirmed; a separate counsel
-      // issue signs off on this attribution before any PHY110 lab ships.
-      attribution: "Explanations adapted from OpenStax College Physics 2e CE (CC BY 4.0).",
-      licenceSource: "adapted from OpenStax College Physics 2e CE",
+      // Cleared by License Counsel (BMC-33, 2026-11-10): no OpenStax text is
+      // adapted, so the line names the book as a further-reading source and
+      // asserts no third-party licence.
+      attribution: "Explanations are written for this site. Topic order follows OpenStax <em>College Physics 2e</em> for further reading.",
+      licenceSource: "topic order follows OpenStax <em>College Physics 2e</em>",
       labDirs: ["01-units-and-measurement", "02-graphs-and-slope", "03-free-fall-g",
         "04-atwood-newton2", "05-vibrating-spring", "06-rotational-equilibrium",
         "07-archimedes", "08-specific-heat", "09-ohms-law", "10-series-parallel",

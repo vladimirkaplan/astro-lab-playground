@@ -110,3 +110,35 @@ Commons API at fetch time (2026-11-08), and the credit line as displayed.
 - Credit as displayed: NASA, ESA, and The Hubble Heritage Team (STScI/AURA)
 - Downloaded rendition: 1280x997 px
 
+
+## Text and data sources
+
+The image records above are not the site's only third-party material. This
+section is the same per-source record, for text structure and data (License
+Counsel, BMC-33, 2026-11-10).
+
+### OpenStax topic structure (no text reproduced)
+
+- AST110 topic order follows OpenStax *Astronomy 2e*, OpenStax/Rice University,
+  https://openstax.org/details/books/astronomy-2e - named for further reading
+  only; the site's prose is original and no OpenStax text or figures are used.
+- PHY110 topic order follows OpenStax *College Physics 2e*, Urone & Hinrichs,
+  OpenStax/Rice University, published 2022-07-13 (digital PDF ISBN
+  978-1-951693-60-2; web version last updated 2026-07-09),
+  https://openstax.org/details/books/college-physics-2e - same terms.
+- Licence state checked 2026-11-10: OpenStax moved its library to CC BY-NC-SA 4.0
+  on 2026-04-22 and both titles now list CC BY-NC-SA 4.0; editions published
+  before that transition (including the versions whose structure these pages
+  follow) were CC BY 4.0. Because no OpenStax expression is adapted, no
+  OpenStax licence applies to this site's prose.
+
+### Spectral line data
+
+- Line wavelengths: NIST Atomic Spectra Database (SRD 78), version 5 as recorded
+  in `site/data/lines.js` (AST110 spectra lab) and in
+  `site/phy110/labs/14-spectra/spectra14.js` (PHY110 lab 14 reference set,
+  including argon - same NIST release; nothing sourced from a lab-manual chart).
+- NIST ASD is public information; NIST requests an appropriate byline, which
+  the pages and code comments carry (https://www.nist.gov/copyrights-disclaimers).
+- Relative line intensities in both files are eye-feel values, not photometry;
+  neon and krypton lists in `site/data/lines.js` are curated subsets.

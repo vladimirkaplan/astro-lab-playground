@@ -187,8 +187,11 @@ courses (the registry is checked for that).
 ## Licenses and attribution
 
 - Code: MIT (see [LICENSE](LICENSE)).
-- Prose (Learn tabs and these docs): CC BY 4.0 (see [LICENSE.docs.md](LICENSE.docs.md));
-  explanations adapted from OpenStax *Astronomy 2e* (CC BY 4.0).
+- Prose (Learn tabs and these docs): CC BY 4.0 (see [LICENSE.docs.md](LICENSE.docs.md)).
+- AST110 explanations are written for this site; topic order follows OpenStax
+  *Astronomy 2e*, named for further reading only (no OpenStax text reproduced).
+- PHY110 explanations are written for this site; topic order follows OpenStax
+  *College Physics 2e*, named for further reading only (no OpenStax text reproduced).
 - Spectral data: NIST Atomic Spectra Database, noted in `site/data/lines.js` and in the
   spectra page.
 - The cosmic sample in Lab 15 is clearly labeled synthetic (a model sky plus labeled

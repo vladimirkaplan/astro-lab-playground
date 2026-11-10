@@ -14,10 +14,17 @@ Attribution suggestion: "Adapted from Astro Lab Playground (MIT/CC BY 4.0 code a
 
 Source material notes:
 
-- The explanations are written for this project. Where they follow the structure of a
-  published open textbook, that textbook is OpenStax *Astronomy 2e*, Rice University,
-  licensed CC BY 4.0 (https://openstax.org/details/books/astronomy). Excerpts, if any,
-  carry OpenStax's own attribution notice.
+- The explanations are written for this project; no OpenStax text or figures are
+  reproduced. AST110 topic order follows OpenStax *Astronomy 2e*, Rice University
+  (https://openstax.org/details/books/astronomy-2e); PHY110 topic order follows
+  OpenStax *College Physics 2e* (Urone &amp; Hinrichs; published 2022-07-13, digital
+  PDF ISBN 978-1-951693-60-2; https://openstax.org/details/books/college-physics-2e).
+  OpenStax named the books as further-reading sources only - this site claims no
+  adaptation of OpenStax expression. Licence note (checked 2026-11-10, License
+  Counsel BMC-33): OpenStax moved its library from a mix of CC BY and CC BY-NC-SA
+  to CC BY-NC-SA 4.0 on 2026-04-22, and both titles now list CC BY-NC-SA 4.0;
+  OpenStax editions published before that transition, including the versions
+  whose structure these pages follow, were CC BY 4.0.
 - Spectral line wavelengths and similar reference numbers are physical data; their
   sources (NIST Atomic Spectra Database and similar public compilations) are cited next
   to the data in the code and on the pages that render them.

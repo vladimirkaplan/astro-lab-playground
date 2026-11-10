@@ -74,9 +74,14 @@ for (const course of COURSES) {
 
   test(code + ": attribution is one plain source sentence the banner can print", () => {
     assert.doesNotMatch(course.attribution, /<script|href=/, "no markup beyond emphasis");
-    assert.match(course.attribution, /CC BY 4\.0/, "keeps the licence tag");
+    // Cleared wording (License Counsel BMC-33): no third-party licence tag in
+    // the attribution - the CC BY 4.0 tag belongs to our prose and prints in
+    // the footer; the attribution names the book as further reading only.
+    assert.match(course.attribution, /OpenStax/, "names the source");
+    assert.doesNotMatch(course.attribution, /CC BY|adapted from|based on/,
+      "claims no adaptation and no third-party licence");
     assert.ok(course.licenceSource.includes(course.code === "ast110"
-      ? "Astronomy 2e" : "College Physics"), "licence names the book");
+      ? "Astronomy 2e" : "College Physics 2e"), "licence names the book");
   });
 }
 
@@ -105,11 +110,11 @@ test("no lab slug belongs to two courses (worksheet slugs stay unique)", () => {
   }
 });
 
-test("the PHY110 attribution is marked PENDING COUNSEL in the file", () => {
-  const phyLine = src.indexOf("adapted from OpenStax College Physics");
-  assert.ok(phyLine > 0, "the PHY110 attribution line is there");
-  assert.match(src.slice(Math.max(0, phyLine - 400), phyLine),
-    /PENDING COUNSEL/, "the counsel gate is noted right on the line");
+test("the PHY110 attribution is counsel-cleared, not pending", () => {
+  assert.doesNotMatch(src, /PENDING COUNSEL/, "no pending-counsel marker remains");
+  assert.ok(src.includes("Explanations are written for this site. Topic order follows " +
+    "OpenStax <em>College Physics 2e</em> for further reading."),
+  "the cleared PHY110 attribution line is registered");
 });
 
 test("courseForPath / courseByCode / courseForSlug / currentCourse behave as documented", () => {
