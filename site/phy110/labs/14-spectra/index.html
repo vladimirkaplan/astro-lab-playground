@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lab 14: Line and continuous spectra with a spectroscope - Astro Lab Playground</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="../../../styles.css">
+</head>
+<body>
+
+<header class="site-head">
+  <div class="wrap">
+    <p style="margin:0"><a class="back-link" href="../../index.html">&larr; all labs</a></p>
+    <h1>Lab 14 &middot; Line and continuous spectra with a spectroscope</h1>
+    <p>Look at lamp light through a grating spectroscope, plot where the lines
+    fall against the wavelength scale, and match each gas to its fingerprint.</p>
+  </div>
+</header>
+
+<main>
+  <div class="tabs" role="tablist">
+    <button class="tab-btn" data-tab="learn" role="tab">Learn</button>
+    <button class="tab-btn" data-tab="simulate" role="tab">Simulate</button>
+    <button class="tab-btn" data-tab="check" role="tab">Check</button>
+  </div>
+
+  <section id="learn" class="tab-panel learn">
+    <div class="words-box">
+      <p class="words-title">Words in this lab</p>
+      <ul>
+        <li><strong>spectrum</strong> &mdash; light spread out into its colours, by wavelength.</li>
+        <li><strong>wavelength</strong> &mdash; the distance from one crest of a light wave to the next, in nanometres (nm).</li>
+        <li><strong>continuous spectrum</strong> &mdash; an unbroken band of every colour, from a hot solid.</li>
+        <li><strong>line spectrum</strong> &mdash; bright thin lines on a dark ground, from a hot thin gas.</li>
+        <li><strong>spectroscope</strong> &mdash; a tool with a slit and a grating that spreads light into its spectrum.</li>
+        <li><strong>fingerprint</strong> &mdash; the pattern of an element&rsquo;s lines. No two elements share it.</li>
+        <li><strong>ultraviolet</strong> &mdash; light below 380 nm, which your eye cannot see.</li>
+      </ul>
+    </div>
+
+    <h2>What you do at the bench</h2>
+    <p>The rack holds seven sources: a filament bulb, a fluorescent tube,
+    hydrogen, helium, neon, mercury and argon.</p>
+    <p>A lab jack on the lamp stand raises the chosen source into the slit&rsquo;s
+    line of sight.</p>
+    <p>You hold the spectroscope to your eye and rotate it to sweep the
+    spectrum.</p>
+    <p>Below the view, a recording chart carries one strip per source on a
+    380&ndash;700 nm scale.</p>
+    <p>You click each line you see onto its strip, by colour and position.</p>
+    <p>A reference chart toggle lays the known lines over the strips, for the
+    identification work.</p>
+
+    <h2>The one equation</h2>
+    <ul>
+      <li><strong>E = h&middot;f</strong> and <strong>c = f&middot;&lambda;</strong>
+      &mdash; one drop between atomic levels emits one wavelength. This level
+      framing is standard; the manual keeps the idea qualitative and does not
+      print the equation.</li>
+      <li>A grating spreads the light by diffraction, a prism by refraction,
+      and several diffraction orders can exist.</li>
+    </ul>
+
+    <h2>What the view shows</h2>
+    <p>A hot solid, the filament, gives the whole band at once.</p>
+    <p>A hot thin gas gives only its own lines, and only those.</p>
+    <p>The fluorescent tube mixes both: bright mercury lines on a faint
+    continuous background.</p>
+    <p>This view is bright and clean. The real one is dim and sensitive to
+    the room light.</p>
+
+    <h2>The honest limits</h2>
+    <p>The manual is internally inconsistent here. Its equipment list names an
+    argon lamp, and its procedure says to view mercury. This bench ships both,
+    and the mismatch is footnoted instead of quietly picked over.</p>
+    <p>An uncalibrated handheld scope gives line positions, not certified
+    wavelengths, so grading is colour plus band with a &plusmn;30 nm
+    tolerance, never exact.</p>
+    <p>The line brightness order is not graded. It changes with lamp age.</p>
+    <p>The colour-band figure in the manual carries only the letters
+    V B G Y O R. The band edges here are the sim&rsquo;s own.</p>
+
+    <div class="mistakes">
+      <strong>Common mistakes in this lab:</strong>
+      <ul>
+        <li>Calling the fluorescent tube a pure line source. The faint band is part of it.</li>
+        <li>Grading a line by its exact number instead of its colour and band.</li>
+        <li>Plotting a line where you expect it, not where you saw it.</li>
+        <li>Mixing up which strip is which source on the chart.</li>
+      </ul>
+    </div>
+
+  </section>
+
+  <section id="simulate" class="tab-panel">
+    <div class="toolbar" id="toolbar1"></div>
+
+    <h2>Part 1 &mdash; View the seven sources</h2>
+    <ol class="steps">
+      <li>Pick a source from the rack: filament, He, H, Hg, Ar, Ne, or fluorescent.</li>
+      <li>Press "Jack up". The source enters the slit line of sight.</li>
+      <li>Drag across the scope view to sweep the spectrum.</li>
+      <li>Note where the bright lines sit, their colours, and the scale below.</li>
+      <li>Click the source&rsquo;s chart strip at each line you saw. A mark plots there.</li>
+      <li>Turn on the reference chart to compare your marks with the known lines.</li>
+      <li>Repeat for every source, and draw in the filament&rsquo;s continuous band.</li>
+    </ol>
+
+    <div class="split">
+      <div>
+        <div class="canvas-frame"><canvas id="scopeCanvas" height="200"></canvas></div>
+        <p class="muted"><span class="drag-chip">Drag this</span> &mdash; drag across the
+        scope view to sweep. Click a chart strip to plot a line. The chart is
+        the sim&rsquo;s own build of the manual&rsquo;s image-only recording chart.</p>
+      </div>
+      <div>
+        <p class="muted" style="margin-top:0"><strong>Source rack (Part 1):</strong></p>
+        <p id="rackRow">
+          <button class="action" id="src-filament">filament</button>
+          <button class="action ghost" id="src-He">He</button>
+          <button class="action ghost" id="src-H">H</button>
+          <button class="action ghost" id="src-Hg">Hg</button>
+          <button class="action ghost" id="src-Ar">Ar</button>
+          <button class="action ghost" id="src-Ne">Ne</button>
+          <button class="action ghost" id="src-fluorescent">fluorescent</button>
+        </p>
+        <p>
+          <button class="action ghost" id="jackBtn">Jack: down</button>
+          <label class="muted"><input type="checkbox" id="refChk"> show the reference chart</label>
+        </p>
+        <p class="muted"><strong>Unknown gas (Part 2):</strong></p>
+        <p>
+          <button class="action" id="loadUnknown">Load unknown</button>
+          <button class="action ghost" id="rackBack">Return to rack</button>
+          <button class="action ghost" id="clearStrip">Clear the current strip</button>
+        </p>
+        <p><strong>I think the unknown is:</strong></p>
+        <p id="guessRow">
+          <button class="action ghost" data-guess="H">H</button>
+          <button class="action ghost" data-guess="He">He</button>
+          <button class="action ghost" data-guess="Ne">Ne</button>
+          <button class="action ghost" data-guess="Hg">Hg</button>
+          <button class="action ghost" data-guess="Ar">Ar</button>
+        </p>
+        <p>
+          <button class="action" id="recordId">Record ID</button>
+          <button class="action ghost" id="clearAllBtn">Clear all</button>
+        </p>
+        <div class="readout"><small>sweep window</small><span id="sweepRead">-</span></div>
+        <div class="readout"><small>source in the slit</small><span id="srcRead">jack is down</span></div>
+        <div class="readout"><small>unknown&rsquo;s identity</small><span id="unkRead">none loaded</span></div>
+        <div class="readout"><small>bench note</small><span id="noteRead">pick a source and press Jack up</span></div>
+      </div>
+    </div>
+
+    <h2>Part 2 &mdash; Identify an unknown gas</h2>
+    <ol class="steps">
+      <li>Press "Load unknown". An unnamed gas comes up in the slit.</li>
+      <li>Jack it up and sweep the view. Note the lines and their colours.</li>
+      <li>Plot those lines on the chart strip you think they belong to.</li>
+      <li>Turn on the reference chart and find the strip your marks line up with.</li>
+      <li>Pick "I think it is..." from the five gases.</li>
+      <li>Press "Record ID". The bench checks your marks against that gas&rsquo;s lines.</li>
+    </ol>
+
+    <h2>Your log and data page</h2>
+    <p class="muted">The plotted line chart is the deliverable: one strip per
+    source on the 380&ndash;700 nm scale, with your marks, plus the filament&rsquo;s
+    continuous band. No numeric table in the manual, and the identification
+    log below it records the unknown&rsquo;s story.</p>
+    <div class="canvas-frame"><canvas id="chartCanvas" height="340"></canvas></div>
+    <p><strong>Plotted marks</strong></p>
+    <div id="tableMarks"></div>
+    <p><strong>Identification log</strong></p>
+    <div id="tableIds"></div>
+    <textarea class="csv-copy" id="csvCopy" readonly></textarea>
+    <p><button class="action ghost" id="exportLog">Export log CSV</button></p>
+    <details id="workDetails">
+      <summary>Show your work</summary>
+      <pre id="workBox">plot lines to see the work</pre>
+    </details>
+
+    <details class="constants">
+      <summary>Numbers this bench uses</summary>
+      <p><strong>Course values, printed in the manual:</strong></p>
+      <ul>
+        <li>Visible range about 380 to 760 nm.</li>
+        <li>Line sources give discrete lines; hot solids give a continuous band.</li>
+      </ul>
+      <p><strong>Not printed in the manual, shown here so nothing is a guess:</strong></p>
+      <ul>
+        <li>Colour-band edges 380 / 450 / 485 / 500 / 565 / 590 / 700 nm, the
+        sim&rsquo;s own build of the figure&rsquo;s letters V B G Y O R.</li>
+        <li>The line reference set: standard tabulated values (NIST), shipped
+        as the sim&rsquo;s own answer key. H 656.3, 486.1, 434.0; He 667.8,
+        587.6, 501.6, 471.3, 447.1; Hg 579.0, 577.0, 546.1, 435.8; Ar 750.4,
+        706.7, 696.5, 496.5, 430.1, 420.1; Ne 650.7, 640.8, 614.3, 603.0,
+        585.2 nm.</li>
+        <li>Grating lines per millimetre. The chart reports positions, so no
+        grating number is needed.</li>
+      </ul>
+      <p><strong>The manual&rsquo;s mismatch, footnoted.</strong> The equipment
+      list names an argon lamp; the procedure says to view mercury. This bench
+      ships both lamps and never silently picks one.</p>
+      <p><strong>The sim&rsquo;s own setup.</strong> The recording chart&rsquo;s exact
+      layout is image-only, so the seven strips on the 380&ndash;700 nm scale
+      are the sim&rsquo;s own standard build. The scope view is bright and clean;
+      the real view is dim and sensitive to room light, so this one is
+      idealised.</p>
+      <p><strong>Fun Mode noise.</strong> Every line position wobbles by a
+      stable &plusmn;30 nm, the uncalibrated-scope honesty. Fun Mode never
+      changes the reference set, the visible range, or any accepted value,
+      and the line brightness order is never graded.</p>
+    </details>
+
+  </section>
+
+  <section id="check" class="tab-panel">
+    <p class="muted">These use the printed visible range (about 380 to 760 nm)
+    and the reference line set the sim ships. Every answer is recomputed from
+    the same module the sim runs, so the numbers here cannot drift away from
+    the bench.</p>
+    <div id="check-progress"></div>
+
+    <div class="exercise" data-ex='{
+      "type":"choice",
+      "correct":0,
+      "q":"1. A bright line sits at 656 nm. What colour does it look?",
+      "options":["red", "orange", "yellow", "green"],
+      "hints":["656 nm is past the orange band, which ends near 590 nm","the red band runs from about 590-620 nm out to 760 nm"],
+      "working":"656 nm sits in the red band (past about 590-620 nm, out to 760 nm), so the line looks <strong>red</strong>.",
+      "answer":"red"
+    }'></div>
+
+    <div class="exercise" data-ex='{
+      "type":"choice",
+      "correct":0,
+      "q":"2. A gas shows strong lines at 656, 486 and 434 nm. Which gas is it?",
+      "options":["hydrogen", "helium", "neon", "mercury"],
+      "hints":["656 nm is the red line of the hydrogen set","the triplet 656 / 486 / 434 is the hydrogen fingerprint"],
+      "working":"the set 656.3, 486.1, 434.0 nm is the hydrogen fingerprint, so the gas is <strong>hydrogen</strong>.",
+      "answer":"hydrogen"
+    }'></div>
+
+    <div class="exercise" data-ex='{
+      "type":"choice",
+      "correct":0,
+      "q":"3. The strongest lines sit in the red-orange, and there is no line at 656 nm. Which lamp is it?",
+      "options":["neon", "hydrogen", "helium", "argon"],
+      "hints":["neon lines pile up in the 585-650 nm block","no line at 656 rules out hydrogen"],
+      "working":"neon&rsquo;s lines sit in the red-orange 585-650 nm block with nothing at 656 nm, so the lamp is <strong>neon</strong>.",
+      "answer":"neon"
+    }'></div>
+
+    <div class="exercise" data-ex='{
+      "type":"choice",
+      "correct":0,
+      "q":"4. Which spectrum type does the filament bulb give?",
+      "options":["a continuous band of every colour", "bright lines on a dark ground", "a single unsplit line", "nothing at all"],
+      "hints":["a hot solid emits at every wavelength at once","that is why it looks white, not coloured"],
+      "working":"the hot filament is a solid, so it gives an unbroken <strong>continuous band</strong> of every colour.",
+      "answer":"a continuous band"
+    }'></div>
+
+    <div class="exercise" data-ex='{
+      "type":"choice",
+      "correct":0,
+      "q":"5. What appears in the fluorescent tube?",
+      "options":[
+        "bright mercury lines on a faint continuous background",
+        "a continuous band and nothing else",
+        "bright lines on a dark ground, nothing else",
+        "no spectrum at all"],
+      "hints":["the tube is not one or the other","the faint band is easy to miss, and that is the point"],
+      "working":"the fluorescent tube mixes both: bright <strong>mercury lines on a faint continuous background</strong>. The mixed answer is the graded one.",
+      "answer":"bright mercury lines on a faint continuous background"
+    }'></div>
+
+    <div class="exercise" data-ex='{
+      "type":"choice",
+      "correct":0,
+      "q":"6. Can you see a line at 102 nm?",
+      "options":[
+        "No. Below 380 nm it is ultraviolet",
+        "Yes, it would look violet",
+        "Yes, it would look red",
+        "No. Above 760 nm it is infrared"],
+      "hints":["the visible band starts at about 380 nm","102 nm is far below that"],
+      "working":"102 nm is below 380 nm, in the <strong>ultraviolet</strong>, so no eye can see it.",
+      "answer":"No. Below 380 nm it is ultraviolet"
+    }'></div>
+  </section>
+</main>
+
+<script src="../../../shared/courses.js"></script>
+<script src="../../../shared/units.js"></script>
+<script src="../../../shared/ui.js"></script>
+<script src="../../../shared/store.js"></script>
+<script src="../../../shared/check.js"></script>
+<script src="../../../shared/worksheet.js"></script>
+<script src="./spectra14.js"></script>
+<script src="./worksheet.js"></script>
+<script src="./sim.js"></script>
+</body>
+</html>

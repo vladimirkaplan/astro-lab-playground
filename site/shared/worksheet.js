@@ -328,12 +328,26 @@
     return buildZip(entries);
   };
 
+  // BMC-27: the file prefix names the OWNING course, not a hard-coded one.
+  // The registry's labDirs own a slug; anything the registry does not know
+  // (a fresh slug on a course page) falls to the page's own course, then the
+  // first registry entry. A page with no registry at all gets a bare "lab-".
+  function prefixFor(slug) {
+    var L = root.LS;
+    var course = null;
+    try {
+      if (L && typeof L.courseForSlug === "function") course = L.courseForSlug(slug);
+      if (!course && L && typeof L.currentCourse === "function") course = L.currentCourse();
+    } catch (e) { course = null; }
+    return course && course.worksheetFilePrefix ? course.worksheetFilePrefix : "lab-";
+  }
+
   W.fileName = function (slug, kind) {
     need(slug);
     if (kind !== "csv" && kind !== "xlsx") {
       throw new WorksheetError('kind must be "csv" or "xlsx"');
     }
-    return "ast110-lab-" + slug + "-worksheet." + kind;
+    return prefixFor(slug) + slug + "-worksheet." + kind;
   };
 
   // Browser-only glue, guarded so the module stays require-able in bare Node.

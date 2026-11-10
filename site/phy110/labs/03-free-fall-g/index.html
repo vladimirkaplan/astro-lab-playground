@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lab 3: Free fall, measuring g - Astro Lab Playground</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="../../../styles.css">
+</head>
+<body>
+
+<header class="site-head">
+  <div class="wrap">
+    <p style="margin:0"><a class="back-link" href="../../index.html">&larr; all labs</a></p>
+    <h1>Lab 3 &middot; Free fall: measuring g</h1>
+    <p>Drop a steel ball from three set heights, time each fall on a four-decimal
+    timer, and pull g out of your own averages. The bench grades you against
+    9.80 m/s&sup2;, and your number is allowed to come out somewhere else.</p>
+  </div>
+</header>
+
+<main>
+  <div class="tabs" role="tablist">
+    <button class="tab-btn" data-tab="learn" role="tab">Learn</button>
+    <button class="tab-btn" data-tab="simulate" role="tab">Simulate</button>
+    <button class="tab-btn" data-tab="check" role="tab">Check</button>
+  </div>
+
+  <section id="learn" class="tab-panel learn">
+    <div class="words-box">
+      <p class="words-title">Words in this lab</p>
+      <ul>
+        <li><strong>free fall</strong> &mdash; falling with only gravity pulling. The air drag here is too small to matter.</li>
+        <li><strong>g</strong> &mdash; the pull of gravity near the ground. This course accepts 9.80 m/s&sup2;.</li>
+        <li><strong>trial</strong> &mdash; one drop and one timing. You do five per height.</li>
+        <li><strong>average</strong> &mdash; add the numbers, divide by how many.</li>
+        <li><strong>percent error</strong> &mdash; the gap from 9.80, written as a percent.</li>
+        <li><strong>release</strong> &mdash; the clip that holds the ball, then opens on one click.</li>
+      </ul>
+    </div>
+
+    <h2>What you do at the bench</h2>
+    <p>The bench has a stand with a sliding release, a steel ball, a landing pad,
+    a meter stick, and a timer that reads four decimals. You pick a set height,
+    lock the release, and drop the ball five times.</p>
+    <p>You time every fall, average the five, and pull g out of that average. Then
+    you repeat at two more heights. The last line of the table is the lab answer:
+    the average of your three g values.</p>
+
+    <h2>The one equation that matters</h2>
+    <p>A drop from rest obeys one line. The distance h it falls in a time t is</p>
+    <ul>
+      <li><strong>h = g&middot;t&sup2; / 2</strong></li>
+    </ul>
+    <p>Turn it around and gravity is on its own:</p>
+    <ul>
+      <li><strong>g = 2h / t&sup2;</strong></li>
+    </ul>
+    <p>Put h in metres and t in seconds, and g comes out in m/s&sup2;. The whole lab
+    is that division, done once per height.</p>
+
+    <h2>Reading the height the honest way</h2>
+    <p>The meter stick reads from the pad top up to the ball bottom. The fall ends
+    when the ball bottom meets the pad top, so that is the true distance.</p>
+    <p>Read to the ball centre instead and every height is half a ball too long.
+    Here that is 1 cm, and every g you compute comes out a little too high. The
+    rule is printed on the bench: bottom to top.</p>
+
+    <h2>Why your g comes out a little wrong</h2>
+    <p>The timer starts and stops by itself, so the slips are small. The two that
+    matter are the release and the height geometry, and both sit in the
+    millisecond range.</p>
+    <p>The same slip hurts more on a short fall. From 0.200 m the fall takes about
+    0.20 s, so a 3 ms slip is 1.5% of the time. From 0.800 m it is under 0.4%.
+    The tall drop is the honest one.</p>
+    <p>A good class result lands between 9.3 and 10.1 m/s&sup2;. If every one of your
+    drops prints exactly 9.80, something is being smoothed, not measured.</p>
+
+    <div class="mistakes">
+      <strong>Common mistakes in this lab:</strong>
+      <ul>
+        <li>Reading the height to the ball centre. Every height grows by half a ball
+        and g comes out high.</li>
+        <li>Forgetting the square on t, or dividing by t the wrong way around.</li>
+        <li>Averaging the g values before averaging the times. The data page averages
+        the times first.</li>
+        <li>Logging a trial under the wrong height column.</li>
+        <li>Writing 9.80 in the report because it is expected, when your drops say
+        otherwise.</li>
+      </ul>
+    </div>
+
+  </section>
+
+  <section id="simulate" class="tab-panel">
+    <div class="toolbar" id="toolbar1"></div>
+
+    <h2>Bench A - Drop, time, average</h2>
+    <ol class="steps">
+      <li>Drag the release clip along the rod, or click a set height: 0.200, 0.400, or 0.800 m.</li>
+      <li>Press "Lock release" when the clip sits where you want it.</li>
+      <li>Press "Load ball" to put the steel ball into the clip.</li>
+      <li>Check the sight from above: the pad snaps under the ball, on the switch.</li>
+      <li>Read the height on the meter stick, from the ball bottom to the pad top.</li>
+      <li>Press "Release". The timer starts electrically and stops at the pad.</li>
+      <li>The time lands in trial 1 of 5. Press "Load ball" and drop four more times.</li>
+      <li>Do the same at the other two heights. The footer rows do the averages.</li>
+    </ol>
+    <div class="split">
+      <div>
+        <div class="canvas-frame"><canvas id="dropCanvas" height="460"></canvas></div>
+        <p class="muted"><span class="drag-chip">Drag this</span> &mdash; the release
+        clip slides up and down the rod. Grab it to move it; let go and it stays
+        where you left it.</p>
+        <p class="muted">The fall animation is slowed so you can see it. The timer
+        keeps true time.</p>
+      </div>
+      <div>
+        <p>
+          <button class="action" id="setH0">0.200 m</button>
+          <button class="action" id="setH1">0.400 m</button>
+          <button class="action" id="setH2">0.800 m</button>
+        </p>
+        <p>
+          <button class="action" id="lockBtn">Lock release</button>
+          <button class="action" id="loadBtn">Load ball</button>
+          <button class="action" id="releaseBtn">Release</button>
+        </p>
+        <p>
+          <button class="action ghost" id="resetTimer">Reset timer</button>
+          <button class="action ghost" id="recallBtn">Recall</button>
+        </p>
+        <label class="chk"><input type="checkbox" id="sightChk" checked> sight from
+        above</label>
+        <label class="chk"><input type="checkbox" id="centreChk"> I read the height
+        to the ball centre (the wrong rule)</label>
+        <div class="readout"><small>clip height</small><span id="clipRead">-</span></div>
+        <div class="readout"><small>your height reading</small><span id="hRead">-</span></div>
+        <div class="readout"><small>timer</small><span id="timerRead">0.0000 s</span></div>
+        <div class="readout"><small>trials at this height</small><span id="trialRead">-</span></div>
+        <div class="readout"><small>bench note</small><span id="noteRead">pick a height</span></div>
+      </div>
+    </div>
+
+    <h2>Your data table</h2>
+    <div id="dataTable"></div>
+    <textarea class="csv-copy" id="csvCopy" readonly></textarea>
+    <p><button class="action ghost" id="exportLog">Export log CSV</button>
+      <button class="action ghost" id="clearTable">Clear table</button></p>
+    <p class="muted">Three set heights, five trials each. The header row carries the
+    height, the footer rows carry the average t, the g per height, the average of
+    the three g values, and the percent error against 9.80 m/s&sup2;.</p>
+    <details id="workDetails">
+      <summary>Show your work</summary>
+      <pre id="workBox">drop a few balls first</pre>
+    </details>
+
+    <details class="constants">
+      <summary>Numbers this bench uses</summary>
+      <p><strong>Course values, printed in the manual:</strong></p>
+      <ul>
+        <li>Accepted g = 9.80 m/s&sup2;. The percent error is the gap from this value.</li>
+        <li>Timer resolution 0.0001 s, with Reset and Recall of the last five times.</li>
+        <li>Set heights 0.200, 0.400, 0.800 m. Five timed trials per height.</li>
+        <li>Average the times per height, then average the three g values.</li>
+        <li>G = 6.67&times;10<sup>-11</sup> N&middot;m&sup2;/kg&sup2;, for the post-lab model
+        g = G&middot;M<sub>E</sub> / (R<sub>E</sub> + h)&sup2;.</li>
+      </ul>
+      <p><strong>Not printed in the manual, shown here so nothing is a guess:</strong></p>
+      <ul>
+        <li>M<sub>E</sub> = 5.97&times;10<sup>24</sup> kg and R<sub>E</sub> = 6.37&times;10<sup>6</sup> m,
+        the standard Earth mass and radius used in that model.</li>
+      </ul>
+      <p><strong>The sim's own props.</strong> Steel ball 2 cm across; the pad snaps
+      directly under the ball, on its switch.</p>
+      <p><strong>Fun Mode noise.</strong> Drop time &plusmn;4 ms, the size of a real
+      release and geometry slip. Fun Mode never changes the accepted 9.80.</p>
+      <p><strong>Honest limits.</strong> A good real class result is 9.3 to 10.1
+      m/s&sup2;. Drag on a steel ball over these drops is negligible, so this sim
+      does not add drag noise. The dominant slips are release timing and height
+      geometry, in milliseconds, so that is what Fun Mode jitters.</p>
+    </details>
+
+  </section>
+
+  <section id="check" class="tab-panel">
+    <p class="muted">These use g = 9.80 m/s&sup2; and the course's own arithmetic. Every
+    answer below is recomputed from the same module the sim runs, so the numbers here
+    cannot drift away from the bench.</p>
+    <div id="check-progress"></div>
+
+    <div class="exercise" data-ex='{
+      "type":"numbers",
+      "q":"1. You drop the ball from h = 0.800 m and the timer stops at t = 0.404 s. What g does that give?",
+      "parts":[{"unit":"m/s^2","value":9.80,"tolAbs":0.05}],
+      "hints":["g = 2h / t^2, with h in metres and t in seconds.",
+               "0.404 squared is 0.163216. Now divide 1.6 by it."],
+      "working":"g = 2 x 0.800 / 0.404^2 = 1.6 / 0.163216 = <strong>9.80 m/s^2</strong>. One line of division, and it lands right on the accepted value.",
+      "answer":"9.80 m/s^2"
+    }'></div>
+
+    <div class="exercise" data-ex='{
+      "type":"numbers",
+      "q":"2. Before you drop anything, predict the fall times with g = 9.80. (a) h = 0.200 m. (b) h = 0.400 m.",
+      "parts":[{"label":"t at 0.200 m","unit":"s","value":0.202,"tolAbs":0.003},
+               {"label":"t at 0.400 m","unit":"s","value":0.286,"tolAbs":0.003}],
+      "hints":["Turn h = g t^2 / 2 around for t: t = sqrt(2h / g).",
+               "2 x 0.200 / 9.80 = 0.0408, and its square root is 0.202.",
+               "Double the height and the time grows by sqrt(2), not by 2."],
+      "working":"t = sqrt(2h / g). At 0.200 m: sqrt(0.4 / 9.80) = sqrt(0.04082) = <strong>0.202 s</strong>. At 0.400 m: sqrt(0.8 / 9.80) = sqrt(0.08163) = <strong>0.286 s</strong>. The time grows slower than the height, because the speed keeps building.",
+      "answer":"0.202 s and 0.286 s"
+    }'></div>
+
+    <div class="exercise" data-ex='{
+      "type":"numbers",
+      "q":"3. Five trials at h = 0.800 m read 0.4042, 0.4038, 0.4045, 0.4040, 0.4035 s. (a) What is the average time? (b) What g does that average give?",
+      "parts":[{"label":"average t","unit":"s","value":0.404,"tolAbs":0.0005},
+               {"label":"g","unit":"m/s^2","value":9.80,"tolAbs":0.02}],
+      "hints":["Add the five times, divide by five.",
+               "Then g = 1.6 / 0.404^2. The average does the work, not one lucky trial."],
+      "working":"(0.4042 + 0.4038 + 0.4045 + 0.4040 + 0.4035) / 5 = 2.0200 / 5 = <strong>0.40400 s</strong>. g = 1.6 / 0.40400^2 = <strong>9.80 m/s^2</strong>. Five trials each carry a millisecond-scale slip, and the average spreads that slip a fifth of as far.",
+      "answer":"0.40400 s, and 9.80 m/s^2"
+    }'></div>
+
+    <div class="exercise" data-ex='{
+      "type":"numbers",
+      "q":"4. At h = 0.800 m your average time came out 0.410 s. (a) What g is that? (b) What is the percent error against 9.80?",
+      "parts":[{"label":"g","unit":"m/s^2","value":9.52,"tolAbs":0.05},
+               {"label":"percent error","unit":"%","value":2.9,"tolAbs":0.2}],
+      "hints":["0.410 squared is 0.1681.",
+               "1.6 / 0.1681 = 9.52, a touch low.",
+               "The gap is 9.80 - 9.52 = 0.28. Divide by 9.80 and multiply by 100."],
+      "working":"g = 1.6 / 0.410^2 = 1.6 / 0.1681 = <strong>9.52 m/s^2</strong>. Percent error = |9.52 - 9.80| / 9.80 x 100 = 0.28 / 9.80 x 100 = <strong>2.9%</strong>. A late stop on the timer is the usual cause, and it always pulls g down.",
+      "answer":"9.52 m/s^2, 2.9% low"
+    }'></div>
+
+    <div class="exercise" data-ex='{
+      "type":"choice",
+      "correct":1,
+      "q":"5. The model says g = G M_E / (R_E + h)^2, with R_E = 6.37 x 10^6 m. Your heights run from 0.2 m to 0.8 m. Does g change measurably across your three heights?",
+      "options":["Yes - the 0.8 m drop feels noticeably weaker gravity than the 0.2 m drop.",
+                 "No - the change is about 3 in 10 million, far below what this bench can see.",
+                 "Yes - g doubles at 0.8 m, because h sits in the denominator.",
+                 "No - g only changes at heights above one kilometre."],
+      "hints":["The fractional change is about 2h / R_E.",
+               "2 x 1 / 6.37 x 10^6 is about 3 x 10^-7.",
+               "Your timer slip is a millisecond in a 0.4 s fall: about 2500 times bigger."],
+      "working":"2h / R_E = 2(1) / 6.37 x 10^6 ≈ 3 x 10^-7. The bench cannot see 3 parts in 10 million when its real slip is a millisecond of release and geometry. So: no, unmeasurably small, and the accepted 9.80 is the right value to compare all three heights against.",
+      "answer":"no, unmeasurably small (about 3 in 10 million)"
+    }'></div>
+
+    <div class="exercise" data-ex='{
+      "type":"choice",
+      "correct":1,
+      "q":"6. You stop the timer a little late on every drop at one height. What happens to the g you report for that height?",
+      "options":["It comes out high, because t is bigger and t sits in the numerator.",
+                 "It comes out low, because g = 2h / t^2 divides by a bigger number.",
+                 "Nothing changes - the percent error takes care of it.",
+                 "It comes out the same, since h did not change."],
+      "hints":["g = 2h / t^2. Where does t sit?",
+               "A bigger t means a bigger t^2 under the line."],
+      "working":"t is bigger, so t^2 is bigger, so 2h / t^2 is smaller: the reported g comes out low. Six extra milliseconds on a 0.404 s fall takes g from 9.80 to about 9.52, the 2.9% case in question 4.",
+      "answer":"low - the late stop divides g by a bigger t^2"
+    }'></div>
+
+    <div class="exercise" data-ex='{
+      "type":"keywords",
+      "need":3,
+      "q":"7. The bench reads height from the ball bottom to the pad top. In your own words, why is that the right rule, and what goes wrong when you read to the ball centre?",
+      "words":["bottom","pad","top","centre","center","long","high","tall","same","stop","touch","distance","half","ball"],
+      "placeholder":"two short ideas...",
+      "working":"The fall ends when the ball bottom touches the pad top, so that spacing is the true fall distance. Reading to the centre adds half a ball - 1 cm here - to every height, so every g you compute comes out about 1% too high, on every trial at once.",
+      "answer":"bottom to pad top is the true fall distance; a centre reading adds half a ball to every height"
+    }'></div>
+  </section>
+</main>
+
+<script src="../../../shared/courses.js"></script>
+<script src="../../../shared/units.js"></script>
+<script src="../../../shared/ui.js"></script>
+<script src="../../../shared/store.js"></script>
+<script src="../../../shared/check.js"></script>
+<script src="../../../shared/worksheet.js"></script>
+<script src="./freefall.js"></script>
+<script src="./worksheet.js"></script>
+<script src="./sim.js"></script>
+</body>
+</html>

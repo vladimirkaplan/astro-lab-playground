@@ -3,7 +3,7 @@ const test = require("node:test");
 const assert = require("node:assert/strict");
 
 require("../site/shared/units.js");
-require("../site/labs/07-lenses/lenses.js");
+require("../site/ast110/labs/07-lenses/lenses.js");
 const L = globalThis.LS.lenses;
 const FAR = Infinity;
 

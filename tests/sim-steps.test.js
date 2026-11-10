@@ -19,13 +19,9 @@ const assert = require("node:assert/strict");
 const fs = require("node:fs");
 const path = require("node:path");
 
-const ROOT = path.join(__dirname, "..");
+const M = require("./lab-manifest.js");
+const ROOT = M.ROOT;
 const SITE = path.join(ROOT, "site");
-
-const LAB_DIRS = ["01-measurement", "02-math", "03-celestial-sphere", "04-moon-phases",
-  "05-moonrise-eclipses", "06-retrograde-mars", "07-lenses", "08-venus-phases",
-  "09-pendulum", "10-spectra", "11-parallax", "12-hr-diagram", "13-variables",
-  "14-galaxy-id", "15-hubbles-law", "16-time-lat-long"];
 
 // Headings that are records or reference tables, not benches: no steps there.
 const NON_PART = /log|table|notes|calendar|events|data page/i;
@@ -68,8 +64,9 @@ function firstStepsList(segment) {
 
 test("every Simulate Part has an ol.steps with 5-8 li before the next heading", () => {
   let total = 0;
-  for (const dir of LAB_DIRS) {
-    const html = fs.readFileSync(path.join(SITE, "labs", dir, "index.html"), "utf8");
+  for (const course of M.COURSES) {
+   for (const dir of course.labDirs) {
+    const html = fs.readFileSync(M.labPage(course.code, dir), "utf8");
     const sim = simulateSection(html);
     const hs = headings(sim);
     let parts = 0;
@@ -90,8 +87,9 @@ test("every Simulate Part has an ol.steps with 5-8 li before the next heading", 
     });
     assert.ok(parts >= 1, dir + ": Simulate tab has at least one Part/bench heading");
     total += parts;
+   }
   }
-  assert.ok(total >= 30, "the 16 labs should carry 30+ step lists in total, got " + total);
+  assert.ok(total >= 30, "the AST110 labs should carry 30+ step lists in total, got " + total);
 });
 
 test("each canvas drag handle has a nearby Drag-this chip", () => {
@@ -104,17 +102,19 @@ test("each canvas drag handle has a nearby Drag-this chip", () => {
     ["15-hubbles-law", "plot2"],
   ];
   for (const [dir, canvasId] of expected) {
-    const html = fs.readFileSync(path.join(SITE, "labs", dir, "index.html"), "utf8");
+    const html = fs.readFileSync(M.labPage("ast110", dir), "utf8");
     const at = html.indexOf('id="' + canvasId + '"');
     assert.ok(at >= 0, dir + ": canvas " + canvasId + " exists");
     const near = html.slice(at, at + 400);
     assert.ok(near.includes('class="drag-chip"'),
       dir + ": " + canvasId + " needs a .drag-chip within reach of the canvas");
   }
-  for (const dir of LAB_DIRS) {
-    const html = fs.readFileSync(path.join(SITE, "labs", dir, "index.html"), "utf8");
+  for (const course of M.COURSES) {
+   for (const dir of course.labDirs) {
+    const html = fs.readFileSync(M.labPage(course.code, dir), "utf8");
     assert.ok(!/class="drag-chip"[^>]*>[^<]{20,}/.test(html),
       dir + ": the drag chip stays short (\"Drag this\", not a sentence)");
+   }
   }
 });
 

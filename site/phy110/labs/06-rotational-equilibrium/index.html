@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lab 6: Torque balance on a meter stick - Astro Lab Playground</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="../../../styles.css">
+</head>
+<body>
+
+<header class="site-head">
+  <div class="wrap">
+    <p style="margin:0"><a class="back-link" href="../../index.html">&larr; all labs</a></p>
+    <h1>Lab 6 &middot; Torque balance on a meter stick</h1>
+    <p>Hang masses on a meter stick until the counter-clockwise and clockwise
+    torques match, then weigh an unknown object against a known one. The bench
+    grades with the clamps included, and a stick that reads 1&ndash;3 % off still
+    counts as level.</p>
+  </div>
+</header>
+
+<main>
+  <div class="tabs" role="tablist">
+    <button class="tab-btn" data-tab="learn" role="tab">Learn</button>
+    <button class="tab-btn" data-tab="simulate" role="tab">Simulate</button>
+    <button class="tab-btn" data-tab="check" role="tab">Check</button>
+  </div>
+
+  <section id="learn" class="tab-panel learn">
+    <div class="words-box">
+      <p class="words-title">Words in this lab</p>
+      <ul>
+        <li><strong>torque</strong> &mdash; the turning effect of a pull. Written &tau; = F&middot;d, in newton-metres.</li>
+        <li><strong>lever arm</strong> &mdash; the distance d from the pivot to the line of the pull, in metres.</li>
+        <li><strong>equilibrium</strong> &mdash; the state where the counter-clockwise torque equals the clockwise torque.</li>
+        <li><strong>balance point X&#8320;</strong> &mdash; the mark where the stick sits level with nothing hanging.</li>
+        <li><strong>clamp-and-hanger</strong> &mdash; one clamp and its hanger at one mark. The pair&rsquo;s mass counts on that side.</li>
+        <li><strong>triple-beam balance</strong> &mdash; the scale that weighs the clamp and the unknown object.</li>
+        <li><strong>newton-metre</strong> &mdash; the unit of torque. A pull of one newton, one metre from the pivot.</li>
+      </ul>
+    </div>
+
+    <h2>What you do at the bench</h2>
+    <p>The bench has a meter stick on a pivot clamp. It has three
+    clamp-and-hanger sets, hook weights of 100 g and 50 g, an unknown object,
+    and a triple-beam balance.</p>
+    <p>In Part I you hang 100 g at the 30 cm mark on the left. Then you move
+    the right clamp until the stick reads level with the 50 g on it. The marks
+    give you X<sub>2</sub> and both lever arms.</p>
+    <p>In Part II the unknown object takes the left hook. You weigh it on the
+    triple-beam balance, then weigh it again by balancing it against the
+    100 g. The two numbers should agree.</p>
+    <p>In Part III a third clamp joins the pair. You choose its mark and its
+    extra weight, and the bench checks all three torques at once.</p>
+
+    <h2>The two equations</h2>
+    <p>A pull at a distance turns the stick. The size of the turn is the
+    torque:</p>
+    <ul>
+      <li><strong>&tau; = F&middot;d</strong></li>
+    </ul>
+    <p>The stick stays level when the two turns match, one pulling each way:</p>
+    <ul>
+      <li><strong>&tau;<sub>ccw</sub> = &tau;<sub>cw</sub></strong></li>
+    </ul>
+    <p>With hanging masses, g cancels in the balance line, so you can carry it
+    in grams: M<sub>1</sub>&middot;d<sub>1</sub> = M<sub>2</sub>&middot;d<sub>2</sub>. The bench
+    works in gram-metres and prints newton-metres.</p>
+    <p>The unknown object rides the same line, with a named form of its own:</p>
+    <ul>
+      <li><strong>M<sub>u</sub> = (M<sub>k</sub> + M<sub>c</sub>)&middot;d<sub>2</sub>/d<sub>1</sub> &minus;
+      M<sub>c</sub></strong></li>
+    </ul>
+    <p>All the masses sit in grams, because g cancels out of the balance line.</p>
+
+    <h2>Why the clamps count</h2>
+    <p>Each clamp-and-hanger sits at its own mark and pulls its own side down.
+    Ignore the 40 g and the balance mark shifts by centimetres.</p>
+    <p>Weigh the clamp first on the triple-beam balance. Then keep it in every
+    torque the bench checks, or the balance mark lands in the wrong place.</p>
+
+    <h2>Level, in the honest sense</h2>
+    <p>A real stick balances near 50 cm, rarely exactly at it. The drawer shows
+    the stick&rsquo;s own X&#8320;, and Fun Mode lets you drag the pivot to find it.</p>
+    <p>Your eye judges level within a millimetre or two. The bench reads the
+    same way: a 1&ndash;3 % gap between the torques still counts as level.</p>
+
+    <div class="mistakes">
+      <strong>Common mistakes in this lab:</strong>
+      <ul>
+        <li>Reading d from the zero end of the stick instead of from the pivot.</li>
+        <li>Dropping the clamp-and-hanger mass from the totals.</li>
+        <li>Mixing cm and m in the torque line.</li>
+        <li>Trusting the first level you see, before the stick has settled.</li>
+        <li>Weighing the unknown with the clamp still on it, then using the
+        hook number.</li>
+      </ul>
+    </div>
+
+  </section>
+
+  <section id="simulate" class="tab-panel">
+    <div class="toolbar" id="toolbar1"></div>
+
+    <h2>Part I &mdash; Balance 100 g against 50 g</h2>
+    <ol class="steps">
+      <li>Weigh the clamp and hanger on the triple-beam balance. The drawer says 40 g, and the scale should agree.</li>
+      <li>Set the left clamp at X1 = 0.30 m and hang the 100 g hook weight on it.</li>
+      <li>Hang the right clamp with its 50 g weight somewhere past the pivot.</li>
+      <li>Use the fine-adjust slider to move X2 until the stick reads level.</li>
+      <li>Press "Log Part I". The row writes M1T, M2T, X1, X2, F1, F2, d1, d2 and both torques.</li>
+      <li>The footer gives the percent difference of the two torques. A few tenths of a percent is a good bench.</li>
+    </ol>
+
+    <h2>Part II &mdash; Weigh the unknown</h2>
+    <ol class="steps">
+      <li>Take the 100 g off the left hook and hang the unknown object in its place.</li>
+      <li>Keep the left clamp at X1 = 0.30 m, so d1 = 0.20 m.</li>
+      <li>Move the right clamp to X2 = 0.75 m, so d2 = 0.25 m, with the 100 g hook weight on it.</li>
+      <li>Nudge the fine-adjust slider until the stick reads level.</li>
+      <li>Press "Log Part II". The bench computes M_u from your marks, with the clamp mass included.</li>
+      <li>Weigh the unknown on the triple-beam balance. The footer compares the measured and the computed mass in percent.</li>
+    </ol>
+
+    <h2>Part III &mdash; Three clamps, one balance</h2>
+    <ol class="steps">
+      <li>The left and right clamps keep their Part I loads: 100 g at 0.20 m and 50 g at 0.25 m from the pivot.</li>
+      <li>Drop the third clamp on the right side and slide it to the mark you choose, at d3 from the pivot.</li>
+      <li>Add 10 g, 20 g and 50 g weights to the third hanger until the stick reads level with all three clamps.</li>
+      <li>Press "Log Part III". The bench writes the condition out: each torque, and what the third clamp must supply.</li>
+      <li>The footer gives both sides of the condition and the percent difference once all three are on.</li>
+      <li>At d3 = 0.10 m the answer is 15 g added. Your mark may differ, and the condition must still close.</li>
+    </ol>
+
+    <div class="split">
+      <div>
+        <div class="canvas-frame"><canvas id="stickCanvas" height="460"></canvas></div>
+        <p class="muted"><span class="drag-chip">Drag this</span> &mdash; the clamps
+        slide along the stick, and the pivot itself moves in Fun Mode.</p>
+        <p class="muted">The stick tilts when the torques disagree. When the
+        tilt reads as level, the bench says so out loud.</p>
+      </div>
+      <div>
+        <p class="muted" style="margin-top:0"><strong>Part:</strong></p>
+        <p>
+          <button class="action" id="partBtn1">Part I</button>
+          <button class="action ghost" id="partBtn2">Part II</button>
+          <button class="action ghost" id="partBtn3">Part III</button>
+        </p>
+        <p>
+          <label>Pivot X0 (m) <input type="number" id="pivotX0" value="0.50" min="0.10" max="0.90" step="0.001"></label>
+        </p>
+        <p>
+          <label>Clamp + hanger (g) <input type="number" id="clampMass" value="40" min="0" step="5"></label>
+        </p>
+        <p>
+          <label>Fine-adjust X2 (m) <input type="range" id="x2Slide" min="0.51" max="0.99" step="0.001" value="0.80"></label>
+        </p>
+        <p>
+          <label>Third clamp d3 (m) <input type="range" id="d3Slide" min="0.05" max="0.49" step="0.001" value="0.10"></label>
+          <button class="action" id="w10">+10 g</button>
+          <button class="action" id="w20">+20 g</button>
+          <button class="action" id="w50">+50 g</button>
+          <button class="action ghost" id="wTake">Take off</button>
+        </p>
+        <p>
+          <button class="action" id="weighBtn">Weigh on triple-beam</button>
+          <button class="action ghost" id="resetPart">Reset this part</button>
+        </p>
+        <div class="readout"><small>marks X0 / X2 / d3 (m)</small><span id="marksRead">-</span></div>
+        <div class="readout"><small>tau ccw / tau cw (N m)</small><span id="torqueRead">-</span></div>
+        <div class="readout"><small>% difference of the two torques</small><span id="pctRead">-</span></div>
+        <div class="readout"><small>level check</small><span id="levelRead">-</span></div>
+        <div class="readout"><small>triple-beam reading (g)</small><span id="weighRead">-</span></div>
+        <div class="readout"><small>bench note</small><span id="noteRead">set up Part I first</span></div>
+      </div>
+    </div>
+
+    <h2>Your data tables</h2>
+    <p>
+      <button class="action" id="logBtn1">Log Part I</button>
+      <button class="action ghost" id="logBtn2">Log Part II</button>
+      <button class="action ghost" id="logBtn3">Log Part III</button>
+    </p>
+    <p class="muted">Table 1 header: clamp + hanger (g)
+    &mdash; X&#8320; (m) &mdash; g = 9.80 m/s&sup2;. The header values are printed on the
+    bench above the table, as on the real data page.</p>
+    <div id="table1"></div>
+    <p class="muted">Table 2 header: M_u measured (kg) &mdash; X&#8321; (m) &mdash; d&#8321; (m)
+    &mdash; M_k (kg) &mdash; X&#8322; (m) &mdash; d&#8322; (m).</p>
+    <div id="table2"></div>
+    <p class="muted">Part III sheet: m&#8323; (kg) &mdash; d&#8323; (m) &mdash; the
+    equilibrium condition written out &mdash; &tau; ccw &mdash; &tau; cw.</p>
+    <div id="table3"></div>
+    <textarea class="csv-copy" id="csvCopy" readonly></textarea>
+    <p><button class="action ghost" id="exportLog">Export log CSV</button>
+      <button class="action ghost" id="clearTable">Clear logs</button></p>
+    <details id="workDetails">
+      <summary>Show your work</summary>
+      <pre id="workBox">set up a part and log it first</pre>
+    </details>
+
+    <details class="constants">
+      <summary>Numbers this bench uses</summary>
+      <p><strong>Course values, printed in the manual:</strong></p>
+      <ul>
+        <li>g = 9.80 m/s&sup2;.</li>
+        <li>Part I: 100 g on the left at X&#8321; = 0.30 m, 50 g on the right.</li>
+        <li>Part II: the known hook weight is 100 g, at d&#8322; = 0.25 m.</li>
+        <li>The gate question rides the 3&ndash;4&ndash;5 m layout of Figure 3, with a
+        400 N force at the far corner.</li>
+        <li>The bag question: 20 lb at 80 cm against a bag at 60 cm, with the
+        course factor 0.45 taking lb to kg.</li>
+      </ul>
+      <p><strong>Not printed in the manual, shown here so nothing is a guess:</strong></p>
+      <ul>
+        <li>Clamp-and-hanger mass 40 g and balance point X&#8320; = 0.50 m. Those
+        are measured values on the real bench, and the bench keeps the clamp in
+        every torque it checks.</li>
+      </ul>
+      <p><strong>The sim&rsquo;s own props.</strong> Hook weights come in 100 g and
+      50 g; the third clamp takes 10 g, 20 g and 50 g weights. The stick is
+      150 g and uniform, with its middle mass at the 50 cm mark in Ideal Mode
+      and at 49.7 cm in Fun Mode. The unknown object rides a 135 g course
+      value in Ideal Mode.</p>
+      <p><strong>Fun Mode noise.</strong> The stick&rsquo;s own balance point sits at
+      0.497 m instead of 0.50 m, the triple-beam reads &plusmn;1 g, and the
+      stick wobbles a little while it settles. Fun Mode never changes g or any
+      course value.</p>
+      <p><strong>Honest limits.</strong> Real sticks balance near 50 cm, rarely
+      exactly at it, which is why the pivot is yours to set. The clamps are
+      not massless, and the eye judges level within a millimetre or two, so
+      the bench treats a 1&ndash;3 % torque gap as level.</p>
+    </details>
+
+  </section>
+
+  <section id="check" class="tab-panel">
+    <p class="muted">These use g = 9.80 m/s&sup2; and the course factor 0.45, the
+    course&rsquo;s own arithmetic. Every answer below is recomputed from the same
+    module the sim runs, so the numbers here cannot drift away from the
+    bench.</p>
+    <div id="check-progress"></div>
+
+    <div class="exercise" data-ex='{
+      "type":"numbers",
+      "q":"1. A 20 lb bag hangs 80 cm from the pivot of a bar. What mass balances it at 60 cm on the other side? Give the mass in lb, then in kg with the course factor 0.45.",
+      "parts":[{"label":"mass","unit":"lb","value":26.7,"tolAbs":0.2},
+               {"label":"mass","unit":"kg","value":12.0,"tolAbs":0.3}],
+      "hints":["The torques match: mass x 80 cm = unknown x 60 cm.",
+        "20 x 80 / 60.",
+        "Take the lb number and multiply by 0.45."],
+      "working":"Unknown x 60 = 20 x 80, so the unknown is 20 x 80/60 = <strong>26.7 lb</strong>. In kg with the course factor: 26.7 x 0.45 = <strong>12.0 kg</strong>.",
+      "answer":"26.7 lb, and 12.0 kg"
+    }'></div>
+
+    <div class="exercise" data-ex='{
+      "type":"numbers",
+      "q":"2. Figure 3 shows a gate on a 3-4-5 m layout, hinged at O. A 400 N force acts at the far corner. (a) What is the lever arm about O, on the standard 3-4-5 reading? (b) What is the torque?",
+      "parts":[{"label":"d","unit":"m","value":2.4,"tolAbs":0.05},
+               {"label":"tau","unit":"N m","value":960,"tolAbs":1}],
+      "hints":["The figure is a 3-4-5 triangle, drawn in the manual.",
+        "The lever arm is 3 x 4/5.",
+        "tau = F x d."],
+      "working":"On the standard 3-4-5 reading the lever arm is 3 x 4/5 = <strong>2.4 m</strong> (figure-derived: the geometry lives in the drawing, so the bench says so). The torque is 400 x 2.4 = <strong>960 N m</strong>.",
+      "answer":"d = 2.4 m, and tau = 960 N m"
+    }'></div>
+
+    <div class="exercise" data-ex='{
+      "type":"numbers",
+      "q":"3. Part I: 100 g hangs at X1 = 0.30 m on the left and each clamp-and-hanger is 40 g. The stick balances at X0 = 0.50 m. At what mark X2 must the 50 g plus clamp hang on the right?",
+      "parts":[{"unit":"m","value":0.811,"tolAbs":0.005}],
+      "hints":["Count the clamp on both sides: 140 g against 90 g.",
+        "d2 = 140 x 0.20 / 90.",
+        "X2 = X0 + d2."],
+      "working":"With the 40 g clamps counted, the left side is 140 g at d1 = 0.20 m. So d2 = 140 x 0.20 / 90 = 0.311 m, and X2 = 0.50 + 0.311 = <strong>0.811 m</strong>. Drop the clamps and the mark slips to 0.90 m.",
+      "answer":"X2 = 0.811 m"
+    }'></div>
+
+    <div class="exercise" data-ex='{
+      "type":"numbers",
+      "q":"4. In Part I the left side carries 140 g at d1 = 0.20 m. (a) What force does it pull with? (b) What is the counter-clockwise torque?",
+      "parts":[{"label":"F1","unit":"N","value":1.372,"tolAbs":0.005},
+               {"label":"tau","unit":"N m","value":0.274,"tolAbs":0.003}],
+      "hints":["F = m x g, with m in kg.",
+        "0.140 x 9.80.",
+        "tau = F x d."],
+      "working":"F1 = 0.140 x 9.80 = <strong>1.372 N</strong>. The counter-clockwise torque is 1.372 x 0.20 = <strong>0.274 N m</strong>.",
+      "answer":"F1 = 1.372 N, and tau = 0.274 N m"
+    }'></div>
+
+    <div class="exercise" data-ex='{
+      "type":"numbers",
+      "q":"5. Part II: an unknown object plus its 40 g clamp balances at d1 = 0.20 m against a 100 g hook weight plus clamp at d2 = 0.25 m. What is the unknown mass M_u?",
+      "parts":[{"unit":"g","value":135,"tolAbs":2}],
+      "hints":["M_u = (M_k + M_c) x d2/d1 - M_c.",
+        "d2/d1 = 0.25/0.20 = 1.25.",
+        "(100 + 40) x 1.25 - 40."],
+      "working":"M_u = (100 + 40) x 0.25/0.20 - 40 = 140 x 1.25 - 40 = <strong>135 g</strong>. The clamp rides along on both sides, which is why it appears in the formula at all.",
+      "answer":"M_u = 135 g"
+    }'></div>
+
+    <div class="exercise" data-ex='{
+      "type":"numbers",
+      "q":"6. Part III: the left clamp-and-hanger with 100 g sits 0.20 m from the pivot and the right one with 50 g sits 0.25 m. (a) How much torque is missing to balance? (b) If the third clamp hangs at d3 = 0.10 m and the clamp-and-hanger is 40 g, how many grams of extra weight does it need?",
+      "parts":[{"label":"missing torque","unit":"N m","value":0.054,"tolAbs":0.002},
+               {"label":"added","unit":"g","value":15,"tolAbs":1}],
+      "hints":["140 g at 0.20 m against 90 g at 0.25 m, in gram-metres.",
+        "28 - 22.5 = 5.5 g m of missing turn.",
+        "5.5 / 0.10 = 55 g total at d3, clamp included."],
+      "working":"Left: 0.140 x 9.80 x 0.20 = 0.274 N m. Right: 0.090 x 9.80 x 0.25 = 0.221 N m. Missing: <strong>0.054 N m</strong>. At d3 = 0.10 m the third clamp must carry 0.054 / (9.80 x 0.10) = 55 g total, so 55 - 40 = <strong>15 g</strong> of extra weight.",
+      "answer":"0.054 N m missing, and 15 g added"
+    }'></div>
+
+    <div class="exercise" data-ex='{
+      "type":"choice",
+      "correct":0,
+      "q":"7. Suppose you ignore the mass of the clamps and hangers. Where will you set the right clamp to balance Part I?",
+      "options":["Farther from the pivot than it should be.",
+        "Closer to the pivot than it should be.",
+        "At the same mark as before.",
+        "The stick would not balance at all."],
+      "hints":["Without clamps the line is 100 x d1 = 50 x d2.",
+        "That gives d2 = 0.40 m, so X2 = 0.90 m.",
+        "The true mark with clamps is 0.811 m."],
+      "working":"Ignore the clamps and d2 = 100 x 0.20 / 50 = 0.400 m, so X2 lands at 0.90 m. With the 40 g clamps counted the mark is 0.811 m, which sits 9 cm inboard of the clump-free one. The clamps are not decoration.",
+      "answer":"Farther from the pivot than it should be (0.90 m instead of 0.811 m)"
+    }'></div>
+
+    <div class="exercise" data-ex='{
+      "type":"keywords",
+      "need":3,
+      "q":"8. A real meter stick balances near 50 cm but rarely exactly at it. In your own words, say why.",
+      "words":["mass","stick","uniform","center","end","side","heavy","shift","wood","grain","thick"],
+      "placeholder":"two or three short ideas...",
+      "hints":["A printed mark is a label, not a promise.",
+        "Wood is not perfectly even, and the marks are cut in by hand."],
+      "working":"The 50 cm mark is where the maker wanted the middle to be, not where the middle mass actually sits. Wood varies grain to grain, the ends wear, and the clamp holes are not perfectly placed, so the true balance point lands a few millimetres off 50. That is why the bench lets you set X0 by measurement instead of by rule.",
+      "answer":"the stick is not perfectly uniform, so its middle mass sits a few millimetres off the 50 cm mark"
+    }'></div>
+  </section>
+</main>
+
+<script src="../../../shared/courses.js"></script>
+<script src="../../../shared/units.js"></script>
+<script src="../../../shared/ui.js"></script>
+<script src="../../../shared/store.js"></script>
+<script src="../../../shared/check.js"></script>
+<script src="../../../shared/worksheet.js"></script>
+<script src="./torque.js"></script>
+<script src="./worksheet.js"></script>
+<script src="./sim.js"></script>
+</body>
+</html>

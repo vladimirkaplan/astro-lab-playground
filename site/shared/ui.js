@@ -74,12 +74,29 @@
     return { select: select };
   };
 
+  // ---------- course identity (shared/courses.js) ----------
+  // The registry is the only place course text lives. Everything below is
+  // guarded so ui.js still loads on a page that forgot courses.js (and in
+  // bare Node tests that never had a path): no course means the banner keeps
+  // its first half and simply omits the source line.
+  U.course = function () {
+    try {
+      return typeof root.LS.currentCourse === "function" ? root.LS.currentCourse() : null;
+    } catch (e) { return null; }
+  };
+  U.courseForPath = function (pathname) {
+    try {
+      return typeof root.LS.courseForPath === "function" ? root.LS.courseForPath(pathname) : null;
+    } catch (e) { return null; }
+  };
+
   // ---------- disclaimer banner ----------
   U.banner = function (mount) {
+    var course = U.course();
+    var src = course && course.attribution ? " " + course.attribution : "";
     var b = U.el("div", { class: "banner", role: "note", html:
       "<strong>Practice sim, not your BMCC submission.</strong> Do the real lab and " +
-      "follow your instructor's rules. Explanations adapted from OpenStax " +
-      "<em>Astronomy 2e</em> (CC BY 4.0)." });
+      "follow your instructor's rules." + src });
     (mount || document.body).prepend(b);
     U.licence(mount || document.body);
     return b;
@@ -87,11 +104,14 @@
 
   // ---------- license footer ----------
   // Every lab page carries the same licence line, so a student who lands on one
-  // page still sees what they may do with it.
+  // page still sees what they may do with it. The source fragment comes from
+  // the course registry, like the banner's.
   U.licence = function (mount) {
+    var course = U.course();
+    var src = course && course.licenceSource ? " (" + course.licenceSource + ")" : "";
     var f = U.el("footer", { class: "lab-licence", html:
       "Unofficial student project, not affiliated with any college. Code: MIT. " +
-      "Explanations: CC BY 4.0 (adapted from OpenStax <em>Astronomy 2e</em>). " +
+      "Explanations: CC BY 4.0" + src + ". " +
       "Public data sources only; no student data of any kind lives here. " +
       "This sim rehearses the lab - it is not a submission channel." });
     (mount || document.body).appendChild(f);
@@ -145,9 +165,20 @@
 
   // ---------- Ideal / Fun mode ----------
   // Fun Mode adds realistic instrument noise to measurements; Ideal is exact.
-  U.MODE_KEY = function (labId) { return "labSimsMode." + labId; };
+  // BMC-27: lab folders now sit under a course directory, so new writes key as
+  // labSimsMode.<course>.<slug>. The old bare-slug key stays readable, so mode
+  // choices saved before the move still load.
+  U.MODE_KEY = function (labId) {
+    var course = U.course();
+    return "labSimsMode." + (course ? course.code + "." : "") + labId;
+  };
+  U.LEGACY_MODE_KEY = function (labId) { return "labSimsMode." + labId; };
   U.getMode = function (labId) {
-    try { return localStorage.getItem(U.MODE_KEY(labId)) === "fun" ? "fun" : "ideal"; }
+    try {
+      var v = localStorage.getItem(U.MODE_KEY(labId));
+      if (v === "fun" || v === "ideal") return v;
+      return localStorage.getItem(U.LEGACY_MODE_KEY(labId)) === "fun" ? "fun" : "ideal";
+    }
     catch (e) { return "ideal"; }
   };
   U.modeToggle = function (labId, mount, onChange) {
@@ -207,17 +238,48 @@
   };
 
   // ---------- progress ticks ----------
+  // BMC-27: new writes go to the per-course blob labSimsProgress.<course>.v1.
+  // The pre-move blob (labSimsProgress.v1, written under the bare lab ids) is
+  // still read and merged, so AST110 ticks saved before the move keep showing,
+  // and homework (which has not moved yet) keeps landing in the fallback course.
   U.PROGRESS_KEY = "labSimsProgress.v1";
+  U.progressKey = function () {
+    var course = U.course();
+    return course ? "labSimsProgress." + course.code + ".v1" : U.PROGRESS_KEY;
+  };
+  function parseBlob(raw) {
+    try { return JSON.parse(raw) || {}; } catch (e) { return {}; }
+  }
   U.progressAll = function () {
-    try { return JSON.parse(localStorage.getItem(U.PROGRESS_KEY)) || {}; }
-    catch (e) { return {}; }
+    var out = {}, k, blob;
+    try {
+      blob = parseBlob(localStorage.getItem(U.PROGRESS_KEY));
+      Object.keys(blob).forEach(function (id) {
+        out[id] = {};
+        Object.keys(blob[id] || {}).forEach(function (w) { out[id][w] = true; });
+      });
+      k = U.progressKey();
+      if (k !== U.PROGRESS_KEY) {
+        blob = parseBlob(localStorage.getItem(k));
+        Object.keys(blob).forEach(function (id) {
+          out[id] = out[id] || {};
+          Object.keys(blob[id] || {}).forEach(function (w) { out[id][w] = true; });
+        });
+      }
+    } catch (e) { return out; }
+    return out;
   };
   U.progressMark = function (labId, what) {
-    var p = U.progressAll();
+    // Write only the page's own blob: the legacy blob keeps its old ticks
+    // untouched (progressAll() merges on read), so nothing migrates or
+    // duplicates behind a student's back.
+    var k = U.progressKey();
+    var p;
+    try { p = JSON.parse(localStorage.getItem(k)) || {}; } catch (e) { p = {}; }
     p[labId] = p[labId] || {};
     p[labId][what] = true;
-    try { localStorage.setItem(U.PROGRESS_KEY, JSON.stringify(p)); } catch (e) {}
-    return p;
+    try { localStorage.setItem(k, JSON.stringify(p)); } catch (e) {}
+    return U.progressAll();
   };
 
   U.plural = function (n, word) { return n + " " + word + (n === 1 ? "" : "s"); };

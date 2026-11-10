@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lab 2: Graph scales, plotting, slope - Astro Lab Playground</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="../../../styles.css">
+</head>
+<body>
+
+<header class="site-head">
+  <div class="wrap">
+    <p style="margin:0"><a class="back-link" href="../../index.html">&larr; all labs</a></p>
+    <h1>Lab 2 &middot; Graph scales, plotting, and slope</h1>
+    <p>Build an axis you can read, put five points on the paper, draw one straight
+    line, and take its slope. In this course the slope is often the answer: on a
+    speed-time graph it is g itself.</p>
+  </div>
+</header>
+
+<main>
+  <div class="tabs" role="tablist">
+    <button class="tab-btn" data-tab="learn" role="tab">Learn</button>
+    <button class="tab-btn" data-tab="simulate" role="tab">Simulate</button>
+    <button class="tab-btn" data-tab="check" role="tab">Check</button>
+  </div>
+
+  <section id="learn" class="tab-panel learn">
+    <div class="words-box">
+      <p class="words-title">Words in this lab</p>
+      <ul>
+        <li><strong>axis</strong> &mdash; one numbered side of the graph, x or y.</li>
+        <li><strong>division</strong> &mdash; one gap between two printed marks.</li>
+        <li><strong>scale</strong> &mdash; what one division is worth, in units.</li>
+        <li><strong>origin</strong> &mdash; the value the axis starts at.</li>
+        <li><strong>plot</strong> &mdash; a mark showing one measured pair of numbers.</li>
+        <li><strong>trendline</strong> &mdash; one straight line that suits all the plots.</li>
+        <li><strong>slope</strong> &mdash; rise divided by run along that line.</li>
+        <li><strong>coverage</strong> &mdash; how much of the axis your data fills.</li>
+      </ul>
+    </div>
+
+    <h2>What you do at the bench</h2>
+    <p>You get paper with a set number of divisions, and a small table of numbers.
+    You decide what each division is worth, where each axis starts, and where the
+    points go. Then you lay a ruler on the points, draw one line, and read its
+    slope. The rest of the semester is built on that slope.</p>
+
+    <h2>Picking a scale in three steps</h2>
+    <p>Call the smallest value XS, the largest XL, and the number of divisions you
+    have N. First find the pre-scale:</p>
+    <ul>
+      <li>PS = (XL &minus; XS) / N</li>
+    </ul>
+    <p>Now pick the scale S from three friendly numbers only: 1, 2, and 5, moved by
+    powers of ten. Take the smallest one that still spans your data. If PS comes out
+    1.33, the answer is 2. If PS comes out 5.83, the answer is 10. If PS is exactly
+    2, you keep 2.</p>
+    <p>Never pick 3 or 7 as a scale. Marks land in awkward places, and every reader
+    of your graph pays for it.</p>
+
+    <h2>Where the axis may start</h2>
+    <p>The axis does not have to begin at zero. Start it where it reads best, but
+    every point must stay on the paper. The class formula for the start is:</p>
+    <ul>
+      <li>Xc = XS &minus; (N &times; S &minus; (XL &minus; XS)) / 2</li>
+    </ul>
+    <p>Then you may nudge Xc to a rounder number, as long as the last point still
+    fits. If nudging pushes a point off the paper, the nudge is not allowed.</p>
+    <p>One more rule bites people: your data must cover at least 40% of the axis
+    length. A tight little clump of five dots in one corner tells the reader nothing
+    about the slope.</p>
+
+    <h2>The trendline and its slope</h2>
+    <p>Draw one straight line that suits all the points. Do not join the dots with
+    segments; a zigzag line has no slope at all. Good lines leave about the same
+    number of points above as below, and never leave all the points on one side.</p>
+    <p>Then pick two points on the line, far apart, and do the arithmetic:</p>
+    <ul>
+      <li><strong>slope = (y2 &minus; y1) / (x2 &minus; x1)</strong></li>
+    </ul>
+    <p>Those two points come from the line, not from your data. A data point usually
+    sits a little off the line, so using it drags the slope around. This one habit is
+    why two students with the same dots report different g.</p>
+
+    <h2>What a slope is worth</h2>
+    <p>A slope is never just a number. It carries units and a meaning. On a
+    speed-time graph the slope is an acceleration, so the falling-ball table hands you the
+    local strength of gravity. On a force-versus-stretch graph the slope is the stiffness of
+    the spring. Say what your slope measures, in the same sentence as its number.</p>
+
+    <div class="mistakes">
+      <strong>Common mistakes in this lab:</strong>
+      <ul>
+        <li>No title, or axis names with no units in brackets.</li>
+        <li>A scale like 3 per division, which makes every mark awkward.</li>
+        <li>Data that fills a fifth of the paper because the axis is too grand.</li>
+        <li>Joining the dots instead of drawing one line through them.</li>
+        <li>Taking the slope from two data points, often the two nearest ones.</li>
+        <li>Quoting the slope with no units and no statement of what it measures.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="simulate" class="tab-panel">
+    <div class="toolbar" id="toolbar1"></div>
+
+    <p class="muted">The practice tables leave N open, so this page pins
+    <strong>N = 30</strong> divisions. Change N in Bench B and every answer on the page
+    changes with it, exactly like real paper with a different number of squares.</p>
+
+    <h2>Bench A - Read values off a plotted graph</h2>
+    <ol class="steps">
+      <li>Pick a data set from the list.</li>
+      <li>Move the pointer over the graph to park the crosshair.</li>
+      <li>Read where the guides hit each axis.</li>
+      <li>Press "Read one division" to zoom the axis strip below.</li>
+      <li>Count the divisions in the strip and divide the interval by them.</li>
+      <li>Press "Log this reading" to keep the pair you read.</li>
+    </ol>
+    <p>
+      <label>Data set:
+        <select id="setSel"></select>
+      </label>
+      <label>Divisions N: <input class="num-input" id="nInA" value="30" style="width:6ch"></label>
+    </p>
+    <div class="canvas-frame"><canvas id="readCanvas" height="330"></canvas></div>
+    <div class="readout"><small>crosshair reads</small><span id="crossRead">move the pointer over the graph</span></div>
+    <div class="canvas-frame"><canvas id="zoomCanvas" height="90"></canvas></div>
+    <div class="readout"><small>one division, measured off the strip</small><span id="zoomRead">-</span></div>
+    <p><button class="action" id="logReading">Log this reading</button></p>
+    <p class="muted">The guides drop straight down and straight across. That is how you
+    read a graph by hand too: ruler down to the x-axis, ruler across to the y-axis.</p>
+
+    <h2>Bench B - Design the axis scale</h2>
+    <ol class="steps">
+      <li>Type the smallest and largest value the axis must carry.</li>
+      <li>Set the divisions N that your paper really has.</li>
+      <li>Read the pre-scale PS the page computes for you.</li>
+      <li>Try each scale factor chip and see whether it spans the data.</li>
+      <li>Set the start value, then try nudging it to a rounder number.</li>
+      <li>Check the coverage bar clears the 40% mark, then log the plan.</li>
+    </ol>
+    <div class="split">
+      <div>
+        <p>
+          <label>Smallest value XS: <input class="num-input" id="xsIn" value="10"></label>
+          <label>Largest value XL: <input class="num-input" id="xlIn" value="50"></label>
+        </p>
+        <p>
+          <label>Divisions N: <input class="num-input" id="nInB" value="30" style="width:6ch"></label>
+          <button class="action secondary" id="copySet">Use the selected set's range</button>
+        </p>
+        <div class="readout"><small>pre-scale PS = (XL - XS) / N</small><span id="psRead">-</span></div>
+        <p id="sfStrip" class="chip-strip"></p>
+        <div class="readout"><small>chosen scale S per division</small><span id="sRead">-</span></div>
+        <div class="readout"><small>start value Xc = XS - (N*S - (XL - XS))/2</small><span id="xcRead">-</span></div>
+      </div>
+      <div>
+        <p><label>Your origin Xo: <input class="num-input" id="xoIn" value="0"></label>
+          <button class="action secondary" id="nudgeOrigin">Nudge to a rounder start</button></p>
+        <div class="readout"><small>does every point fit?</small><span id="fitRead">-</span></div>
+        <p>Axis length used by the data:</p>
+        <div class="cover-gauge" id="coverBar" role="img" aria-label="data coverage of the axis">
+          <div class="cover-fill" id="coverFill"></div>
+          <div class="cover-mark" id="coverMark"></div>
+        </div>
+        <div class="readout"><small>coverage, needs 40% or more</small><span id="coverRead">-</span></div>
+        <p><button class="action" id="logPlan">Log this axis plan</button></p>
+      </div>
+    </div>
+
+    <h2>Bench C - Plot, balance the line, take the slope</h2>
+    <ol class="steps">
+      <li>Pick the data set you are plotting in Bench A.</li>
+      <li>Drag each dot from the tray onto its own pair of values.</li>
+      <li>Drag the two line handles until the line suits all five dots.</li>
+      <li>Read the points-per-side count and aim for a balanced line.</li>
+      <li>Press "Snap to balanced" if you want to see the honest reference line.</li>
+      <li>Slide the two slope probes far apart on the line.</li>
+      <li>Read the rise-over-run arithmetic, then log your slope.</li>
+    </ol>
+    <div class="canvas-frame"><canvas id="plotCanvas" height="420"></canvas></div>
+    <p class="muted"><span class="drag-chip">Drag this</span> &mdash; the dots in the tray,
+    the two square line handles, and the two round probes. The probes only ever ride on
+    the line.</p>
+    <div class="readout"><small>dots placed</small><span id="dotsRead">0 of 5</span></div>
+    <div class="readout"><small>points per side of your line</small><span id="sideRead">-</span></div>
+    <div class="readout"><small>your slope from the two probes</small><span id="slopeRead">-</span></div>
+    <div class="readout"><small>reference slope (least squares on the set)</small><span id="refRead">-</span></div>
+    <div class="readout"><small>what that slope measures here</small><span id="meanRead">-</span></div>
+    <p>
+      <button class="action" id="logPlot">Log my five dots</button>
+      <button class="action" id="logSlope">Log my slope</button>
+      <button class="action secondary" id="snapLine">Snap to balanced</button>
+      <button class="action ghost" id="resetDots">Put the dots back</button>
+    </p>
+
+    <h2>Your data table</h2>
+    <div id="dataTable"></div>
+    <textarea class="csv-copy" id="csvCopy" readonly></textarea>
+    <p><button class="action ghost" id="exportLog">Export log CSV</button>
+      <button class="action ghost" id="clearTable">Clear table</button></p>
+
+    <details class="constants">
+      <summary>Numbers this bench uses</summary>
+      <p><strong>Course rules, printed in the manual:</strong></p>
+      <ul>
+        <li>Scale steps come from 1, 2, 5, with 10 as the top bracket.</li>
+        <li>Data must cover at least 40% of the axis length.</li>
+        <li>A title, axis names with units, and axis values are mandatory.</li>
+        <li>Never join the dots with segments.</li>
+        <li>The accepted values are g = 9.80 m/s&sup2; on Earth and 1.62 m/s&sup2; on the Moon.</li>
+      </ul>
+      <p><strong>The sim's own setup.</strong> The manual shows the practice tables but
+      leaves N open, so this page pins N = 30 and shows it on every control.</p>
+      <ul>
+        <li>Car example: t = 10 to 50 s with d = 65 to 240 m, trendline through (0 s, 15 m)
+        and (60 s, 280 m).</li>
+        <li>Earth table: t = 1, 3, 5, 7, 9 s with v = 8, 34, 52, 66, 86 m/s.</li>
+        <li>Moon table: t = 0, 10, 20, 30, 40 s with v = 402, 415, 433, 448, 466 m/s.</li>
+        <li>The stretch-and-force graph in the manual is a picture with no numbers, so the
+        spring set here is the sim's own bench: x = 1 to 5 cm against F = 6.1 to 30.2 N.</li>
+      </ul>
+      <p>Fun Mode adds graph-reading noise of about one tenth of a division to the dot
+      readouts, and hides the true values. It never moves the reference line or an
+      accepted value.</p>
+    </details>
+  </section>
+
+  <section id="check" class="tab-panel">
+    <p class="muted">Every number below is recomputed by the same module that draws the
+    paper, so this tab and the bench cannot drift apart. N = 30 unless the question says
+    otherwise.</p>
+    <div id="check-progress"></div>
+
+    <div class="exercise" data-ex='{
+      "type":"numbers",
+      "q":"1. You plan a speed-time graph on 30 divisions each way. Time runs from 10 s to 50 s; speed runs from 65 m/s to 240 m/s. (a) What scale should the time axis carry per division? (b) What scale should the speed axis carry?",
+      "parts":[{"label":"time axis","unit":"s/div","value":2,"tolAbs":0.001},
+               {"label":"speed axis","unit":"m/s per div","value":10,"tolAbs":0.001}],
+      "hints":["PS = (XL - XS) / N. Time: (50 - 10) / 30 = 1.333.",
+               "Pick the smallest of 1, 2, 5, 10 that is at least PS. 1.333 needs 2.",
+               "Speed: (240 - 65) / 30 = 5.833, and the next friendly step up from 5.833 is 10."],
+      "working":"Time: PS = 40/30 = 1.333, so <strong>S = 2 s per division</strong> (30 divisions reach 60 s). Speed: PS = 175/30 = 5.833, so <strong>S = 10 m/s per division</strong> (30 divisions reach 300 m/s). A scale of 5 would have left the last point off the paper.",
+      "answer":"2 s per division and 10 m/s per division"
+    }'></div>
+
+    <div class="exercise" data-ex='{
+      "type":"numbers",
+      "q":"2. An axis must carry 6 to 46 on 20 divisions. What is the scale per division?",
+      "parts":[{"unit":"per division","value":2,"tolAbs":0.001}],
+      "hints":["PS = (46 - 6) / 20.",
+               "When PS lands exactly on a friendly number, you keep it."],
+      "working":"PS = 40 / 20 = 2.0 exactly, so <strong>S = 2 per division</strong> and the axis runs from 6 to 46 with nothing wasted. Exact fits stay exact - do not round a good number up to 5.",
+      "answer":"2 per division"
+    }'></div>
+
+    <div class="exercise" data-ex='{
+      "type":"numbers",
+      "q":"3. Your data holds 12 m, 50 m and 108 m. The axis has N = 100 divisions at S = 1 m per division. What start value Xc does the class formula give?",
+      "parts":[{"unit":"m","value":10,"tolAbs":0.01}],
+      "hints":["Xc = XS - (N*S - (XL - XS)) / 2. Here XS = 12, XL = 108.",
+               "N*S = 100 and XL - XS = 96, so the leftover is 4 divisions."],
+      "working":"Xc = 12 - (100 - 96) / 2 = 12 - 2 = <strong>10 m</strong>. The spare 4 divisions split evenly, two at each end, which is why the start sits below the smallest value.",
+      "answer":"10 m"
+    }'></div>
+
+    <div class="exercise" data-ex='{
+      "type":"numbers",
+      "q":"4. The car example prints a trendline through (0 s, 15 m) and (60 s, 280 m). What is its slope? Give the number; the units come from the axes.",
+      "parts":[{"unit":"m/s","value":4.42,"tolAbs":0.05}],
+      "hints":["slope = (y2 - y1) / (x2 - x1) with both points on the line.",
+               "(280 - 15) = 265 and (60 - 0) = 60."],
+      "working":"(280 - 15) / (60 - 0) = 265 / 60 = <strong>4.42 m/s</strong>. The units are metres per second because the rise is metres and the run is seconds. That is a speed: this graph is distance against time, so the slope is how fast the car travels.",
+      "answer":"4.42 m/s, which is the car speed"
+    }'></div>
+
+    <div class="exercise" data-ex='{
+      "type":"numbers",
+      "q":"5. Plot the Earth table (t = 1, 3, 5, 7, 9 s against v = 8, 34, 52, 66, 86 m/s) and take your slope. What g did you get? A steady hand lands within 1 of the reference line.",
+      "parts":[{"unit":"m/s^2","value":9.4,"tolAbs":1.0}],
+      "hints":["Least squares on those five pairs gives 9.40; a balanced hand line sits near it.",
+               "Do not force it to 9.8. The manual table really does fit to 9.4.",
+               "Two probes far apart on your line, then rise over run."],
+      "working":"The best straight line through those five pairs has slope <strong>9.40 m/s&sup2;</strong>, so that is the honest answer for this table, and it is 4% under the accepted 9.80. Real benches land in the same region. Reporting 9.8 because 9.8 is expected is the one answer that is always wrong.",
+      "answer":"9.4 m/s^2 from the manual table"
+    }'></div>
+
+    <div class="exercise" data-ex='{
+      "type":"numbers",
+      "q":"6. Now the Moon table (t = 0, 10, 20, 30, 40 s against v = 402, 415, 433, 448, 466 m/s). What slope does your line give?",
+      "parts":[{"unit":"m/s^2","value":1.61,"tolAbs":0.15}],
+      "hints":["Rise over run across the whole line, not across two dots.",
+               "The reference slope for this table is 1.61."],
+      "working":"<strong>1.61 m/s&sup2;</strong>, and the accepted Moon value is 1.62 m/s&sup2; - inside 1%. The same method that gave 9.4 on the Earth table gives the Moon value almost exactly, which is a fair sign the method is sound.",
+      "answer":"1.61 m/s^2"
+    }'></div>
+
+    <div class="exercise" data-ex='{
+      "type":"choice",
+      "correct":3,
+      "q":"7. You plot five points and they fill only one fifth of the paper, all huddled in the lower left. Which fix does the course rule want?",
+      "options":["Add more decimal places to each axis label.",
+                 "Leave it: the points are honest, so the graph is fine.",
+                 "Draw the line through the clump and hope the slope survives.",
+                 "Change the scale or the origin so the data covers at least 40% of the axis length."],
+      "hints":["The rule is about how much of the paper the data uses.",
+               "40% of the axis length, or more."],
+      "working":"The rule is coverage: the data must fill at least 40% of each axis. Shrink the scale or move the origin in so the points spread out. A clump in the corner hides the slope, and small reading errors become huge slope errors.",
+      "answer":"spread the data over at least 40% of the axis"
+    }'></div>
+
+    <div class="exercise" data-ex='{
+      "type":"keywords",
+      "need":2,
+      "q":"8. In your own words: why must the two points you use for the slope lie on the trendline instead of on two of your data dots?",
+      "words":["line","off","scatter","error","dot","data","far","average","smooth","slope"],
+      "placeholder":"two plain ideas...",
+      "working":"Each dot carries its own measurement error, so a dot usually sits a little off the line. Using two dots throws the line away and turns the slope into the slope of one lucky pair. Two points far apart on the line average all five dots out instead, and a small reading slip moves a long run much less than a short one.",
+      "answer":"dots carry scatter; the line is the averaged result"
+    }'></div>
+  </section>
+</main>
+
+<script src="../../../shared/courses.js"></script>
+<script src="../../../shared/units.js"></script>
+<script src="../../../shared/ui.js"></script>
+<script src="../../../shared/store.js"></script>
+<script src="../../../shared/check.js"></script>
+<script src="../../../shared/worksheet.js"></script>
+<script src="./graphlab.js"></script>
+<script src="./worksheet.js"></script>
+<script src="./sim.js"></script>
+</body>
+</html>

@@ -3,7 +3,7 @@ const test = require("node:test");
 const assert = require("node:assert/strict");
 
 require("../site/shared/units.js");
-require("../site/labs/02-math/mathlab.js");
+require("../site/ast110/labs/02-math/mathlab.js");
 const M = globalThis.LS.mathlab;
 const U = globalThis.LS.units;
 

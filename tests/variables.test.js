@@ -2,7 +2,7 @@
 const test = require("node:test");
 const assert = require("node:assert/strict");
 
-require("../site/labs/13-variables/variables.js");
+require("../site/ast110/labs/13-variables/variables.js");
 const V = globalThis.LS.variables;
 
 const close = (a, b) => assert.ok(Math.abs(a - b) < 1e-9, a + " vs " + b);

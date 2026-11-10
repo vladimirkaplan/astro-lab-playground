@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lab 8: Specific heat of a metal by mixtures - Astro Lab Playground</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="../../../styles.css">
+</head>
+<body>
+
+<header class="site-head">
+  <div class="wrap">
+    <p style="margin:0"><a class="back-link" href="../../index.html">&larr; all labs</a></p>
+    <h1>Lab 8 &middot; Specific heat of a metal by mixtures</h1>
+    <p>Weigh the metal, the cup and the water. Boil the metal, drop it into the
+    calorimeter, stir, and read the final temperature. The energy balance gives
+    the metal&rsquo;s specific heat, and the table of accepted values names the
+    metal. The stamp on the cylinder stays hidden until you have measured it.</p>
+  </div>
+</header>
+
+<main>
+  <div class="tabs" role="tablist">
+    <button class="tab-btn" data-tab="learn" role="tab">Learn</button>
+    <button class="tab-btn" data-tab="simulate" role="tab">Simulate</button>
+    <button class="tab-btn" data-tab="check" role="tab">Check</button>
+  </div>
+
+  <section id="learn" class="tab-panel learn">
+    <div class="words-box">
+      <p class="words-title">Words in this lab</p>
+      <ul>
+        <li><strong>specific heat c</strong> &mdash; the heat that warms 1 g of a material by 1 &deg;C. In cal/g&middot;&deg;C.</li>
+        <li><strong>energy balance</strong> &mdash; the line that says what is lost equals what is gained.</li>
+        <li><strong>calorimeter</strong> &mdash; the insulating cup that holds the mix water.</li>
+        <li><strong>T&#8339;</strong> &mdash; the starting temperature of the hot metal. Here, the boiling-water temperature.</li>
+        <li><strong>T&#7522;</strong> &mdash; the temperature of the cup water before the mix.</li>
+        <li><strong>T&#7724;</strong> &mdash; the temperature after the mix, once stirring has settled it.</li>
+        <li><strong>stirrer</strong> &mdash; the rod you turn so the whole cup settles to one temperature.</li>
+      </ul>
+    </div>
+
+    <h2>What you do at the bench</h2>
+    <p>The bench has a water boiler and a calorimeter cup in an insulating
+    jacket. A thermometer probe drags between the two. A triple-beam balance
+    weighs the items on a shelf.</p>
+    <p>In Part I you weigh three things, one at a time: the dry metal cylinder,
+    the empty cup, and the cup with water. Each reading is one number in the
+    table.</p>
+    <p>In Part II you turn on the boiler and wait for the boiling indicator.
+    Then you let the cylinder sit in the boiling water until it reaches
+    T&#8339;.</p>
+    <p>In Part III you read T&#7522; with the probe in the cup. Then you transfer
+    the cylinder while the timer runs. You stir until the temperature settles,
+    and then read T&#7724;.</p>
+    <p>The bench then writes the eleven-row sheet, computes your c&#8339;, and
+    reveals the stamp on the cylinder.</p>
+
+    <h2>The equations</h2>
+    <p>The heat gained or lost by a material is</p>
+    <ul>
+      <li><strong>Q = c &middot; m &middot; (T&#8322; &minus; T&#8321;)</strong></li>
+    </ul>
+    <p>In the mix, what the metal loses equals what the cup and the water gain:</p>
+    <ul>
+      <li><strong>c&#8339; m&#8339; (T&#8339; &minus; T&#7724;) = (m&#8335; c&#8335; + m&#119; c&#119;) (T&#7724; &minus; T&#7522;)</strong></li>
+    </ul>
+    <p>Solved for the unknown specific heat, the working form is</p>
+    <ul>
+      <li><strong>c&#8339; = (m&#8335; c&#8335; + m&#119; c&#119;) (T&#7724; &minus; T&#7522;) / [m&#8339; (T&#8339; &minus; T&#7724;)]</strong></li>
+    </ul>
+    <p>Course units: c in cal/g&middot;&deg;C, mass in grams, temperature in &deg;C.</p>
+    <p>T&#8339; is 100 &deg;C, the boiling-water temperature at 1 atm. The manual
+    states no pressure, so the course assumes 100 &deg;C and labels it.</p>
+    <p>The percent error is |c&#8339; &minus; accepted| / accepted &times; 100.</p>
+
+    <h2>Why your number will sit a few percent off</h2>
+    <p>An ideal mix loses nothing. The cup and the jacket hold the heat in.</p>
+    <p>A real mix leaks a little heat to the room, and a drop or two of water
+    splashes out on the transfer.</p>
+    <p>So a measured c&#8339; a few percent off the table line is an honest
+    result, not a failed one.</p>
+    <p>Boiling water that rides along on the cylinder adds heat the line does not
+    count, and pushes your c&#8339; high.</p>
+    <p>A cylinder that arrives cooler than T&#8339; makes your c&#8339; read low.
+    The gap (T&#8339; &minus; T&#7724;) you use is then bigger than the
+    metal&rsquo;s true drop.</p>
+
+    <h2>The honest limits</h2>
+    <p>The balance reads to 0.05 g and the thermometer to 0.1 &deg;C. That is the
+    precision ceiling of the bench.</p>
+    <p>T&#7724; peaks and then cools, so the timing of the reading matters.</p>
+    <p>The manual assumes c is constant over 25 to 100 &deg;C. That is fair over
+    this span.</p>
+
+    <div class="mistakes">
+      <strong>Common mistakes in this lab:</strong>
+      <ul>
+        <li>Reading T&#7724; before the stirrer has settled the cup.</li>
+        <li>Using m&#8335; + m&#119; where the line wants m&#119; alone.</li>
+        <li>Taking T&#8339; from the cup water instead of from the boiling water.</li>
+        <li>Swapping (T&#7724; &minus; T&#7522;) and (T&#8339; &minus; T&#7724;) in the line.</li>
+        <li>Dropping the cup&rsquo;s own share, m&#8335; c&#8335;, from the left side.</li>
+      </ul>
+    </div>
+
+  </section>
+
+  <section id="simulate" class="tab-panel">
+    <div class="toolbar" id="toolbar1"></div>
+
+    <h2>Part I &mdash; Weigh the three masses</h2>
+    <ol class="steps">
+      <li>Pick the metal cylinder you want to work with. Its stamp reads X until you have measured it.</li>
+      <li>Drag the dry metal cylinder from the shelf onto the balance pan. The readout is m_s, the metal mass.</li>
+      <li>Drag it off the pan, then drag the empty calorimeter cup on. The readout is m_c.</li>
+      <li>Drag the cup off, then drag the cup with water on. The readout is m_c + m_w.</li>
+      <li>Subtract m_c from m_c + m_w and the sheet gives m_w, the water mass.</li>
+      <li>Note that the balance reads to 0.05 g, like the real triple-beam.</li>
+    </ol>
+
+    <h2>Part II &mdash; Bring the metal to T_s</h2>
+    <ol class="steps">
+      <li>Turn the boiler on and wait for the boiling indicator.</li>
+      <li>Drag the metal cylinder from the shelf into the boiling water.</li>
+      <li>Wait for the "cylinder at 100 C" note. The metal now sits at T_s.</li>
+      <li>Drag the thermometer probe to the boiler to check the temperature if you like.</li>
+      <li>Do not transfer yet: the cup water still needs its T_i reading.</li>
+    </ol>
+
+    <h2>Part III &mdash; Mix, stir, and read T_f</h2>
+    <ol class="steps">
+      <li>Drag the probe into the calorimeter. The first reading in the cup is T_i, and it locks in.</li>
+      <li>Press "Transfer now". The timer counts the transfer, and the cylinder lands in the cup.</li>
+      <li>Turn the stirrer on and let it run for a couple of seconds until the temperature settles.</li>
+      <li>Only then does the probe read T_f. Stir first, or the reading stays locked.</li>
+      <li>Press "Log the run". The bench writes the eleven-row sheet, computes c_s, and reveals the stamp.</li>
+      <li>Compare your c_s with the accepted value and the percent error, then "New run" if you want another metal.</li>
+    </ol>
+
+    <div class="split">
+      <div>
+        <div class="canvas-frame"><canvas id="calCanvas" height="520"></canvas></div>
+        <p class="muted"><span class="drag-chip">Drag this</span> &mdash; the shelf
+        items move to the pan and the boiler, and the probe moves between the
+        docks. Drop an item back on the shelf to take it off the pan.</p>
+      </div>
+      <div>
+        <p class="muted" style="margin-top:0"><strong>Controls:</strong></p>
+        <p>
+          <label>Metal cylinder:</label>
+          <button class="action ghost" id="snBtn">Sn</button>
+          <button class="action ghost" id="znBtn">Zn</button>
+          <button class="action" id="cuBtn">Cu</button>
+          <button class="action ghost" id="pbBtn">Pb</button>
+        </p>
+        <p>
+          <button class="action" id="boilerBtn">Boiler on</button>
+          <button class="action" id="transferBtn">Transfer now</button>
+          <button class="action ghost" id="stirBtn">Stir on</button>
+        </p>
+        <p>
+          <button class="action" id="logRunBtn">Log the run</button>
+          <button class="action ghost" id="newRunBtn">New run</button>
+        </p>
+        <div class="readout"><small>balance readout (g)</small><span id="panRead">shelf: cylinder, cup, cup+water</span></div>
+        <div class="readout"><small>boiler</small><span id="boilerRead">off</span></div>
+        <div class="readout"><small>probe</small><span id="probeRead">at rest</span></div>
+        <div class="readout"><small>transfer timer</small><span id="timerRead">-</span></div>
+        <div class="readout"><small>sheet so far</small><span id="sheetRead">we first</span></div>
+        <div class="readout"><small>measured c_s / accepted</small><span id="csRead">- / -</span></div>
+        <div class="readout"><small>bench note</small><span id="noteRead">weigh the three masses, Part I</span></div>
+      </div>
+    </div>
+
+    <h2>Your data table</h2>
+    <p class="muted">Single run, eleven rows in this order: element symbol &mdash;
+    m_s (g) &mdash; m_c (g) &mdash; m_c + m_w (g) &mdash; m_w (g) &mdash; T_i
+    (&deg;C) &mdash; T_s (&deg;C) &mdash; T_f (&deg;C) &mdash; measured c_s
+    (cal/g&middot;&deg;C) &mdash; accepted c_s &mdash; % error. Course values:
+    c&#8335; = 0.22 (aluminium), c&#119; = 1.000, T&#8339; = 100 &deg;C assumed
+    at 1 atm.</p>
+    <div id="tableRun"></div>
+    <textarea class="csv-copy" id="csvCopy" readonly></textarea>
+    <p><button class="action ghost" id="exportLog">Export sheet CSV</button></p>
+    <details id="workDetails">
+      <summary>Show your work</summary>
+      <pre id="workBox">weigh the three masses to start the sheet</pre>
+    </details>
+
+    <details class="constants">
+      <summary>Numbers this bench uses</summary>
+      <p><strong>Course values, printed in the manual:</strong></p>
+      <ul>
+        <li>c_cup = 0.22 cal/g&middot;&deg;C for the aluminium cup (Table II aluminium 0.220).</li>
+        <li>c_water = 1.000 cal/g&middot;&deg;C (Table II water 1.000).</li>
+        <li>Table II accepted values: copper 0.093, zinc 0.093, tin 0.054, lead 0.031 cal/g&middot;&deg;C.</li>
+        <li>T_s = 100 &deg;C. The manual states no pressure assumption, so the
+        course assumes boiling water at 1 atm and labels it.</li>
+      </ul>
+      <p><strong>Not printed in the manual, shown here so nothing is a guess:</strong></p>
+      <ul>
+        <li>The one course run: m_s = 95.0 g, m_c = 60.0 g, m_c + m_w = 210.0 g
+        (so m_w = 150.0 g), T_i = 22.0 &deg;C.</li>
+      </ul>
+      <p><strong>The sim&rsquo;s own props.</strong> The boiler holds enough water
+      for the cylinder to sit fully under. The calorimeter is the standard
+      styrofoam-cup jacket with lid and stirrer; the lid and jacket are the
+      sim&rsquo;s own setup, drawn from the procedure text. The probe docks at
+      rest, over the boiler, or in the calorimeter.</p>
+      <p><strong>Fun Mode noise.</strong> The balance reads &plusmn;0.05 g, the
+      thermometer &plusmn;0.1 &deg;C, the transfer leaks up to about 30 cal to
+      the room, and up to 0.4 g of boiling water rides along on the cylinder.
+        Together they move c&#8339; by a few percent, like the real bench. Fun
+        Mode never changes the c values, the masses, or any course value.</p>
+      <p><strong>Honest limits.</strong> A real calorimeter is not isolated:
+      heat loss and splash carry c&#8339; a few percent off, and carry-over water
+      and condensation push it upward. Cooling corrections are out of scope at
+      this level, and the manual assumes c is constant with temperature, which
+      is fair over 25 to 100 &deg;C.</p>
+    </details>
+
+  </section>
+
+  <section id="check" class="tab-panel">
+    <p class="muted">These use c&#8335; = 0.22 and c&#119; = 1.000 cal/g&middot;&deg;C,
+    the course&rsquo;s own arithmetic. Every answer below is recomputed from the same
+    module the sim runs, so the numbers here cannot drift away from the bench.</p>
+    <div id="check-progress"></div>
+
+    <div class="exercise" data-ex='{
+      "type":"numbers",
+      "q":"1. The cup is 60.0 g of aluminium (c = 0.22), the water 150.0 g (c = 1.000), the metal 95.0 g. T_i = 22.0, T_s = 100.0, T_f = 26.0 degrees C. What specific heat does the balance give?",
+      "parts":[{"label":"c_s","unit":"cal/g C","value":0.0929,"tolAbs":0.005}],
+      "hints":["(m_c c_c + m_w c_w) is the heat capacity of cup plus water.","(T_f - T_i) = 4, and (T_s - T_f) = 74.","c_s = (60 x 0.22 + 150) x 4 / (95 x 74)."],
+      "working":"cup + water capacity = 60 x 0.22 + 150 x 1.000 = 163.2 cal/C. c_s = 163.2 x 4 / (95 x 74) = 652.8 / 7030 = <strong>0.0929 cal/g C</strong>.",
+      "answer":"c_s = 0.0929 cal/g C"
+    }'></div>
+
+    <div class="exercise" data-ex='{
+      "type":"choice",
+      "correct":0,
+      "q":"2. That c_s of 0.0929 sits against the accepted lines Cu 0.093, Zn 0.093, Sn 0.054, Pb 0.031. What does the table tell you?",
+      "options":["Both copper and zinc match the number, so the stamp on the cylinder decides which one you measured",
+        "Only copper matches, because zinc is a different metal",
+        "Only zinc matches, because copper is a different metal",
+        "None of the lines match, so the run is bad"],
+      "hints":["Look at the copper and zinc lines side by side.","They print the same value, 0.093.","The stamp is what the real lab uses to break that tie."],
+      "working":"The table prints 0.093 for both copper and zinc, so c_s alone cannot separate them. Your number matches that line, and the stamp on the cylinder is the tie-breaker: <strong>copper</strong>, 0.093.",
+      "answer":"copper and zinc share the 0.093 line; the stamp says copper"
+    }'></div>
+
+    <div class="exercise" data-ex='{
+      "type":"numbers",
+      "q":"3. Water takes 1.000 cal per gram per degree and the aluminium cup takes 0.220. Over the same 10 degree C rise, how many times more heat per gram does the water take?",
+      "parts":[{"label":"times","unit":"x","value":4.5,"tolPct":5}],
+      "hints":["the ratio is c_water / c_cup.","1.000 / 0.220."],
+      "working":"1.000 / 0.220 = <strong>4.5</strong> times more heat per gram for the water over any span, 10 degrees included.",
+      "answer":"about 4.5 times"
+    }'></div>
+
+    <div class="exercise" data-ex='{
+      "type":"numbers",
+      "q":"4. You measured c_s = 0.088 and the accepted line says 0.093. What is the percent error?",
+      "parts":[{"unit":"%","value":5.4,"tolAbs":0.2}],
+      "hints":["gap = |0.088 - 0.093|.","percent = gap / accepted x 100."],
+      "working":"|0.088 - 0.093| / 0.093 x 100 = 0.005 / 0.093 x 100 = <strong>5.4 %</strong>.",
+      "answer":"5.4 %"
+    }'></div>
+
+    <div class="exercise" data-ex='{
+      "type":"choice",
+      "correct":0,
+      "q":"5. A cylinder arrives in the cup cooler than T_s, but your line still uses T_s = 100 C. Your measured c_s reads:",
+       "options":["Too low, because the (T_s - T_f) gap you use is bigger than the true temperature drop of the metal",
+        "Too high, because the cup gained less heat than the line expects",
+        "Exactly right, because the working form cancels the error",
+        "Too low, because the water lost heat to the room"],
+       "hints":["Write the line: c_s = (cup + water gain) / [m_s (T_s - T_f)].","The true drop of the metal is (T_arrival - T_f), smaller than (T_s - T_f).","Dividing by a bigger gap gives a smaller c_s."],
+      "working":"The metal only dropped (T_arrival - T_f), but the line divides by (T_s - T_f), a bigger gap. Bigger gap, smaller answer: c_s reads <strong>too low</strong>.",
+      "answer":"too low"
+    }'></div>
+
+    <div class="exercise" data-ex='{
+      "type":"choice",
+      "correct":0,
+      "q":"6. Some boiling water rides along on the cylinder into the cup. Your measured c_s reads:",
+      "options":["Too high, because the hot water adds heat that your line does not count",
+        "Too low, because the extra water cools the mix",
+        "Exactly right, because water is water at any temperature",
+        "Too high, because the cup gained less heat"],
+      "hints":["The riding water is at 100 C when it lands.","It pushes T_f higher than the metal alone would.","A higher T_f makes the numerator (T_f - T_i) bigger."],
+      "working":"The hot drop pushes T_f up, so (T_f - T_i) grows while the denominator stays put. Bigger numerator, bigger answer: c_s reads <strong>too high</strong>.",
+      "answer":"too high"
+    }'></div>
+
+    <div class="exercise" data-ex='{
+      "type":"keywords",
+      "need":3,
+      "q":"7. Why must the cylinder sit in the boiling water long enough before the transfer?",
+      "words":["same","temperature","boiling","100","start","wait","hot","equal"],
+      "placeholder":"two or three short ideas...",
+       "hints":["The line needs T_s, the starting temperature of the metal.","The metal has to get there before it leaves."],
+      "working":"The line assumes the metal leaves at T_s = 100 C. If it is still warming, it leaves cooler, and the measured c_s reads low. Sitting in the boiling water long enough puts the whole cylinder at the boiling-water temperature first.",
+      "answer":"so the whole cylinder is at the boiling-water temperature (100 C) before it leaves"
+    }'></div>
+  </section>
+</main>
+
+<script src="../../../shared/courses.js"></script>
+<script src="../../../shared/units.js"></script>
+<script src="../../../shared/ui.js"></script>
+<script src="../../../shared/store.js"></script>
+<script src="../../../shared/check.js"></script>
+<script src="../../../shared/worksheet.js"></script>
+<script src="./specificheat.js"></script>
+<script src="./worksheet.js"></script>
+<script src="./sim.js"></script>
+</body>
+</html>

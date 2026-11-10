@@ -3,7 +3,7 @@ const test = require("node:test");
 const assert = require("node:assert/strict");
 
 require("../site/data/stars.js");
-require("../site/labs/03-celestial-sphere/sphere.js");
+require("../site/ast110/labs/03-celestial-sphere/sphere.js");
 const S = globalThis.LS.stars;
 const P = globalThis.LS.sphere;
 

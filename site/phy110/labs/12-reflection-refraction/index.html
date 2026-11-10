@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lab 12: Reflection, refraction, and the critical angle - Astro Lab Playground</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="../../../styles.css">
+</head>
+<body>
+
+<header class="site-head">
+  <div class="wrap">
+    <p style="margin:0"><a class="back-link" href="../../index.html">&larr; all labs</a></p>
+    <h1>Lab 12 &middot; Reflection, refraction, and the critical angle</h1>
+    <p>Steer a laser at a flat water surface through a graduated tank. Check
+    the reflection law angle by angle, log the refraction angles, and pull
+    water&rsquo;s index out of the measured critical angle.</p>
+  </div>
+</header>
+
+<main>
+  <div class="tabs" role="tablist">
+    <button class="tab-btn" data-tab="learn" role="tab">Learn</button>
+    <button class="tab-btn" data-tab="simulate" role="tab">Simulate</button>
+    <button class="tab-btn" data-tab="check" role="tab">Check</button>
+  </div>
+
+  <section id="learn" class="tab-panel learn">
+    <div class="words-box">
+      <p class="words-title">Words in this lab</p>
+      <ul>
+        <li><strong>normal</strong> &mdash; the line at right angles to the surface, at the point where the beam lands.</li>
+        <li><strong>angle of incidence</strong> &mdash; the angle between the incoming beam and the normal.</li>
+        <li><strong>angle of reflection</strong> &mdash; the angle between the reflected beam and the normal.</li>
+        <li><strong>angle of refraction</strong> &mdash; the angle between the bent beam and the normal, in the second medium.</li>
+        <li><strong>index of refraction (n)</strong> &mdash; how much a medium slows light: n = c/v. Water is 1.333, air is 1.000.</li>
+        <li><strong>critical angle</strong> &mdash; the incidence angle, from the dense side, at which the refracted beam just dies.</li>
+        <li><strong>total internal reflection (TIR)</strong> &mdash; past the critical angle, all the light bounces back into the dense side.</li>
+      </ul>
+    </div>
+
+    <h2>What you do at the bench</h2>
+    <p>The bench has a water tank with a circular graduated scale. The water
+    line sits at the 90 mark, and the scale centre is the point where the beam
+    lands.</p>
+    <p>A rotating laser box sits on the rim of the scale. Drag it around the
+    circle, and its angle sets the incidence angle.</p>
+    <p>The box has two quadrant positions. Lower left, in the water, is for
+    reflection and total internal reflection. Upper left, in the air, is for
+    refraction.</p>
+    <p>In Part 1, laser in the water, you work the printed reflection set:
+    45&deg; to 80&deg; in 5&deg; steps.</p>
+    <p>In Part 2, laser in the air, you work the printed refraction set:
+    10&deg; to 80&deg; in 10&deg; steps.</p>
+    <p>In Part 3 you push the water-side angle past the critical angle and log
+    the spot where the refracted beam dies.</p>
+    <p>A tap key switches the laser on and off. The eye-safety warning stays on
+    the page at all times.</p>
+
+    <h2>The one equation</h2>
+    <p>All angles are measured from the normal. Two laws carry the lab:</p>
+    <ul>
+      <li><strong>&theta;i = &theta;r</strong> &mdash; the law of reflection.</li>
+      <li><strong>n1&middot;sin &theta;1 = n2&middot;sin &theta;2</strong> &mdash; Snell&rsquo;s law.</li>
+    </ul>
+    <p>The index of refraction is the slow-down factor:</p>
+    <ul>
+      <li><strong>n = c/v = &lambda;0/&lambda;m</strong></li>
+    </ul>
+    <p>For the critical angle from water into air, with n_air = 1:</p>
+    <ul>
+      <li><strong>n = 1/sin &theta;c</strong></li>
+    </ul>
+
+    <h2>What changes at the boundary</h2>
+    <p>Light slows in the water: v = c/n, about 2.25&times;10&sup8; m/s for
+    n = 1.333.</p>
+    <p>The frequency does not change at the boundary.</p>
+    <p>The wavelength shortens in the denser medium: &lambda;m = &lambda;0/n.</p>
+    <p>Into the denser medium the ray bends toward the normal; out of it, away.</p>
+
+    <h2>The honest limits</h2>
+    <p>The beam has width, so a scale reading sits about &plusmn;1&deg; off the
+    true angle.</p>
+    <p>Total internal reflection comes on gradually. The refracted beam dims
+    near the critical angle instead of switching off.</p>
+    <p>A tilted surface or an off-centre laser pushes every reading off. Both
+    are selectable error modes on this bench, so you can see the push.</p>
+    <p>1.333 is the 589 nm value. A red laser at 650 nm would see a slightly
+    lower index. The manual keeps its single printed index, so the bench does
+    too.</p>
+
+    <div class="mistakes">
+      <strong>Common mistakes in this lab:</strong>
+      <ul>
+        <li>Measuring angles from the water surface instead of the normal.</li>
+        <li>Looking for TIR with the laser in the air. The dense medium must
+        be on the incident side.</li>
+        <li>Logging an incidence angle that is not in the printed set.</li>
+        <li>Chasing the refracted beam after it has dimmed to nothing.</li>
+      </ul>
+    </div>
+
+  </section>
+
+  <section id="simulate" class="tab-panel">
+    <div class="toolbar" id="toolbar1"></div>
+
+    <h2>Part 1 &mdash; Reflection from the water side</h2>
+    <ol class="steps">
+      <li>Pick "Laser in water". The box sits in the lower left quadrant, in the water.</li>
+      <li>Close the tap key to turn the laser on. The warning line above stays put.</li>
+      <li>Press "Next printed theta i" to step 45, 50, 55, ..., 80 degrees.</li>
+      <li>Read the reflected angle on the scale, and compare it with the incidence angle.</li>
+      <li>Press "Log pair" at each printed value. Table I fills row by row.</li>
+      <li>Past about 49 degrees the refracted beam into the air dies, and the reflection stays at the equal angle.</li>
+    </ol>
+
+    <div class="split">
+      <div>
+        <div class="canvas-frame"><canvas id="tankCanvas" height="470"></canvas></div>
+        <p class="muted"><span class="drag-chip">Drag this</span> &mdash; the laser box rides the
+        scale rim. Drag it across the water line to switch quadrant.
+        <strong>Eye safety: never look into the beam.</strong></p>
+      </div>
+      <div>
+        <p class="muted" style="margin-top:0"><strong>Laser box quadrant:</strong></p>
+        <p>
+          <button class="action" id="partWater">Laser in water (reflection + TIR)</button>
+          <button class="action ghost" id="partAir">Laser in air (refraction)</button>
+        </p>
+        <p>
+          <button class="action" id="nextTheta">Next printed &theta;i</button>
+          <button class="action ghost" id="laserBtn">Laser: off</button>
+        </p>
+        <p>
+          <button class="action" id="logPair">Log pair</button>
+          <button class="action" id="logCrit">Log critical angle</button>
+          <button class="action ghost" id="clearAllBtn">Clear all</button>
+        </p>
+        <p class="muted"><strong>Error modes (selectable):</strong></p>
+        <p>
+          <label><input type="checkbox" id="tiltChk"> tilt the surface 2&deg; (levelling screws)</label>
+        </p>
+        <p>
+          <label><input type="checkbox" id="offChk"> laser off-centre</label>
+        </p>
+        <div class="readout"><small>&theta;i (from the normal)</small><span id="tiRead">-</span></div>
+        <div class="readout"><small>&theta;r, reflected</small><span id="trRead">-</span></div>
+        <div class="readout"><small>refracted angle</small><span id="t2Read">-</span></div>
+        <div class="readout"><small>bench note</small><span id="noteRead">laser is off - close the tap key</span></div>
+      </div>
+    </div>
+
+    <h2>Part 2 &mdash; Refraction from the air side</h2>
+    <ol class="steps">
+      <li>Pick "Laser in air". The box moves to the upper left quadrant.</li>
+      <li>Turn the laser on if it dropped, and step the printed set: 10, 20, ..., 80 degrees.</li>
+      <li>Read the refracted angle in the water against the scale.</li>
+      <li>Press "Log pair" at each printed value. Table II fills row by row.</li>
+      <li>Into the water the ray bends toward the normal, so the refracted angle is smaller.</li>
+      <li>Below, the add-on graph plots sin &theta;i against sin &theta;2. The slope of that line is the index n.</li>
+    </ol>
+
+    <h2>Part 3 &mdash; The critical angle</h2>
+    <ol class="steps">
+      <li>Move the box back to the water side and keep the laser on.</li>
+      <li>Drag the box past the printed set, toward the 90 line on the scale.</li>
+      <li>Watch the air beam dim. The refracted beam dies at the critical angle.</li>
+      <li>Press "Log critical angle" at the spot where the beam just goes out.</li>
+      <li>The index box works n = 1/sin &theta;c from your spot, against the printed 1.333.</li>
+    </ol>
+
+    <h2>Your data tables</h2>
+    <p class="muted">Table I (reflection, 45&ndash;80&deg; in 5&deg; steps) and
+    Table II (refraction, 10&ndash;80&deg; in 10&deg; steps), same columns:
+    part &mdash; &theta;i (deg) &mdash; partner angle (deg). Below both, the
+    critical angle entry and the index-of-water box.</p>
+    <div id="tableRefl"></div>
+    <div id="tableRefr"></div>
+    <p><strong>Critical angle &amp; index box</strong> &mdash; <span id="critBox">no critical angle logged yet</span></p>
+    <textarea class="csv-copy" id="csvCopy" readonly></textarea>
+    <p><button class="action ghost" id="exportLog">Export log CSV</button></p>
+    <details id="workDetails">
+      <summary>Show your work</summary>
+      <pre id="workBox">log pairs to see the work</pre>
+    </details>
+    <p class="muted" style="margin-top:1em"><strong>Graphs.</strong> The course
+    graph is the reflection angle against the incidence angle from Table I: a
+    straight line, expected slope 1.0, intercept 0. The sin plot is an in-app
+    add-on, not course work: sin &theta;i against sin &theta;2 from Table II,
+    slope n.</p>
+    <div class="canvas-frame"><canvas id="rrCanvas" height="300"></canvas></div>
+    <div class="canvas-frame"><canvas id="sinCanvas" height="260"></canvas></div>
+
+    <details class="constants">
+      <summary>Numbers this bench uses</summary>
+      <p><strong>Course values, printed in the manual:</strong></p>
+      <ul>
+        <li>c = 3.0&times;10&sup8; m/s.</li>
+        <li>Water index 1.333 at &lambda; = 589 nm (printed Table III,
+        Appendix p 89 / PDF 91); air 1.000.</li>
+        <li>Printed incidence sets: reflection 45&deg; to 80&deg; in 5&deg;
+        steps; refraction 10&deg; to 80&deg; in 10&deg; steps.</li>
+      </ul>
+      <p><strong>Not printed in the manual, shown here so nothing is a guess:</strong></p>
+      <ul>
+        <li>Laser wavelength: red, 650 nm. The manual keeps its single water
+        index 1.333 at that wavelength, and so does this bench.</li>
+      </ul>
+      <p><strong>The sim&rsquo;s own setup.</strong> The tank is known from the
+      procedure text: a circular scale on the 90&deg; water line, four levelling
+      screws, a laser box. Its photo is image-only, so this scale, tank and box
+      are the sim&rsquo;s own standard build, with the levelling screws and the
+      off-centre laser offered as selectable error modes.</p>
+      <p><strong>Fun Mode noise.</strong> Each read angle carries a stable
+      &plusmn;1&deg; scale-reading offset, the beam-width honesty. The refracted
+      beam still dims gradually across the critical angle. Fun Mode never
+      changes the printed index, the speed of light, or the printed sets.</p>
+      <p><strong>Honest limits.</strong> Scale readings sit about &plusmn;1&deg;
+      off because the beam has width. TIR comes on gradually, so the bench dims
+      the refracted beam near the critical angle instead of switching it off.
+      A tilted surface or an off-centre laser biases every reading; both are
+      offered as error modes.</p>
+    </details>
+
+  </section>
+
+  <section id="check" class="tab-panel">
+    <p class="muted">These use the printed index (water 1.333, air 1.000) and
+    c = 3.0&times;10&sup8; m/s. Every answer below is recomputed from the same
+    module the sim runs, so the numbers here cannot drift away from the bench.</p>
+    <div id="check-progress"></div>
+
+    <div class="exercise" data-ex='{
+      "type":"numbers",
+      "q":"1. The laser in the water strikes at 60 degrees from the normal. What angle does the reflected beam make with the normal?",
+      "parts":[{"label":"theta r","unit":"deg","value":60,"tolAbs":1}],
+      "hints":["The law of reflection, in symbols.","theta_i = theta_r."],
+      "working":"theta_r = theta_i = <strong>60 degrees</strong>. The law holds whether or not the beam also refracts.",
+      "answer":"60 degrees"
+    }'></div>
+
+    <div class="exercise" data-ex='{
+      "type":"numbers",
+      "q":"2. Air to water at 30 degrees of incidence. What is the refracted angle?",
+      "parts":[{"label":"theta 2","unit":"deg","value":22.0,"tolAbs":0.5}],
+      "hints":["Snell: sin theta_2 = sin theta_1 / n.","sin 30 is 0.5.","arcsin(0.5 / 1.333)."],
+      "working":"sin theta_2 = 0.5 / 1.333 = 0.3751. theta_2 = arcsin(0.3751) = <strong>22.0 degrees</strong>.",
+      "answer":"22.0 degrees"
+    }'></div>
+
+    <div class="exercise" data-ex='{
+      "type":"numbers",
+      "q":"3. Air to water at 60 degrees of incidence. What is the refracted angle?",
+      "parts":[{"label":"theta 2","unit":"deg","value":40.5,"tolAbs":0.5}],
+      "hints":["sin 60 is 0.866.","arcsin(0.866 / 1.333)."],
+      "working":"sin theta_2 = 0.866 / 1.333 = 0.6497. theta_2 = arcsin(0.6497) = <strong>40.5 degrees</strong>.",
+      "answer":"40.5 degrees"
+    }'></div>
+
+    <div class="exercise" data-ex='{
+      "type":"numbers",
+      "q":"4. Water to air. What is the critical angle for n_water = 1.333?",
+      "parts":[{"label":"theta c","unit":"deg","value":48.6,"tolAbs":0.5}],
+      "hints":["sin theta_c = n_rare / n_dense.","arcsin(1 / 1.333)."],
+      "working":"sin theta_c = 1 / 1.333 = 0.7502. theta_c = arcsin(0.7502) = <strong>48.6 degrees</strong>.",
+      "answer":"48.6 degrees"
+    }'></div>
+
+    <div class="exercise" data-ex='{
+      "type":"numbers",
+      "q":"5. You logged the refracted beam dying at 49.0 degrees. What index of water does that give?",
+      "parts":[{"label":"n","unit":"-","value":1.325,"tolAbs":0.01}],
+      "hints":["n = 1 / sin(theta_c).","sin 49 degrees."],
+      "working":"n = 1 / sin 49.0 degrees = 1 / 0.7547 = <strong>1.325</strong>, within tolerance of the printed 1.333.",
+      "answer":"1.325"
+    }'></div>
+
+    <div class="exercise" data-ex='{
+      "type":"numbers",
+      "q":"6. You fit a line through your Table I points, reflection angle vertical against incidence angle horizontal. What slope should the line have?",
+      "parts":[{"label":"slope","unit":"-","value":1.0,"tolAbs":0.02}],
+      "hints":["theta_r = theta_i is a line through the origin.","its rise over run."],
+      "working":"theta_r = theta_i is a straight line through the origin with slope <strong>1.0</strong> and intercept 0.",
+      "answer":"1.0"
+    }'></div>
+
+    <div class="exercise" data-ex='{
+      "type":"choice",
+      "correct":0,
+      "q":"7. Once total internal reflection has started, where does the light go?",
+      "options":["All of it reflects back into the water; nothing crosses into the air",
+        "Half reflects and half refracts, as before",
+        "It continues into the air at the same angle it had in the water",
+        "It is absorbed at the surface"],
+      "hints":["What is the refracted angle when sin theta_2 would exceed 1?","where does the power go then?"],
+      "working":"Past the critical angle there is no refracted ray, so all the light stays in the water: it is <strong>totally</strong> internally reflected back into the dense medium.",
+      "answer":"all of it reflects back into the water"
+    }'></div>
+  </section>
+</main>
+
+<script src="../../../shared/courses.js"></script>
+<script src="../../../shared/units.js"></script>
+<script src="../../../shared/ui.js"></script>
+<script src="../../../shared/store.js"></script>
+<script src="../../../shared/check.js"></script>
+<script src="../../../shared/worksheet.js"></script>
+<script src="./refraction.js"></script>
+<script src="./worksheet.js"></script>
+<script src="./sim.js"></script>
+</body>
+</html>

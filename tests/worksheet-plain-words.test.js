@@ -17,15 +17,17 @@ const test = require("node:test");
 const assert = require("node:assert/strict");
 const path = require("node:path");
 
+const M = require("./lab-manifest.js");
+
 require("../site/shared/store.js");
 require("../site/shared/worksheet.js");
 
-const LABS = ["01-measurement", "02-math", "03-celestial-sphere", "04-moon-phases",
-  "05-moonrise-eclipses", "06-retrograde-mars", "07-lenses", "08-venus-phases",
-  "09-pendulum", "10-spectra", "11-parallax", "12-hr-diagram", "13-variables",
-  "14-galaxy-id", "15-hubbles-law", "16-time-lat-long"];
-
-for (const slug of LABS) require("../site/labs/" + slug + "/worksheet.js");
+// BMC-27: per-course lab lists come from tests/lab-manifest.js (the site registry).
+const LAB_SETS = M.COURSES.map((c) => [c.code, c.labDirs.slice()]).filter(([, dirs]) => dirs.length);
+for (const [code, dirs] of LAB_SETS) {
+  for (const slug of dirs) require(M.labDir(code, slug) + "/worksheet.js");
+}
+const LABS = [].concat(...LAB_SETS.map(([, dirs]) => dirs));
 
 const BANNED = [
   ["derive / derived / derivation", /\bderiv(e|es|ed|ing|ation)\b/i],

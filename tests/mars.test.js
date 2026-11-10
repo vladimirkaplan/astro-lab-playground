@@ -2,7 +2,7 @@
 const test = require("node:test");
 const assert = require("node:assert/strict");
 
-require("../site/labs/06-retrograde-mars/mars.js");
+require("../site/ast110/labs/06-retrograde-mars/mars.js");
 const M = globalThis.LS.mars;
 
 const DAY = 86400000;

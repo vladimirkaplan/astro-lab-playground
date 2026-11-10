@@ -10,12 +10,12 @@ const fs = require("node:fs");
 const path = require("node:path");
 
 require("../site/shared/units.js");
-require("../site/labs/14-galaxy-id/galaxies.js");
+require("../site/ast110/labs/14-galaxy-id/galaxies.js");
 const G = globalThis.LS.galaxies;
 
 const ROOT = path.join(__dirname, "..");
 const IMG_DIR = path.join(ROOT, "site", "img");
-const LAB_DIR = path.join(ROOT, "site", "labs", "14-galaxy-id");
+const LAB_DIR = path.join(ROOT, "site", "ast110", "labs", "14-galaxy-id");
 
 const EXPECTED_KEYS = ["m87", "m110", "m31", "m33", "m51", "m101",
   "ngc1300", "m104", "ngc253", "m82"];

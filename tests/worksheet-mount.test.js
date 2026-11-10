@@ -20,29 +20,36 @@ const assert = require("node:assert/strict");
 const fs = require("node:fs");
 const path = require("node:path");
 
-const ROOT = path.join(__dirname, "..");
+const M = require("./lab-manifest.js");
+const ROOT = M.ROOT;
 const SITE = path.join(ROOT, "site");
 const UI_PATH = path.join(SITE, "shared", "ui.js");
 
-const LAB_DIRS = ["01-measurement", "02-math", "03-celestial-sphere", "04-moon-phases",
-  "05-moonrise-eclipses", "06-retrograde-mars", "07-lenses", "08-venus-phases",
-  "09-pendulum", "10-spectra", "11-parallax", "12-hr-diagram", "13-variables",
-  "14-galaxy-id", "15-hubbles-law", "16-time-lat-long"];
-const NON_LAB_PAGES = ["labs/05-moon-phases", "labs/08-pendulum", "labs/09-spectra",
-  "labs/12-eclipse-board", "labs/hr-diagram", "labs/parallax", "labs/variables",
-  "labs/venus-phases", "homework/homework-1", "homework/homework-2"];
+// BMC-27: AST110 sits at site/ast110/, and site/labs/ is redirect stubs only.
+// Lab lists come from the site's own course registry via lab-manifest.
+const COURSE = "ast110";
+const LAB_DIRS = M.labDirsFor(COURSE);
+const NON_LAB_PAGES = fs.readdirSync(path.join(SITE, "labs"), { withFileTypes: true })
+  .filter((e) => e.isDirectory()).map((e) => "labs/" + e.name).sort();
+const OTHER_LANDINGS = [".", COURSE, "phy110"];
 
 // ---------- (1) static wiring on the pages ----------
 
-test("all 16 lab pages load the worksheet engine after check.js and the descriptor before sim.js", () => {
+test("every lab page loads the worksheet engine after check.js and the descriptor before sim.js", () => {
+  assert.ok(LAB_DIRS.length >= 16, "the registry still carries the full AST110 set");
   for (const dir of LAB_DIRS) {
-    const lines = fs.readFileSync(path.join(SITE, "labs", dir, "index.html"), "utf8").split("\n");
+    const lines = fs.readFileSync(M.labPage(COURSE, dir), "utf8").split("\n");
     const at = (needle) => lines.map((l, i) => [l.trim(), i])
       .filter(([l]) => l === needle).map(([, i]) => i);
-    const check = at('<script src="../../shared/check.js"></script>');
-    const engine = at('<script src="../../shared/worksheet.js"></script>');
+    const courses = at('<script src="../../../shared/courses.js"></script>');
+    const units = at('<script src="../../../shared/units.js"></script>');
+    const check = at('<script src="../../../shared/check.js"></script>');
+    const engine = at('<script src="../../../shared/worksheet.js"></script>');
     const desc = at('<script src="./worksheet.js"></script>');
     const sim = at('<script src="./sim.js"></script>');
+    assert.equal(courses.length, 1, dir + ": one shared/courses.js tag");
+    assert.equal(units.length, 1, dir + ": one shared/units.js tag");
+    assert.equal(courses[0], units[0] - 1, dir + ": courses.js loads immediately before units.js");
     assert.equal(check.length, 1, dir + ": one check.js tag");
     assert.equal(engine.length, 1, dir + ": exactly one shared/worksheet.js tag");
     assert.equal(desc.length, 1, dir + ": exactly one ./worksheet.js tag");
@@ -53,13 +60,15 @@ test("all 16 lab pages load the worksheet engine after check.js and the descript
   }
 });
 
-test("stub pages, homework pages and the landing page carry no worksheet tags", () => {
+test("stub pages, homework pages and every landing page carry no worksheet tags", () => {
   for (const rel of NON_LAB_PAGES) {
     const html = fs.readFileSync(path.join(SITE, rel, "index.html"), "utf8");
     assert.ok(!html.includes("worksheet.js"), rel + " must stay out of the worksheet feature");
   }
-  const landing = fs.readFileSync(path.join(SITE, "index.html"), "utf8");
-  assert.ok(!landing.includes("worksheet.js"), "the landing page has no worksheet script");
+  for (const rel of OTHER_LANDINGS) {
+    const landing = fs.readFileSync(path.join(SITE, rel, "index.html"), "utf8");
+    assert.ok(!landing.includes("worksheet.js"), rel + " has no worksheet script");
+  }
 });
 
 // ---------- stub DOM ----------
@@ -274,7 +283,9 @@ function boot(pathname, opts) {
 // engine's csvText is built on LS.store.csvText, exactly as on a real page).
 require("../site/shared/store.js");
 require("../site/shared/worksheet.js");
-LAB_DIRS.forEach((dir) => require("../site/labs/" + dir + "/worksheet.js"));
+for (const course of M.COURSES) {
+  for (const dir of course.labDirs) require(M.labDir(course.code, dir) + "/worksheet.js");
+}
 
 const WKS = globalThis.LS.worksheet;
 const SPEC = WKS.get("01-measurement");
@@ -282,7 +293,7 @@ const SPEC = WKS.get("01-measurement");
 // ---------- (2) the auto-mount ----------
 
 test("a lab page with a registered spec gets the three worksheet controls", () => {
-  const h = boot("/labs/01-measurement/index.html", { withBanner: true });
+  const h = boot("/ast110/labs/01-measurement/index.html", { withBanner: true });
   try {
     assert.equal(h.firedBefore, 0, "ui.js alone (no descriptors parsed yet) mounts nothing before DOMContentLoaded");
     const bar = h.bar();
@@ -305,6 +316,7 @@ test("a lab page with a registered spec gets the three worksheet controls", () =
 
 test("a page with no registered spec gets nothing at all (homework / landing / stub paths)", () => {
   for (const pathname of ["/homework/homework-1/index.html", "/index.html",
+    "/ast110/index.html", "/phy110/index.html",
     "/labs/12-eclipse-board/index.html", "/labs/05-moon-phases/index.html"]) {
     const h = boot(pathname);
     try {
@@ -317,8 +329,8 @@ test("a page with no registered spec gets nothing at all (homework / landing / s
 });
 
 test("the slug comes from the page path: index.html and bare directory URLs both mount", () => {
-  for (const pathname of ["/astro-lab-playground/labs/16-time-lat-long/index.html",
-    "/labs/16-time-lat-long/"]) {
+  for (const pathname of ["/astro-lab-playground/ast110/labs/16-time-lat-long/index.html",
+    "/ast110/labs/16-time-lat-long/"]) {
     const h = boot(pathname);
     try {
       const bar = h.bar();
@@ -334,7 +346,7 @@ test("the slug comes from the page path: index.html and bare directory URLs both
 });
 
 test("Print calls window.print with body.ws-printing on, and restores it afterwards", () => {
-  const h = boot("/labs/01-measurement/index.html");
+  const h = boot("/ast110/labs/01-measurement/index.html");
   try {
     assert.equal(h.env.doc.body.classList.contains("ws-printing"), false, "class is off at rest");
     h.buttons().find((b) => b.getAttribute("data-ws") === "print").click();
@@ -344,7 +356,7 @@ test("Print calls window.print with body.ws-printing on, and restores it afterwa
 });
 
 test("a throwing or blocked print() still restores the body class", () => {
-  const h = boot("/labs/01-measurement/index.html");
+  const h = boot("/ast110/labs/01-measurement/index.html");
   try {
     h.env.window.print = () => { throw new Error("print blocked"); };
     assert.throws(() => globalThis.LS.ui.wsPrint(), /print blocked/);
@@ -353,7 +365,7 @@ test("a throwing or blocked print() still restores the body class", () => {
 });
 
 test(".csv and .xlsx buttons hand the real worksheet bytes to the download glue", () => {
-  const h = boot("/labs/01-measurement/index.html");
+  const h = boot("/ast110/labs/01-measurement/index.html");
   try {
     h.buttons().find((b) => b.getAttribute("data-ws") === "csv").click();
     h.buttons().find((b) => b.getAttribute("data-ws") === "xlsx").click();
@@ -379,7 +391,7 @@ test(".csv and .xlsx buttons hand the real worksheet bytes to the download glue"
 });
 
 test("the print sheet renders the same content as the CSV: title, table grid, PRE and POST", () => {
-  const h = boot("/labs/01-measurement/index.html");
+  const h = boot("/ast110/labs/01-measurement/index.html");
   try {
     const sheet = h.sheet();
     const text = sheet.textContent;
@@ -414,7 +426,7 @@ test("the print sheet renders the same content as the CSV: title, table grid, PR
 });
 
 test("mount is idempotent: a second call reuses the control and never doubles the sheet", () => {
-  const h = boot("/labs/01-measurement/index.html");
+  const h = boot("/ast110/labs/01-measurement/index.html");
   try {
     const again = globalThis.LS.ui.mountWorksheet();
     assert.equal(again, h.bar(), "the same bar comes back");
@@ -428,7 +440,7 @@ test("every one of the 16 lab folders mounts from its own folder name", () => {
   for (const dir of LAB_DIRS) {
     const spec = WKS.get(dir);
     assert.ok(spec, dir + ": descriptor registered");
-    const h = boot("/labs/" + dir + "/index.html");
+    const h = boot("/" + COURSE + "/labs/" + dir + "/index.html");
     try {
       const bar = h.bar();
       assert.ok(bar, dir + ": worksheet control mounts on its own page");

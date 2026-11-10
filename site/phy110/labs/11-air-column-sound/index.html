@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lab 11: Speed of sound from a resonance tube - Astro Lab Playground</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="../../../styles.css">
+</head>
+<body>
+
+<header class="site-head">
+  <div class="wrap">
+    <p style="margin:0"><a class="back-link" href="../../index.html">&larr; all labs</a></p>
+    <h1>Lab 11 &middot; Speed of sound from a resonance tube</h1>
+    <p>Drag the water cup in a vertical tube and listen for two loud spots.
+    The space between them is half a wavelength. Work it for two tuning forks,
+    and compare your speed with the printed temperature law.</p>
+  </div>
+</header>
+
+<main>
+  <div class="tabs" role="tablist">
+    <button class="tab-btn" data-tab="learn" role="tab">Learn</button>
+    <button class="tab-btn" data-tab="simulate" role="tab">Simulate</button>
+    <button class="tab-btn" data-tab="check" role="tab">Check</button>
+  </div>
+
+  <section id="learn" class="tab-panel learn">
+    <div class="words-box">
+      <p class="words-title">Words in this lab</p>
+      <ul>
+        <li><strong>resonance</strong> &mdash; the water level where the air column rings loudest.</li>
+        <li><strong>air column</strong> &mdash; the stretch of air between the water surface and the tube mouth.</li>
+        <li><strong>node</strong> &mdash; the spot in a standing wave where the air stays still.</li>
+        <li><strong>antinode</strong> &mdash; the spot where the air moves the most.</li>
+        <li><strong>tuning fork</strong> &mdash; a metal fork that rings at one fixed frequency, in hertz.</li>
+        <li><strong>hertz (Hz)</strong> &mdash; cycles per second. The number stamped on the fork is its frequency.</li>
+        <li><strong>open-end correction</strong> &mdash; a small extra length the open mouth adds. It shifts every resonance by the same amount.</li>
+        <li><strong>temperature law</strong> &mdash; the printed formula v_T = 331.5 + 0.6&middot;T, in m/s with T in &deg;C.</li>
+      </ul>
+    </div>
+
+    <h2>What you do at the bench</h2>
+    <p>The bench has a vertical tube in a water reservoir. A cm scale runs
+    down the tube, zero at the mouth.</p>
+    <p>Drag the cup up and down to set the water level, and so the air column
+    length L.</p>
+    <p>The fork rack holds two forks: 512 Hz and 440 Hz. Click a fork to sound
+    it above the tube mouth.</p>
+    <p>Loudness swells at the mouth as you pass a resonance. The maximum is
+    broad, so move the cup slowly and watch for the top of the swell.</p>
+    <p>Log L1 at the first loud spot and L2 at the next one, for each fork.</p>
+    <p>Below the table the bench averages your two speeds and compares them
+    with the temperature law at the room temperature.</p>
+    <p>A room thermometer sets T_air for the accepted value.</p>
+
+    <h2>The one equation</h2>
+    <p>The wave law carries the lab:</p>
+    <ul>
+      <li><strong>v = f&middot;&lambda;</strong></li>
+    </ul>
+    <p>A closed-open tube resonates at the odd quarter wavelengths: L near
+    &lambda;/4, then near 3&lambda;/4, each with a small open-end correction.</p>
+    <p>The spacing between two successive resonances is one half wavelength:</p>
+    <ul>
+      <li><strong>&lambda; = 2&middot;(L2 &minus; L1)</strong></li>
+    </ul>
+    <p>The accepted speed comes from the printed law:</p>
+    <ul>
+      <li><strong>v_T = 331.5 + 0.6&middot;T_air</strong> (m/s, T in &deg;C)</li>
+    </ul>
+
+    <h2>Why the difference works</h2>
+    <p>The first resonance sits at &lambda;/4 plus the end correction.</p>
+    <p>The second sits at 3&lambda;/4 plus the same correction.</p>
+    <p>Subtract the two: the correction cancels, and L2 &minus; L1 is exactly
+    &lambda;/2.</p>
+    <p>That makes the spacing a cleaner ruler for the wavelength than the
+    first position alone.</p>
+    <p>At the first resonance the node is at the closed end, the water
+    surface, and the antinode is at the open mouth.</p>
+
+    <h2>The honest limits</h2>
+    <p>The loudness maximum is broad. A realistic position uncertainty is
+    &plusmn;1 to 2 cm around the top of the swell.</p>
+    <p>Real tubes have a diameter. The end correction is about 0.3 times the
+    diameter, and this bench assumes a 4 cm tube.</p>
+    <p>Forks drop in pitch a little when you hold them, and makers stamp a
+    tolerance on the hertz.</p>
+    <p>Read the water level straight on. A slanted eye, the meniscus, or a
+    ruler zero that misses the mouth shifts every reading.</p>
+    <p>A real lab has background noise that can mask the maximum. This bench
+    shows a clean view and says it is idealized.</p>
+    <p>The air is treated as dry. The manual does not specify a humidity
+    correction, so the bench ignores it and says so.</p>
+
+    <div class="mistakes">
+      <strong>Common mistakes in this lab:</strong>
+      <ul>
+        <li>Stopping at the first resonance. The spacing needs both.</li>
+        <li>Using the first position alone for the wavelength.</li>
+        <li>Writing the level in centimeters where the table wants meters.</li>
+        <li>Comparing your speed with a memorized 343 m/s instead of the
+        printed law at the room temperature.</li>
+        <li>Logging L2 above L1 and taking a negative spacing.</li>
+      </ul>
+    </div>
+
+  </section>
+
+  <section id="simulate" class="tab-panel">
+    <div class="toolbar" id="toolbar1"></div>
+
+    <h2>Part 1 &mdash; Sound a fork and find the first resonance</h2>
+    <ol class="steps">
+      <li>Click the 512 Hz fork. It sounds above the tube mouth.</li>
+      <li>Drag the cup down until the loudness bar swells. The first swell tops out near 18 cm.</li>
+      <li>Move the cup up and down a centimeter or two, and keep the loudest level.</li>
+      <li>Press "Log L1". The row for this fork takes the level in cm and m.</li>
+      <li>The maximum is broad. A level within a couple of centimeters of the top is an honest find.</li>
+    </ol>
+
+    <h2>Part 2 &mdash; Find the second resonance</h2>
+    <ol class="steps">
+      <li>Keep the same fork sounding, and drag the cup down past the first swell.</li>
+      <li>The second swell tops out near 52 cm for the 512 Hz fork.</li>
+      <li>Press "Log L2". The bench works the spacing, the wavelength, and the speed for this fork.</li>
+      <li>The table fills the f, L1, L2, lambda and v columns for the row.</li>
+      <li>Only the spacing sets the wavelength. The end correction cancels in it.</li>
+    </ol>
+
+    <h2>Part 3 &mdash; Repeat with the other fork</h2>
+    <ol class="steps">
+      <li>Click the 440 Hz fork and sound it above the mouth.</li>
+      <li>Find and log L1, near 21 cm, then L2, near 60 cm.</li>
+      <li>The spacing is wider for the lower fork, about 39 cm against 34 cm.</li>
+      <li>When both rows are full, the summary line averages the two speeds.</li>
+      <li>Read the average against the temperature-law value at 25 &deg;C, and work the percent error.</li>
+    </ol>
+
+    <div class="split">
+      <div>
+        <div class="canvas-frame"><canvas id="tubeCanvas" height="520"></canvas></div>
+        <p class="muted"><span class="drag-chip">Drag this</span> &mdash; the cup handle sets
+        the water level. The cm scale is zero at the tube mouth.</p>
+      </div>
+      <div>
+        <p class="muted" style="margin-top:0"><strong>Fork rack:</strong></p>
+        <p>
+          <button class="action" id="fork512">Sound 512 Hz</button>
+          <button class="action ghost" id="fork440">Sound 440 Hz</button>
+        </p>
+        <p>
+          <button class="action" id="logL1">Log L1</button>
+          <button class="action" id="logL2">Log L2</button>
+          <button class="action ghost" id="clearAllBtn">Clear all</button>
+        </p>
+        <div class="readout"><small>water level L (cm)</small><span id="levelRead">30.0</span></div>
+        <div class="readout"><small>loudness at the mouth</small><span id="loudRead">0 %</span></div>
+        <div class="readout"><small>room thermometer</small><span id="tempRead">25.0 &deg;C</span></div>
+        <div class="readout"><small>v average (both forks)</small><span id="vavgRead">-</span></div>
+        <div class="readout"><small>v_T at the room temperature</small><span id="vtRead">346.5 m/s</span></div>
+        <div class="readout"><small>% error</small><span id="pctRead">-</span></div>
+        <div class="readout"><small>bench note</small><span id="noteRead">sound a fork, then drag the cup</span></div>
+      </div>
+    </div>
+
+    <h2>Your data tables</h2>
+    <p class="muted">One row per fork: f (Hz) &mdash; L1 (cm) &mdash; L1 (m) &mdash;
+    L2 (cm) &mdash; L2 (m) &mdash; &lambda; (m) &mdash; v (m/s). A row completes
+    when both L1 and L2 are logged for that fork. The fork frequencies are
+    physical and not printed in the manual, so the drawer names them.</p>
+    <div id="tableForks"></div>
+    <p><strong>Summary</strong> &mdash; <span id="summeta">log both forks to average</span></p>
+    <textarea class="csv-copy" id="csvCopy" readonly></textarea>
+    <p><button class="action ghost" id="exportLog">Export log CSV</button></p>
+    <details id="workDetails">
+      <summary>Show your work</summary>
+      <pre id="workBox">log both resonances for a fork to see the work</pre>
+    </details>
+    <p class="muted" style="margin-top:1em"><strong>Add-on, not course work</strong> &mdash;
+    v against frequency. The two forks should sit on a line; the slope of that
+    line is the speed of sound. The course table above does not need this graph.</p>
+    <div class="canvas-frame"><canvas id="vfCanvas" height="240"></canvas></div>
+
+    <details class="constants">
+      <summary>Numbers this bench uses</summary>
+      <p><strong>Course values, printed in the manual:</strong></p>
+      <ul>
+        <li>Temperature law: v_T = 331.5 + 0.6&middot;T, in m/s with T in &deg;C.</li>
+        <li>Room at 25 &deg;C, the question temperature 2 &deg;C.</li>
+        <li>Dry air; the humidity correction is not specified, so it is
+        ignored and named here.</li>
+      </ul>
+      <p><strong>Not printed in the manual, shown here so nothing is a guess:</strong></p>
+      <ul>
+        <li>Fork frequencies: 512 Hz and 440 Hz, stamped on each fork in the
+        rack. They are physical properties of the forks, not printed course values.</li>
+        <li>Tube diameter 4 cm, assumed by the sim. The open-end correction is
+        0.3&times;4 cm = 1.2 cm.</li>
+        <li>The cm scale along the tube is the sim&rsquo;s own. The manual does
+        not say whether the real tube carries a printed scale.</li>
+      </ul>
+      <p><strong>The sim&rsquo;s own setup.</strong> The manual&rsquo;s standing-wave
+      and apparatus figures are image-only. This tube, cup, fork rack and
+      loudness bar are the sim&rsquo;s own standard bench, with a deliberately
+      broad loudness maximum and an idealized quiet room.</p>
+      <p><strong>Fun Mode noise.</strong> Each logged level carries a stable
+      &plusmn;0.2 cm ruler parallax. The loudness maximum stays broad, so the
+      realistic &plusmn;1 to 2 cm find-uncertainty applies in both modes. Fun
+      Mode never changes the temperature law, the room temperature, or the fork stamps.</p>
+      <p><strong>Honest limits.</strong> Forks drop in pitch when held and carry
+      maker tolerance. Level parallax, the meniscus, and a ruler zero off the
+      mouth shift readings. Real background noise masks the maximum; a clean
+      sim view is idealized and says so.</p>
+    </details>
+
+  </section>
+
+  <section id="check" class="tab-panel">
+    <p class="muted">These use the printed temperature law (331.5 m/s and
+    0.6 m/s per &deg;C) and the stamped fork frequencies. Every answer below
+    is recomputed from the same module the sim runs, so the numbers here
+    cannot drift away from the bench.</p>
+    <div id="check-progress"></div>
+
+    <div class="exercise" data-ex='{
+      "type":"numbers",
+      "q":"1. The room is at 25 C. What speed does the printed law accept?",
+      "parts":[{"label":"v_T","unit":"m/s","value":346.5,"tolAbs":0.1}],
+      "hints":["v_T = 331.5 + 0.6*T.","0.6 times 25."],
+      "working":"v_T = 331.5 + 0.6 * 25 = 331.5 + 15 = <strong>346.5 m/s</strong>.",
+      "answer":"346.5 m/s"
+    }'></div>
+
+    <div class="exercise" data-ex='{
+      "type":"numbers",
+      "q":"2. At 346.5 m/s the 512 Hz fork has wavelength 0.677 m. Estimate the first resonance position from lambda/4 alone.",
+      "parts":[{"label":"L1","unit":"m","value":0.169,"tolAbs":0.005}],
+      "hints":["Divide 0.677 by 4.","The end correction is left out of this estimate."],
+      "working":"L1 near lambda/4 = 0.677 / 4 = <strong>0.169 m</strong>. With the 1.2 cm end correction the bench puts the loud spot near 18.1 cm.",
+      "answer":"0.169 m"
+    }'></div>
+
+    <div class="exercise" data-ex='{
+      "type":"numbers",
+      "q":"3. You logged L2 - L1 = 0.338 m for the 512 Hz fork. What speed does that give?",
+      "parts":[{"label":"v","unit":"m/s","value":346,"tolAbs":5}],
+      "hints":["lambda = 2 * (L2 - L1).","then v = f * lambda."],
+      "working":"lambda = 2 * 0.338 = 0.676 m. v = 512 * 0.676 = <strong>346 m/s</strong>, right on the law.",
+      "answer":"346 m/s"
+    }'></div>
+
+    <div class="exercise" data-ex='{
+      "type":"numbers",
+      "q":"4. What node spacing should the 440 Hz fork show at the accepted 346.5 m/s?",
+      "parts":[{"label":"spacing","unit":"m","value":0.394,"tolAbs":0.005}],
+      "hints":["The spacing is lambda/2.","lambda = v / f, then halve it."],
+      "working":"spacing = v / (2f) = 346.5 / 880 = <strong>0.394 m</strong>.",
+      "answer":"0.394 m"
+    }'></div>
+
+    <div class="exercise" data-ex='{
+      "type":"numbers",
+      "q":"5. Your average speed is 341 m/s against the accepted 346.5 m/s. What is the percent error?",
+      "parts":[{"label":"%","unit":"%","value":1.6,"tolAbs":0.2}],
+      "hints":["gap = |341 - 346.5|.","percent = gap / 346.5 x 100."],
+      "working":"|341 - 346.5| / 346.5 x 100 = 5.5 / 346.5 x 100 = <strong>1.6 %</strong>.",
+      "answer":"1.6 %"
+    }'></div>
+
+    <div class="exercise" data-ex='{
+      "type":"choice",
+      "correct":0,
+      "q":"6. At 2 C the law gives 332.7 m/s. How does the speed of sound at 2 C compare with the speed at 25 C?",
+      "options":["Smaller: cold air is slower, 332.7 against 346.5 m/s",
+        "Larger: cold air pushes the wave harder",
+        "Equal: the speed does not depend on temperature",
+        "Unpredictable: it depends on the fork"],
+      "hints":["Run the law at both temperatures.","0.6 m/s per C, 23 degrees apart."],
+      "working":"v_T(2) = 331.5 + 1.2 = 332.7 m/s, against 346.5 m/s at 25 C. The speed is <strong>smaller</strong> in the cold room.",
+      "answer":"smaller at 2 C"
+    }'></div>
+
+    <div class="exercise" data-ex='{
+      "type":"keywords",
+      "need":3,
+      "q":"7. Why is the distance between two resonances a better ruler for the wavelength than the first position alone?",
+      "words":["correction","end","cancel","subtract","spacing","same","shift","open","twice"],
+      "placeholder":"two or three short ideas...",
+      "hints":["What sits on top of both resonance positions?","What happens when you subtract the positions?"],
+      "working":"The open-end correction shifts every resonance by the same amount. Subtracting the two positions cancels that shared shift, so the spacing is exactly half a wavelength, while the first position alone still carries the unknown correction.",
+      "answer":"the shared end correction cancels in the difference, leaving exactly lambda/2"
+    }'></div>
+  </section>
+</main>
+
+<script src="../../../shared/courses.js"></script>
+<script src="../../../shared/units.js"></script>
+<script src="../../../shared/ui.js"></script>
+<script src="../../../shared/store.js"></script>
+<script src="../../../shared/check.js"></script>
+<script src="../../../shared/worksheet.js"></script>
+<script src="./aircolumn.js"></script>
+<script src="./worksheet.js"></script>
+<script src="./sim.js"></script>
+</body>
+</html>

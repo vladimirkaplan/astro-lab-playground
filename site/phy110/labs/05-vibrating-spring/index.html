@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lab 5: Spring constant and vertical spring periods - Astro Lab Playground</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="../../../styles.css">
+</head>
+<body>
+
+<header class="site-head">
+  <div class="wrap">
+    <p style="margin:0"><a class="back-link" href="../../index.html">&larr; all labs</a></p>
+    <h1>Lab 5 &middot; Spring constant and vertical spring periods</h1>
+    <p>Load a hanging spring and pull K out of your F&ndash;x data, then time ten
+    cycles and compare your period with 2&pi;&radic;(m/K). The bench grades you
+    against your own K, and your number is allowed to come out somewhere else.</p>
+  </div>
+</header>
+
+<main>
+  <div class="tabs" role="tablist">
+    <button class="tab-btn" data-tab="learn" role="tab">Learn</button>
+    <button class="tab-btn" data-tab="simulate" role="tab">Simulate</button>
+    <button class="tab-btn" data-tab="check" role="tab">Check</button>
+  </div>
+
+  <section id="learn" class="tab-panel learn">
+    <div class="words-box">
+      <p class="words-title">Words in this lab</p>
+      <ul>
+        <li><strong>spring constant K</strong> &mdash; how stiff a spring is. Bigger K means harder to stretch. Its units are N/m.</li>
+        <li><strong>elongation</strong> &mdash; how far the spring stretches below its no-load level. Written x, in metres or cm.</li>
+        <li><strong>hanger</strong> &mdash; the little pan that hangs from the spring. Its mass counts as part of the load.</li>
+        <li><strong>period T</strong> &mdash; the time for one full cycle, down and back.</li>
+        <li><strong>frequency f</strong> &mdash; cycles per second. It is the flip of the period: f = 1/T.</li>
+        <li><strong>x&#8320;</strong> &mdash; the level of the spring&rsquo;s bottom end with nothing hanging, captured once.</li>
+        <li><strong>mirror sight</strong> &mdash; a mirror strip behind the scale. You read the level when the mark lines up with its own image.</li>
+      </ul>
+    </div>
+
+    <h2>What you do at the bench</h2>
+    <p>The bench has a vertical stand and a cm scale with a mirror strip behind
+    it. A spring hangs from the top bar, with a weight hanger and slotted
+    weights in 100, 50 and 20 g.</p>
+    <p>In Bench A you capture x&#8320; with the hanger off. Then hang the
+    hanger and add the weights in 50 g steps, up to 250 g. Read the mark at
+    every load. That fills the F&ndash;x table and the graph. K comes out two
+    ways: row by row, and from the trendline slope.</p>
+    <p>In Bench B you hang 200, 220 and 240 g added, pull the hanger down and
+    let go, and time ten cycles at each load. The period comes out of your
+    ten-cycle times, and the bench compares it with the formula using your own K.</p>
+
+    <h2>The one equation that matters</h2>
+    <p>The hanging weight is the force, and it stretches the spring by x:</p>
+    <ul>
+      <li><strong>F = K&middot;x</strong></li>
+    </ul>
+    <p>Turn it around and the stiffness is on its own: K = F/x. Then the
+    oscillator side is one line of its own:</p>
+    <ul>
+      <li><strong>T = 2&pi;&radic;(m/K)</strong></li>
+    </ul>
+    <p>Course mode uses &pi; = 3.14, as printed. In m you put the total hanging
+    mass in kg, hanger included.</p>
+
+    <h2>Reading x the honest way</h2>
+    <p>The mark is the bottom end of the spring. With nothing on it, that level
+    is x&#8320;. Under a load it sits at x<sub>f</sub>, and the stretch is the
+    difference between the two.</p>
+    <p>The data page does it in the figure style: x = 1.7 &minus; 1.1 = 0.6 cm.
+    Forget to subtract x&#8320; and every row is too long by the same amount,
+    and every K comes out too small.</p>
+
+    <h2>Reading the scale with the mirror</h2>
+    <p>Read the scale from an angle and the number you see shifts, a little
+    more at the far marks. The mirror strip stops that.</p>
+    <p>Slide your eye until the mark and its mirror image line up, one hiding
+    the other in a straight line. When they sit on top of each other, your eye,
+    the mark, and the image share one level, and the reading is the true one.</p>
+
+    <h2>Why your measured T runs a little long</h2>
+    <p>The period formula assumes the spring has no mass. A real coil does, and
+    a third of that mass moves with the spring as it turns over.</p>
+    <p>So the measured period runs a few percent longer than the formula says.
+    That is correct behaviour, not a failure. A few percent difference is what
+    a real bench gives, and the bench here says so out loud.</p>
+
+    <div class="mistakes">
+      <strong>Common mistakes in this lab:</strong>
+      <ul>
+        <li>Forgetting to subtract x&#8320; from the mark reading.</li>
+        <li>Mixing grams and kg in the period formula. m must be in kg.</li>
+        <li>Timing one cycle instead of ten. Your slip is ten times smaller
+        against ten cycles.</li>
+        <li>Loading past about 300 g total. Real springs creep and go
+        non-linear near their max load.</li>
+        <li>Reading the scale from an angle, without the mirror sight.</li>
+      </ul>
+    </div>
+
+  </section>
+
+  <section id="simulate" class="tab-panel">
+    <div class="toolbar" id="toolbar1"></div>
+
+    <h2>Bench A &mdash; Find K from the F&ndash;x data</h2>
+    <ol class="steps">
+      <li>With the hanger off, press "Mark x0" to capture the no-load level of the spring's bottom end.</li>
+      <li>Hang the hanger, watch the mark settle, and press "Read x_f". The hanger-only baseline row fills in.</li>
+      <li>Drag 50 g weights onto the hanger, one at a time, up to 250 g added.</li>
+      <li>At each load, wait for the spring to settle, then press "Read x_f". Every row gets F, x_f, x, x in m, and its own K.</li>
+      <li>The graph plots F against x, with the (0,0) origin point always on the line.</li>
+      <li>Drag the red handle to lay your trendline through the points. Its slope is your K from the trendline.</li>
+      <li>The footer compares K_average with the trendline K, and gives the percent relative difference on the slope.</li>
+    </ol>
+
+    <h2>Bench B &mdash; Time the period</h2>
+    <ol class="steps">
+      <li>Leave 200 g on the hanger, then 220 g, then 240 g. Those are the three period rows.</li>
+      <li>Drag the hanger down a little and let go. The spring turns over.</li>
+      <li>Press "Start 10-cycle timing". The counter marks each pass back through the middle.</li>
+      <li>Count along. In Fun Mode press "Stop timing" at the tenth pass. In Ideal Mode the clock stops itself on the tenth pass.</li>
+      <li>The bench divides by ten for T_measured and compares it with T_theory from your K_average.</li>
+      <li>Repeat at the other two loads. The f cell reports 1/T at 200 g added.</li>
+    </ol>
+
+    <div class="split">
+      <div>
+        <div class="canvas-frame"><canvas id="springCanvas" height="460"></canvas></div>
+        <p class="muted"><span class="drag-chip">Drag this</span> &mdash; weights
+        move between the tray and the hanger; the hanger itself moves down to
+        start an oscillation, and let go to release it.</p>
+        <p class="muted">The mark is the bottom end of the spring. Line it with
+        its mirror image before you read, the way the manual teaches it.</p>
+      </div>
+      <div>
+        <p class="muted" style="margin-top:0"><strong>Hanger mass (type once):</strong></p>
+        <p>
+          <label>Hanger mass (g) <input type="number" id="hangerMass" value="50" min="0" step="5"></label>
+        </p>
+        <p>
+          <button class="action" id="hangerBtn">Hang hanger</button>
+          <button class="action ghost" id="takeOffBtn">Take hanger off</button>
+          <button class="action" id="markX0" disabled>Mark x0</button>
+          <button class="action" id="readXf" disabled>Read x_f</button>
+        </p>
+        <p>
+          <button class="action" id="startTiming" disabled>Start 10-cycle timing</button>
+          <button class="action ghost" id="stopTiming" disabled>Stop timing</button>
+          <button class="action ghost" id="retimeBtn" disabled>Re-time this load</button>
+        </p>
+        <div class="readout"><small>mark level x_f (cm)</small><span id="xfRead">-</span></div>
+        <div class="readout"><small>x0 (cm) / elongation x (cm)</small><span id="x0Read">-</span></div>
+        <div class="readout"><small>load on the hanger</small><span id="loadRead">hanger off</span></div>
+        <div class="readout"><small>K_average (N/m) / trendline K</small><span id="kRead">-</span></div>
+        <div class="readout"><small>cycle counter</small><span id="cycleRead">-</span></div>
+        <div class="readout"><small>oscillation clock</small><span id="oscRead">-</span></div>
+        <div class="readout"><small>bench note</small><span id="noteRead">capture x0 first</span></div>
+      </div>
+    </div>
+
+    <h2>Your data tables</h2>
+    <p class="muted" style="margin-top:0">Table 1 header: hanger mass (g) &mdash;
+    g = 9.80 m/s&sup2; &mdash; x&#8320; (cm). The header values are printed on the
+    bench above the table, as on the real data page.</p>
+    <div id="tableA"></div>
+    <p class="muted">Table 2 header: hanger mass (g). One timing per load, ten
+    cycles each; Re-time replaces a timing if your count slips.</p>
+    <div id="tableB"></div>
+    <textarea class="csv-copy" id="csvCopy" readonly></textarea>
+    <p><button class="action ghost" id="exportLog">Export log CSV</button>
+      <button class="action ghost" id="clearTable">Clear tables</button></p>
+    <details id="workDetails">
+      <summary>Show your work</summary>
+      <pre id="workBox">capture x0 and read a few loads first</pre>
+    </details>
+
+    <h2>The F&ndash;x graph</h2>
+    <ol class="steps">
+      <li>The graph plots F in newtons against x in metres for every row you have read.</li>
+      <li>The (0,0) origin point is always on the line: no load means no stretch.</li>
+      <li>The dashed blue line is the computer fit, forced through the origin.</li>
+      <li>Drag the red handle to lay your own trendline through the points.</li>
+      <li>The line is forced through the origin, the way the manual's graph is.</li>
+      <li>The slope of your line is K from the trendline, used in the Table 1 footer.</li>
+    </ol>
+    <div class="canvas-frame"><canvas id="fxPlot" height="330"></canvas></div>
+
+    <details class="constants">
+      <summary>Numbers this bench uses</summary>
+      <p><strong>Course values, printed in the manual:</strong></p>
+      <ul>
+        <li>g = 9.80 m/s&sup2; and &pi; = 3.14, both used as printed.</li>
+        <li>Table 1 added masses: 50, 100, 150, 200, 250 g, plus the
+        hanger-only baseline and the (0,0) origin point on the graph.</li>
+        <li>Table 2 added masses: 200, 220, 240 g, ten oscillations per timing.</li>
+        <li>x = x<sub>f</sub> &minus; x&#8320;, read in the figure style
+        (1.7 &minus; 1.1 = 0.6 cm).</li>
+        <li>The percent relative difference in Table 1 uses the trendline slope
+        as its denominator, printed on the table.</li>
+      </ul>
+      <p><strong>Not printed in the manual, shown here so nothing is a guess:</strong></p>
+      <ul>
+        <li>Hanger mass 50 g and a spring near K = 50 N/m. Those are measured
+        values on the real bench, and on this sim they keep the extensions in
+        the 1.0&ndash;5.9 cm band.</li>
+      </ul>
+      <p><strong>The sim&rsquo;s own props.</strong> Slotted weights come in 100,
+      50 and 20 g. The no-load level sits at 4.0 cm on the scale. The pull-down
+      swing is capped at 2.5 cm, and the total load at 300 g.</p>
+      <p><strong>Fun Mode noise.</strong> Scale readings slip &plusmn;0.2 cm, the
+      coil carries its own 75 g (a third of it moves, so periods run about 5 %
+      long at 250 g), and the stop button slips up to 0.10 s at the tenth pass.
+      Fun Mode never changes g, &pi;, or any course value.</p>
+      <p><strong>Honest limits.</strong> A few percent long on T is the spring&rsquo;s
+      own mass showing up, and it is correct behaviour. Real springs creep and go
+      non-linear near max load, which is why the bench caps the load at 300 g.
+      The mirror-sight rule is taught by the diagram; the Learn tab says how it
+      keeps a far mark from shifting.</p>
+    </details>
+
+  </section>
+
+  <section id="check" class="tab-panel">
+    <p class="muted">These use g = 9.80 m/s&sup2; and &pi; = 3.14, the course&rsquo;s own
+    arithmetic. Every answer below is recomputed from the same module the sim runs,
+    so the numbers here cannot drift away from the bench.</p>
+    <div id="check-progress"></div>
+
+    <div class="exercise" data-ex='{
+      "type":"numbers",
+      "q":"1. A total of 250 g hangs on the spring and the mark sits 4.9 cm below the no-load level. (a) What force does the load pull with? (b) What K does that row give?",
+      "parts":[{"label":"F","unit":"N","value":2.45,"tolAbs":0.01},
+               {"label":"K","unit":"N/m","value":50.0,"tolAbs":0.5}],
+      "hints":["F = m g, with m in kg.",
+        "0.250 x 9.80.",
+        "K = F / x, with x in metres: 0.049 m."],
+      "working":"F = 0.250 x 9.80 = 2.45 N. K = 2.45 / 0.049 = <strong>50.0 N/m</strong>. One row, one division: the hanging weight over the stretch.",
+      "answer":"2.45 N, and K = 50.0 N/m"
+    }'></div>
+
+    <div class="exercise" data-ex='{
+      "type":"numbers",
+      "q":"2. The same spring (K = 50 N/m) now carries a total of 150 g. How far does it stretch, in cm?",
+      "parts":[{"unit":"cm","value":2.94,"tolAbs":0.05}],
+      "hints":["F = 0.150 x 9.80 = 1.47 N.",
+        "x = F / K, in metres, then cm.",
+        "1.47 / 50 = 0.0294 m."],
+      "working":"x = F / K = 1.47 / 50 = 0.0294 m = <strong>2.94 cm</strong>. The stretch grows in step with the load, which is why the F-x points line up in a row.",
+      "answer":"2.94 cm"
+    }'></div>
+
+    <div class="exercise" data-ex='{
+      "type":"numbers",
+      "q":"3. With 250 g total on the spring, the course formula gives T = 2 x 3.14 x sqrt(0.250/50). (a) What is T? (b) What is t10, the time for ten cycles?",
+      "parts":[{"label":"T","unit":"s","value":0.444,"tolAbs":0.01},
+               {"label":"t10","unit":"s","value":4.44,"tolAbs":0.1}],
+      "hints":["0.250/50 = 0.005. Its square root is 0.07071.",
+        "2 x 3.14 = 6.28.",
+        "t10 is ten periods, not one."],
+      "working":"T = 6.28 x sqrt(0.005) = 6.28 x 0.07071 = <strong>0.444 s</strong>. t10 = 10 x 0.444 = <strong>4.44 s</strong>. Timing ten cycles spreads your one slip over ten, so the period comes out cleaner.",
+      "answer":"T = 0.444 s, t10 = 4.44 s"
+    }'></div>
+
+    <div class="exercise" data-ex='{
+      "type":"numbers",
+      "q":"4. Two more loads on the same spring. (a) Total 270 g: what is T? (b) Total 290 g: what is T?",
+      "parts":[{"label":"T at 270 g","unit":"s","value":0.461,"tolAbs":0.005},
+               {"label":"T at 290 g","unit":"s","value":0.478,"tolAbs":0.005}],
+      "hints":["T goes as the square root of the mass.",
+        "270/50 = 0.0054, and its square root is 0.07349.",
+        "290/50 = 0.0058, and its square root is 0.07616."],
+      "working":"T(270) = 6.28 x sqrt(0.0054) = <strong>0.461 s</strong>. T(290) = 6.28 x sqrt(0.0058) = <strong>0.478 s</strong>. More mass, a slower cycle: T grows as sqrt(m), so each extra 20 g adds a little less than the last.",
+      "answer":"0.461 s and 0.478 s"
+    }'></div>
+
+    <div class="exercise" data-ex='{
+      "type":"numbers",
+      "q":"5. At 250 g total your measured T is 0.444 s. What is the frequency f?",
+      "parts":[{"unit":"Hz","value":2.25,"tolAbs":0.02}],
+      "hints":["f = 1 / T."],
+      "working":"f = 1 / 0.444 = <strong>2.25 Hz</strong>. The spring turns over about twice a second, so ten cycles take about 4.4 s.",
+      "answer":"2.25 Hz"
+    }'></div>
+
+    <div class="exercise" data-ex='{
+      "type":"choice",
+      "correct":1,
+      "q":"6. You quadruple the total hanging mass on the same spring. What happens to the period T?",
+      "options":["T quadruples, because T goes as m.",
+        "T goes to twice its value, because T goes as the square root of m.",
+        "T halves, because a bigger mass pulls harder.",
+        "T is unchanged, because K did not change."],
+      "hints":["T = 2 pi sqrt(m/K).",
+        "Where does m sit in that formula?",
+        "sqrt(4) = 2."],
+      "working":"T goes as sqrt(m). Quadruple m and T multiplies by sqrt(4) = 2, exactly. That is the clean number in this lab: from 250 g to 1000 g, the period would run from 0.444 s to 0.888 s.",
+      "answer":"T doubles exactly - T goes as the square root of m"
+    }'></div>
+
+    <div class="exercise" data-ex='{
+      "type":"numbers",
+      "q":"7. Your K_average came out 49 N/m and your trendline slope 50 N/m. What is the percent relative difference, on the slope?",
+      "parts":[{"unit":"%","value":2.0,"tolAbs":0.2}],
+      "hints":["|49 - 50| / 50.",
+        "The denominator is the slope, as printed on your table."],
+      "working":"|49 - 50| / 50 x 100 = 1/50 x 100 = <strong>2.0 %</strong>. Row-by-row K always scatters a little; the slope uses every point at once, which is why the two are compared instead of one row being trusted alone.",
+      "answer":"2.0 %"
+    }'></div>
+  </section>
+</main>
+
+<script src="../../../shared/courses.js"></script>
+<script src="../../../shared/units.js"></script>
+<script src="../../../shared/fit.js"></script>
+<script src="../../../shared/ui.js"></script>
+<script src="../../../shared/store.js"></script>
+<script src="../../../shared/check.js"></script>
+<script src="../../../shared/worksheet.js"></script>
+<script src="../../../shared/plot.js"></script>
+<script src="./spring.js"></script>
+<script src="./worksheet.js"></script>
+<script src="./sim.js"></script>
+</body>
+</html>

@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lab 13: Converging lens focal length and a two-lens refractor - Astro Lab Playground</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="../../../styles.css">
+</head>
+<body>
+
+<header class="site-head">
+  <div class="wrap">
+    <p style="margin:0"><a class="back-link" href="../../index.html">&larr; all labs</a></p>
+    <h1>Lab 13 &middot; Converging lens focal length and a two-lens refractor</h1>
+    <p>Focus a lit arrow onto a screen at two lens positions, pull each focal
+    length out of the lens equation, classify images at four printed distances,
+    and space two lenses into a basic refractor.</p>
+  </div>
+</header>
+
+<main>
+  <div class="tabs" role="tablist">
+    <button class="tab-btn" data-tab="learn" role="tab">Learn</button>
+    <button class="tab-btn" data-tab="simulate" role="tab">Simulate</button>
+    <button class="tab-btn" data-tab="check" role="tab">Check</button>
+  </div>
+
+  <section id="learn" class="tab-panel learn">
+    <div class="words-box">
+      <p class="words-title">Words in this lab</p>
+      <ul>
+        <li><strong>converging lens</strong> &mdash; a double-convex lens that bends parallel light to one point.</li>
+        <li><strong>focal length (f)</strong> &mdash; the distance from the lens to that point, in metres.</li>
+        <li><strong>object distance (o)</strong> &mdash; from the object to the lens, in metres.</li>
+        <li><strong>image distance (i)</strong> &mdash; from the lens to the image, in metres.</li>
+        <li><strong>real image</strong> &mdash; an image made of light that actually lands on a screen.</li>
+        <li><strong>virtual image</strong> &mdash; an image you see only by looking through the lens. It never lands on a screen.</li>
+        <li><strong>magnification (m)</strong> &mdash; the image-to-object size ratio, with the sign showing up or down.</li>
+      </ul>
+    </div>
+
+    <h2>What you do at the bench</h2>
+    <p>The bench is 100 cm long with a 1 mm division scale.</p>
+    <p>The object is a 5 cm lit arrow on a post, with a light on and off.</p>
+    <p>Two double-convex lenses fit the holders. Lens A is blue, Lens B is amber.</p>
+    <p>Their focal lengths are printed on the lens rims in the drawer.</p>
+    <p>In Part 1 the arrow stands at the 0 mark and the white screen at the
+    100 mark, one metre apart.</p>
+    <p>You slide the lens until the arrow is sharp on the screen. That happens
+    at two positions.</p>
+    <p>In Part 2 the lens sits fixed at the 50 mark. You place the arrow at
+    four printed distances: 2.5f, 2.0f, 1.5f and 0.5f, and hunt for the image.</p>
+    <p>In Part 3 the two lenses form a basic refractor. The long-f lens is the
+    objective, the short-f lens the eyepiece, and the far target is a window
+    scene at the end of the bench.</p>
+
+    <h2>The one equation</h2>
+    <ul>
+      <li><strong>1/o + 1/i = 1/f</strong> &mdash; the thin-lens equation. All
+      distances in metres.</li>
+      <li><strong>m = &minus;i/o</strong> &mdash; the magnification. The size is
+      |m|; a minus means inverted. This formula is added; the manual does not
+      print it.</li>
+      <li><strong>spacing = f<sub>o</sub> + f<sub>e</sub></strong> and
+      <strong>M = f<sub>o</sub>/f<sub>e</sub></strong> for the refractor. The
+      magnification formula is also added.</li>
+    </ul>
+
+    <h2>What the screen shows</h2>
+    <p>A real image lands on the white screen, inverted, at the size m says.</p>
+    <p>A virtual image never lands on the screen. You see it only by looking
+    through the lens, and it is erect and larger.</p>
+    <p>Sharp focus is a band a few millimetres wide, not one exact mark.</p>
+
+    <h2>The honest limits</h2>
+    <p>The thin-lens equation ignores lens thickness and lens errors.</p>
+    <p>Sharp focus spans about 3 to 5 mm on a real bench. This bench grades
+    inside a 4 mm band, and never marks one perfect spot.</p>
+    <p>Two lens positions exist only when the arrow and screen stand at least
+    4f apart. The bench says so instead of hiding it.</p>
+    <p>The refractor part has no measurement sheet in the manual. You record
+    the alignment in words only.</p>
+
+    <div class="mistakes">
+      <strong>Common mistakes in this lab:</strong>
+      <ul>
+        <li>Logging a position where the image is still soft.</li>
+        <li>Reading o from the screen mark instead of the lens mark.</li>
+        <li>Hunting for the 0.5f image on the screen. It is virtual.</li>
+        <li>Swapping the lenses in the refractor and expecting the same magnification.</li>
+      </ul>
+    </div>
+
+  </section>
+
+  <section id="simulate" class="tab-panel">
+    <div class="toolbar" id="toolbar1"></div>
+
+    <h2>Part 1 &mdash; Focal lengths from two positions</h2>
+    <ol class="steps">
+      <li>Pick "Lens A" or "Lens B". That lens goes in the holder.</li>
+      <li>Turn the light on. The arrow is lit.</li>
+      <li>Drag the lens along the bench, between the arrow and the screen.</li>
+      <li>Stop when the arrow is sharp on the screen. The bench note tells you.</li>
+      <li>Press "Log position 1". The bench reads o and i off the marks.</li>
+      <li>Keep dragging. The image sharpens again at a second spot.</li>
+      <li>Press "Log position 2". Both rows of the first table fill.</li>
+    </ol>
+
+    <div class="split">
+      <div>
+        <div class="canvas-frame"><canvas id="benchCanvas" height="300"></canvas></div>
+        <p class="muted"><span class="drag-chip">Drag this</span> &mdash; the lens holder
+        (Parts 1-2) and the screen (Parts 1-2) and the eyepiece (Part 3) slide
+        on the bench. Read o and i off the marks.</p>
+      </div>
+      <div>
+        <p class="muted" style="margin-top:0"><strong>Part:</strong></p>
+        <p>
+          <button class="action" id="part1">Focal lengths</button>
+          <button class="action ghost" id="part2">Classification</button>
+          <button class="action ghost" id="part3">Refractor</button>
+        </p>
+        <p><strong>Lens in the holder (Parts 1-2):</strong></p>
+        <p>
+          <button class="action" id="lensA">Lens A (blue, f = 0.20 m)</button>
+          <button class="action ghost" id="lensB">Lens B (amber, f = 0.10 m)</button>
+        </p>
+        <p>
+          <button class="action ghost" id="lightBtn">Light: off</button>
+        </p>
+        <p><strong>Arrow at a printed distance (Part 2):</strong></p>
+        <p>
+          <button class="action ghost" id="d25">2.5f</button>
+          <button class="action ghost" id="d20">2.0f</button>
+          <button class="action ghost" id="d15">1.5f</button>
+          <button class="action ghost" id="d05">0.5f</button>
+        </p>
+        <p><strong>Objective in the refractor (Part 3):</strong></p>
+        <p>
+          <button class="action" id="objA">A (f = 0.20 m)</button>
+          <button class="action ghost" id="objB">B (f = 0.10 m)</button>
+        </p>
+        <p>
+          <button class="action" id="logPos1">Log position 1</button>
+          <button class="action" id="logPos2">Log position 2</button>
+        </p>
+        <p>
+          <button class="action" id="logRow">Log row</button>
+          <button class="action" id="recordTeles">Record in words</button>
+          <button class="action ghost" id="clearAllBtn">Clear all</button>
+        </p>
+        <p class="muted"><strong>What I see on the screen (Part 2):</strong></p>
+        <p id="sizeRow">
+          <button class="action ghost" data-size="larger">larger</button>
+          <button class="action ghost" data-size="equal">equal</button>
+          <button class="action ghost" data-size="smaller">smaller</button>
+        </p>
+        <p id="orientRow">
+          <button class="action ghost" data-orient="erect">erect</button>
+          <button class="action ghost" data-orient="inverted">inverted</button>
+        </p>
+        <p id="typeRow">
+          <button class="action ghost" data-type="real">real</button>
+          <button class="action ghost" data-type="virtual">virtual</button>
+        </p>
+        <div class="readout"><small>o, object to lens</small><span id="oRead">-</span></div>
+        <div class="readout"><small>i, lens to screen</small><span id="iRead">-</span></div>
+        <div class="readout"><small>f from your o and i</small><span id="fRead">-</span></div>
+        <div class="readout"><small>refractor spacing / M</small><span id="telRead">-</span></div>
+        <div class="readout"><small>bench note</small><span id="noteRead">pick a part and turn the light on</span></div>
+      </div>
+    </div>
+
+    <h2>Part 2 &mdash; Four printed object distances</h2>
+    <ol class="steps">
+      <li>Pick the lens, A or B, if you have not already.</li>
+      <li>Press "2.5f", "2.0f", "1.5f" or "0.5f" to place the arrow.</li>
+      <li>Drag the screen until the arrow is sharp. Read o and i off the marks.</li>
+      <li>Pick the size, the up-or-down sense, and the type from what you see.</li>
+      <li>Press "Log row". The row lands in the second table.</li>
+      <li>At 0.5f nothing lands on the screen. That is the lesson. Log it as virtual.</li>
+    </ol>
+
+    <h2>Part 3 &mdash; The two-lens refractor</h2>
+    <ol class="steps">
+      <li>Pick which lens is the objective. The long-f lens gives the bigger view.</li>
+      <li>The other lens becomes the eyepiece on its own holder.</li>
+      <li>The window scene at the bench end is the far target. It is always in.</li>
+      <li>Drag the eyepiece until the window is sharp in the viewport.</li>
+      <li>The spacing readout should sit near f<sub>o</sub> + f<sub>e</sub>, and the view is inverted.</li>
+      <li>Press "Record in words". A sentence lands in your log.</li>
+    </ol>
+
+    <p class="muted"><strong>Eyepiece viewport (Part 3)</strong> &mdash; what the
+    refractor shows of the far window, inverted when it is in focus.</p>
+    <div class="canvas-frame"><canvas id="viewportCanvas" height="170"></canvas></div>
+
+    <h2>Your data tables</h2>
+    <p class="muted">Table 1: one row per lens &mdash; position 1 (o, i, f),
+    position 2 (o, i, f), the average f, and the lens colour. Table 2: the four
+    printed distances for the lens in the holder. The refractor result is words
+    only, per the manual.</p>
+    <p><strong>Table 1 &mdash; focal lengths</strong></p>
+    <div id="tableFocal"></div>
+    <p><strong>Table 2 &mdash; classification</strong> <span id="clsLensTag" class="muted"></span></p>
+    <div id="tableClass"></div>
+    <p><strong>Refractor result (words)</strong> &mdash; <span id="telesBox">nothing recorded yet</span></p>
+    <textarea class="csv-copy" id="csvCopy" readonly></textarea>
+    <p><button class="action ghost" id="exportLog">Export log CSV</button></p>
+    <details id="workDetails">
+      <summary>Show your work</summary>
+      <pre id="workBox">log positions to see the work</pre>
+    </details>
+
+    <details class="constants">
+      <summary>Numbers this bench uses</summary>
+      <p><strong>Course values, printed in the manual:</strong></p>
+      <ul>
+        <li>Classification object distances: 2.5f, 2.0f, 1.5f and 0.5f.</li>
+        <li>Thin-lens equation 1/o + 1/i = 1/f, all distances in metres.</li>
+      </ul>
+      <p><strong>Not printed in the manual, shown here so nothing is a guess:</strong></p>
+      <ul>
+        <li>Lens A focal length 0.20 m (blue rim), Lens B 0.10 m (amber rim).
+        Kit values, printed on the lens rims in the drawer.</li>
+        <li>Bench division 1 mm; bench length 100 cm.</li>
+        <li>Object arrow 5 cm, with a light on and off.</li>
+        <li>m = &minus;i/o and M = f<sub>o</sub>/f<sub>e</sub> are added
+        formulas; the manual does not print them.</li>
+      </ul>
+      <p><strong>The sim&rsquo;s own setup.</strong> The bench photo is
+      image-only, so this 100 cm rail, the 1 mm scale, the arrow post and the
+      window scene are the sim&rsquo;s own standard build. The sharpness band
+      is &plusmn;4 mm, inside the real bench&rsquo;s &plusmn;3&ndash;5 mm.</p>
+      <p><strong>Fun Mode noise.</strong> Each o and i reading carries a stable
+      &plusmn;2 mm scale-reading offset, the way a real eye finds a mark.
+      Fun Mode never changes the focal lengths, the printed distances, or the
+      accepted values.</p>
+      <p><strong>Honest limits.</strong> Sharp focus is a range, never one
+      perfect spot. Two positions exist only at D &ge; 4f; the bench refuses
+      below that. At 0.5f the screen shows nothing; that is the lesson.
+      Thin-lens idealism ignores thickness and lens errors. The refractor part
+      has no measurement sheet, so it records words only.</p>
+    </details>
+
+  </section>
+
+  <section id="check" class="tab-panel">
+    <p class="muted">These use the thin-lens equation with the distances above.
+    Every answer is recomputed from the same module the sim runs, so the
+    numbers here cannot drift away from the bench.</p>
+    <div id="check-progress"></div>
+
+    <div class="exercise" data-ex='{
+      "type":"numbers",
+      "q":"1. A lens has f = 15 cm. The object sits at o = 24 cm. Where does the real image form, and what is its size ratio?",
+      "parts":[{"label":"i","unit":"cm","value":40,"tolAbs":1},
+               {"label":"size ratio i over o","unit":"x","value":1.67,"tolAbs":0.05}],
+      "hints":["1/i = 1/f - 1/o.","1/15 - 1/24 = 9/360.","the size ratio is i/o, and the image is inverted and real"],
+      "working":"1/i = 1/15 - 1/24 = 9/360, so i = <strong>40 cm</strong>. Size ratio i/o = 40/24 = <strong>1.67</strong>, inverted, real.",
+      "answer":"i = 40 cm, size ratio 1.67"
+    }'></div>
+
+    <div class="exercise" data-ex='{
+      "type":"numbers",
+      "q":"2. The arrow and the screen stand 1.00 m apart. With f = 15 cm the lens is sharp at two spots. What are the object distances at the two spots?",
+      "parts":[{"label":"o, far spot","unit":"m","value":0.82,"tolAbs":0.02},
+               {"label":"o, near spot","unit":"m","value":0.18,"tolAbs":0.02}],
+      "hints":["o = (D +- sqrt(D^2 - 4Df)) / 2.","D^2 - 4Df = 1.00 - 0.60 = 0.40.","sqrt(0.40) is about 0.63 m"],
+      "working":"the lens-position split is sqrt(1.00 - 0.60) = sqrt(0.40) = 0.63 m. o = (1.00 +- 0.63)/2, so o = <strong>0.82 m</strong> and o = <strong>0.18 m</strong>.",
+      "answer":"0.82 m and 0.18 m"
+    }'></div>
+
+    <div class="exercise" data-ex='{
+      "type":"choice",
+      "correct":0,
+      "q":"3. Which row of the classification table is right for a converging lens?",
+      "options":[
+        "2.5f smaller, inverted, real; 2.0f equal, inverted, real; 1.5f larger, inverted, real; 0.5f no screen image, virtual, erect, larger",
+        "2.5f larger, inverted, real; 2.0f equal, inverted, real; 1.5f smaller, inverted, real; 0.5f no screen image, virtual, erect, larger",
+        "2.5f smaller, inverted, real; 2.0f equal, inverted, real; 1.5f larger, inverted, real; 0.5f smaller, inverted, real, on the screen",
+        "2.5f smaller, erect, virtual; 2.0f equal, inverted, real; 1.5f larger, inverted, real; 0.5f smaller, erect, virtual"],
+      "hints":["past 2f the image is smaller than the object","between f and 2f it is larger","inside f it is virtual, erect, and larger"],
+      "working":"o above 2f: smaller, inverted, real. o = 2f: equal, inverted, real. f to 2f: larger, inverted, real. Below f: virtual, erect, larger - nothing lands on the screen.",
+      "answer":"the first row"
+    }'></div>
+
+    <div class="exercise" data-ex='{
+      "type":"numbers",
+      "q":"4. A refractor pairs a 20 cm objective with a 5 cm eyepiece. What lens spacing puts the first image in the eyepiece focal plane, and what is the magnification?",
+      "parts":[{"label":"spacing","unit":"cm","value":25,"tolAbs":0.5},
+               {"label":"M","unit":"x","value":4,"tolAbs":0.1}],
+      "hints":["spacing = f_o + f_e","M = f_o / f_e"],
+      "working":"spacing = 20 + 5 = <strong>25 cm</strong>. M = 20/5 = <strong>4x</strong>.",
+      "answer":"25 cm and 4x"
+    }'></div>
+
+    <div class="exercise" data-ex='{
+      "type":"choice",
+      "correct":0,
+      "q":"5. A converging lens makes a virtual image of a real object when the object sits",
+      "options":[
+        "inside the focal length, o below f",
+        "at o = 2f",
+        "at o = f, where the image lands at infinity",
+        "outside 2f, o above 2f"],
+      "hints":["watch the screen image as o drops below f","a virtual image is erect and larger"],
+      "working":"below f the rays still diverge after the lens, so the image is virtual, erect, and larger - it never lands on a screen.",
+      "answer":"inside the focal length"
+    }'></div>
+  </section>
+</main>
+
+<script src="../../../shared/courses.js"></script>
+<script src="../../../shared/units.js"></script>
+<script src="../../../shared/ui.js"></script>
+<script src="../../../shared/store.js"></script>
+<script src="../../../shared/check.js"></script>
+<script src="../../../shared/worksheet.js"></script>
+<script src="./lens13.js"></script>
+<script src="./worksheet.js"></script>
+<script src="./sim.js"></script>
+</body>
+</html>

@@ -19,20 +19,19 @@ const os = require("node:os");
 const path = require("node:path");
 const { spawnSync } = require("node:child_process");
 
+const M = require("./lab-manifest.js");
+
 require("../site/shared/store.js");
 require("../site/shared/worksheet.js");
 
 const REAL = globalThis.LS.worksheet;
 const SHARED_PATH = require.resolve("../site/shared/worksheet.js");
 
-const LABS = [
-  "01-measurement", "02-math", "03-celestial-sphere", "04-moon-phases",
-  "05-moonrise-eclipses", "06-retrograde-mars", "07-lenses", "08-venus-phases",
-  "09-pendulum", "10-spectra", "11-parallax", "12-hr-diagram", "13-variables",
-  "14-galaxy-id", "15-hubbles-law", "16-time-lat-long",
-];
+// BMC-27: the AST110 lab list comes from the site's own course registry,
+// never from a copy-pasted array.
+const LABS = M.labDirsFor("ast110");
 
-for (const slug of LABS) require("../site/labs/" + slug + "/worksheet.js");
+for (const slug of LABS) require(M.labDir("ast110", slug) + "/worksheet.js");
 
 // Rerun the engine module for an empty private registry, so fixture specs
 // never touch the 16 real registrations.
@@ -73,7 +72,7 @@ test("exactly the 16 lab slugs are registered, each from its own worksheet.js", 
   const slugs = Object.keys(REAL.all()).sort();
   assert.deepEqual(slugs, LABS.slice().sort());
   for (const slug of LABS) {
-    const file = path.join(__dirname, "..", "site", "labs", slug, "worksheet.js");
+    const file = path.join(M.labDir("ast110", slug), "worksheet.js");
     assert.ok(fs.existsSync(file), "descriptor file exists: " + slug + "/worksheet.js");
     const spec = REAL.get(slug);
     assert.equal(spec.slug, slug, "spec slug equals its folder name");
@@ -189,7 +188,7 @@ test("register validates shapes by name, ignores unknown keys, trims strings", (
     assert.equal(good.slug, "spaced-slug");
     assert.deepEqual(good.table.header, ["h1", "h2"]);
     assert.deepEqual(good.table.units, ["units1", "units2"]);
-    assert.equal(Object.values(REAL.all()).length, 16, "the shared registry never saw the fixtures");
+    assert.equal(Object.values(REAL.all()).length, LABS.length, "the shared registry never saw the fixtures");
   });
 });
 
@@ -325,9 +324,33 @@ test("download() is a silent false-returning no-op in bare Node, never throws", 
   });
 });
 
+// BMC-27: the "ast110-" prefix moved out of the engine and into the registry.
+test("fileName uses the owning course's registry prefix, not a hard-coded one", () => {
+  for (const slug of LABS) {
+    assert.equal(REAL.fileName(slug, "csv"), "ast110-lab-" + slug + "-worksheet.csv",
+      slug + ": registry-owned lab keeps the AST110 prefix");
+  }
+  const src = fs.readFileSync(SHARED_PATH, "utf8");
+  assert.doesNotMatch(src, /"ast110-"/, "the engine hard-codes no course prefix");
+  // A slug no labDirs entry owns yet: the page's own path decides the prefix.
+  const savedLoc = Object.getOwnPropertyDescriptor(globalThis, "location");
+  withFreshEngine((ws) => {
+    ws.register(fixtureSpec({ slug: "01-fixture-force" }));
+    globalThis.location = { pathname: "/phy110/labs/01-fixture-force/index.html" };
+    try {
+      assert.equal(ws.fileName("01-fixture-force", "csv"),
+        "phy110-lab-01-fixture-force-worksheet.csv",
+        "a PHY110 page names its file with the PHY110 prefix");
+    } finally {
+      if (savedLoc) Object.defineProperty(globalThis, "location", savedLoc);
+      else delete globalThis.location;
+    }
+  });
+});
+
 test("descriptor files are pure registration (no DOM, no network references)", () => {
   for (const slug of LABS) {
-    const src = fs.readFileSync(path.join(__dirname, "..", "site", "labs", slug, "worksheet.js"), "utf8");
+    const src = fs.readFileSync(path.join(M.labDir("ast110", slug), "worksheet.js"), "utf8");
     assert.doesNotMatch(src, /document\.|window\.[a-z]|fetch\(|XMLHttpRequest|https?:/, slug);
     assert.match(src, /LS\.worksheet\.register\(/, slug + " registers");
   }

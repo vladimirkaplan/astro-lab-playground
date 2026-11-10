@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lab 1: Units, instruments, percent error - Astro Lab Playground</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="../../../styles.css">
+</head>
+<body>
+
+<header class="site-head">
+  <div class="wrap">
+    <p style="margin:0"><a class="back-link" href="../../index.html">&larr; all labs</a></p>
+    <h1>Lab 1 &middot; Units, instruments, and percent error</h1>
+    <p>Read four simple instruments, turn inches into centimetres and back, average
+    five timings, and say how far off you are. This is the bench every other PHY110
+    lab stands on.</p>
+  </div>
+</header>
+
+<main>
+  <div class="tabs" role="tablist">
+    <button class="tab-btn" data-tab="learn" role="tab">Learn</button>
+    <button class="tab-btn" data-tab="simulate" role="tab">Simulate</button>
+    <button class="tab-btn" data-tab="check" role="tab">Check</button>
+  </div>
+
+  <section id="learn" class="tab-panel learn">
+    <div class="words-box">
+      <p class="words-title">Words in this lab</p>
+      <ul>
+        <li><strong>measurement</strong> &mdash; a number plus the unit it came in.</li>
+        <li><strong>unit</strong> &mdash; the thing you count with, like a centimetre.</li>
+        <li><strong>SI units</strong> &mdash; the metric set: metre, gram, litre, newton.</li>
+        <li><strong>British units</strong> &mdash; the older set: inch, foot, mile, pound.</li>
+        <li><strong>conversion factor</strong> &mdash; a ratio equal to 1 that swaps units.</li>
+        <li><strong>meniscus</strong> &mdash; the curved top of water in a glass tube.</li>
+        <li><strong>average</strong> &mdash; add the readings, divide by how many.</li>
+        <li><strong>percent error</strong> &mdash; how far your answer sits from the accepted one.</li>
+      </ul>
+    </div>
+
+    <h2>What you do at the bench</h2>
+    <p>You get a shoebox, a metal object, a cylinder of water, a balance, a spring
+    scale, a thermometer, a hallway, and a pendulum. For each one you read a number
+    off a tool and write it down. Then you change the unit and do it again. The box
+    does not change size. Your two answers should agree once the units are fixed.</p>
+    <p>That is the whole skill. Read the tool, keep the unit, and show the factor you
+    used.</p>
+
+    <h2>Every reading has two parts</h2>
+    <p>A reading is a number and a unit. "12.7" means nothing. "12.7 cm" is a
+    measurement. If you drop the unit, the number is wrong even when it is right.</p>
+    <p>You also read one digit nobody printed. The ruler has marks every millimetre,
+    so you say "34.6 cm" and not "34 cm". The last digit is your best guess between
+    two marks. It is part of the reading, so you never throw it away.</p>
+
+    <h2>Trading one unit for another</h2>
+    <p>The course prints its own factors. Use those, and write them on your line of
+    work. The ones you will reach for:</p>
+    <ul>
+      <li>1 in = 2.54 cm, 1 yd = 0.91 m, 1 mi = 1.61 km.</li>
+      <li>1 gal = 3.8 L, 1 lb = 0.45 kg, 1 kg = 2.2 lb.</li>
+    </ul>
+    <p>A conversion factor is a fraction worth 1. You multiply by it, so the real
+    size never changes. Only the name of the unit changes. Write the factor so the
+    unit you want to lose sits underneath:</p>
+    <ul>
+      <li>66 in x (2.54 cm / 1 in) = 167.64 cm</li>
+      <li>150 lb x (0.45 kg / 1 lb) = 67.5 kg</li>
+    </ul>
+    <p>For volume the factor gets cubed. One cubic foot is 12 x 12 x 12 = 1728
+    cubic inches, not 12. This is the most common slip in the lab.</p>
+
+    <h2>The equation that matters most</h2>
+    <p>Percent error tells the instructor how close you got:</p>
+    <ul>
+      <li><strong>% error = |measured &minus; accepted| / accepted x 100</strong></li>
+    </ul>
+    <p>Take the size of the gap, ignore the minus sign, divide by the accepted value,
+    and multiply by 100. A 2% error in a first lab is a good day.</p>
+    <p>Two other lines do the rest of the work. Weight comes from mass with
+    W = m x g, where g = 9.80 m/s&sup2; and mass goes in kg. Temperature crosses
+    between scales with T(F) = 32 + (9/5) x T(C). The course also uses pi = 3.14
+    for hand arithmetic, so use 3.14 in this lab.</p>
+
+    <h2>Why your answer comes out a little wrong</h2>
+    <p>Real tools are coarse. The cylinder marks whole millilitres, so you read half
+    of one by eye. Your paced step is never twice the same length. Your thumb lands
+    late on the stopwatch. None of this is cheating; it is the lab.</p>
+    <p>Averaging is the fix. Time the pendulum five times and take the average, and
+    each mistimed press matters a fifth as much. Then report the percent error,
+    because a number without an error is just an opinion.</p>
+
+    <div class="mistakes">
+      <strong>Common mistakes in this lab:</strong>
+      <ul>
+        <li>Writing a number with no unit on the line next to it.</li>
+        <li>Flipping the factor and getting 66 in = 26 cm.</li>
+        <li>Cubing the answer instead of the factor, or forgetting to cube at all.</li>
+        <li>Reading the top edge of the water instead of the bottom of the meniscus.</li>
+        <li>Calling the spring scale reading a mass. Newtons are weight, grams are mass.</li>
+        <li>Using the rounded 22.4 &deg;C answer the manual shows for 72 &deg;F. Plain 5/9
+        math gives 22.2 &deg;C.</li>
+      </ul>
+    </div>
+
+  </section>
+
+  <section id="simulate" class="tab-panel">
+    <div class="toolbar" id="toolbar1"></div>
+
+    <h2>Bench A - Read the shoebox on both scales</h2>
+    <ol class="steps">
+      <li>Pick a side: length, width, or height.</li>
+      <li>Drag the ruler so its zero line sits on the box edge.</li>
+      <li>Read the far edge in centimetres and millimetres.</li>
+      <li>Flip the ruler to inches and read the same side again.</li>
+      <li>Press "Log this side" and repeat for the other two sides.</li>
+      <li>Press "Volume both ways" when all three sides are logged.</li>
+    </ol>
+    <div class="split">
+      <div>
+        <div class="canvas-frame"><canvas id="rulerCanvas" height="300"></canvas></div>
+        <p class="muted"><span class="drag-chip">Drag this</span> &mdash; the ruler
+        slides left and right. If the zero line misses the box edge, both readings
+        come out short by the same slip.</p>
+      </div>
+      <div>
+        <p>
+          <label>Side to measure:
+            <select id="dimSel">
+              <option value="0">Length (long side)</option>
+              <option value="1">Width</option>
+              <option value="2">Height (short side)</option>
+            </select>
+          </label>
+        </p>
+        <div class="readout"><small>centimetres, with mm</small><span id="cmRead">-</span></div>
+        <div class="readout"><small>decimal inches</small><span id="inRead">-</span></div>
+        <div class="readout"><small>inches as a ruler fraction</small><span id="fracRead">-</span></div>
+        <div class="readout"><small>zero alignment</small><span id="alignRead">-</span></div>
+        <p>
+          <button class="action" id="flipScale">Switch to inches ruler</button>
+          <button class="action" id="logSide">Log this side</button>
+          <button class="action secondary" id="volumeBoth">Volume both ways</button>
+        </p>
+        <p class="muted">Volume uses the same unit for all three sides, so the answer
+        comes out cubed. The sim then converts it with the factor cubed: 1 in&sup3; =
+        16.39 cm&sup3;.</p>
+      </div>
+    </div>
+
+    <h2>Bench B - Cylinder, balance, spring scale, thermometer</h2>
+    <ol class="steps">
+      <li>Read the water level at the bottom of the meniscus.</li>
+      <li>Press "Drop in the object" and read the new level.</li>
+      <li>Subtract to get the object volume in mL.</li>
+      <li>Weigh the object on the balance, then on the spring scale.</li>
+      <li>Weigh the lab manual the same two ways.</li>
+      <li>Toggle the thermometer to &deg;F and read the water again.</li>
+      <li>Log every reading before you leave this bench.</li>
+    </ol>
+    <div class="canvas-frame"><canvas id="cylCanvas" height="260"></canvas></div>
+    <p>
+      <button class="action" id="dropObj">Drop in the object</button>
+      <button class="action ghost" id="takeObj">Take it out</button>
+      <label class="chk"><input type="checkbox" id="tempF"> read the thermometer in &deg;F</label>
+    </p>
+    <div class="readout"><small>water level (mL)</small><span id="lvlRead">-</span></div>
+    <div class="readout"><small>object volume by displacement (mL)</small><span id="dispRead">-</span></div>
+    <div class="readout"><small>balance reading (g)</small><span id="balRead">pick something to weigh</span></div>
+    <div class="readout"><small>spring scale (N)</small><span id="sprRead">pick something to weigh</span></div>
+    <div class="readout"><small>water temperature</small><span id="thermRead">-</span></div>
+    <p>
+      <button class="action secondary" id="weighObj">Weigh the object</button>
+      <button class="action secondary" id="weighBook">Weigh the manual</button>
+      <button class="action" id="logBenchB">Log cylinder + weight + temp</button>
+    </p>
+    <p class="muted">The balance answers "how much stuff". The spring scale answers
+    "how hard gravity pulls". They use different units and never the same number.</p>
+
+    <h2>Bench C - Pace the hallway and the board</h2>
+    <ol class="steps">
+      <li>Press "Step" once for each pace across the 50 ft course.</li>
+      <li>Stop when the chalk mark says you have arrived.</li>
+      <li>Read your step size in ft per step.</li>
+      <li>Switch to the chalkboard span and pace it too.</li>
+      <li>Multiply the board steps by your own step size.</li>
+      <li>Log the course, the step size, and the board length.</li>
+    </ol>
+    <div class="split">
+      <div>
+        <div class="canvas-frame"><canvas id="paceCanvas" height="180"></canvas></div>
+        <p class="muted">Each press is one pace. Your pace length wobbles a little in
+        both modes, because legs do that.</p>
+      </div>
+      <div>
+        <p>
+          <button class="action secondary" id="paceBoard">Walk the board span instead</button>
+          <button class="action" id="paceStep">Step</button>
+          <button class="action ghost" id="paceReset">Start over</button>
+          <button class="action" id="paceLog">Log this walk</button>
+        </p>
+        <div class="readout"><small>walking now</small><span id="paceWhich">50 ft course</span></div>
+        <div class="readout"><small>steps taken</small><span id="paceCount">0</span></div>
+        <div class="readout"><small>step size (ft/step)</small><span id="paceSize">-</span></div>
+        <div class="readout"><small>board length from your steps (ft)</small><span id="paceBoardLen">-</span></div>
+      </div>
+    </div>
+
+    <h2>Bench D - Pendulum timing, five runs</h2>
+    <ol class="steps">
+      <li>Set the string length near 0.90 m.</li>
+      <li>Drag the bob aside and let go to start the swing.</li>
+      <li>Press "Start clock" as the bob crosses the middle.</li>
+      <li>Press "Stop clock" when the gate flashes 10.</li>
+      <li>Do four more runs at the same length.</li>
+      <li>Read your g and its percent error against 9.80.</li>
+    </ol>
+    <div class="split">
+      <div>
+        <div class="canvas-frame"><canvas id="pendCanvas" height="320"></canvas></div>
+        <p class="muted"><span class="drag-chip">Drag this</span> &mdash; the bob.
+        The gate flashes at every middle crossing and the run stops at 10.</p>
+      </div>
+      <div>
+        <p><label>String length <span id="lenRead">0.90</span> m:
+          <input type="range" id="lenRange" min="0.60" max="1.00" step="0.01" value="0.90" style="width:14ch"></label></p>
+        <div class="readout"><small>stopwatch</small><span id="clockRead">0.000 s</span></div>
+        <div class="readout"><small>gates counted (of 10)</small><span id="gateRead">0</span></div>
+        <div class="readout"><small>average period Tav (s)</small><span id="tavRead">-</span></div>
+        <div class="readout"><small>your g = 4 x 3.14&sup2; x L / Tav&sup2;</small><span id="gRead">-</span></div>
+        <div class="readout"><small>percent error vs 9.80</small><span id="errRead">-</span></div>
+        <p>
+          <button class="action" id="startClock">Start clock</button>
+          <button class="action" id="stopClock">Stop clock</button>
+          <button class="action ghost" id="clearRuns">Clear the 5 runs</button>
+          <button class="action ghost" id="exportCsv">Export CSV</button>
+        </p>
+      </div>
+    </div>
+
+    <h2>Bench E - Build the conversion</h2>
+    <ol class="steps">
+      <li>Type the value you want to change units on.</li>
+      <li>Pick the unit you have and the unit you want.</li>
+      <li>Press "Show the factors" to lay out the strip.</li>
+      <li>Click the factors, one at a time, to drop them into the work line.</li>
+      <li>Read the finished substitution, with the units cancelling.</li>
+      <li>Press "Log this conversion" to keep it in your table.</li>
+    </ol>
+    <p>
+      <label>Value: <input class="num-input" id="cvValue" value="66" style="width:8ch"></label>
+      <label>From: <select id="cvFrom"></select></label>
+      <label>To: <select id="cvTo"></select></label>
+      <button class="action" id="cvShow">Show the factors</button>
+    </p>
+    <p id="cvStrip" class="chip-strip"></p>
+    <div class="readout"><small>your work line</small><span id="cvWork">nothing dropped yet</span></div>
+    <div class="readout"><small>answer</small><span id="cvAnswer">-</span></div>
+    <p><button class="action" id="cvLog">Log this conversion</button>
+      <button class="action ghost" id="cvClearLine">Clear the work line</button></p>
+    <p class="muted">Dropping the wrong factor is allowed here, and it is worth doing
+    once. Flip a factor and watch the answer go silly, then fix it.</p>
+
+    <h2>Your data table</h2>
+    <div id="dataTable"></div>
+    <textarea class="csv-copy" id="csvCopy" readonly></textarea>
+    <p><button class="action ghost" id="exportLog">Export log CSV</button>
+      <button class="action ghost" id="clearTable">Clear table</button></p>
+    <details class="constants">
+      <summary>Numbers this bench uses</summary>
+      <p><strong>Course values, printed in the manual:</strong></p>
+      <ul>
+        <li>g = 9.80 m/s&sup2; and pi = 3.14 for hand arithmetic.</li>
+        <li>Water freezes at 0 &deg;C / 32 &deg;F and boils at 100 &deg;C / 212 &deg;F.</li>
+        <li>1 in = 2.54 cm, 1 yd = 0.91 m, 1 mi = 1.61 km, 1 gal = 3.8 L.</li>
+        <li>1 fl oz = 29.57 mL, 1 lb = 0.45 kg, 1 kg = 2.2 lb.</li>
+        <li>The pacing course is 50 ft. Each timing is 10 swings, and there are 5 timings.</li>
+        <li>The accepted value of g for this lab is 9.8 m/s&sup2;.</li>
+      </ul>
+      <p><strong>The sim's own props.</strong> The manual prints none of these numbers.</p>
+      <ul>
+        <li>Shoebox: 34.6 cm by 22.2 cm by 12.7 cm.</li>
+        <li>Metal object: 158 g and 27.5 mL. Lab manual: 1.25 kg.</li>
+        <li>Water in the cylinder: 45.0 mL at 21.5 &deg;C.</li>
+        <li>Hallway step: about 2.2 ft. Board span: 24 ft.</li>
+        <li>Pendulum length is yours to set, near 0.90 m.</li>
+      </ul>
+      <p><strong>Fun Mode noise.</strong> Ruler +/-0.1 cm. Cylinder +/-0.5 mL. Balance
+      +/-0.5 g. Spring scale +/-0.05 N. Thermometer +/-0.4 &deg;C. Step length
+      +/-0.15 ft. Stopwatch +/-0.15 s. Fun Mode never changes an accepted value.</p>
+      <p>The course factors 0.45, 2.2, 0.91, 1.61 and 3.8 are rounded. The exact values
+      differ by up to about 2%. This page grades against the course factors, because that
+      is what your worksheet is marked on.</p>
+    </details>
+
+  </section>
+
+  <section id="check" class="tab-panel">
+    <p class="muted">These use the course's own factors and g = 9.80 m/s&sup2;. Every
+    answer below is recomputed from the same module the sim runs, so the numbers here
+    cannot drift away from the bench.</p>
+    <div id="check-progress"></div>
+
+    <div class="exercise" data-ex='{
+      "type":"numbers",
+      "q":"1. Your partner says the board is 66 in long. Change that to centimetres with the course factor 1 in = 2.54 cm.",
+      "parts":[{"unit":"cm","value":167.64,"tolAbs":0.2}],
+      "hints":["Write the factor so inches cancels: 66 in x (2.54 cm / 1 in).",
+               "66 x 2.54 - do it in two bits: 66 x 2.5 = 165, plus 66 x 0.04."],
+      "working":"66 in x (2.54 cm / 1 in) = <strong>167.64 cm</strong>. The inch cancels, so the unit left over is the one you asked for.",
+      "answer":"167.64 cm"
+    }'></div>
+
+    <div class="exercise" data-ex='{
+      "type":"numbers",
+      "q":"2. Temperature both ways: (a) the water sits at 34 deg C - what is that in deg F? (b) the hallway sign reads 95 deg F - what is that in deg C?",
+      "parts":[{"label":"34 C in F","unit":"F","value":93.2,"tolAbs":0.2},
+               {"label":"95 F in C","unit":"C","value":35.0,"tolAbs":0.2}],
+      "hints":["Going up to F: multiply by 9/5 first, then add 32.",
+               "Going down to C: take 32 off first, then multiply by 5/9.",
+               "34 x 1.8 = 61.2, then + 32. And (95 - 32) x 5/9."],
+      "working":"F: 32 + 1.8 x 34 = 32 + 61.2 = <strong>93.2 F</strong>. C: (95 - 32) x 5/9 = 63 x 0.5556 = <strong>35.0 C</strong>. Order matters: the 32 is added last going up and taken off first going down.",
+      "answer":"93.2 F and 35.0 C"
+    }'></div>
+
+    <div class="exercise" data-ex='{
+      "type":"numbers",
+      "q":"3. Your own mass is 150 lb. Change it to kg with the course factor 1 lb = 0.45 kg.",
+      "parts":[{"unit":"kg","value":67.5,"tolAbs":0.1}],
+      "hints":["One step: 150 x 0.45.",
+               "150 x 0.45 = 150 x 45 / 100."],
+      "working":"150 lb x (0.45 kg / 1 lb) = <strong>67.5 kg</strong>. The exact factor is 0.4536, so the true answer is 68.0 kg. The course marks 67.5, because that is what its printed table gives.",
+      "answer":"67.5 kg on the course table"
+    }'></div>
+
+    <div class="exercise" data-ex='{
+      "type":"numbers",
+      "q":"4. You paced the 50 ft course in 18 steps. (a) What is your step size in ft per step? (b) At that step size, how long is a span you pace in 30 steps?",
+      "parts":[{"label":"step size","unit":"ft/step","value":2.778,"tolAbs":0.01},
+               {"label":"board length","unit":"ft","value":83.3,"tolAbs":0.5}],
+      "hints":["Step size = distance / steps, not steps / distance.",
+               "50 / 18 = 2.7778. Then 30 x 2.7778."],
+      "working":"50 ft / 18 steps = <strong>2.778 ft per step</strong>. 30 steps x 2.778 = <strong>83.3 ft</strong>. Your step size is an instrument you carry, and it has error like any other: about one step in twenty.",
+      "answer":"2.78 ft/step, 83.3 ft"
+    }'></div>
+
+    <div class="exercise" data-ex='{
+      "type":"numbers",
+      "q":"5. The box height reads 3 1/4 in on the inch side of the ruler. (a) What is that as a decimal? (b) What is it in cm?",
+      "parts":[{"label":"decimal inches","unit":"in","value":3.25,"tolAbs":0.005},
+               {"label":"centimetres","unit":"cm","value":8.26,"tolAbs":0.03}],
+      "hints":["1/4 = 0.25, so the decimal is 3.25.",
+               "3.25 x 2.54 - the 3 gives 7.62 and the 0.25 gives 0.635."],
+      "working":"3 1/4 in = <strong>3.25 in</strong>; 3.25 x 2.54 = <strong>8.26 cm</strong> (8.255 exactly, and the ruler cannot see the third digit anyway).",
+      "answer":"3.25 in = 8.26 cm"
+    }'></div>
+
+    <div class="exercise" data-ex='{
+      "type":"numbers",
+      "q":"6. Pendulum at L = 0.90 m with an average period Tav = 1.91 s. (a) What g does that give with pi = 3.14? (b) What is its percent error against 9.80?",
+      "parts":[{"label":"your g","unit":"m/s^2","value":9.73,"tolAbs":0.05},
+               {"label":"percent error","unit":"%","value":0.71,"tolAbs":0.1}],
+      "hints":["g = 4 x 3.14&sup2; x L / Tav&sup2;. 3.14&sup2; = 9.8596.",
+               "4 x 9.8596 x 0.90 = 35.49. 1.91&sup2; = 3.6481.",
+               "Percent error = |g - 9.80| / 9.80 x 100."],
+      "working":"g = 4 x 9.8596 x 0.90 / 3.6481 = 35.495 / 3.6481 = <strong>9.73 m/s&sup2;</strong>. The gap to 9.80 is 0.07, so the percent error is 0.07 / 9.80 x 100 = <strong>0.71%</strong>. That is a good bench result - inside 1%.",
+      "answer":"9.73 m/s^2, 0.71% low"
+    }'></div>
+
+    <div class="exercise" data-ex='{
+      "type":"choice",
+      "correct":1,
+      "q":"7. The manual works an example that turns 72 F into 22.4 C. Plain 5/9 arithmetic gives 22.2 C. What do you write in your report?",
+      "options":["22.4 C, because the manual printed it.",
+                 "22.2 C, and add one line saying the manual rounded its own step.",
+                 "Both numbers, with no comment, and let the instructor pick.",
+                 "22 C, because rounding to whole degrees hides the problem."],
+      "hints":["Do the arithmetic yourself: (72 - 32) x 5/9 = 40 x 5/9 = 22.22.",
+               "The manual rounded an intermediate 8 x 1.8 style step, then rounded again."],
+      "working":"Your own arithmetic is 22.2 C, so that is what you write. Saying why the manual shows 22.4 is not arguing with the manual - it is exactly what a lab report is for. A trusted printed number is still checked by your own line of math.",
+      "answer":"22.2 C, plus a note on the rounding"
+    }'></div>
+
+    <div class="exercise" data-ex='{
+      "type":"keywords",
+      "need":2,
+      "q":"8. In your own words: what two parts does every measured value have, and why does dropping one of them break the answer?",
+      "words":["number","unit","digit","estimate","scale","cancel","factor","zero"],
+      "placeholder":"two short ideas...",
+      "working":"A measurement is a number and a unit: 12.7 cm. The number says how many, the unit says of what. Drop the unit and 12.7 could be centimetres or inches, and any factor you multiply by next lands in the wrong place. The reading also carries one guessed digit past the last printed mark, and that digit is part of the number.",
+      "answer":"a number and a unit, plus one guessed last digit"
+    }'></div>
+  </section>
+</main>
+
+<script src="../../../shared/courses.js"></script>
+<script src="../../../shared/units.js"></script>
+<script src="../../../shared/ui.js"></script>
+<script src="../../../shared/store.js"></script>
+<script src="../../../shared/check.js"></script>
+<script src="../../../shared/worksheet.js"></script>
+<script src="./unitslab.js"></script>
+<script src="./worksheet.js"></script>
+<script src="./sim.js"></script>
+</body>
+</html>

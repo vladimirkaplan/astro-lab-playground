@@ -119,28 +119,51 @@ see [ops/lxc-classroom-kit.md](ops/lxc-classroom-kit.md).
 
 ```
 site/
-  index.html          landing: one card per lab, in course order, one plain verb-first
-                      line per card, Lab 1 tagged "Start here", saved progress ticks
-  styles.css          the site's single stylesheet
+  index.html          course hub: one card per course, nothing else
   shared/             units, fit math, tabs/hints/banner UI, data tables, plots,
-                      printable-worksheet engine
+                      printable-worksheet engine, and courses.js (see below)
+  styles.css          the site's single stylesheet
   data/               spectral line lists (cited) for the spectra lab
-  labs/<nn>-<slug>/   one folder per lab, numbered by the lab manual's numbers
-    index.html        Learn + Simulate + Check tabs
-    sim.js            the interactive imitation
-    worksheet.js      that lab's printable worksheet content (one register() call)
-  labs/<old-name>/    a stub index.html at each pre-renumbering URL, redirecting to
-                      the lab's numbered folder
-tests/                node --test suites for the pure modules
+  ast110/             AST110 course
+    index.html        course landing: one card per lab, in course order, one plain
+                      verb-first line per card, Lab 1 tagged "Start here", ticks
+    labs/<nn>-<slug>/ one folder per lab, numbered by the lab manual's numbers
+      index.html      Learn + Simulate + Check tabs
+      sim.js          the interactive imitation
+      worksheet.js    that lab's printable worksheet content (one register() call)
+  phy110/             PHY110 course (landing exists; its labs ship later)
+    index.html        course landing (no lab cards yet)
+  labs/<old-name>/    a stub index.html at every old lab URL (pre-renumbering and
+                      pre-course-move), redirecting into ast110/labs/
+  homework/           homework practice pages (still at the site root - see
+                      "Remaining moves")
+  img/                the ten cleared galaxy photos for Lab 14 (see ATTRIBUTION.md)
+tests/                node --test suites for the pure modules, plus lab-manifest.js
+                      which feeds every test the lab lists from the course registry
 ```
+
+The site holds more than one course. `site/shared/courses.js` is the course
+registry: a frozen list with one entry per course (code, name, landing,
+worksheet file prefix, source/attribution lines, ordered lab folders). Banner
+and licence text, worksheet file names, and the localStorage key prefix are
+all read from it, so nothing course-specific stays hard-coded in shared code.
+New courses are registry edits plus a course folder - no shared-code changes.
+
+localStorage keys carry the course (`labSimsProgress.ast110.v1`,
+`labSimsMode.ast110.<slug>`, `labSimsTable.ast110.<slug>.<name>`); the old
+bare-slug keys are still read, so progress saved before the move kept working.
+The worksheet slug is the lab folder name, and slugs must not repeat across
+courses (the registry is checked for that).
 
 ## Adding a lab
 
-1. Create `site/labs/<course-num>-<slug>/index.html`: header, three tab panels, scripts
-   `shared/units.js`, `ui.js`, `store.js`, `check.js`, then lab modules, then `sim.js`
-   which ends with the standard boot (banner, tabs, mode toggle, check init). Add
-   `worksheet.js` beside it (one `LS.worksheet.register({...})` call) and load it after
-   `shared/worksheet.js`; `ui.js` mounts the Print/.csv/.xlsx control from the folder name.
+1. Create `site/<course>/labs/<nn>-<slug>/index.html`: header, three tab panels, scripts
+   `shared/courses.js`, `shared/units.js`, `ui.js`, `store.js`, `check.js`, then lab
+   modules, then `sim.js` which ends with the standard boot (banner, tabs, mode toggle,
+   check init). Add `worksheet.js` beside it (one `LS.worksheet.register({...})` call)
+   and load it after `shared/worksheet.js`; `ui.js` mounts the Print/.csv/.xlsx control
+   from the folder name. Add the folder name to that course's `labDirs` in
+   `shared/courses.js` - the tests read the lab list from there, not from any test file.
 2. Use `LS.ui.hintBox` (built into every exercise) and `LS.check` exercise types:
    `numbers`, `choice`, `sequence`, `keywords`, `feetinches`. Tolerances are part of the
    exercise config: instruments are imprecise, the answers give credit for a band, not a
@@ -150,8 +173,10 @@ tests/                node --test suites for the pure modules
 4. Fun Mode: route every measurement through the mode flag and jitter it there.
 5. Cite rendered data (line lists, catalogs, models) next to what draws it.
 6. Put pure math in Node-loadable files and pin it with a small test in `tests/`.
-7. Add the landing card in course order: one plain sentence, at most 18 words, opening on
-   a verb (`tests/landing.test.js` pins all three, plus the intro's FK grade).
+7. Add the course-landing card in course order: one plain sentence, at most 18 words,
+   opening on a verb (`tests/landing.test.js` pins all three, plus the intro's FK grade).
+   A new course is a new `courses.js` entry, a `site/<code>/` folder with its landing,
+   and a hub card.
 8. Worksheet prompts ask in plain words - no "derive", "bias", "reading uncertainty",
    "systematic", or "justify" (`tests/worksheet-plain-words.test.js` holds the list).
    Course terms the lab teaches (elongation, parallax) are fine; the Learn tab defines them.
@@ -179,5 +204,17 @@ outside `site/img/`.
 ## Data privacy
 
 Student measurements (data tables, progress ticks, mode choices) live in your browser's
-localStorage and never leave your device. The site sends nothing anywhere; there is no
-account, analytics, or remote font.
+localStorage and never leave your device, keyed per course. The site sends nothing
+anywhere; there is no account, analytics, or remote font.
+
+## Remaining moves
+
+BMC-27 moved the AST110 landing and all sixteen labs under `site/ast110/` and
+put the course hub at `site/index.html`. Deliberately left where it is for
+now, to be moved by a later task with its own redirect stubs:
+
+- `site/homework/` (the two homework practice pages) - still at the site root;
+  its back links point at the hub today.
+- `site/img/` - galaxy photos stay at the root because moving them would touch
+  binary paths for no URL benefit (nothing published links to the folder by
+  hand); the lab page references them relative to itself.

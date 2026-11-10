@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lab 4: Atwood's machine, Newton's second law - Astro Lab Playground</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="../../../styles.css">
+</head>
+<body>
+
+<header class="site-head">
+  <div class="wrap">
+    <p style="margin:0"><a class="back-link" href="../../index.html">&larr; all labs</a></p>
+    <h1>Lab 4 &middot; Atwood&rsquo;s machine: Newton&rsquo;s second law</h1>
+    <p>Build a slightly unbalanced pair of hangers, time the fall five times,
+    and compare your measured acceleration with the theory value that includes
+    the pulley. The bench grades you against its own theory line, and your
+    number is allowed to come out somewhere else.</p>
+  </div>
+</header>
+
+<main>
+  <div class="tabs" role="tablist">
+    <button class="tab-btn" data-tab="learn" role="tab">Learn</button>
+    <button class="tab-btn" data-tab="simulate" role="tab">Simulate</button>
+    <button class="tab-btn" data-tab="check" role="tab">Check</button>
+  </div>
+
+  <section id="learn" class="tab-panel learn">
+    <div class="words-box">
+      <p class="words-title">Words in this lab</p>
+      <ul>
+        <li><strong>Atwood&rsquo;s machine</strong> &mdash; a pulley hung from a ceiling, with two masses on one string. One side goes up as the other goes down.</li>
+        <li><strong>unbalanced</strong> &mdash; the two sides do not weigh the same. The heavier side pulls.</li>
+        <li><strong>acceleration</strong> &mdash; how fast the speed builds up, in m/s&sup2;. This lab measures it two ways.</li>
+        <li><strong>pulley mass</strong> &mdash; the pulley is not massless. It is a solid disc that spins up as the sides move.</li>
+        <li><strong>trial</strong> &mdash; one mass setup with five timed drops.</li>
+        <li><strong>h</strong> &mdash; the drop, read from the holder bottom to the floor.</li>
+        <li><strong>percent difference</strong> &mdash; how far your measured a sits from the theory a, written as a percent.</li>
+      </ul>
+    </div>
+
+    <h2>What you do at the bench</h2>
+    <p>The bench has a ceiling pulley, two weight holders above a floor line, a
+    tray of slotted weights, a meter stick, and a stopwatch.</p>
+    <p>You type the pulley mass and the two holder masses once. On the real
+    machine those numbers are printed on the parts.</p>
+    <p>You drag slotted weights onto the holders until one side is a little
+    heavier, then drag the heavy holder to a release height. The meter stick
+    reads h from the holder bottom to the floor.</p>
+    <p>You start the stopwatch, release the holders, and the clock stops at the
+    floor. You do that five times, average the five times, and pull a out of
+    the average. Four trials finish the data page.</p>
+
+    <h2>The one equation that matters</h2>
+    <p>The pull on the system is the mass difference. The inertia is all the
+    mass, with the pulley counting as half. So the theory value is</p>
+    <ul>
+      <li><strong>a = (m2 &minus; m1)&middot;g / (m1 + m2 + M/2)</strong></li>
+    </ul>
+    <p>The measured side is one line too, from the fall of h in a time t:</p>
+    <ul>
+      <li><strong>a = 2h / t&sup2;</strong></li>
+    </ul>
+    <p>You may keep every mass in grams. The ratio cancels the units, so no kg
+    conversion is needed.</p>
+
+    <h2>Why the pulley counts as half</h2>
+    <p>The pulley is a solid disc, and it must spin up as the string moves.
+    For a uniform disc, that spin-up effort works out to half its mass.</p>
+    <p>So the denominator carries M/2 and not the whole pulley mass. Drop the
+    pulley from the formula and a comes out about 11&nbsp;% too big on the
+    course example.</p>
+
+    <h2>Reading h the honest way</h2>
+    <p>The meter stick reads from the holder bottom to the floor. That is the
+    distance the fall really covers, so that is the h you use.</p>
+    <p>Reading from the holder top or its centre makes h wrong by part of a
+    holder, and every a you compute comes out with it.</p>
+
+    <h2>Why your a comes out a little low</h2>
+    <p>A real pulley has friction in its bearing, and its string is not
+    massless. Both pull the measured a below the theory value, by a few
+    percent.</p>
+    <p>Your hand on the stopwatch is not perfect either. That is why the bench
+    asks for five repeats: the average spreads a fast or slow hand across five
+    drops instead of one.</p>
+
+    <div class="mistakes">
+      <strong>Common mistakes in this lab:</strong>
+      <ul>
+        <li>Putting the whole pulley mass M in the formula instead of M/2. That
+        pushes a up by about 11&nbsp;%.</li>
+        <li>A mass difference over 20&nbsp;g. The fall gets fast and the timing
+        gets rough.</li>
+        <li>Starting the stopwatch after you release the holders.</li>
+        <li>Averaging the a values instead of the five times first.</li>
+        <li>Switching one mass to kg and leaving the rest in grams.</li>
+      </ul>
+    </div>
+
+  </section>
+
+  <section id="simulate" class="tab-panel">
+    <div class="toolbar" id="toolbar1"></div>
+
+    <h2>Bench A &mdash; Set up, drop, time</h2>
+    <ol class="steps">
+      <li>Type the pulley mass and the two holder masses. They are printed on the real machine.</li>
+      <li>Drag slotted weights from the tray onto the holders, or press a course-trial button.</li>
+      <li>Drag the heavy holder up or down. The meter stick reads h from the holder bottom to the floor.</li>
+      <li>Press Start, then Release as fast as you can. The fall runs at real speed.</li>
+      <li>The clock stops at the floor hit. Repeat until the trial has five timed drops.</li>
+      <li>Press Average 5 to pull a_measured out of the mean time, then Next trial.</li>
+      <li>Four trials finish the table. The percent-difference row uses the mean as its denominator, and it says so.</li>
+    </ol>
+    <div class="split">
+      <div>
+        <div class="canvas-frame"><canvas id="atwoodCanvas" height="470"></canvas></div>
+        <p class="muted"><span class="drag-chip">Drag this</span> &mdash; slotted
+        weights move between the tray and the holders; the heavy holder moves
+        up and down to set the release height h.</p>
+        <p class="muted">The fall animates at real speed, so a 2.6&nbsp;s drop
+        takes 2.6&nbsp;s. The stopwatch keeps true time.</p>
+      </div>
+      <div>
+        <p class="muted" style="margin-top:0"><strong>Apparatus (type once):</strong></p>
+        <p>
+          <label>Pulley mass M (g) <input type="number" id="pulleyMass" value="70" min="0" step="5"></label><br>
+          <label>Left holder mass (g) <input type="number" id="holder1Mass" value="50" min="0" step="5"></label><br>
+          <label>Right holder mass (g) <input type="number" id="holder2Mass" value="50" min="0" step="5"></label>
+        </p>
+        <p>
+          <button class="action" id="courseT1">Course trial 1</button>
+          <button class="action" id="courseT2">Course trial 2</button>
+          <button class="action" id="courseT3">Course trial 3</button>
+          <button class="action" id="courseT4">Course trial 4</button>
+        </p>
+        <p>
+          <button class="action" id="startBtn">Start</button>
+          <button class="action" id="releaseBtn">Release</button>
+          <button class="action ghost" id="stopBtn">Stop (discard)</button>
+        </p>
+        <p>
+          <button class="action" id="avgBtn" disabled>Average 5</button>
+          <button class="action ghost" id="nextBtn" disabled>Next trial</button>
+        </p>
+        <div class="readout"><small>heavy side / release height h</small><span id="sideRead">-</span></div>
+        <div class="readout"><small>current trial / timings</small><span id="trialRead">trial 1, 0 of 5</span></div>
+        <div class="readout"><small>stopwatch</small><span id="timerRead">0.000 s</span></div>
+        <div class="readout"><small>a_theory (live, from the masses you set)</small><span id="aTheoryRead">-</span></div>
+        <div class="readout"><small>a_measured (from the mean time)</small><span id="aMeasRead">-</span></div>
+        <div class="readout"><small>% difference (on the mean)</small><span id="pctRead">-</span></div>
+        <div class="readout"><small>bench note</small><span id="noteRead">set the masses, then drop</span></div>
+      </div>
+    </div>
+
+    <h2>Your data table</h2>
+    <div id="dataTable"></div>
+    <textarea class="csv-copy" id="csvCopy" readonly></textarea>
+    <p><button class="action ghost" id="exportLog">Export log CSV</button>
+      <button class="action ghost" id="clearTable">Clear table</button></p>
+    <p class="muted">One row per quantity, one column per trial. The percent
+    difference uses the mean of measured and theory as its denominator, and the
+    Check tab accepts the theory denominator too.</p>
+    <details id="workDetails">
+      <summary>Show your work</summary>
+      <pre id="workBox">set up a trial first</pre>
+    </details>
+
+    <details class="constants">
+      <summary>Numbers this bench uses</summary>
+      <p><strong>Course values, printed in the manual:</strong></p>
+      <ul>
+        <li>g = 9.80 m/s&sup2;. Four trials, five timed drops each.</li>
+        <li>Trial 1 differs by about 10&nbsp;g between the holders; trials 2&ndash;4
+        add about 20&nbsp;g to each holder, so the difference stays 10&nbsp;g.</li>
+        <li>Mass-difference rule: keep |m2 &minus; m1| at 20&nbsp;g or less, so the
+        fall stays slow enough to time.</li>
+        <li>Grams are allowed throughout: the theory line is one ratio, so the
+        units cancel.</li>
+        <li>The percent difference uses the mean of measured and theory as its
+        denominator, printed here and on the table.</li>
+      </ul>
+      <p><strong>Not printed in the manual, shown here so nothing is a guess:</strong></p>
+      <ul>
+        <li>Holder mass 50&nbsp;g each, pulley mass 70&nbsp;g. On the real machine
+        those numbers are stamped on the parts, not printed in the manual.</li>
+      </ul>
+      <p><strong>The sim&rsquo;s own props.</strong> Slotted weights come in 100,
+      50, 20 and 10&nbsp;g. Release height runs 0.30&ndash;1.00&nbsp;m. The fall
+      animates at real speed.</p>
+      <p><strong>Fun Mode noise.</strong> Each trial the instrument loses 2&ndash;8&nbsp;%
+      of the drive (bearing friction plus string), and the stop button slips up to
+      0.05&nbsp;s per drop. Fun Mode never changes g = 9.80 or any course value.</p>
+      <p><strong>Honest limits.</strong> On a real rig the measured a usually lands a
+      few percent below theory. A big mass difference makes the fall fast and the
+      timing rough, which is what the course rule is for. Real kits often have two
+      holders of unequal mass, so type each one separately.</p>
+    </details>
+
+  </section>
+
+  <section id="check" class="tab-panel">
+    <p class="muted">These use g = 9.80 m/s&sup2; and the course&rsquo;s own arithmetic. Every
+    answer below is recomputed from the same module the sim runs, so the numbers here
+    cannot drift away from the bench.</p>
+    <div id="check-progress"></div>
+
+    <div class="exercise" data-ex='{
+      "type":"numbers",
+      "q":"1. The course example: m1 = 150 g, m2 = 160 g, pulley M = 70 g, g = 9.80 m/s^2. What is a_theory?",
+      "parts":[{"unit":"m/s^2","value":0.284,"tolAbs":0.005}],
+      "hints":["a = (m2 - m1) g / (m1 + m2 + M/2).",
+        "The pull is 10 g times g. The denominator is 150 + 160 + 35.",
+        "10 x 9.80 = 98, and the denominator is 345."],
+      "working":"a = (160 - 150) x 9.80 / (150 + 160 + 70/2) = 98 / 345 = <strong>0.284 m/s^2</strong>. Grams on top and grams on the bottom cancel, so no kg conversion is needed.",
+      "answer":"0.284 m/s^2"
+    }'></div>
+
+    <div class="exercise" data-ex='{
+      "type":"numbers",
+      "q":"2. With a_theory = 0.284 m/s^2, the heavy holder falls h = 1.00 m from rest. How long does the fall take?",
+      "parts":[{"unit":"s","value":2.65,"tolAbs":0.03}],
+      "hints":["h = a t^2 / 2, so t = sqrt(2h / a).",
+        "2 x 1.00 / 0.284 = 7.04.",
+        "Its square root is 2.65."],
+      "working":"t = sqrt(2h / a) = sqrt(2.00 / 0.284) = sqrt(7.042) = <strong>2.65 s</strong>. A slow fall, the kind a hand on a stopwatch can follow.",
+      "answer":"2.65 s"
+    }'></div>
+
+    <div class="exercise" data-ex='{
+      "type":"numbers",
+      "q":"3. One trial reads h = 0.80 m and the five times average to t = 2.74 s. What a does that give?",
+      "parts":[{"unit":"m/s^2","value":0.213,"tolAbs":0.003}],
+      "hints":["a = 2h / t^2.",
+        "2.74 squared is 7.5076.",
+        "1.6 / 7.5076."],
+      "working":"a = 2 x 0.80 / 2.74^2 = 1.6 / 7.5076 = <strong>0.213 m/s^2</strong>. The average time does the work, not one lucky drop.",
+      "answer":"0.213 m/s^2"
+    }'></div>
+
+    <div class="exercise" data-ex='{
+      "type":"numbers",
+      "q":"4. What if you ignore the pulley in the 150/160 g example? (a) What a comes out? (b) How many percent too big is it?",
+      "parts":[{"label":"a without pulley","unit":"m/s^2","value":0.316,"tolAbs":0.005},
+               {"label":"percent too big","unit":"%","value":11.3,"tolAbs":1}],
+      "hints":["Without the pulley the denominator is just m1 + m2 = 310.",
+        "98 / 310 = 0.316.",
+        "The gap is 0.316 - 0.284. Divide by 0.284, multiply by 100."],
+      "working":"a = 98 / 310 = <strong>0.316 m/s^2</strong>. That is (0.316 - 0.284) / 0.284 x 100 = <strong>11.3 %</strong> above the true value. The M/2 term is small, but not nothing.",
+      "answer":"0.316 m/s^2, 11.3 % too big"
+    }'></div>
+
+    <div class="exercise" data-ex='{
+      "type":"numbers",
+      "q":"5. Your measured a is 0.27 m/s^2 and the theory a is 0.284 m/s^2. Give the percent difference. The sim uses the mean as its denominator; the check accepts the theory one too.",
+      "parts":[{"unit":"%","value":5.0,"tolAbs":0.4}],
+      "hints":["On the mean: |0.27 - 0.284| / ((0.27 + 0.284) / 2).",
+        "The mean is 0.277, the gap is 0.014.",
+        "On the theory: 0.014 / 0.284."],
+      "working":"On the mean: 0.014 / 0.277 x 100 = <strong>5.1 %</strong>. On the theory: 0.014 / 0.284 x 100 = <strong>4.9 %</strong>. The manual never prints which denominator, so the sim picks the mean and prints it, and the check accepts both.",
+      "answer":"5.1 % on the mean, 4.9 % on the theory"
+    }'></div>
+
+    <div class="exercise" data-ex='{
+      "type":"choice",
+      "correct":1,
+      "q":"6. You double the mass difference the natural way: move 10 g of slotted weights onto the heavier side, so m2 is now 170 g. What happens to a_theory?",
+      "options":["It doubles exactly, because the pull doubled.",
+        "It comes out just under double, because the added 10 g also adds inertia.",
+        "It more than doubles, because the same total mass feels a bigger pull.",
+        "It is unchanged, because the total mass is the same."],
+      "hints":["a = (m2 - m1) g / (m1 + m2 + M/2).",
+        "The pull goes from 10 g to 20 g. The denominator goes from 345 to 355.",
+        "196/355 = 0.552, against 2 x 0.284 = 0.568."],
+      "working":"a = (170 - 150) x 9.80 / (150 + 170 + 35) = 196 / 355 = 0.552 m/s^2. Double the old value would be 0.568. The extra 10 g of inertia keeps a just under double: the pull doubled, but the total mass grew too.",
+      "answer":"just under double - the extra mass also adds inertia"
+    }'></div>
+
+    <div class="exercise" data-ex='{
+      "type":"keywords",
+      "need":3,
+      "q":"7. Your measured a landed below the theory value. In your own words, name the things on a real machine that pull it down.",
+      "words":["friction","pulley","bearing","rough","string","heavy","loss","drag","spin","low","below"],
+      "placeholder":"two or three short ideas...",
+      "hints":["Look at what a real machine has that the formula assumes away.",
+        "The pulley spins in a bearing. The string has its own mass."],
+      "working":"The bearing in the pulley is not frictionless, and the string is not massless. Both steal part of the pull, so the measured a sits a few percent below the theory value. That is a feature of the apparatus, not a mistake in your timing.",
+      "answer":"friction in the pulley bearing and the mass of the string steal part of the pull"
+    }'></div>
+  </section>
+</main>
+
+<script src="../../../shared/courses.js"></script>
+<script src="../../../shared/units.js"></script>
+<script src="../../../shared/ui.js"></script>
+<script src="../../../shared/store.js"></script>
+<script src="../../../shared/check.js"></script>
+<script src="../../../shared/worksheet.js"></script>
+<script src="./atwood.js"></script>
+<script src="./worksheet.js"></script>
+<script src="./sim.js"></script>
+</body>
+</html>

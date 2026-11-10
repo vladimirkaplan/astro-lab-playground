@@ -4,7 +4,7 @@ const assert = require("node:assert/strict");
 
 require("../site/shared/units.js");
 require("../site/shared/fit.js");
-require("./../site/labs/15-hubbles-law/balloon.js");
+require("./../site/ast110/labs/15-hubbles-law/balloon.js");
 const B = globalThis.LS.balloon;
 const F = globalThis.LS.fit;
 const U = globalThis.LS.units;

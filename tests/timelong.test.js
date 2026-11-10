@@ -5,7 +5,7 @@ const path = require("path");
 
 const root = path.join(__dirname, "..");
 require("../site/shared/units.js");
-require("../site/labs/16-time-lat-long/timelong.js");
+require("../site/ast110/labs/16-time-lat-long/timelong.js");
 const T = globalThis.LS.timeLong;
 
 test("roundHalf rounds halves upward, both signs", () => {

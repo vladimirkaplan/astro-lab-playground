@@ -14,15 +14,8 @@
 const test = require("node:test");
 const assert = require("node:assert/strict");
 const fs = require("node:fs");
-const path = require("node:path");
 
-const ROOT = path.join(__dirname, "..");
-const LABS_DIR = path.join(ROOT, "site", "labs");
-
-const LAB_DIRS = ["01-measurement", "02-math", "03-celestial-sphere", "04-moon-phases",
-  "05-moonrise-eclipses", "06-retrograde-mars", "07-lenses", "08-venus-phases",
-  "09-pendulum", "10-spectra", "11-parallax", "12-hr-diagram", "13-variables",
-  "14-galaxy-id", "15-hubbles-law", "16-time-lat-long"];
+const M = require("./lab-manifest.js");
 
 const FK_MAX = 8.0;
 const SENT_MAX = 25;
@@ -46,8 +39,8 @@ function decodeEntities(s) {
       Object.prototype.hasOwnProperty.call(ENTITIES, name) ? " " + ENTITIES[name] + " " : m);
 }
 
-function learnHtml(dir) {
-  const html = fs.readFileSync(path.join(LABS_DIR, dir, "index.html"), "utf8");
+function learnHtml(code, dir) {
+  const html = fs.readFileSync(M.labPage(code, dir), "utf8");
   const start = html.indexOf('<section id="learn"');
   assert.ok(start >= 0, dir + ": page has a #learn section");
   let depth = 0;
@@ -138,8 +131,8 @@ function score(sentences) {
   return { sentences: sentences.length, fk: Math.round(fk * 100) / 100, longest, longestS };
 }
 
-function readLab(dir) {
-  const section = learnHtml(dir);
+function readLab(code, dir) {
+  const section = learnHtml(code, dir);
   const st = score(splitSentences(learnText(section)));
   const box = section.match(/<div class="words-box">([\s\S]*?)<\/div>/);
   let items = 0;
@@ -147,9 +140,10 @@ function readLab(dir) {
   return { section, st, box, items };
 }
 
-for (const dir of LAB_DIRS) {
-  test(dir + ": Learn prose is easy English (FK <= 8.0, no 25+ word sentence)", () => {
-    const { st } = readLab(dir);
+for (const course of M.COURSES) {
+for (const dir of course.labDirs) {
+  test(course.code + "/" + dir + ": Learn prose is easy English (FK <= 8.0, no 25+ word sentence)", () => {
+    const { st } = readLab(course.code, dir);
     assert.ok(st.sentences >= 10, dir + ": Learn has measurable prose (found " + st.sentences + " sentences)");
     assert.ok(st.fk <= FK_MAX,
       dir + ": FK grade " + st.fk + " exceeds " + FK_MAX + " over " + st.sentences + " sentences");
@@ -157,10 +151,11 @@ for (const dir of LAB_DIRS) {
       dir + ": " + st.longest + "-word sentence exceeds " + SENT_MAX + ": " + st.longestS);
   });
 
-  test(dir + ": Learn opens with a 5-8 line Words in this lab box", () => {
-    const { box, items } = readLab(dir);
+  test(course.code + "/" + dir + ": Learn opens with a 5-8 line Words in this lab box", () => {
+    const { box, items } = readLab(course.code, dir);
     assert.ok(box, dir + ': has a <div class="words-box"> block');
     assert.match(box[1], /Words in this lab/, dir + ": box is titled 'Words in this lab'");
     assert.ok(items >= 5 && items <= 8, dir + ": box has 5-8 terms (found " + items + ")");
   });
+}
 }

@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lab 7: Buoyant force and Archimedes' principle - Astro Lab Playground</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="../../../styles.css">
+</head>
+<body>
+
+<header class="site-head">
+  <div class="wrap">
+    <p style="margin:0"><a class="back-link" href="../../index.html">&larr; all labs</a></p>
+    <h1>Lab 7 &middot; Buoyant force and Archimedes&rsquo; principle</h1>
+    <p>Lower a hooked cylinder into water, read how much the level rises, then hang it
+    submerged from a tared beaker on the balance. The two routes must give the same
+    buoyant force. The cylinder reads to about 1 mL, so an honest lab lands a
+    double-digit percent difference, and that is the point.</p>
+  </div>
+</header>
+
+<main>
+  <div class="tabs" role="tablist">
+    <button class="tab-btn" data-tab="learn" role="tab">Learn</button>
+    <button class="tab-btn" data-tab="simulate" role="tab">Simulate</button>
+    <button class="tab-btn" data-tab="check" role="tab">Check</button>
+  </div>
+
+  <section id="learn" class="tab-panel learn">
+    <div class="words-box">
+      <p class="words-title">Words in this lab</p>
+      <ul>
+        <li><strong>buoyant force</strong> &mdash; the up push of water on a submerged object. In newtons.</li>
+        <li><strong>displaced volume V&#7522;</strong> &mdash; the volume of water the object pushes aside.</li>
+        <li><strong>apparent weight</strong> &mdash; what the scale reads while the object hangs in the water. Smaller than the true weight.</li>
+        <li><strong>triple-beam balance</strong> &mdash; a scale with sliding riders that reads grams.</li>
+        <li><strong>graduated cylinder</strong> &mdash; the 50 mL tube with tick marks for reading water levels.</li>
+        <li><strong>meniscus</strong> &mdash; the curve of the water surface. Read at its bottom edge.</li>
+        <li><strong>tare</strong> &mdash; zero the scale with something on the pan, so only what you add counts.</li>
+        <li><strong>newton</strong> &mdash; the unit of force. The weight of about 102 g at the ground.</li>
+      </ul>
+    </div>
+
+    <h2>What you do at the bench</h2>
+    <p>The bench has a 50 mL graduated cylinder, a 250 mL beaker, a triple-beam
+    balance, and three hooked metal cylinders stamped Cu, T and Z.</p>
+    <p>In Part I you pour water into the cylinder, read the level, lower a hooked
+    cylinder on a thin wire, and read the level again. The rise is the object volume.</p>
+    <p>In Part II you weigh the dry cylinder in air. Then you set a quarter-full
+    beaker on the balance pan, tare it, hang the cylinder fully submerged from a
+    wire, and read the apparent mass.</p>
+    <p>In Part III you log the metal. The bench writes both routes and the percent
+    difference between them.</p>
+
+    <h2>The one equation</h2>
+    <p>Water pushes up on anything that takes its place. The size of the push is</p>
+    <ul>
+      <li><strong>F&#8346; = &rho;&#7522; &middot; V&#7522; &middot; g</strong></li>
+    </ul>
+    <p>Fully submerged, the displaced volume V&#7522; equals the object volume V&#8324;.
+    So the test line of the lab is</p>
+    <ul>
+      <li><strong>F&#8344; &minus; F&#8344;(apparent) = &rho;&#7522; &middot; V&#8324; &middot; g</strong></li>
+    </ul>
+    <p>If the two sides agree within the bench error, the principle holds for that metal.</p>
+    <p>Units: &rho;&#7522; in kg/m&sup3;, volume in m&sup3;, g = 9.80 m/s&sup2;, force in newtons.
+    One reminder: 1 mL = 1 cm&sup3; = 1&times;10&#8315;&sup3; m&sup3;.</p>
+
+    <h2>Why the two routes should agree</h2>
+    <p>The volume route measures how much water the object pushed aside.</p>
+    <p>The weight route measures how much the water pushed the object up.</p>
+    <p>Archimedes says these are the same thing, so the two F&#8346; numbers should land
+    close together.</p>
+
+    <h2>Coarse water, honest percent</h2>
+    <p>A real 50 mL cylinder reads to about 1 mL. Your object is about 2.5 mL. So the
+    volume route carries a roughly 20 % slip, and double-digit percent differences
+    between the routes are the normal bench result.</p>
+    <p>Bubbles stuck to the metal and the wire&rsquo;s own volume skew the level by about
+    0.1 mL. Tap out the bubbles before you read.</p>
+    <p>Tap water sits about 1 % off from 1.00 g/cm&sup3;. At this precision that is
+    nothing, and the bench says so out loud.</p>
+    <p>Air buoyancy is ignored, as the course says.</p>
+
+    <div class="mistakes">
+      <strong>Common mistakes in this lab:</strong>
+      <ul>
+        <li>Reading the top of the meniscus instead of its bottom edge.</li>
+        <li>Reading the level before the cylinder is fully under the water.</li>
+        <li>Skipping the tare, so the beaker and water ride in the reading.</li>
+        <li>Mixing mL and m&sup3; in the F&#8346; line. 2.5 mL is 2.5&times;10&#8315;&sup3; m&sup3;, not 2.5.</li>
+        <li>Comparing the routes before both are logged.</li>
+      </ul>
+    </div>
+
+  </section>
+
+  <section id="simulate" class="tab-panel">
+    <div class="toolbar" id="toolbar1"></div>
+
+    <h2>Part I &mdash; Volume route: displace and read the level</h2>
+    <ol class="steps">
+      <li>Pick the metal you will work on. Its hooked cylinder lifts off the shelf.</li>
+      <li>Set the pour slider near half the cylinder, about 25 mL. Read V_water at the bottom of the meniscus.</li>
+      <li>Press "Lower into cylinder" so the hooked cylinder drops on its thin wire until it is fully under the water.</li>
+      <li>Read the new level, V_water+cyl. The rise, V_water+cyl minus V_water, is the object volume V_o.</li>
+      <li>If bubbles stick to the metal, press "Tap out the bubbles" and read again.</li>
+      <li>Note that the bench reads the level to about 1 mL, like a real 50 mL cylinder.</li>
+    </ol>
+
+    <h2>Part II &mdash; Weight route: weigh dry, then submerged</h2>
+    <ol class="steps">
+      <li>Press "Weigh in air". The dry cylinder sits on the pan and the readout gives the mass in grams, with the kg cell beside it.</li>
+      <li>Press "Beaker on pan" to move the balance to the quarter-full 250 mL beaker.</li>
+      <li>Press "Tare pan". The beaker and its water now weigh zero on the scale.</li>
+      <li>Press "Lower into beaker" so the cylinder hangs fully submerged from the wire over the beaker.</li>
+      <li>The readout is the apparent mass, in grams and kilograms.</li>
+      <li>Press "Raise from beaker" before you switch to the next metal.</li>
+    </ol>
+
+    <h2>Part III &mdash; Record the metal and compare the routes</h2>
+    <ol class="steps">
+      <li>Make sure you have a V_water+cyl reading from Part I and an apparent-mass reading from Part II.</li>
+      <li>Press "Log this metal". The bench writes one row in each table.</li>
+      <li>Table 1 is the volume route: V_o in mL and m&sup3;, then F&#8346; = 1000 &times; V&#8324; &times; 9.80.</li>
+      <li>Table 2 is the weight route: F&#8344;, F&#8344; apparent, and their difference as F&#8346;.</li>
+      <li>The footer compares your two F&#8346; numbers with the percent difference, and it names the accepted F&#8346; out loud.</li>
+      <li>Repeat for the other two metals. Three rows per table finish the sheet.</li>
+    </ol>
+
+    <div class="split">
+      <div>
+        <div class="canvas-frame"><canvas id="benchCanvas" height="520"></canvas></div>
+        <p class="muted">The zoom circle magnifies the meniscus, and the kg cell
+        beside the balance converts the grams reading, like the paper data page.</p>
+      </div>
+      <div>
+        <p class="muted" style="margin-top:0"><strong>Metal cylinder:</strong></p>
+        <p>
+          <button class="action" id="matCu">Cu (copper)</button>
+          <button class="action ghost" id="matT">T (tin)</button>
+          <button class="action ghost" id="matZ">Z (zinc)</button>
+        </p>
+        <p>
+          <label>Pour level (mL) <input type="range" id="pourSlider" min="15" max="35" step="1" value="25"></label>
+        </p>
+        <p>
+          <button class="action" id="lowerCylBtn">Lower into cylinder</button>
+          <button class="action ghost" id="tapBtn">Tap out the bubbles</button>
+        </p>
+        <p>
+          <button class="action" id="balAirBtn">Weigh in air</button>
+          <button class="action ghost" id="balBeakerBtn">Beaker on pan</button>
+          <button class="action ghost" id="tareBtn">Tare pan</button>
+          <button class="action ghost" id="lowerBeakerBtn">Lower into beaker</button>
+        </p>
+        <p>
+          <button class="action" id="logBtn">Log this metal</button>
+        </p>
+        <div class="readout"><small>level reading (mL)</small><span id="levelRead">-</span></div>
+        <div class="readout"><small>balance (g / kg cell)</small><span id="massRead">-</span></div>
+        <div class="readout"><small>F_b volume route / weight route (N)</small><span id="fbRead">-</span></div>
+        <div class="readout"><small>% difference of the two routes</small><span id="pctRead">-</span></div>
+        <div class="readout"><small>accepted F_b</small><span id="accRead">0.0245 N (V_o = 2.50 mL)</span></div>
+        <div class="readout"><small>bench note</small><span id="noteRead">pick a metal and work Part I</span></div>
+      </div>
+    </div>
+
+    <h2>Your data tables</h2>
+    <p class="muted">Table 1 (volume route) header: symbol &mdash; material &mdash;
+    V_water (mL) &mdash; V_water+cyl (mL) &mdash; V_o (mL) &mdash; V_o (m&sup3;) &mdash;
+    F_b (N). Course values: &rho;_water = 1000 kg/m&sup3;, g = 9.80 m/s&sup2;,
+    1 mL = 1&times;10&#8315;&sup3; m&sup3;. Air buoyancy is ignored.</p>
+    <div id="table1"></div>
+    <p class="muted">Table 2 (weight route) header: material &mdash; mass in air
+    (kg) &mdash; F_g (N) &mdash; apparent mass (kg) &mdash; F_g apparent (N) &mdash;
+    F_b = F_g &minus; F_g apparent (N) &mdash; % difference against Table 1.</p>
+    <div id="table2"></div>
+    <textarea class="csv-copy" id="csvCopy" readonly></textarea>
+    <p><button class="action ghost" id="exportLog">Export log CSV</button>
+      <button class="action ghost" id="clearTable">Clear logs</button></p>
+    <details id="workDetails">
+      <summary>Show your work</summary>
+      <pre id="workBox">work a metal through Part I and Part II, then log it</pre>
+    </details>
+
+    <details class="constants">
+      <summary>Numbers this bench uses</summary>
+      <p><strong>Course values, printed in the manual:</strong></p>
+      <ul>
+        <li>&rho;_water = 1000 kg/m&sup3;.</li>
+        <li>g = 9.80 m/s&sup2;.</li>
+        <li>1 mL = 1 cm&sup3; = 1&times;10&#8315;&sup3; m&sup3;.</li>
+        <li>Three rows fixed: copper, tin, zinc.</li>
+        <li>Table I densities: Cu 8.92, tin 7.30, zinc 7.10 g/cm&sup3;.</li>
+        <li>Air buoyancy is explicitly ignored.</li>
+      </ul>
+      <p><strong>Not printed in the manual, shown here so nothing is a guess:</strong></p>
+      <ul>
+        <li>The three object volumes are each 2.50 mL. Their masses follow from
+        Table I: 22.30 g, 18.25 g and 17.75 g.</li>
+      </ul>
+      <p><strong>The sim&rsquo;s own props.</strong> The graduated cylinder is 50 mL
+      and reads to about 1 mL, like the real glass. The beaker is 250 mL and sits
+      about a quarter full on the pan. The wire in the water adds its own 0.10 mL
+      in Fun Mode.</p>
+      <p><strong>Fun Mode noise.</strong> The triple-beam reads &plusmn;0.05 g, the
+      wire adds 0.10 mL to the level, and bubbles of up to 0.25 mL stick to the
+      metal until you tap them out. Fun Mode never changes g, the densities, or any
+      course value.</p>
+      <p><strong>Honest limits.</strong> A 2.5 mL volume read to 1 mL carries
+      roughly a 20 % slip, so the two routes may disagree by double-digit percent.
+      That is what the real bench gives. Tap water is about 1 % off from
+      1.00 g/cm&sup3;, which is nothing at this precision. The apparent-mass rig,
+      with the wire hung from the same balance over the beaker, is unusual; the
+      bench imitates its reading rather than a textbook spring scale.</p>
+    </details>
+
+  </section>
+
+  <section id="check" class="tab-panel">
+    <p class="muted">These use g = 9.80 m/s&sup2; and &rho;_water = 1000 kg/m&sup3;,
+    the course&rsquo;s own arithmetic. Every answer below is recomputed from the same
+    module the sim runs, so the numbers here cannot drift away from the bench.</p>
+    <div id="check-progress"></div>
+
+    <div class="exercise" data-ex='{
+      "type":"numbers",
+      "q":"1. A hooked cylinder sits fully under the water and displaces 2.5 mL. With &rho; = 1000 kg/m&sup3; and g = 9.80 m/s&sup2;, what is the buoyant force?",
+      "parts":[{"label":"F_b","unit":"N","value":0.0245,"tolAbs":0.0005}],
+      "hints":["F_b = &rho; x V x g.","2.5 mL is 2.5e-6 m^3.","1000 x 2.5e-6 x 9.80."],
+      "working":"V = 2.5 mL = 2.5&times;10&#8315;&sup3; m&sup3;. F_b = 1000 &times; 2.5&times;10&#8315;&sup3; &times; 9.80 = <strong>0.0245 N</strong>.",
+      "answer":"F_b = 0.0245 N"
+    }'></div>
+
+    <div class="exercise" data-ex='{
+      "type":"numbers",
+      "q":"2. The copper cylinder weighs 22.3 g in air and its volume is 2.5 mL. (a) Its true weight F_g in newtons. (b) Its apparent weight while fully submerged. (c) The difference, the buoyant force from the weight route.",
+      "parts":[{"label":"F_g","unit":"N","value":0.219,"tolAbs":0.001},
+               {"label":"F_g apparent","unit":"N","value":0.194,"tolAbs":0.001},
+               {"label":"difference","unit":"N","value":0.0245,"tolAbs":0.0005}],
+      "hints":["F_g = m x g, with m in kg.","Apparent mass is 22.3 g minus the 2.5 g of displaced water.","Subtract the two weights."],
+      "working":"F_g = 0.0223 x 9.80 = <strong>0.219 N</strong>. Apparent mass is 22.3 &minus; 2.5 = 19.8 g, so F_g apparent = 0.0198 x 9.80 = <strong>0.194 N</strong>. The difference is 0.219 &minus; 0.194 = <strong>0.0245 N</strong>, the same F_b the volume route gives.",
+      "answer":"0.219 N, 0.194 N, and 0.0245 N"
+    }'></div>
+
+    <div class="exercise" data-ex='{
+      "type":"numbers",
+      "q":"3. The tin and zinc cylinders also displace 2.5 mL. What mass in grams does each weigh in air?",
+      "parts":[{"label":"tin","unit":"g","value":18.25,"tolAbs":0.05},
+               {"label":"zinc","unit":"g","value":17.75,"tolAbs":0.05}],
+      "hints":["mass = density x volume.","Table I: tin 7.30 g/cm^3, zinc 7.10 g/cm^3.","7.30 x 2.5 and 7.10 x 2.5."],
+      "working":"Tin: 7.30 x 2.5 = <strong>18.25 g</strong>. Zinc: 7.10 x 2.5 = <strong>17.75 g</strong>.",
+      "answer":"tin 18.25 g, zinc 17.75 g"
+    }'></div>
+
+    <div class="exercise" data-ex='{
+      "type":"choice",
+      "correct":0,
+      "q":"4. All three cylinders are fully submerged, and each displaces 2.5 mL. The buoyant force is:",
+      "options":["The same for all three, because the displaced volume is the same",
+        "Larger for copper, because copper is heavier",
+        "Larger for tin, because tin is less dense than copper",
+        "Smaller for zinc, because zinc is the lightest"],
+      "hints":["F_b = &rho; x V x g.","&rho; and g are the same for all three.","Only V differs, and all three displace 2.5 mL."],
+      "working":"F_b depends on the displaced volume, not on the metal. All three displace 2.5 mL, so all three get <strong>0.0245 N</strong>.",
+      "answer":"the same for all three: 0.0245 N"
+    }'></div>
+
+    <div class="exercise" data-ex='{
+      "type":"numbers",
+      "q":"5. A hooked cylinder reads 22.3 g in air and displaces 2.5 mL. What density does that give? Which metal of Table I is it?",
+      "parts":[{"unit":"g/cm^3","value":8.92,"tolAbs":0.01}],
+      "hints":["density = mass / volume.","22.3 / 2.5.","Table I: Cu 8.92, tin 7.30, zinc 7.10."],
+      "working":"22.3 / 2.5 = <strong>8.92 g/cm^3</strong>, the copper line of Table I.",
+      "answer":"8.92 g/cm^3, which is copper"
+    }'></div>
+
+    <div class="exercise" data-ex='{
+      "type":"numbers",
+      "q":"6. Your two routes give 0.0245 N and 0.0230 N for the same cylinder. On the mean, what is the percent difference?",
+      "parts":[{"unit":"%","value":6.3,"tolAbs":0.3}],
+      "hints":["mean = (0.0245 + 0.0230) / 2.","the gap is 0.0015.","percent = gap / mean x 100."],
+      "working":"mean = 0.02375, gap = 0.0015, so percent = 0.0015 / 0.02375 x 100 = <strong>6.3 %</strong>.",
+      "answer":"6.3 %"
+    }'></div>
+
+    <div class="exercise" data-ex='{
+      "type":"numbers",
+      "q":"7. Fill the unit gap: 2.5 mL = 2.5 cm&sup3; = ? m&sup3;.",
+      "parts":[{"unit":"m^3","value":2.5e-6,"tolPct":2}],
+      "hints":["1 mL = 1e-6 m^3.","multiply 2.5 by 1e-6."],
+      "working":"2.5 x 1e-6 = <strong>2.5e-6 m^3</strong>.",
+      "answer":"2.5e-6 m^3"
+    }'></div>
+
+    <div class="exercise" data-ex='{
+      "type":"keywords",
+      "need":3,
+      "q":"8. The cylinder&rsquo;s apparent weight drops while it hangs in the water, but its true mass is unchanged. Say why, in your own words.",
+      "words":["buoy","displac","push","force","water","scale","light","weigh","float","mass"],
+      "placeholder":"two or three short ideas...",
+      "hints":["The water does something to the cylinder.","That push is the buoyant force.","The scale only feels what is left over."],
+      "working":"The water pushes the cylinder up with the buoyant force, so the scale only feels the leftover weight. The mass is still there; the water is helping hold it.",
+      "answer":"the water pushes up with the buoyant force, so the scale reads less while the mass is unchanged"
+    }'></div>
+  </section>
+</main>
+
+<script src="../../../shared/courses.js"></script>
+<script src="../../../shared/units.js"></script>
+<script src="../../../shared/ui.js"></script>
+<script src="../../../shared/store.js"></script>
+<script src="../../../shared/check.js"></script>
+<script src="../../../shared/worksheet.js"></script>
+<script src="./archimedes.js"></script>
+<script src="./worksheet.js"></script>
+<script src="./sim.js"></script>
+</body>
+</html>

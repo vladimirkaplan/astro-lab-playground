@@ -4,7 +4,7 @@ const assert = require("node:assert/strict");
 const fs = require("node:fs");
 const path = require("node:path");
 
-require("../site/labs/05-moonrise-eclipses/moonrise.js");
+require("../site/ast110/labs/05-moonrise-eclipses/moonrise.js");
 const MR = globalThis.LS.moonrise;
 
 const DAY = 86400000;
@@ -160,7 +160,7 @@ test("purity: frozen export rejects mutation; same input gives same output", () 
 
 test("module is deterministic: no wall-clock reads anywhere in the source", () => {
   const raw = fs.readFileSync(
-    path.join(__dirname, "..", "site", "labs", "05-moonrise-eclipses", "moonrise.js"), "utf8");
+    path.join(__dirname, "..", "site", "ast110", "labs", "05-moonrise-eclipses", "moonrise.js"), "utf8");
   // Scan only executable source: the header comment legitimately says "no Date.now()".
   const src = raw.replace(/\/\*[\s\S]*?\*\//g, "").replace(/\/\/[^\n]*/g, "");
   assert.ok(!/Date\s*\.\s*now/.test(src), "no Date.now() in the module");

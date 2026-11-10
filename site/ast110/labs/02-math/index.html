@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mathematics for astronomy - Astro Lab Playground</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="../../../styles.css">
+</head>
+<body>
+
+<header class="site-head">
+  <div class="wrap">
+    <p style="margin:0"><a class="back-link" href="../../index.html">&larr; all labs</a></p>
+    <h1>Mathematics for astronomy</h1>
+    <p>Three tools that show up in every later lab: pi as a measured ratio, the
+    small-angle formula that turns arcseconds into kilometers, and scientific
+    notation that keeps big numbers safe in your arithmetic.</p>
+  </div>
+</header>
+
+<main>
+  <div class="tabs" role="tablist">
+    <button class="tab-btn" data-tab="learn" role="tab">Learn</button>
+    <button class="tab-btn" data-tab="simulate" role="tab">Simulate</button>
+    <button class="tab-btn" data-tab="check" role="tab">Check</button>
+  </div>
+
+  <section id="learn" class="tab-panel learn">
+    <div class="words-box">
+      <p class="words-title">Words in this lab</p>
+      <ul>
+        <li><strong>ratio</strong> &mdash; one value divided by another value.</li>
+        <li><strong>diameter</strong> &mdash; the distance straight across a circle, through the middle.</li>
+        <li><strong>pi</strong> &mdash; the ratio of a circle's distance around to its diameter. About 3.14.</li>
+        <li><strong>percent error</strong> &mdash; how far your value is from the accepted value, as a percent.</li>
+        <li><strong>angular diameter</strong> &mdash; how wide an object looks in the sky.</li>
+        <li><strong>arcsecond</strong> &mdash; 1/3600 of a degree. A very small angle.</li>
+        <li><strong>scientific notation</strong> &mdash; writing big numbers as one digit times a power of ten.</li>
+      </ul>
+    </div>
+
+    <h2>What this lab is about</h2>
+    <p>Astronomy is a measurement science with a scale problem. Its objects are too
+    round, too far, or too big to touch. So this whole course leans on three small
+    pieces of math. This lab rehearses all three on one bench. You will measure pi.
+    You will trade angle for size with the small-angle formula. And you will read big
+    numbers without flinching.</p>
+
+    <h2>Pi is a ratio you measure, not a digit string you recite</h2>
+    <p>Wrap a string around any circle. Cut it, lay it flat, and divide its length by
+    the diameter. That number is pi, and it comes out the same for a coin and for the
+    Earth's orbit. Pi is a ratio: one length divided by another. The number 3.14 is
+    the value this course treats as given. Real pi has more digits than you will ever
+    need. This lab is not about getting 3.14159 out of a ruler. It never comes out of
+    a ruler. It is about measuring as carefully as you can, then computing percent
+    error against the accepted value. A 1 percent result from string and ruler is a
+    good measurement, not a failed one.</p>
+
+    <h2>The small-angle formula: trading angle for size</h2>
+    <p>Most astronomy objects are very far away. The triangle from your eye to their
+    two edges is then thin enough to flatten. Angular diameter, true size, and
+    distance trade against each other in one line:</p>
+    <p><strong>delta (arcsec) = 206,265 x d / D</strong></p>
+    <p>Here d and D are in the same units. The angular diameter, delta, is how wide
+    the object looks in the sky. The big constant is not magic. It is the number of
+    arcseconds packed into one radian (180/pi x 3600 = 206,264.8, course-rounded). An
+    object that sits one diameter away from you subtends one radian. A radian is
+    206,265 arcseconds. That is the whole trick. Know any two of the three quantities
+    and the formula hands you the third. That is how a first-week student can size the
+    Sun.</p>
+
+    <h2>The eclipse coincidence</h2>
+    <p>Set the sim to the Moon, then to the Sun. The telescope inset barely changes.
+    The Sun is about 400 times wider than the Moon. It is also about 400 times farther
+    away. So their angular sizes land within a few percent of each other. Total solar
+    eclipses exist because of that accident. Ring-shaped annular eclipses exist
+    because the Moon's distance wobbles a little. Nobody arranged it.</p>
+
+    <h2>Scientific notation is a seatbelt, not a dialect</h2>
+    <p>384,400 km is a number with a stray pair of zeros you might drop. 3.84 x 10^5
+    km says "a few hundred thousand" out loud and survives being copied. That second
+    style is scientific notation. Move the decimal until one digit is left of it. The
+    exponent counts the places you moved. Every multiplication becomes adding
+    exponents, which is why astronomers think in powers of ten. Write 1.5 x 10^8, not
+    1.5E8, in a lab report.</p>
+
+    <div class="note">
+      <p><strong>Why this matters to astronomers:</strong> the small-angle formula is
+      the first step of almost every distance method in this course. It is still
+      professional equipment. Interferometers measure a star's angular width. With a
+      known distance, this formula gives the star's true width. And the same
+      three-variable trade goes back to Aristarchus sizing the Moon's orbit from a
+      half-moon angle. (Grounded in OpenStax <em>Astronomy 2e</em>,
+      Ch. 1, CC BY 4.0.)</p>
+    </div>
+
+    <div class="mistakes">
+      <strong>Common mistakes in this lab:</strong>
+      <ul>
+        <li>Mixing units in the small-angle formula. d and D must be in the SAME
+        unit. The ratio is what the 206,265 turns into arcseconds.</li>
+        <li>Entering 206,265 as a measured value. It is a unit conversion baked
+        into the formula, like 100 cm per meter.</li>
+        <li>Reporting pi = 3.1 from a string and calling it exact. Or reporting
+        3.14159 from the same string and calling it a measurement. Report what you
+        measured, then the percent error.</li>
+        <li>Blaming the Moon's shape for its angular size. Distance, not shape,
+        is what changes. The Moon looks 14 percent wider across the sky at perigee,
+        its closest point, because it is 14 percent nearer.</li>
+        <li>Writing 384 x 10^3 for 384,400. Legal arithmetic, but the notation means
+        one digit left of the decimal: 3.844 x 10^5.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="simulate" class="tab-panel">
+    <div class="toolbar" id="toolbar1"></div>
+
+    <h3>Bench A: the circle bench</h3>
+    <ol class="steps">
+      <li>Pick Instrument: Ideal (exact) or Fun (noisy) at the top of the tab.</li>
+      <li>Set the diameter slider to 20 cm.</li>
+      <li>Press "Wrap and measure the circumference".</li>
+      <li>Read diameter, circumference, and your pi = C / D from the readouts.</li>
+      <li>Press "Log this circle".</li>
+      <li>Change the diameter twice more, and wrap and log each new circle.</li>
+      <li>Compare your three pi values: how far is each one from 3.14159?</li>
+    </ol>
+    <p><label>Diameter of the drawn circle:
+      <b id="diaRangeRead">20</b> cm
+      <input type="range" id="diaRange" min="5" max="60" value="20" step="1" style="width:26ch"></label></p>
+    <p><button class="action" id="wrapBtn">Wrap and measure the circumference</button></p>
+
+    <div class="canvas-frame"><canvas id="circleStage" height="260"></canvas></div>
+
+    <div class="readout"><small>diameter</small><span id="diaRead">-</span></div>
+    <div class="readout"><small>circumference</small><span id="circRead">-</span></div>
+    <div class="readout"><small>your pi = C / D</small><span id="piRead">-</span></div>
+
+    <h3>Bench B: the angle bench</h3>
+    <ol class="steps">
+      <li>Press "The Moon, real distance" and read the angular diameter.</li>
+      <li>Press "The Sun, real distance" and read its angular diameter.</li>
+      <li>Press "Quarter at arm's length" and compare that angle with the Moon's.</li>
+      <li>Press "Jupiter, real distance" and read how many Moons wide it looks.</li>
+      <li>Press "Log this angle" after each of the four presets.</li>
+      <li>Slide Distance on one object and watch the angle shrink as distance grows.</li>
+    </ol>
+    <p><label>Object: <select id="objSel"></select></label>
+      <label>Distance: <b id="distRangeRead">-</b>
+      <input type="range" id="distRange" min="0" max="1000" value="500" step="1" style="width:22ch"></label></p>
+    <p>
+      <button class="action secondary preset" data-obj="quarter" data-arm="1">Quarter at arm's length</button>
+      <button class="action secondary preset" data-obj="moon">The Moon, real distance</button>
+      <button class="action secondary preset" data-obj="sun">The Sun, real distance</button>
+      <button class="action secondary preset" data-obj="jupiter">Jupiter, real distance</button>
+    </p>
+
+    <div class="canvas-frame"><canvas id="angleStage" height="260"></canvas></div>
+
+    <div class="readout"><small>angular diameter</small><span id="angRead">-</span></div>
+    <div class="readout"><small>distance</small><span id="distRead">-</span></div>
+    <div class="readout"><small>compared with the Moon</small><span id="ratioRead">-</span></div>
+
+    <h3>Your data table</h3>
+    <p>
+      <button class="action secondary" id="circAdd">Log this circle</button>
+      <button class="action secondary" id="angAdd">Log this angle</button>
+    </p>
+    <div id="circTable"></div>
+    <div id="angTable"></div>
+    <p>
+      <button class="action secondary" id="circCsv">Download circles CSV</button>
+      <button class="action secondary" id="angCsv">Download angles CSV</button>
+      <button class="action ghost" id="logClear">Clear both logs</button>
+    </p>
+    <textarea id="csvFallback" rows="6" class="wide-input" style="display:none"></textarea>
+
+    <p class="muted">The circle bench draws ideal circles; in Fun Mode the tape
+    stretches a little and the ruler end wobbles, exactly like the bench
+    version, so your pi will miss 3.14159 and you can compute an honest percent
+    error. Every angle on bench B is the small-angle formula with the 206,265
+    constant, the same one you are graded on. That formula is excellent for
+    astronomical angles and only quietly wrong for pocket-scale ones: even at
+    15 cm a coin is narrow enough that the exact trigonometry is less than a
+    percent away from what you read here. Planet distances slide on a log scale because their
+    ranges span factors of ten; the insets share one pixel-per-degree scale so
+    objects can be compared with each other honestly. Planet sizes and distances
+    are standard values from OpenStax Astronomy 2e (CC BY 4.0); coin diameters
+    are US Mint design dimensions.</p>
+  </section>
+
+  <section id="check" class="tab-panel">
+    <p class="muted">Use Ideal Mode for these. Log your work as you go - the CSV
+    is the part a lab report would want.</p>
+    <div id="check-progress"></div>
+<div class="exercise" data-ex='{"type": "numbers", "q": "1. On the circle bench set the diameter to 30 cm and press Wrap and measure. The tape reads 94.2 cm. Compute pi as C / D and give it to two decimals.", "parts": [{"unit": "C/D", "value": 3.14, "tolAbs": 0.01}], "hints": ["A ratio needs no formula: divide.", "94.2 / 30. Both numbers are in cm, so the units cancel.", "Two decimals: the third one is where your string lives."], "working": "pi = C / D = 94.2 / 30 = <strong>3.14</strong>, and against the real pi that is an error of 0.05 percent. This is what the whole bench is for: the circumference of a circle is 3.14 diameters, and you just measured it.", "answer": "3.14"}'></div>
+<div class="exercise" data-ex='{"type": "numbers", "q": "2. Small angle: the Moon is 3,475 km across and 384,400 km away. Use delta = 206,265 x d / D and give the angular diameter in arcminutes. Then press the Moon preset and confirm your number against the sim.", "parts": [{"unit": "arcmin", "value": 31.1, "tolAbs": 0.7}], "hints": ["Keep both lengths in km so the units cancel and the answer lands in arcsec.", "206,265 x 3475 / 384,400 gives arcseconds.", "Divide the arcseconds by 60 to reach arcminutes."], "working": "delta = 206,265 x 3,475 / 384,400 = 1,864 arcsec. Divide by 60: <strong>31.1 arcmin</strong>, a little over half a degree. Your outstretched pinky finger at arm's length is about one degree wide, which is why two fingers span the Moon.", "answer": "about 31 arcmin, just over half a degree"}'></div>
+<div class="exercise" data-ex='{"type": "numbers", "q": "3. Run the same formula backwards: you measure the Moon at 1,863 arcsec and you know it is 3,475 km across. How far away is it, in thousands of km? (This is how the Greeks bracketed the Moon with nothing but an angle.)", "parts": [{"unit": "thousand km", "value": 385, "tolPct": 2}], "hints": ["Rearrange D = 206,265 x d / delta.", "Put d in km and the answer comes out in km.", "Divide the km by 1,000 for the units the box wants."], "working": "D = 206,265 x 3,475 / 1,863 = 384,800 km = <strong>385 thousand km</strong>. One angle, one known diameter, one distance. The formula is a three-variable seesaw: this is the third side of exercise 2.", "answer": "about 385,000 km"}'></div>
+<div class="exercise" data-ex='{"type": "numbers", "q": "4. The Sun is 1.392 x 10^6 km across and 1.496 x 10^8 km away. Its angular diameter, in arcminutes, to one decimal? (Press the Sun preset when you have a number.)", "parts": [{"unit": "arcmin", "value": 31.9, "tolAbs": 0.7}], "hints": ["Same formula as the Moon. The powers of ten do the work: 10^6 / 10^8 = 10^-2.", "206,265 x 1.392 / 1.496, then scale by 10^-2 for the arcsec.", "Arcsec to arcmin: divide by 60."], "working": "delta = 206,265 x 1.392e6 / 1.496e8 = 1,919 arcsec = <strong>31.9 arcmin</strong>. The Moon came out at 31.1. The Sun is 400 times wider than the Moon and 390 times farther, so the two disks are within a few percent of each other on the sky, and that accident is what total eclipses are made of.", "answer": "about 32 arcmin, essentially the same as the Moon"}'></div>
+<div class="exercise" data-ex='{"type": "choice", "correct": 1, "q": "5. Slide the quarter out from 0.5 m to 1.5 m and back. What does the sim (and the formula) actually change, and what does not?", "options": ["The angular diameter stays fixed; the true size changes with distance", "The angular diameter scales as 1 / distance; the true size never changes", "Both the angular diameter and the true size shrink together", "The angular diameter scales as distance squared"], "hints": ["The coin in your pocket is not shrinking. What is changing is the wedge your eye opens to cover it.", "Look at the formula: d is constant, D is in the denominator.", "Double the distance, what happens to delta?"], "working": "delta = 206,265 x d / D, and only D moves: the <strong>angular diameter scales as 1 / distance while the true size is untouched</strong>. Triple the distance, a third of the angle. This is why the sim can drive a telescope inset from a pocket coin: size on the sky is a quotient, not a property of the object.", "answer": "angular diameter falls as 1/distance; the coin stays 24.26 mm"}'></div>
+<div class="exercise" data-ex='{"type": "keywords", "need": 2, "q": "6. Why can a string-and-ruler measurement of pi never come out exactly 3.14159, even with a perfect circle drawn perfectly? Two honest ideas are enough.", "words": ["measure", "error", "ruler", "string", "round", "stretch", "limit", "read"], "hints": ["What is the smallest mark on your ruler, and what do you do with the part between two marks?", "The circle was drawn by a human hand: is any drawn circle a true circle?"], "placeholder": "two plain ideas...", "working": "Every physical <strong>measurement</strong> carries reading <strong>error</strong>: the <strong>ruler</strong>'s finest mark is a millimeter, so a length between marks gets estimated, and estimation is not exact. The <strong>string</strong> stretches, its ends are thick, and the drawn circle is never a true circle, so the measured <strong>stretch</strong> and wrap are both a little off. You can shrink the <strong>error</strong> with care and average over many circles, but the digits of pi live in the ideal circle; a ruler only ever reads between its lines.", "answer": "real measurements carry reading error; the ideal pi lives in a perfect circle"}'></div>
+  </section>
+</main>
+
+<script src="../../../shared/courses.js"></script>
+<script src="../../../shared/units.js"></script>
+<script src="../../../shared/ui.js"></script>
+<script src="../../../shared/store.js"></script>
+<script src="../../../shared/check.js"></script>
+<script src="../../../shared/worksheet.js"></script>
+<script src="./mathlab.js"></script>
+<script src="./worksheet.js"></script>
+<script src="./sim.js"></script>
+</body>
+</html>

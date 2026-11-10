@@ -18,7 +18,7 @@
   "use strict";
   var LS = window.LS, G = LS.galaxies;
   var LAB = "14-galaxy-id";
-  var IMG_BASE = "../../img/";
+  var IMG_BASE = "../../../img/";
   var $ = function (id) { return document.getElementById(id); };
 
   var mode = LS.ui.getMode(LAB);

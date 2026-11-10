@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lab 9: Ohm's law from a V-I line - Astro Lab Playground</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="../../../styles.css">
+</head>
+<body>
+
+<header class="site-head">
+  <div class="wrap">
+    <p style="margin:0"><a class="back-link" href="../../index.html">&larr; all labs</a></p>
+    <h1>Lab 9 &middot; Ohm&rsquo;s law from a V-I line</h1>
+    <p>Wire a supply, an ammeter and a voltmeter to a fixed resistor. Dial the
+    printed set-points, log V and I at each one, and pull the resistance out of
+    the slope of the V-I line through the origin. The 100 mA ammeter stop is the
+    reason the small run ends at 5.5 V.</p>
+  </div>
+</header>
+
+<main>
+  <div class="tabs" role="tablist">
+    <button class="tab-btn" data-tab="learn" role="tab">Learn</button>
+    <button class="tab-btn" data-tab="simulate" role="tab">Simulate</button>
+    <button class="tab-btn" data-tab="check" role="tab">Check</button>
+  </div>
+
+  <section id="learn" class="tab-panel learn">
+    <div class="words-box">
+      <p class="words-title">Words in this lab</p>
+      <ul>
+        <li><strong>ohm (&Omega;)</strong> &mdash; the unit of resistance. One ohm passes 1 A at 1 V.</li>
+        <li><strong>Ohm&rsquo;s law</strong> &mdash; the line V = R&middot;I: at fixed R, voltage scales with current.</li>
+        <li><strong>V-I line</strong> &mdash; the graph with volts vertical and amperes horizontal. Its slope is the resistance.</li>
+        <li><strong>ammeter</strong> &mdash; the current meter, in mA or A. It wires in series, in the line of the current.</li>
+        <li><strong>voltmeter</strong> &mdash; the voltage meter. It wires in parallel, across the resistor.</li>
+        <li><strong>set-point</strong> &mdash; a supply voltage the manual lists for the run.</li>
+        <li><strong>tap key</strong> &mdash; the switch that closes the circuit while you read the meters.</li>
+      </ul>
+    </div>
+
+    <h2>What you do at the bench</h2>
+    <p>The bench has a DC supply with a 0 to 12 V knob, and a resistor bay.
+    The bay takes slide-in 200 &Omega; and 100 &Omega; modules. An ammeter on
+    the 100 mA scale and a voltmeter on the 15 V scale read the run. A tap key
+    closes the circuit while you read the meters.</p>
+    <p>In Part I you wire the circuit with red and black leads: the ammeter in
+    series with the resistor, the voltmeter across it. The auto-check button
+    names any lead that is missing or wrong.</p>
+    <p>In Part II you slide in the 200 &Omega; module. Dial each printed
+    set-point, close the tap key, read the meters, and log the point.</p>
+    <p>In Part III you bring the supply to 0 V, slide in the 100 &Omega; module,
+    and work its set-points, which end at 5.5 V.</p>
+    <p>In Part IV the graph plots your points with a best-fit line through
+    (0, 0). The slope is your resistance.</p>
+
+    <h2>The one equation</h2>
+    <p>Ohm&rsquo;s law, both directions:</p>
+    <ul>
+      <li><strong>V = R&middot;I</strong> and <strong>R = V / I</strong></li>
+    </ul>
+    <p>Plot V vertical against I horizontal and a fixed resistor draws a straight
+    line through the origin.</p>
+    <p>The slope of that line is the resistance, in ohms: slope = &Delta;V /
+    &Delta;I.</p>
+
+    <h2>Why the line starts at (0, 0)</h2>
+    <p>At zero volts the current is zero, so the line owns the origin.</p>
+    <p>A small offset away from zero usually comes from the leads and the meter
+    contacts, and the bench tells you that out loud.</p>
+
+    <h2>The honest limits</h2>
+    <p>Real carbon resistors warm up and drift by 1 to 2 %, so the points do not
+    sit exactly on the line.</p>
+    <p>Reading an analog face from an angle gives about &plusmn;1 mA of
+    parallax.</p>
+    <p>The ammeter&rsquo;s lead resistance pushes the slope a little low, and
+    the voltmeter&rsquo;s loading pushes it a little high. Both are below this
+    bench&rsquo;s resolution, and the bench names them instead of hiding them.</p>
+    <p>The 100 &Omega; run stops at 5.5 V because 11 V would give 110 mA, past
+    the 100 mA stop. That is a meter-range artefact, not physics.</p>
+
+    <div class="mistakes">
+      <strong>Common mistakes in this lab:</strong>
+      <ul>
+        <li>Wiring the ammeter in parallel, where it pegs or burns.</li>
+        <li>Dialing 11 V across the 100 &Omega; module and closing the key.</li>
+        <li>Swapping volts and amperes on the graph, so the slope is not R.</li>
+        <li>Swapping the resistor while the supply is still dialed up.</li>
+        <li>Writing 0.040 A as 0.040 mA in the milliamp column.</li>
+      </ul>
+    </div>
+
+  </section>
+
+  <section id="simulate" class="tab-panel">
+    <div class="toolbar" id="toolbar1"></div>
+
+    <h2>Part I &mdash; Wire the circuit</h2>
+    <ol class="steps">
+      <li>Drag the red lead from the tray to the supply + terminal, then drag it on to the ammeter in terminal.</li>
+      <li>Drag a black lead from the ammeter out terminal to the resistor left terminal, and another from the resistor right terminal back to supply -.</li>
+      <li>Drag the red lead to the voltmeter + terminal and on to the resistor left terminal.</li>
+      <li>Drag the black lead from the voltmeter - terminal to the resistor right terminal.</li>
+      <li>Press "Check wiring". The bench names every missing lead and every wrong one.</li>
+      <li>Click a laid lead to send it back to the tray. The meters stay dark until the wiring passes.</li>
+    </ol>
+
+    <h2>Part II &mdash; The 200 ohm run</h2>
+    <ol class="steps">
+      <li>Press "Insert 200 ohm". The module slides into the bay with its nominal printed on it.</li>
+      <li>Dial the supply to 2 V. Close the tap key and read the ammeter in mA and the voltmeter in V.</li>
+      <li>Press "Log point". The row lands in the table and the point lands on the graph.</li>
+      <li>Open the key, dial the next set-point, close, read, log. Work 2, 4, 6, 8, 10, 11 V.</li>
+      <li>The (0, 0) row is already on the table: zero volts means zero current.</li>
+      <li>Bring the supply back to 0 V before you touch the resistor bay.</li>
+    </ol>
+
+    <h2>Part III &mdash; The 100 ohm run</h2>
+    <ol class="steps">
+      <li>Check that the supply reads 0 V, then press "Insert 100 ohm". The bay refuses to swap at voltage.</li>
+      <li>Dial 1 V, close the key, read, and log the point.</li>
+      <li>Work 2, 3, 4 and 5 V the same way.</li>
+      <li>At 5.5 V the ammeter is still under the stop. Log it, and the printed run ends.</li>
+      <li>Dial higher and close the key anyway: the needle pegs past the 100 mA stop and the bench refuses the point.</li>
+      <li>That is the meter-range artefact the Learn tab names: the cap is the ammeter, not the physics.</li>
+    </ol>
+
+    <h2>Part IV &mdash; Read the slope</h2>
+    <ol class="steps">
+      <li>The graph plots both runs: volts vertical, amperes horizontal, both lines through (0, 0).</li>
+      <li>The best-fit line draws itself as you log points, forced through the origin.</li>
+      <li>Read the slope under the graph for each run, against its nominal value.</li>
+      <li>Work the percent error: |slope minus nominal| / nominal times 100.</li>
+      <li>In Fun Mode the modules warm up by up to 2 % and the faces carry &plusmn;1 mA parallax, so the line is not perfect.</li>
+      <li>The nominal, the slope, and the percent error print below each data table.</li>
+    </ol>
+
+    <div class="split">
+      <div>
+        <div class="canvas-frame"><canvas id="circuitCanvas" height="480"></canvas></div>
+        <p class="muted"><span class="drag-chip">Drag this</span> &mdash; leads go
+        tray to terminal, then terminal to terminal. Click a laid lead to take it
+        back.</p>
+      </div>
+      <div>
+        <p class="muted" style="margin-top:0"><strong>Supply:</strong></p>
+        <p>
+          <label>Voltage (V) <input type="range" id="voltSlider" min="0" max="12" step="0.5" value="0"></label>
+        </p>
+        <p>
+          <button class="action" id="keyBtn">Tap key: open</button>
+        </p>
+        <p class="muted"><strong>Resistor bay:</strong></p>
+        <p>
+          <button class="action" id="ins200">Insert 200 &Omega;</button>
+          <button class="action ghost" id="ins100">Insert 100 &Omega;</button>
+        </p>
+        <p>
+          <button class="action" id="checkWireBtn">Check wiring</button>
+          <button class="action" id="logPtBtn">Log point</button>
+          <button class="action ghost" id="clearAllBtn">Clear all</button>
+        </p>
+        <div class="readout"><small>supply dial (V)</small><span id="voltRead">0.0</span></div>
+        <div class="readout"><small>ammeter (100 mA scale)</small><span id="ammRead">0 mA</span></div>
+        <div class="readout"><small>voltmeter (15 V range)</small><span id="voltmRead">0.0 V</span></div>
+        <div class="readout"><small>circuit</small><span id="wireRead">unwired</span></div>
+        <div class="readout"><small>bench note</small><span id="noteRead">wire the circuit, Part I</span></div>
+      </div>
+    </div>
+
+    <p class="muted" style="margin-top:1.2em"><strong>The V-I graph</strong> &mdash;
+    volts vertical, amperes horizontal. One best-fit line per run, forced
+    through (0, 0). The slope is the measured resistance.</p>
+    <div class="canvas-frame"><canvas id="viCanvas" height="360"></canvas></div>
+    <p class="muted" id="slopeRead">log points to draw the lines</p>
+
+    <h2>Your data tables</h2>
+    <p class="muted">Table 1 (200 &Omega; run) and Table 2 (100 &Omega; run),
+    seven rows each including (0, 0): V (V) &mdash; I (mA) &mdash; I (A). Set-points
+    as printed: 200 &Omega; at 2, 4, 6, 8, 10, 11 V; 100 &Omega; at 1, 2, 3, 4,
+    5, 5.5 V. Ammeter 100 mA, voltmeter 15 V. 1 A = 1000 mA.</p>
+    <p><strong>200 &Omega; run</strong> &mdash; <span id="t1meta">nominal 200 &Omega; / slope - / % error -</span></p>
+    <div id="table1"></div>
+    <p><strong>100 &Omega; run</strong> &mdash; <span id="t2meta">nominal 100 &Omega; / slope - / % error -</span></p>
+    <div id="table2"></div>
+    <textarea class="csv-copy" id="csvCopy" readonly></textarea>
+    <p><button class="action ghost" id="exportLog">Export log CSV</button></p>
+    <details id="workDetails">
+      <summary>Show your work</summary>
+      <pre id="workBox">wire the circuit and log points to see the work</pre>
+    </details>
+
+    <details class="constants">
+      <summary>Numbers this bench uses</summary>
+      <p><strong>Course values, printed in the manual:</strong></p>
+      <ul>
+        <li>Resistor modules, nominal: 200 &Omega; (Table 1) and 100 &Omega;
+        (Table 2), as printed on each module.</li>
+        <li>Set-points: 200 &Omega; at 2, 4, 6, 8, 10, 11 V; 100 &Omega; at
+        1, 2, 3, 4, 5, 5.5 V.</li>
+        <li>Ammeter on the 100 mA scale in series; voltmeter on the 15 V range
+        across the resistor.</li>
+        <li>1 A = 1000 mA.</li>
+      </ul>
+      <p><strong>Not printed in the manual, shown here so nothing is a guess:</strong></p>
+      <ul>
+        <li>None. Every graded number in this lab is printed on the bench.</li>
+      </ul>
+      <p><strong>The sim&rsquo;s own props.</strong> The drag-wire builder uses
+      the jack-to-jack wiring of the standard bench as the sim&rsquo;s own setup:
+      supply, ammeter, resistor bay, voltmeter, and the tap key on the return
+      wire. The instructor-check step is the auto-check button.</p>
+      <p><strong>Fun Mode noise.</strong> Each module warms up by up to 2 % the
+      moment it is inserted, the ammeter face carries &plusmn;1 mA parallax per
+      point, and the supply knob wobbles by &plusmn;0.05 V. Fun Mode never
+        changes the nominal values, the set-points, or the meter ranges.</p>
+      <p><strong>Honest limits.</strong> Carbon resistors drift as they warm, so
+      the best-fit line is not perfect. Ammeter lead resistance biases the slope
+      slightly low and voltmeter loading slightly high; both sit below this
+      bench&rsquo;s resolution and are named here rather than hidden. The 5.5 V
+      cap on the small run is the 100 mA stop doing its job, not a limit of the
+      physics.</p>
+    </details>
+
+  </section>
+
+  <section id="check" class="tab-panel">
+    <p class="muted">These use the printed nominal values and the meter ranges,
+    the course&rsquo;s own arithmetic. Every answer below is recomputed from the same
+    module the sim runs, so the numbers here cannot drift away from the bench.</p>
+    <div id="check-progress"></div>
+
+    <div class="exercise" data-ex='{
+      "type":"numbers",
+      "q":"1. The supply reads 8 V across the 200 ohm module. What current does the ammeter show?",
+      "parts":[{"label":"I","unit":"mA","value":40,"tolAbs":1}],
+      "hints":["I = V / R.","8 / 200, in amperes.","then milliamps."],
+      "working":"I = 8 / 200 = 0.040 A = <strong>40 mA</strong>.",
+      "answer":"40 mA"
+    }'></div>
+
+    <div class="exercise" data-ex='{
+      "type":"numbers",
+      "q":"2. The supply reads 5.5 V across the 100 ohm module. What current does the ammeter show?",
+      "parts":[{"label":"I","unit":"mA","value":55,"tolAbs":1}],
+      "hints":["I = V / R.","5.5 / 100, in amperes."],
+      "working":"I = 5.5 / 100 = 0.055 A = <strong>55 mA</strong>, under the 100 mA stop.",
+      "answer":"55 mA"
+    }'></div>
+
+    <div class="exercise" data-ex='{
+      "type":"numbers",
+      "q":"3. A V-I line runs through (0, 0) and the point 0.050 A, 10 V. What is the slope, in ohms?",
+      "parts":[{"label":"R","unit":"ohm","value":200,"tolAbs":5}],
+      "hints":["slope = rise / run, with V as the rise.","10 / 0.050."],
+      "working":"slope = (10 - 0) / (0.050 - 0) = <strong>200 ohm</strong>, the resistance itself.",
+      "answer":"200 ohm"
+    }'></div>
+
+    <div class="exercise" data-ex='{
+      "type":"numbers",
+      "q":"4. Your best-fit slope is 194 ohm against the nominal 200 ohm. What is the percent error?",
+      "parts":[{"unit":"%","value":3.0,"tolAbs":0.2}],
+      "hints":["gap = |194 - 200|.","percent = gap / nominal x 100."],
+      "working":"|194 - 200| / 200 x 100 = 6 / 200 x 100 = <strong>3.0 %</strong>.",
+      "answer":"3.0 %"
+    }'></div>
+
+    <div class="exercise" data-ex='{
+      "type":"choice",
+      "correct":0,
+      "q":"5. Why does the printed 100 ohm run stop at 5.5 V?",
+      "options":["Because 11 V would give 110 mA, past the 100 mA ammeter stop",
+        "Because the 100 ohm module burns out above 5.5 V",
+        "Because the 15 V voltmeter runs out of range at 5.5 V",
+         "Because the law of Ohm stops holding above 5.5 V"],
+      "hints":["What is the ammeter scale?","How much current does 11 V drive through 100 ohm?","That number sits past the stop."],
+      "working":"11 V / 100 ohm = 110 mA, which is past the 100 mA stop the ammeter can read. The cap is the meter range, not the physics: at 5.5 V the current is a safe 55 mA.",
+      "answer":"11 V would give 110 mA, past the 100 mA ammeter stop"
+    }'></div>
+
+    <div class="exercise" data-ex='{
+      "type":"choice",
+      "correct":0,
+      "q":"6. At the same supply voltage, which module draws more current?",
+      "options":["The 100 ohm, because I = V / R and the smaller R gives the bigger I",
+        "The 200 ohm, because the bigger R pushes harder",
+        "Both draw the same, because the supply decides",
+        "It depends on the tap key position"],
+      "hints":["Write I = V / R with the same V.","Compare the two denominators."],
+      "working":"At 6 V: 100 ohm draws 60 mA, 200 ohm draws 30 mA. The smaller resistance draws <strong>twice</strong> the current.",
+      "answer":"the 100 ohm draws more"
+    }'></div>
+
+    <div class="exercise" data-ex='{
+      "type":"keywords",
+      "need":3,
+      "q":"7. Your best-fit line does not pass exactly through (0, 0). Where could a small offset at zero come from?",
+      "words":["lead","wire","resist","voltmeter","ammeter","contact","meter","offset","zero","small"],
+      "placeholder":"two or three short ideas...",
+      "hints":["The leads and the plug contacts are not perfect wires.","The meters themselves take a little current."],
+       "working":"The lead and contact resistances sit in series with the run, and the voltmeter itself leaks a little current across the resistor. Both are small, below the resolution of this bench, but neither is exactly zero, so the line can miss the origin by a sliver.",
+       "answer":"lead and contact resistance, plus the small current the voltmeter itself takes, keep the line a sliver off the origin"
+    }'></div>
+  </section>
+</main>
+
+<script src="../../../shared/courses.js"></script>
+<script src="../../../shared/units.js"></script>
+<script src="../../../shared/ui.js"></script>
+<script src="../../../shared/store.js"></script>
+<script src="../../../shared/check.js"></script>
+<script src="../../../shared/worksheet.js"></script>
+<script src="./ohmslaw.js"></script>
+<script src="./worksheet.js"></script>
+<script src="./sim.js"></script>
+</body>
+</html>

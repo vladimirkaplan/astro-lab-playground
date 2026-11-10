@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lab 10: Series and parallel resistor rules - Astro Lab Playground</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="../../../styles.css">
+</head>
+<body>
+
+<header class="site-head">
+  <div class="wrap">
+    <p style="margin:0"><a class="back-link" href="../../index.html">&larr; all labs</a></p>
+    <h1>Lab 10 &middot; Series and parallel resistor rules</h1>
+    <p>Drag a 100 ohm and a 200 ohm resistor onto the breadboard. Make a series
+    pair, then a parallel pair, at a fixed 6.0 V supply. Measure the total
+    voltage and current, and test the combination rules with the meter values.</p>
+  </div>
+</header>
+
+<main>
+  <div class="tabs" role="tablist">
+    <button class="tab-btn" data-tab="learn" role="tab">Learn</button>
+    <button class="tab-btn" data-tab="simulate" role="tab">Simulate</button>
+    <button class="tab-btn" data-tab="check" role="tab">Check</button>
+  </div>
+
+  <section id="learn" class="tab-panel learn">
+    <div class="words-box">
+      <p class="words-title">Words in this lab</p>
+      <ul>
+        <li><strong>series circuit</strong> &mdash; one loop. The same current runs through every part.</li>
+        <li><strong>parallel circuit</strong> &mdash; two branches between the same two nodes. The branches split the current.</li>
+        <li><strong>node</strong> &mdash; a marked point on the wire where a voltmeter probe can sit. The letters name them.</li>
+        <li><strong>ammeter</strong> &mdash; the current meter, in mA. It wires in series, in the line of the current.</li>
+        <li><strong>voltmeter</strong> &mdash; the voltage meter, in V. Its two probes go across two nodes.</li>
+        <li><strong>total resistance</strong> &mdash; what the supply sees. Each layout has its own rule for it.</li>
+        <li><strong>watt (W)</strong> &mdash; the unit of power. 1 W = 1 V times 1 A.</li>
+        <li><strong>enable switch</strong> &mdash; the switch that puts power on the fixed 6.0 V supply.</li>
+      </ul>
+    </div>
+
+    <h2>What you do at the bench</h2>
+    <p>The bench has a DC supply fixed at 6.0 V. The manual sets one set-point,
+    so the supply has an enable switch and no knob.</p>
+    <p>You get two resistors: 100 &Omega; and 200 &Omega;, nominal values
+    printed on the body.</p>
+    <p>An ammeter on the 100 mA scale sits in the main branch. A voltmeter on
+    the 15 V range carries two probes.</p>
+    <p>In Part 1 you drag the two resistors onto the breadboard and pass the
+    quick instructor check before any power goes on.</p>
+    <p>In Part 2 the pair is in series. Close the tap key, read the meters, and
+    log Table A.</p>
+    <p>In Part 3 you drag the resistors onto the two branches. The pair is in
+    parallel, and you log Table B.</p>
+    <p>A tap key closes the circuit while you read the meters.</p>
+
+    <h2>The one equation</h2>
+    <p>Each layout has a rule for the total resistance, and Ohm&rsquo;s law
+    takes the rest:</p>
+    <ul>
+      <li><strong>Series:</strong> R_total = R1 + R2. The current is the same
+      everywhere: I0 = I1 = I2. The drops add: V0 = V1 + V2.</li>
+      <li><strong>Parallel:</strong> 1/R_total = 1/R1 + 1/R2. The voltage is the
+      same on both branches: V0 = V1 = V2. The currents add: I0 = I1 + I2.</li>
+    </ul>
+    <p>Measure the resistance from the meters: R_measured = V0 / I0.</p>
+    <p>Power from the total: P = V0&middot;I0 = I0&sup2;&middot;R_total.</p>
+
+    <h2>How the meters sit</h2>
+    <p>The ammeter reads the main current I0 by default. A teaching mode moves
+    it into branch 1 or branch 2.</p>
+    <p>In a series pair it reads I0 anywhere, because the current is the same
+    everywhere in one loop.</p>
+    <p>In a parallel pair the branches differ: the main branch carries I0, and
+    each branch carries its own share.</p>
+    <p>The voltmeter touches two nodes with its probes and reads the drop
+    between them.</p>
+    <p>Series nodes are A, B, C in a line. Parallel nodes are A and C on the
+    top rail, B and D on the bottom rail.</p>
+
+    <h2>The honest limits</h2>
+    <p>The parallel total current is 90 mA. That sits close to the 100 mA stop
+    on the ammeter, and the bench keeps the margin in view.</p>
+    <p>Add a third resistor in parallel and the meter pegs. That is the meter
+    range showing up, not new physics.</p>
+    <p>Real meters have internal resistance. A node voltage can sit tens of
+    millivolts off the ideal value.</p>
+    <p>The nominal resistors carry a 5 percent tolerance band. The manual does
+    not print the band, so the bench names it here.</p>
+    <p>That means a percent error near zero is a warning, not a great result.</p>
+    <p>Each part is one run. A real lab repeats every part, and the scatter
+    between runs is part of the data.</p>
+
+    <div class="mistakes">
+      <strong>Common mistakes in this lab:</strong>
+      <ul>
+        <li>Leaving the ammeter in a branch and logging that value as I0 in parallel.</li>
+        <li>Turning the power on before the instructor check has passed.</li>
+        <li>Expecting the two parallel branches to carry the same current.</li>
+        <li>Adding V1 and V2 in parallel and expecting the sum to equal V0.</li>
+        <li>Writing 20 mA as 0.020 in the milliamp column.</li>
+      </ul>
+    </div>
+
+  </section>
+
+  <section id="simulate" class="tab-panel">
+    <div class="toolbar" id="toolbar1"></div>
+
+    <h2>Part 1 &mdash; Place the resistors and pass the check</h2>
+    <ol class="steps">
+      <li>Drag the 100 &Omega; chip and the 200 &Omega; chip out of the tray.</li>
+      <li>Drop both chips on the series slots R1 and R2, one per slot.</li>
+      <li>Press "Instructor check". The bench names the layout and anything missing.</li>
+      <li>The check must pass before the enable switch will do anything.</li>
+      <li>Drag a chip back to the tray to start over. The power drops when the layout changes.</li>
+    </ol>
+
+    <h2>Part 2 &mdash; The series pair</h2>
+    <ol class="steps">
+      <li>With both chips in the series slots, press the enable switch, then close the tap key.</li>
+      <li>Read the ammeter in mA. In a series pair it reads I0 in every position.</li>
+      <li>Drag the voltmeter probes onto A and B to read V1, then B and C for V2, then A and C for V0.</li>
+      <li>Press "Log Table A". The one-shot table fills from the meter values.</li>
+      <li>Open the key before you touch the chips again. The bench drops power on rewire.</li>
+    </ol>
+
+    <h2>Part 3 &mdash; The parallel pair</h2>
+    <ol class="steps">
+      <li>Drag both chips from the series slots to the branch slots P1 and P2.</li>
+      <li>Press "Instructor check" again, then the enable switch, then the tap key.</li>
+      <li>Read I0 on the main branch. Switch the ammeter to branch 1 and branch 2 to read I1 and I2.</li>
+      <li>Drag the probes across A and B for V1, and across C and D for V2. Both equal V0 here.</li>
+      <li>Press "Log Table B". The branch currents carry their own sum check.</li>
+      <li>Optional: press "Borrow third 100 &Omega;". The total current passes the 100 mA stop and the bench names it.</li>
+    </ol>
+
+    <div class="split">
+      <div>
+        <div class="canvas-frame"><canvas id="breadCanvas" height="470"></canvas></div>
+        <p class="muted"><span class="drag-chip">Drag this</span> &mdash; chips go tray to slot
+        and back. Probes go tray to node and back. Click a placed chip or probe
+        and drag it to move it.</p>
+      </div>
+      <div>
+        <p class="muted" style="margin-top:0"><strong>Supply (6.0 V fixed, no knob):</strong></p>
+        <p>
+          <button class="action" id="powerBtn">Enable switch: off</button>
+          <button class="action ghost" id="keyBtn">Tap key: open</button>
+        </p>
+        <p class="muted"><strong>Ammeter position:</strong></p>
+        <p>
+          <button class="action" id="ammMain">main</button>
+          <button class="action ghost" id="ammB1">branch 1</button>
+          <button class="action ghost" id="ammB2">branch 2</button>
+        </p>
+        <p>
+          <button class="action ghost" id="borrowBtn">Borrow third 100 &Omega;</button>
+          <button class="action" id="checkBtn">Instructor check</button>
+        </p>
+        <p>
+          <button class="action" id="logA">Log Table A</button>
+          <button class="action" id="logB">Log Table B</button>
+          <button class="action ghost" id="clearAllBtn">Clear all</button>
+        </p>
+        <div class="readout"><small>layout</small><span id="layoutRead">chips in tray</span></div>
+        <div class="readout"><small>ammeter (100 mA scale)</small><span id="ammRead">0 mA</span></div>
+        <div class="readout"><small>voltmeter (15 V range)</small><span id="voltRead">0.0 V</span></div>
+        <div class="readout"><small>probes on</small><span id="probeRead">tray</span></div>
+        <div class="readout"><small>bench note</small><span id="noteRead">place both chips, then check</span></div>
+      </div>
+    </div>
+
+    <h2>Your data tables</h2>
+    <p class="muted">Two one-shot tables, same columns: quantity &mdash; value &mdash;
+    unit. Table A is the series pair, Table B the parallel pair. Each log fills
+    the table from the meter values, recomputes R_measured, and runs the
+    equality checks. Ammeter 100 mA, voltmeter 15 V, 1 A = 1000 mA.</p>
+    <p><strong>Table A &mdash; series pair</strong> &mdash; <span id="tAmeta">nominal 300 &Omega; / % error -</span></p>
+    <div id="tableA"></div>
+    <p><strong>Table B &mdash; parallel pair</strong> &mdash; <span id="tBmeta">nominal 66.7 &Omega; / % error -</span></p>
+    <div id="tableB"></div>
+    <textarea class="csv-copy" id="csvCopy" readonly></textarea>
+    <p><button class="action ghost" id="exportLog">Export log CSV</button></p>
+    <details id="workDetails">
+      <summary>Show your work</summary>
+      <pre id="workBox">log a table to see the work</pre>
+    </details>
+
+    <details class="constants">
+      <summary>Numbers this bench uses</summary>
+      <p><strong>Course values, printed in the manual:</strong></p>
+      <ul>
+        <li>Resistors, nominal: R1 = 100 &Omega; and R2 = 200 &Omega;, printed on
+        each chip.</li>
+        <li>Supply fixed at 6.0 V for both parts; one set-point, no knob.</li>
+        <li>Ammeter on the 100 mA scale in the main branch; voltmeter on the
+        15 V range.</li>
+        <li>1 A = 1000 mA. 1 W = 1 V&middot;A.</li>
+      </ul>
+      <p><strong>Not printed in the manual, shown here so nothing is a guess:</strong></p>
+      <ul>
+        <li>Resistor tolerance band: &plusmn;5 % on each nominal. Fun Mode draws
+        each chip once from that band.</li>
+      </ul>
+      <p><strong>The sim&rsquo;s own setup.</strong> The manual&rsquo;s circuit
+      figures are image-only. This drag-to-build breadboard, the node letters,
+      the probe tray and the borrowed third resistor are the sim&rsquo;s own
+      standard bench. The instructor check stands in for showing your bench to
+      the instructor before power-on.</p>
+      <p><strong>Fun Mode noise.</strong> Each chip draws a stable value from
+      the &plusmn;5 % band the moment it is placed. The meter readouts follow
+      the drawn values. Fun Mode never changes the nominals, the 6.0 V set-point,
+      or the meter ranges.</p>
+      <p><strong>Honest limits.</strong> The parallel total current is 90 mA,
+      close to the 100 mA stop; a third parallel resistor pegs the meter. Real
+      meters have internal resistance, so node voltages can sit tens of
+      millivolts off. A percent error near zero is suspicious, because real
+      resistors carry tolerance. A single run hides scatter; repeated runs are
+      better practice.</p>
+    </details>
+
+  </section>
+
+  <section id="check" class="tab-panel">
+    <p class="muted">These use the printed nominals (100 &Omega; and 200 &Omega;)
+    and the 6.0 V set-point, the course&rsquo;s own arithmetic. Every answer
+    below is recomputed from the same module the sim runs, so the numbers here
+    cannot drift away from the bench.</p>
+    <div id="check-progress"></div>
+
+    <div class="exercise" data-ex='{
+      "type":"numbers",
+      "q":"1. The series pair is 100 ohm and 200 ohm at 6.0 V. What current does the ammeter show?",
+      "parts":[{"label":"I0","unit":"mA","value":20,"tolAbs":1}],
+      "hints":["Total resistance first: R1 + R2.","I = V / R, in amperes.","then milliamps."],
+      "working":"R_total = 100 + 200 = 300 ohm. I0 = 6.0 / 300 = 0.020 A = <strong>20.0 mA</strong>.",
+      "answer":"20.0 mA"
+    }'></div>
+
+    <div class="exercise" data-ex='{
+      "type":"numbers",
+      "q":"2. Same series pair, 20.0 mA running. What is the drop across each resistor?",
+      "parts":[{"label":"V1 (100 ohm)","unit":"V","value":2.0,"tolAbs":0.1},
+               {"label":"V2 (200 ohm)","unit":"V","value":4.0,"tolAbs":0.1}],
+      "hints":["V = I * R for each resistor.","0.020 A times 100 ohm.","0.020 A times 200 ohm."],
+      "working":"V1 = 0.020 * 100 = <strong>2.0 V</strong>. V2 = 0.020 * 200 = <strong>4.0 V</strong>. The drops add back to 6.0 V.",
+      "answer":"2.0 V and 4.0 V"
+    }'></div>
+
+    <div class="exercise" data-ex='{
+      "type":"numbers",
+      "q":"3. The parallel pair of 100 ohm and 200 ohm. What total resistance does the rule give?",
+      "parts":[{"label":"R_total","unit":"ohm","value":66.7,"tolAbs":0.5}],
+      "hints":["1/R_total = 1/R1 + 1/R2.","or R1*R2 / (R1+R2) for two resistors."],
+      "working":"R_total = (100 * 200) / (100 + 200) = 20000 / 300 = <strong>66.7 ohm</strong>.",
+      "answer":"66.7 ohm"
+    }'></div>
+
+    <div class="exercise" data-ex='{
+      "type":"numbers",
+      "q":"4. Same parallel pair at 6.0 V: the main current, and the current in each branch.",
+      "parts":[{"label":"I0","unit":"mA","value":90,"tolAbs":2},
+               {"label":"I1 (100 ohm)","unit":"mA","value":60,"tolAbs":2},
+               {"label":"I2 (200 ohm)","unit":"mA","value":30,"tolAbs":2}],
+      "hints":["I0 = V / R_total from exercise 3.","Each branch sees the full 6.0 V.","I1 = 6.0 / 100, I2 = 6.0 / 200."],
+      "working":"I0 = 6.0 / 66.7 = 0.090 A = <strong>90 mA</strong>. I1 = 6.0 / 100 = <strong>60 mA</strong>. I2 = 6.0 / 200 = <strong>30 mA</strong>. The branches add: 60 + 30 = 90 mA.",
+      "answer":"90 mA; 60 mA and 30 mA"
+    }'></div>
+
+    <div class="exercise" data-ex='{
+      "type":"numbers",
+      "q":"5. At 6.0 V the parallel pair takes 0.54 W and the series pair takes 0.12 W. What is the power ratio, parallel over series?",
+      "parts":[{"label":"ratio","unit":"-","value":4.5,"tolAbs":0.3}],
+      "hints":["P = V * I at the same V.","0.54 divided by 0.12."],
+      "working":"0.54 W / 0.12 W = <strong>4.5</strong>. The parallel pair takes 4.5 times the power at the same voltage.",
+      "answer":"4.5"
+    }'></div>
+
+    <div class="exercise" data-ex='{
+      "type":"choice",
+      "correct":0,
+      "q":"6. A third 100 ohm resistor joins the parallel bank at 6.0 V. What does the ammeter do?",
+      "options":["It pegs: the bank draws 150 mA, past the 100 mA stop",
+        "It reads 60 mA, the same as one branch",
+        "It reads 45 mA, the current split three ways",
+        "It reads 0 mA, because three equal resistors cancel"],
+      "hints":["Total resistance of the bank with three in parallel.","I = 6.0 V divided by that.","Compare with the 100 mA stop."],
+      "working":"1/R = 1/100 + 1/200 + 1/100 gives R = 40 ohm. I0 = 6.0 / 40 = 150 mA, which is past the 100 mA stop. The meter pegs: a meter-range limit, named by the bench, not a physics surprise.",
+      "answer":"it pegs: 150 mA is past the 100 mA stop"
+    }'></div>
+
+    <div class="exercise" data-ex='{
+      "type":"keywords",
+      "need":3,
+      "q":"7. Your percent error comes out near zero on both tables. Name two or three reasons a real bench can still sit off the nominal.",
+      "words":["tolerance","band","meter","internal","resistance","load","single","run","repeat","scatter","contact","lead"],
+      "placeholder":"two or three short ideas...",
+      "hints":["What does the 5 percent tolerance band say?","What do the meters themselves add?","How many runs did you take?"],
+      "working":"Real resistors carry a tolerance band, so the true values are not the printed nominals. The meters have internal resistance and the contacts and leads add slivers of resistance. And one run hides the scatter that repeated runs would show. A near-zero error is suspicious for all three reasons at once.",
+      "answer":"tolerance band on the resistors, internal resistance of the meters and leads, and one run hiding scatter"
+    }'></div>
+  </section>
+</main>
+
+<script src="../../../shared/courses.js"></script>
+<script src="../../../shared/units.js"></script>
+<script src="../../../shared/ui.js"></script>
+<script src="../../../shared/store.js"></script>
+<script src="../../../shared/check.js"></script>
+<script src="../../../shared/worksheet.js"></script>
+<script src="./seriesparallel.js"></script>
+<script src="./worksheet.js"></script>
+<script src="./sim.js"></script>
+</body>
+</html>

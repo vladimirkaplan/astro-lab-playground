@@ -7,7 +7,17 @@
   var S = {};
   var PREFIX = "labSimsTable.";
 
-  function key(labId, name) { return PREFIX + labId + "." + name; }
+  // BMC-27: lab folders now sit under a course directory, so new writes key as
+  // labSimsTable.<course>.<slug>.<name>. The old bare-slug key is still read
+  // (and cleared), so tables logged before the move keep loading.
+  function courseCode() {
+    try {
+      var c = typeof root.LS.currentCourse === "function" ? root.LS.currentCourse() : null;
+      return c && c.code ? c.code + "." : "";
+    } catch (e) { return ""; }
+  }
+  function key(labId, name) { return PREFIX + courseCode() + labId + "." + name; }
+  function legacyKey(labId, name) { return PREFIX + labId + "." + name; }
 
   S.save = function (labId, name, header, rows) {
     try {
@@ -19,13 +29,17 @@
   // load returns [{header, rows, savedAt}] for one named table (usually 0 or 1).
   S.load = function (labId, name) {
     try {
-      var raw = localStorage.getItem(key(labId, name));
+      var raw = localStorage.getItem(key(labId, name)) ||
+        localStorage.getItem(legacyKey(labId, name));
       return raw ? JSON.parse(raw) : null;
     } catch (e) { return null; }
   };
 
   S.clear = function (labId, name) {
-    try { localStorage.removeItem(key(labId, name)); } catch (e) {}
+    try {
+      localStorage.removeItem(key(labId, name));
+      localStorage.removeItem(legacyKey(labId, name));
+    } catch (e) {}
   };
 
   // header: array of strings; rows: array of arrays. CSV follows RFC 4180.

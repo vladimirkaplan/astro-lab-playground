@@ -3,7 +3,7 @@ const test = require("node:test");
 const assert = require("node:assert/strict");
 
 require("../site/shared/units.js");
-require("../site/labs/08-venus-phases/venus.js");
+require("../site/ast110/labs/08-venus-phases/venus.js");
 const V = globalThis.LS.venus;
 
 const near = (x, target, tol) => Math.abs(x - target) < tol;
